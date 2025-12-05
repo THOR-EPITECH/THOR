@@ -1,0 +1,66 @@
+{
+  "timestamp": "2025-12-05 13:59:45",
+  "test_audio": null,
+  "results": [
+    {
+      "model_name": "whisper-tiny",
+      "model_size": "tiny",
+      "transcription_time": 0.6407020092010498,
+      "memory_usage_mb": 373.40625,
+      "cpu_percent": 166.7,
+      "text_length": 35,
+      "confidence": 0.9759818539023399,
+      "transcribed_text": "Je veux aller de Paris à Marseille.",
+      "is_valid": true,
+      "error_message": null
+    },
+    {
+      "model_name": "whisper-base",
+      "model_size": "base",
+      "transcription_time": 0.8694357872009277,
+      "memory_usage_mb": 426.828125,
+      "cpu_percent": 155.39999999999998,
+      "text_length": 35,
+      "confidence": 0.9740026351064444,
+      "transcribed_text": "Je veux aller de Paris à Marseille.",
+      "is_valid": true,
+      "error_message": null
+    },
+    {
+      "model_name": "whisper-small",
+      "model_size": "small",
+      "transcription_time": 2.0869579315185547,
+      "memory_usage_mb": 1537.0,
+      "cpu_percent": 155.35000000000002,
+      "text_length": 35,
+      "confidence": 0.9820370599627495,
+      "transcribed_text": "Je veux aller de Paris à Marseille.",
+      "is_valid": true,
+      "error_message": null
+    },
+    {
+      "model_name": "whisper-medium",
+      "model_size": "medium",
+      "transcription_time": 6.551445007324219,
+      "memory_usage_mb": 3622.328125,
+      "cpu_percent": 181.3,
+      "text_length": 35,
+      "confidence": 0.8493303507566452,
+      "transcribed_text": "Je veux aller de Paris à Marseille.",
+      "is_valid": true,
+      "error_message": null
+    },
+    {
+      "model_name": "whisper-large",
+      "model_size": "large",
+      "transcription_time": 14.072176218032837,
+      "memory_usage_mb": 5304.609375,
+      "cpu_percent": 194.85000000000002,
+      "text_length": 35,
+      "confidence": 0.7377043664455414,
+      "transcribed_text": "Je veux aller de Paris à Marseille.",
+      "is_valid": true,
+      "error_message": null
+    }
+  ]
+}
