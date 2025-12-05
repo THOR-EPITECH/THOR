@@ -1,0 +1,18 @@
+{
+  "timestamp": "2025-12-05 13:54:43",
+  "test_audio": null,
+  "results": [
+    {
+      "model_name": "whisper-tiny",
+      "model_size": "tiny",
+      "transcription_time": 0.31676506996154785,
+      "memory_usage_mb": 256.65625,
+      "cpu_percent": 107.9,
+      "text_length": 0,
+      "confidence": 0.0,
+      "transcribed_text": "",
+      "is_valid": false,
+      "error_message": "Erreur lors de la transcription: [Errno 2] No such file or directory: 'ffmpeg'"
+    }
+  ]
+}

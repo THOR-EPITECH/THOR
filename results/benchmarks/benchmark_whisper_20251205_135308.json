@@ -1,0 +1,66 @@
+{
+  "timestamp": "2025-12-05 13:53:08",
+  "test_audio": null,
+  "results": [
+    {
+      "model_name": "whisper-tiny",
+      "model_size": "tiny",
+      "transcription_time": 0.0,
+      "memory_usage_mb": 0.0,
+      "cpu_percent": 0.0,
+      "text_length": 0,
+      "confidence": 0.0,
+      "transcribed_text": "",
+      "is_valid": false,
+      "error_message": "module 'whisper' has no attribute 'load_model'"
+    },
+    {
+      "model_name": "whisper-base",
+      "model_size": "base",
+      "transcription_time": 0.0,
+      "memory_usage_mb": 0.0,
+      "cpu_percent": 0.0,
+      "text_length": 0,
+      "confidence": 0.0,
+      "transcribed_text": "",
+      "is_valid": false,
+      "error_message": "module 'whisper' has no attribute 'load_model'"
+    },
+    {
+      "model_name": "whisper-small",
+      "model_size": "small",
+      "transcription_time": 0.0,
+      "memory_usage_mb": 0.0,
+      "cpu_percent": 0.0,
+      "text_length": 0,
+      "confidence": 0.0,
+      "transcribed_text": "",
+      "is_valid": false,
+      "error_message": "module 'whisper' has no attribute 'load_model'"
+    },
+    {
+      "model_name": "whisper-medium",
+      "model_size": "medium",
+      "transcription_time": 0.0,
+      "memory_usage_mb": 0.0,
+      "cpu_percent": 0.0,
+      "text_length": 0,
+      "confidence": 0.0,
+      "transcribed_text": "",
+      "is_valid": false,
+      "error_message": "module 'whisper' has no attribute 'load_model'"
+    },
+    {
+      "model_name": "whisper-large",
+      "model_size": "large",
+      "transcription_time": 0.0,
+      "memory_usage_mb": 0.0,
+      "cpu_percent": 0.0,
+      "text_length": 0,
+      "confidence": 0.0,
+      "transcribed_text": "",
+      "is_valid": false,
+      "error_message": "module 'whisper' has no attribute 'load_model'"
+    }
+  ]
+}

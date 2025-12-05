@@ -15,8 +15,5 @@ build/
 htmlcov/
 *.log
 .env
-models/
 *.ckpt
 *.pth
-results/
-

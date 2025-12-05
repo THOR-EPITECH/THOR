@@ -1,0 +1,66 @@
+{
+  "timestamp": "2025-12-05 13:56:45",
+  "test_audio": null,
+  "results": [
+    {
+      "model_name": "whisper-tiny",
+      "model_size": "tiny",
+      "transcription_time": 4.2529730796813965,
+      "memory_usage_mb": 373.703125,
+      "cpu_percent": 25.8,
+      "text_length": 35,
+      "confidence": 0.9619451761245728,
+      "transcribed_text": "Je veux aller de Paris à Marseille.",
+      "is_valid": true,
+      "error_message": null
+    },
+    {
+      "model_name": "whisper-base",
+      "model_size": "base",
+      "transcription_time": 0.8689320087432861,
+      "memory_usage_mb": 429.734375,
+      "cpu_percent": 156.1,
+      "text_length": 35,
+      "confidence": 0.9598301760852337,
+      "transcribed_text": "Je veux aller de Paris à Marseille.",
+      "is_valid": true,
+      "error_message": null
+    },
+    {
+      "model_name": "whisper-small",
+      "model_size": "small",
+      "transcription_time": 2.095996141433716,
+      "memory_usage_mb": 1537.484375,
+      "cpu_percent": 156.95,
+      "text_length": 35,
+      "confidence": 0.984689743258059,
+      "transcribed_text": "Je veux aller de Paris à Marseille.",
+      "is_valid": true,
+      "error_message": null
+    },
+    {
+      "model_name": "whisper-medium",
+      "model_size": "medium",
+      "transcription_time": 6.534099817276001,
+      "memory_usage_mb": 3619.046875,
+      "cpu_percent": 187.1,
+      "text_length": 35,
+      "confidence": 0.8482893705368042,
+      "transcribed_text": "Je veux aller de Paris à Marseille.",
+      "is_valid": true,
+      "error_message": null
+    },
+    {
+      "model_name": "whisper-large",
+      "model_size": "large",
+      "transcription_time": 14.409795045852661,
+      "memory_usage_mb": 5510.46875,
+      "cpu_percent": 192.4,
+      "text_length": 35,
+      "confidence": 0.8360048979520798,
+      "transcribed_text": "Je veux aller de Paris à Marseille.",
+      "is_valid": true,
+      "error_message": null
+    }
+  ]
+}

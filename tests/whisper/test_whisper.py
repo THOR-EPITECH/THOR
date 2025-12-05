@@ -1,4 +1,4 @@
-"""Tests unifiés pour le module speech-to-text Whisper."""
+"""Tests pour le module Whisper."""
 
 import sys
 import ssl
@@ -68,7 +68,7 @@ def test_transcribe_file(audio_path: str):
     if not audio_file.exists():
         print(f"\n✗ Fichier non trouvé: {audio_path}")
         print("\nPour tester avec un fichier audio:")
-        print("  python tests/speech_to_text/test_speech_to_text.py --file <chemin_vers_audio>")
+        print("  python tests/whisper/test_whisper.py --file <chemin_vers_audio>")
         return
     
     print(f"\nFichier audio: {audio_file}")
@@ -243,9 +243,9 @@ def test_basic():
         print("\n" + "=" * 60)
         print("✓ Tous les tests de base ont réussi!")
         print("\nPour tester avec un vrai fichier audio:")
-        print("  python tests/speech_to_text/test_speech_to_text.py --file <chemin_vers_audio>")
+        print("  python tests/whisper/test_whisper.py --file <chemin_vers_audio>")
         print("\nPour tester avec le microphone:")
-        print("  python tests/speech_to_text/test_speech_to_text.py --mic")
+        print("  python tests/whisper/test_whisper.py --mic")
         print("\n" + "=" * 60)
     
     except ImportError as e:
@@ -261,11 +261,11 @@ def test_basic():
 def print_usage():
     """Affiche l'aide d'utilisation."""
     print("=" * 60)
-    print("TESTS DU MODULE SPEECH-TO-TEXT (WHISPER)")
+    print("TESTS DU MODULE WHISPER")
     print("=" * 60)
     print()
     print("Usage:")
-    print("  python tests/speech_to_text/test_speech_to_text.py [options]")
+    print("  python tests/whisper/test_whisper.py [options]")
     print()
     print("Options:")
     print("  --basic              Test basique (vérification du module)")
@@ -279,11 +279,11 @@ def print_usage():
     print("  --model <size>       Taille du modèle (tiny/base/small, défaut: base)")
     print()
     print("Exemples:")
-    print("  python tests/speech_to_text/test_speech_to_text.py --basic")
-    print("  python tests/speech_to_text/test_speech_to_text.py --mic")
-    print("  python tests/speech_to_text/test_speech_to_text.py --mic --duration 10 --language fr")
-    print("  python tests/speech_to_text/test_speech_to_text.py --file data/audio/test.wav")
-    print("  python tests/speech_to_text/test_speech_to_text.py --mic-loop")
+    print("  python tests/whisper/test_whisper.py --basic")
+    print("  python tests/whisper/test_whisper.py --mic")
+    print("  python tests/whisper/test_whisper.py --mic --duration 10 --language fr")
+    print("  python tests/whisper/test_whisper.py --file data/audio/test.wav")
+    print("  python tests/whisper/test_whisper.py --mic-loop")
     print()
 
 
@@ -292,7 +292,7 @@ def main():
     import argparse
     
     parser = argparse.ArgumentParser(
-        description="Tests pour le module speech-to-text Whisper"
+        description="Tests pour le module Whisper"
     )
     parser.add_argument("--basic", action="store_true", help="Test basique")
     parser.add_argument("--models", action="store_true", help="Test de création des modèles")
