@@ -1,0 +1,9 @@
+# Dépendances principales pour THOR
+
+openai-whisper>=20231117
+torch>=2.0.0
+numpy>=1.24.0
+sounddevice>=0.4.6
+soundfile>=0.12.1
+psutil>=5.9.0
+
