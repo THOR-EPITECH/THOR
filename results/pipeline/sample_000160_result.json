@@ -1,0 +1,31 @@
+{
+  "audio_path": "data/raw/audio/sample_000160.wav",
+  "transcript": "Je veux voyager de Toulouse à Bordeaux.",
+  "origin": "Toulouse",
+  "destination": "Bordeaux",
+  "is_valid": true,
+  "confidence": 0.7,
+  "stt_metadata": {
+    "model": "whisper-small",
+    "segments": 1,
+    "detected_language": "fr"
+  },
+  "nlp_metadata": {
+    "model": "spacy-fr_core_news_md",
+    "locations_found": [
+      "Bordeaux",
+      "Toulouse"
+    ],
+    "extraction_method": "ner_patterns",
+    "entities": [
+      {
+        "text": "Bordeaux",
+        "label": "LOC"
+      },
+      {
+        "text": "Toulouse",
+        "label": "LOC"
+      }
+    ]
+  }
+}

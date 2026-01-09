@@ -1,0 +1,31 @@
+id,text,reference_origin,reference_destination,reference_is_valid,predicted_origin,predicted_destination,predicted_is_valid,precision,recall,f1,tp,fp,fn,origin_accuracy,destination_accuracy,both_correct,validation_accuracy
+nlp_000160,Je veux voyager de Toulouse à Bordeaux,Toulouse,Bordeaux,True,Toulouse,Bordeaux,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000085,Je veux aller à Paris,,Paris,True,,Paris,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000171,je veux aller a paris depuis lyon,Lyon,Paris,True,lyon,paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000018,Mon cousin travaille à Lyon,,,False,,Lyon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000111,Je souhaite un trajet de Nantes à Rennes,Nantes,Rennes,True,Nantes,Rennes,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000094,Je veux aller à Paris depuis Lyon,Lyon,Paris,True,Lyon,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000051,Je veux partir de Lyon,Lyon,,True,Lyon,Lyon,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_000172,Je veux me rendre à Lille,,Lille,True,,Lille,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000176,Comment faire pour aller de Montpellier à Perpignan ?,Montpellier,Perpignan,True,Montpellier,Perpignan,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000138,Je veux me rendre à Lille,,Lille,True,,Lille,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000134,Paris est très touristique,,,False,,Paris,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000001,J'ai un rendez-vous à Paris demain,,,False,,Paris,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000193,Comment puis-je me rendre de Bordeaux à Marseille ?,Bordeaux,Marseille,True,Bordeaux,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000182,Lyon est célèbre pour sa gastronomie,,,False,,Lyon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000012,Pouvez-vous me dire comment aller de Strasbourg à Nancy ?,Strasbourg,Nancy,True,Strasbourg,Nancy,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000066,Je dois quitter Marseille,Marseille,,True,,Marseille,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_000049,Marseille est une belle ville,,,False,,Marseille,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000148,Mon ami habite à Bordeaux,,,False,,Bordeaux,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000099,Je voudrais me rendre à Bordeaux,,Bordeaux,True,,Bordeaux,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000030,Comment me rendre à Marseille depuis Lyon ?,Lyon,Marseille,True,Lyon,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000131,Je veux aller à Paris,,Paris,True,,Paris,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000156,Marseille a un beau port,,,False,,Marseille,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000197,Pouvez-vous me dire comment aller de Strasbourg à Nancy ?,Strasbourg,Nancy,True,Strasbourg,Nancy,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000081,A quelle heure y a-t-il des trains vers Paris en partance de Toulouse ?,Toulouse,Paris,True,Toulouse,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000187,Comment faire pour quitter Toulouse ?,Toulouse,,True,,Toulouse,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_000089,Je dois me rendre à Lille en partant de Reims,Reims,Lille,True,Lille,Reims,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000112,Je veux partir de Lyon,Lyon,,True,Lyon,Lyon,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_000153,Je veux voyager de Toulouse à Bordeaux,Toulouse,Bordeaux,True,Toulouse,Bordeaux,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000028,Je connais quelqu'un qui habite à Toulouse,,,False,,Toulouse,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000010,Je voudrais un billet pour aller de Nice à Cannes,Nice,Cannes,True,Nice,Cannes,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0

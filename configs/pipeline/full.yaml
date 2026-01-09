@@ -1,0 +1,17 @@
+# Configuration pour le pipeline complet
+
+stt:
+  model: whisper
+  model_size: small
+  language: fr
+  device: cpu
+
+nlp:
+  model: spacy
+  model_name: fr_core_news_md
+
+# Pipeline
+pipeline:
+  save_intermediate: false
+  verbose: true
+

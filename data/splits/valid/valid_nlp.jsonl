@@ -1,0 +1,30 @@
+{"id": "nlp_000191", "sentence": "A quelle heure y a-t-il des trains vers Paris en partance de Toulouse ?", "origin": "Toulouse", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000055", "sentence": "Comment faire pour aller de Montpellier à Perpignan ?", "origin": "Montpellier", "destination": "Perpignan", "is_valid": true}
+{"id": "nlp_000144", "sentence": "Paris est très touristique", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000114", "sentence": "Comment me rendre à Marseille ?", "origin": null, "destination": "Marseille", "is_valid": true}
+{"id": "nlp_000120", "sentence": "Je dois aller à Nice", "origin": null, "destination": "Nice", "is_valid": true}
+{"id": "nlp_000083", "sentence": "A quelle heure y a-t-il des trains vers Paris en partance de Toulouse ?", "origin": "Toulouse", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000175", "sentence": "Comment puis-je me rendre de Bordeaux à Marseille ?", "origin": "Bordeaux", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_000054", "sentence": "Je cherche un itinéraire entre Lyon et Paris", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000074", "sentence": "je souhaite voyager de bordeaux à toulouse", "origin": "Bordeaux", "destination": "Toulouse", "is_valid": true}
+{"id": "nlp_000154", "sentence": "Je dois aller à Nice", "origin": null, "destination": "Nice", "is_valid": true}
+{"id": "nlp_000184", "sentence": "Je cherche un trajet entre Nantes et Rennes", "origin": "Nantes", "destination": "Rennes", "is_valid": true}
+{"id": "nlp_000141", "sentence": "Mon cousin travaille à Lyon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000163", "sentence": "Je cherche un itinéraire entre Lyon et Paris", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000078", "sentence": "Je dois aller à Nice, je pars de Marseille", "origin": "Marseille", "destination": "Nice", "is_valid": true}
+{"id": "nlp_000146", "sentence": "Lyon est célèbre pour sa gastronomie", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000045", "sentence": "Je dois quitter Marseille", "origin": "Marseille", "destination": null, "is_valid": true}
+{"id": "nlp_000098", "sentence": "Bordeaux produit du vin", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000108", "sentence": "Comment faire pour quitter Toulouse ?", "origin": "Toulouse", "destination": null, "is_valid": true}
+{"id": "nlp_000050", "sentence": "J'ai passé mes vacances à Marseille", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000033", "sentence": "Je ne comprends pas", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000142", "sentence": "Je dois me rendre à Lille en partant de Reims", "origin": "Reims", "destination": "Lille", "is_valid": true}
+{"id": "nlp_000076", "sentence": "Je suis fatigué", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000104", "sentence": "Pouvez-vous me dire comment aller de Strasbourg à Nancy ?", "origin": "Strasbourg", "destination": "Nancy", "is_valid": true}
+{"id": "nlp_000084", "sentence": "Je voudrais réserver un billet de train de Lyon à Paris", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000105", "sentence": "Comment partir de Paris ?", "origin": "Paris", "destination": null, "is_valid": true}
+{"id": "nlp_000080", "sentence": "Je souhaite aller à Nancy", "origin": null, "destination": "Nancy", "is_valid": true}
+{"id": "nlp_000130", "sentence": "Je cherche un trajet entre Nantes et Rennes", "origin": "Nantes", "destination": "Rennes", "is_valid": true}
+{"id": "nlp_000077", "sentence": "Quelle heure est-il ?", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000032", "sentence": "Mon ami habite à Bordeaux", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000194", "sentence": "Je dois aller à Nice", "origin": null, "destination": "Nice", "is_valid": true}
