@@ -1,0 +1,12 @@
+{
+  "wer_mean": 1.0,
+  "wer_std": 0.0,
+  "cer_mean": 1.0,
+  "cer_std": 0.0,
+  "latency_mean": 0.10386361281077067,
+  "latency_std": 0.0017998848988440407,
+  "rtf_mean": 0.0,
+  "rtf_std": 0.0,
+  "confidence_mean": 0.0,
+  "confidence_std": 0.0
+}

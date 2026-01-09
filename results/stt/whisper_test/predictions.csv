@@ -1,0 +1,31 @@
+id,audio_path,reference,prediction,wer,cer,latency,rtf
+sample_000160,data/raw/audio/sample_000160.wav,Je veux voyager de Toulouse à Bordeaux,Je veux voyager de Toulouse à Bordeaux.,0.1428571428571429,0.02564102564102564,1.2049810886383057,0.46488467925860555
+sample_000085,data/raw/audio/sample_000085.wav,Quel temps fait-il aujourd'hui ?,Qu'est-ce que ça fait ?,0.8,0.6875,0.3152120113372803,0.12160957227518529
+sample_000171,data/raw/audio/sample_000171.wav,Me gustaría viajar de Burdeos a Toulouse,Mi-Gustaria via Giardin Berdeo's a Toulouse.,0.8571428571428572,0.29545454545454547,0.38016510009765625,0.09428697919088697
+sample_000018,data/raw/audio/sample_000018.wav,Comment pourrais-je me rendre à Toulouse ?,Comment pourrais-je me rendre à Toulouse ?,0.0,0.0,0.3356001377105713,0.13844890169578025
+sample_000111,data/raw/audio/sample_000111.wav,Je souhaite un trajet de Nantes à Rennes,Je souhaite un trajet de non-tarenes.,0.375,0.275,0.3442409038543701,0.13925602906730183
+sample_000094,data/raw/audio/sample_000094.wav,Je veux aller à Paris depuis Lyon,Je veux aller à Paris depuis Lyon.,0.1428571428571429,0.029411764705882353,0.3188669681549072,0.1398539334012751
+sample_000051,data/raw/audio/sample_000051.wav,Je veux aller à Paris,Je veux aller à Paris.,0.19999999999999996,0.045454545454545456,0.29370808601379395,0.17482624167487734
+sample_000172,data/raw/audio/sample_000172.wav,Bonne soirée,Bonne soirée.,0.5,0.07692307692307693,0.2853209972381592,0.18870436325275078
+sample_000176,data/raw/audio/sample_000176.wav,Je voudrais me rendre à Bordeaux,Je voudrais me rendre à Bordeaux.,0.16666666666666663,0.030303030303030304,0.3236830234527588,0.15325900731664716
+sample_000138,data/raw/audio/sample_000138.wav,Bordeaux est dans le sud-ouest,Bordeaux est dans le Sud-Ouest.,0.19999999999999996,0.0967741935483871,0.3379709720611572,0.15822611051552304
+sample_000134,data/raw/audio/sample_000134.wav,Merci beaucoup,Merci beaucoup,0.0,0.0,0.26487302780151367,0.16229964938818242
+sample_000001,data/raw/audio/sample_000001.wav,Je voudrais bien aller à Paris,Je voudrais bien aller à Paris.,0.16666666666666663,0.03225806451612903,0.3130471706390381,0.14992680586160828
+sample_000193,data/raw/audio/sample_000193.wav,Comment puis-je me rendre de Bordeaux à Marseille ?,Comment puis-je me rendre de bordeaux à Marseille ?,0.11111111111111116,0.0196078431372549,0.36000919342041016,0.1171904926498731
+sample_000182,data/raw/audio/sample_000182.wav,"Je veux aller à Paris, depuis Lyon","Je veux aller à Paris, depuis Lyon.",0.1428571428571429,0.02857142857142857,0.32817697525024414,0.12661148736506334
+sample_000012,data/raw/audio/sample_000012.wav,Pouvez-vous me dire comment aller de Strasbourg à Nancy ?,Pouvez-vous me dire comment aller de Strasbourg à Nancy ?,0.0,0.0,0.3652341365814209,0.11356782853899904
+sample_000066,data/raw/audio/sample_000066.wav,Marseille a un beau port,"Marseille, Arundbeau Porte",1.0,0.23076923076923078,0.33040881156921387,0.1349709197586658
+sample_000049,data/raw/audio/sample_000049.wav,Je veux aller à Paris depuis Lyon !,Je veux aller à Paris depuis Lyon.,0.25,0.05714285714285714,0.31885385513305664,0.1459953549144032
+sample_000148,data/raw/audio/sample_000148.wav,Est-ce que je peux aller à Nice depuis Cannes ?,Est-ce que je peux aller à Nice depuis Cannes ?,0.0,0.0,0.3473029136657715,0.14470954736073813
+sample_000099,data/raw/audio/sample_000099.wav,Combien ça coûte ?,Combien S'accoute,0.75,0.3333333333333333,0.2945418357849121,0.17532252130054293
+sample_000030,data/raw/audio/sample_000030.wav,Je souhaite voyager de Bordeaux à Toulouse,Je souhaite voyager de Bordeaux à Toulouse.,0.1428571428571429,0.023255813953488372,0.35193705558776855,0.12427155917647195
+sample_000131,data/raw/audio/sample_000131.wav,Quelle heure est-il ?,Quelle heure est-ce que tu aimes ?,0.5714285714285714,0.4117647058823529,0.9838728904724121,0.4999354118254127
+sample_000156,data/raw/audio/sample_000156.wav,Je me demande s'il y a un moyen d'aller à Nice,Je me demande s'il y a un moyen d'aller à Nice.,0.09090909090909094,0.02127659574468085,0.3667731285095215,0.1212874102214026
+sample_000197,data/raw/audio/sample_000197.wav,Pouvez-vous me dire comment aller de Strasbourg à Nancy ?,Pouvez-vous me dire comment aller de Strasbourg à Nancy ?,0.0,0.0,0.36785387992858887,0.11438242535092936
+sample_000081,data/raw/audio/sample_000081.wav,A quelle heure y a-t-il des trains vers Paris en partance de Toulouse ?,"Aquel here, why a-t-il des trains vers Paris en partance de Toulouse ?",0.2857142857142857,0.09859154929577464,0.41034507751464844,0.07007258837340308
+sample_000187,data/raw/audio/sample_000187.wav,J'ai un rendez-vous à Paris demain,Géant Rende's Vusseau Paris Domain,0.8333333333333334,0.5,0.34534764289855957,0.10427163130995157
+sample_000089,data/raw/audio/sample_000089.wav,Je dois me rendre à Lille en partant de Reims,Je dois me rendre à l'île en partant de Rince.,0.19999999999999996,0.17391304347826086,0.37181591987609863,0.1291027499569787
+sample_000112,data/raw/audio/sample_000112.wav,Marseille est une belle ville,Marseille est une Belleville.,0.4,0.10344827586206896,0.31122612953186035,0.1259005378365131
+sample_000153,data/raw/audio/sample_000153.wav,Je veux voyager de Toulouse à Bordeaux,Je veux voyager de Toulouse à Bordeaux.,0.1428571428571429,0.02564102564102564,0.355327844619751,0.13708635980700268
+sample_000028,data/raw/audio/sample_000028.wav,Je souhaiterais me rendre à Lyon,Je souhaiterais me rendre à Lyon.,0.16666666666666663,0.030303030303030304,0.33227086067199707,0.16098394412402958
+sample_000010,data/raw/audio/sample_000010.wav,Je voudrais un billet pour aller de Nice à Cannes,Je voudrais un billet pour aller de Nice à Cannes.,0.09999999999999998,0.02,0.35430192947387695,0.12200479665078408

@@ -18,5 +18,16 @@ htmlcov/
 models/
 *.ckpt
 *.pth
-results/
+# Résultats d'évaluation - on garde les rapports et métriques, on ignore les fichiers volumineux
+results/runs/**/*.wav
+results/runs/**/*.mp3
+results/runs/**/*.pth
+results/runs/**/*.ckpt
+results/runs/**/plots/*.png
+results/runs/**/plots/*.jpg
+results/runs/**/plots/*.pdf
+# Mais on garde les rapports markdown, JSON et CSV
+!results/**/*.md
+!results/**/*.json
+!results/**/*.csv
 
