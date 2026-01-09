@@ -96,8 +96,11 @@ pytest --cov=src tests/
 
 ## 📝 Documentation
 
+- **[📚 Guide complet des commandes](COMMANDES.md)** - Toutes les commandes disponibles
 - [Architecture complète](ARCHITECTURE.md)
 - [Documentation STT](src/stt/README.md)
+- [Documentation NLP](src/nlp/README.md)
+- [Documentation Pipeline](src/pipeline/README.md)
 
 ## 🔧 Développement
 
