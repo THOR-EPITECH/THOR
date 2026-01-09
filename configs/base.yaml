@@ -1,0 +1,27 @@
+# Configuration de base pour THOR
+
+# Chemins
+data_dir: ${DATA_DIR:-data}
+results_dir: ${RESULTS_DIR:-results}
+models_dir: models
+
+# Logging
+logging:
+  level: ${LOG_LEVEL:-INFO}
+  file: null
+
+# Modules
+stt:
+  enabled: true
+  default_model: whisper
+  audio:
+    sample_rate: 16000
+    channels: 1
+    format: wav
+
+# Expériences
+experiments:
+  output_dir: ${EXPERIMENTS_DIR:-experiments}
+  save_predictions: true
+  save_plots: true
+

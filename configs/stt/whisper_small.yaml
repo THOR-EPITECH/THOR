@@ -1,0 +1,7 @@
+# Configuration pour Whisper Small
+
+model: whisper
+model_size: small
+language: fr
+device: cpu
+
