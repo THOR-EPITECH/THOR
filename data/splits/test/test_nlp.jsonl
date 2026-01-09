@@ -1,30 +1,876 @@
-{"id": "nlp_000160", "sentence": "Je veux voyager de Toulouse à Bordeaux", "origin": "Toulouse", "destination": "Bordeaux", "is_valid": true}
-{"id": "nlp_000085", "sentence": "Je veux aller à Paris", "origin": null, "destination": "Paris", "is_valid": true}
-{"id": "nlp_000171", "sentence": "je veux aller a paris depuis lyon", "origin": "Lyon", "destination": "Paris", "is_valid": true}
-{"id": "nlp_000018", "sentence": "Mon cousin travaille à Lyon", "origin": null, "destination": null, "is_valid": false}
-{"id": "nlp_000111", "sentence": "Je souhaite un trajet de Nantes à Rennes", "origin": "Nantes", "destination": "Rennes", "is_valid": true}
-{"id": "nlp_000094", "sentence": "Je veux aller à Paris depuis Lyon", "origin": "Lyon", "destination": "Paris", "is_valid": true}
-{"id": "nlp_000051", "sentence": "Je veux partir de Lyon", "origin": "Lyon", "destination": null, "is_valid": true}
-{"id": "nlp_000172", "sentence": "Je veux me rendre à Lille", "origin": null, "destination": "Lille", "is_valid": true}
-{"id": "nlp_000176", "sentence": "Comment faire pour aller de Montpellier à Perpignan ?", "origin": "Montpellier", "destination": "Perpignan", "is_valid": true}
-{"id": "nlp_000138", "sentence": "Je veux me rendre à Lille", "origin": null, "destination": "Lille", "is_valid": true}
-{"id": "nlp_000134", "sentence": "Paris est très touristique", "origin": null, "destination": null, "is_valid": false}
-{"id": "nlp_000001", "sentence": "J'ai un rendez-vous à Paris demain", "origin": null, "destination": null, "is_valid": false}
-{"id": "nlp_000193", "sentence": "Comment puis-je me rendre de Bordeaux à Marseille ?", "origin": "Bordeaux", "destination": "Marseille", "is_valid": true}
-{"id": "nlp_000182", "sentence": "Lyon est célèbre pour sa gastronomie", "origin": null, "destination": null, "is_valid": false}
-{"id": "nlp_000012", "sentence": "Pouvez-vous me dire comment aller de Strasbourg à Nancy ?", "origin": "Strasbourg", "destination": "Nancy", "is_valid": true}
-{"id": "nlp_000066", "sentence": "Je dois quitter Marseille", "origin": "Marseille", "destination": null, "is_valid": true}
-{"id": "nlp_000049", "sentence": "Marseille est une belle ville", "origin": null, "destination": null, "is_valid": false}
-{"id": "nlp_000148", "sentence": "Mon ami habite à Bordeaux", "origin": null, "destination": null, "is_valid": false}
-{"id": "nlp_000099", "sentence": "Je voudrais me rendre à Bordeaux", "origin": null, "destination": "Bordeaux", "is_valid": true}
-{"id": "nlp_000030", "sentence": "Comment me rendre à Marseille depuis Lyon ?", "origin": "Lyon", "destination": "Marseille", "is_valid": true}
-{"id": "nlp_000131", "sentence": "Je veux aller à Paris", "origin": null, "destination": "Paris", "is_valid": true}
-{"id": "nlp_000156", "sentence": "Marseille a un beau port", "origin": null, "destination": null, "is_valid": false}
-{"id": "nlp_000197", "sentence": "Pouvez-vous me dire comment aller de Strasbourg à Nancy ?", "origin": "Strasbourg", "destination": "Nancy", "is_valid": true}
-{"id": "nlp_000081", "sentence": "A quelle heure y a-t-il des trains vers Paris en partance de Toulouse ?", "origin": "Toulouse", "destination": "Paris", "is_valid": true}
-{"id": "nlp_000187", "sentence": "Comment faire pour quitter Toulouse ?", "origin": "Toulouse", "destination": null, "is_valid": true}
-{"id": "nlp_000089", "sentence": "Je dois me rendre à Lille en partant de Reims", "origin": "Reims", "destination": "Lille", "is_valid": true}
-{"id": "nlp_000112", "sentence": "Je veux partir de Lyon", "origin": "Lyon", "destination": null, "is_valid": true}
-{"id": "nlp_000153", "sentence": "Je veux voyager de Toulouse à Bordeaux", "origin": "Toulouse", "destination": "Bordeaux", "is_valid": true}
-{"id": "nlp_000028", "sentence": "Je connais quelqu'un qui habite à Toulouse", "origin": null, "destination": null, "is_valid": false}
-{"id": "nlp_000010", "sentence": "Je voudrais un billet pour aller de Nice à Cannes", "origin": "Nice", "destination": "Cannes", "is_valid": true}
+{"id": "nlp_000452", "sentence": "Je veux se rendre pour Lyon depuis Bordeaux", "origin": "Bordeaux", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001215", "sentence": "Je veux quitter Angers", "origin": "Angers", "destination": null, "is_valid": true}
+{"id": "nlp_001515", "sentence": "Je veux se rendre en direction de Montpellier ?", "origin": null, "destination": "Montpellier", "is_valid": true}
+{"id": "nlp_000401", "sentence": "Dijon produit", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001701", "sentence": "Je veux voyager vers Lyon depuis Toulouse", "origin": "Toulouse", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004568", "sentence": "Je veux se rendre à Lyon de Villeurbanne", "origin": "Villeurbanne", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002279", "sentence": "Je veux voyager pour Lyon ?", "origin": null, "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004484", "sentence": "J'ai visité Reims", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002005", "sentence": "Je veux aller pour Lyon à partir de Dijon", "origin": "Dijon", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005410", "sentence": "Je veux aller pour Paris de Montpellier", "origin": "Montpellier", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004917", "sentence": "Je veux se rendre pour Marseille à partir de Toulouse", "origin": "Toulouse", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_004926", "sentence": "Strasbourg compte", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000651", "sentence": "Je préfère Lyon à Toulon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005766", "sentence": "Je veux se rendre vers Le Havre ?", "origin": null, "destination": "Le Havre", "is_valid": true}
+{"id": "nlp_003360", "sentence": "Mon ami habite à Brest", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003718", "sentence": "Je veux se rendre pour Lyon de Paris", "origin": "Paris", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003898", "sentence": "Je veux quitter pour Paris à partir de Strasbourg", "origin": "Strasbourg", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004824", "sentence": "Je veux quitter vers Dijon", "origin": null, "destination": "Dijon", "is_valid": true}
+{"id": "nlp_001777", "sentence": "Je veux se rendre à Lyon depuis Lille", "origin": "Lille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001949", "sentence": "Je veux partir en partant de Nîmes", "origin": "Nîmes", "destination": null, "is_valid": true}
+{"id": "nlp_004043", "sentence": "Je veux aller vers Marseille à partir de Paris", "origin": "Paris", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_005082", "sentence": "Mon ami habite à Amiens", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000048", "sentence": "Je veux quitter pour Lyon de Le Havre", "origin": "Le Havre", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004453", "sentence": "Paris est connue pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004085", "sentence": "Montpellier et Marseille sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004077", "sentence": "Le Havre compte", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005454", "sentence": "Mon ami habite à Limoges", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000101", "sentence": "Je veux partir vers Paris de Strasbourg", "origin": "Strasbourg", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002074", "sentence": "Je veux quitter à Marseille de Lyon", "origin": "Lyon", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_000029", "sentence": "Je veux aller vers Lyon à partir de Paris", "origin": "Paris", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005095", "sentence": "Je veux partir pour Paris depuis Toulouse", "origin": "Toulouse", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005131", "sentence": "Je veux voyager vers Lyon à partir de Marseille", "origin": "Marseille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000964", "sentence": "Je veux aller en direction de Marseille ?", "origin": null, "destination": "Marseille", "is_valid": true}
+{"id": "nlp_001481", "sentence": "Je veux voyager à Lyon depuis Saint-Étienne", "origin": "Saint-Étienne", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002366", "sentence": "Je veux aller à Paris depuis Toulon", "origin": "Toulon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003656", "sentence": "Je veux secourir", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002536", "sentence": "Mon ami habite à Amiens", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002524", "sentence": "Mon ami habite à Nantes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003438", "sentence": "Mulhouse est située", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000421", "sentence": "Je veux quitter jusqu'à Paris ?", "origin": null, "destination": "Paris", "is_valid": true}
+{"id": "nlp_005030", "sentence": "Mon ami habite à Boulogne-Billancourt", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001185", "sentence": "Je veux se rendre à Marseille de Paris", "origin": "Paris", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_001329", "sentence": "J'ai visité Strasbourg", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001230", "sentence": "Je veux quitter à Paris depuis Rennes", "origin": "Rennes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004633", "sentence": "Montpellier est plus grande que Paris", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002746", "sentence": "Je veux quitter vers Lyon", "origin": null, "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001400", "sentence": "Je veux aller pour Lyon de Le Havre", "origin": "Le Havre", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000360", "sentence": "Je veux aller jusqu'à Grenoble", "origin": null, "destination": "Grenoble", "is_valid": true}
+{"id": "nlp_003118", "sentence": "Je veux se rendre vers Toulon ?", "origin": null, "destination": "Toulon", "is_valid": true}
+{"id": "nlp_004509", "sentence": "Je veux se rendre vers Toulouse ?", "origin": null, "destination": "Toulouse", "is_valid": true}
+{"id": "nlp_003103", "sentence": "J'ai visité Toulon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001310", "sentence": "Je voudrais quitter Montpellier", "origin": "Montpellier", "destination": null, "is_valid": true}
+{"id": "nlp_004192", "sentence": "Perpignan produit", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003147", "sentence": "Mon ami habite à Perpignan", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005640", "sentence": "Je veux aller pour Lyon à partir de Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000699", "sentence": "Je veux se rendre pour Paris depuis Lyon", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002974", "sentence": "Je veux quitter à Saint-Étienne ?", "origin": null, "destination": "Saint-Étienne", "is_valid": true}
+{"id": "nlp_005557", "sentence": "Je veux partir en partant de Nice", "origin": "Nice", "destination": null, "is_valid": true}
+{"id": "nlp_000936", "sentence": "Je veux partir pour Lyon depuis Toulouse", "origin": "Toulouse", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000748", "sentence": "J'ai visité Paris et Saint-Étienne", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001013", "sentence": "Besançon abrite", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001344", "sentence": "Je veux quitter Reims", "origin": "Reims", "destination": null, "is_valid": true}
+{"id": "nlp_002655", "sentence": "Je veux voyager à Lyon de Rennes", "origin": "Rennes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005661", "sentence": "Je veux se rendre vers Reims ?", "origin": null, "destination": "Reims", "is_valid": true}
+{"id": "nlp_005684", "sentence": "C'est formidable", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003725", "sentence": "Mon ami habite à Caen", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001655", "sentence": "Je veux aller vers Lyon de Dijon", "origin": "Dijon", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005503", "sentence": "Je veux voyager vers Lyon à partir de Toulouse", "origin": "Toulouse", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003717", "sentence": "Je souhaite quitter Nîmes", "origin": "Nîmes", "destination": null, "is_valid": true}
+{"id": "nlp_005628", "sentence": "Je veux voyager pour Lyon de Nîmes", "origin": "Nîmes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000205", "sentence": "Je veux quitter en direction de Saint-Étienne ?", "origin": null, "destination": "Saint-Étienne", "is_valid": true}
+{"id": "nlp_003694", "sentence": "Mon ami habite à Le Mans", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005298", "sentence": "Je veux épargner", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003388", "sentence": "Je souhaite quitter Le Havre", "origin": "Le Havre", "destination": null, "is_valid": true}
+{"id": "nlp_003221", "sentence": "Je veux se rendre pour Paris de Le Havre", "origin": "Le Havre", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001109", "sentence": "Mon ami habite à Le Mans", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005253", "sentence": "J'ai visité Orléans", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004796", "sentence": "J'ai visité Calais", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001473", "sentence": "Je veux monter", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000928", "sentence": "Je veux quitter à Lyon depuis Villeurbanne", "origin": "Villeurbanne", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005212", "sentence": "Je veux se rendre vers Lyon à partir de Lille", "origin": "Lille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000741", "sentence": "Je veux voyager à Grenoble", "origin": null, "destination": "Grenoble", "is_valid": true}
+{"id": "nlp_003701", "sentence": "Je veux aller vers Paris à partir de Rennes", "origin": "Rennes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003798", "sentence": "Nice a un beau", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001166", "sentence": "Je veux se rendre à Paris depuis Montpellier", "origin": "Montpellier", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004236", "sentence": "Je veux quitter vers Paris à partir de Montpellier", "origin": "Montpellier", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005270", "sentence": "Je veux quitter pour Angers ?", "origin": null, "destination": "Angers", "is_valid": true}
+{"id": "nlp_005531", "sentence": "Mon ami habite à Boulogne-Billancourt", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002412", "sentence": "Je préfère Toulouse à Rennes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003461", "sentence": "Je préfère Marseille à Toulon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001364", "sentence": "Je veux aller pour Paris depuis Nice", "origin": "Nice", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003780", "sentence": "Je veux aller à Marseille depuis Toulouse", "origin": "Toulouse", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_002343", "sentence": "Je veux quitter vers Lyon depuis Montpellier", "origin": "Montpellier", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002495", "sentence": "Besançon produit", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003261", "sentence": "Je veux voyager vers Lyon à partir de Paris", "origin": "Paris", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003601", "sentence": "Je veux voyager jusqu'à Saint-Étienne ?", "origin": null, "destination": "Saint-Étienne", "is_valid": true}
+{"id": "nlp_002386", "sentence": "Strasbourg et Paris sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005536", "sentence": "Je veux quitter jusqu'à Saint-Étienne", "origin": null, "destination": "Saint-Étienne", "is_valid": true}
+{"id": "nlp_005323", "sentence": "Je veux aller à Lyon à partir de Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004229", "sentence": "Je veux se rendre vers Lyon depuis Le Havre", "origin": "Le Havre", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003174", "sentence": "Je souhaite partir depuis Lyon", "origin": "Lyon", "destination": null, "is_valid": true}
+{"id": "nlp_004569", "sentence": "Je veux se rendre pour Lyon à partir de Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000322", "sentence": "Je veux quitter vers Marseille à partir de Strasbourg", "origin": "Strasbourg", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_003241", "sentence": "Je préfère Strasbourg à Nantes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004407", "sentence": "Je souhaite partir depuis Le Havre", "origin": "Le Havre", "destination": null, "is_valid": true}
+{"id": "nlp_004250", "sentence": "Je veux voyager à Lille", "origin": null, "destination": "Lille", "is_valid": true}
+{"id": "nlp_002013", "sentence": "Je veux voyager jusqu'à Bordeaux", "origin": null, "destination": "Bordeaux", "is_valid": true}
+{"id": "nlp_000348", "sentence": "Je veux quitter à Lyon à partir de Le Havre", "origin": "Le Havre", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003743", "sentence": "Je veux se rendre pour Lyon de Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003700", "sentence": "Je veux comprendre", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000896", "sentence": "Je veux voyager vers Paris de Angers", "origin": "Angers", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005177", "sentence": "Je veux se rendre vers Dijon", "origin": null, "destination": "Dijon", "is_valid": true}
+{"id": "nlp_000316", "sentence": "Je veux aller jusqu'à Bordeaux ?", "origin": null, "destination": "Bordeaux", "is_valid": true}
+{"id": "nlp_004303", "sentence": "Mon ami habite à Bordeaux", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004393", "sentence": "Je souhaite quitter Angers", "origin": "Angers", "destination": null, "is_valid": true}
+{"id": "nlp_004865", "sentence": "Je veux aller à Nice ?", "origin": null, "destination": "Nice", "is_valid": true}
+{"id": "nlp_004686", "sentence": "Je veux voyager pour Le Havre", "origin": null, "destination": "Le Havre", "is_valid": true}
+{"id": "nlp_005010", "sentence": "J'ai visité Toulon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003229", "sentence": "Je veux quitter à Paris depuis Saint-Étienne", "origin": "Saint-Étienne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002564", "sentence": "Mon ami habite à Saint-Denis", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003117", "sentence": "Je veux visiter", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004981", "sentence": "Toulouse a un beau", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000343", "sentence": "Je veux voyager pour Nîmes", "origin": null, "destination": "Nîmes", "is_valid": true}
+{"id": "nlp_003317", "sentence": "Je veux partir pour Grenoble", "origin": null, "destination": "Grenoble", "is_valid": true}
+{"id": "nlp_003503", "sentence": "Mon ami habite à Clermont-Ferrand", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002022", "sentence": "Caen produit", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003749", "sentence": "Je veux voyager pour Paris de Nantes", "origin": "Nantes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002662", "sentence": "J'ai visité Clermont-Ferrand", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005203", "sentence": "Je veux aller à Paris de Le Havre", "origin": "Le Havre", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005190", "sentence": "Je veux partir vers Nîmes", "origin": null, "destination": "Nîmes", "is_valid": true}
+{"id": "nlp_003599", "sentence": "Je souhaite quitter Dijon", "origin": "Dijon", "destination": null, "is_valid": true}
+{"id": "nlp_005784", "sentence": "Je veux aller à Le Havre", "origin": null, "destination": "Le Havre", "is_valid": true}
+{"id": "nlp_000542", "sentence": "Mon ami habite à Aix-en-Provence", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001676", "sentence": "Je veux voyager à Lyon depuis Paris", "origin": "Paris", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001662", "sentence": "Tours abrite", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001824", "sentence": "Je souhaite partir de Nice", "origin": "Nice", "destination": null, "is_valid": true}
+{"id": "nlp_003384", "sentence": "Je veux partir pour Paris à partir de Dijon", "origin": "Dijon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002211", "sentence": "Je veux partir en partant de Nantes", "origin": "Nantes", "destination": null, "is_valid": true}
+{"id": "nlp_000123", "sentence": "Je souhaite partir quittant Saint-Étienne", "origin": "Saint-Étienne", "destination": null, "is_valid": true}
+{"id": "nlp_003348", "sentence": "Je veux quitter à Paris à partir de Reims", "origin": "Reims", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000265", "sentence": "Je veux partir vers Le Havre", "origin": null, "destination": "Le Havre", "is_valid": true}
+{"id": "nlp_001854", "sentence": "Je voudrais quitter Montpellier", "origin": "Montpellier", "destination": null, "is_valid": true}
+{"id": "nlp_001584", "sentence": "Strasbourg et Lille sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001342", "sentence": "Je veux quitter vers Toulouse", "origin": null, "destination": "Toulouse", "is_valid": true}
+{"id": "nlp_001127", "sentence": "Mon ami habite à Montpellier", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003882", "sentence": "J'ai visité Saint-Étienne", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005493", "sentence": "Avignon abrite", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005537", "sentence": "Je veux voyager à Paris de Lyon", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001508", "sentence": "Calais est célèbre pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003064", "sentence": "Valence produit", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003841", "sentence": "Je souhaite partir en partant de Nantes", "origin": "Nantes", "destination": null, "is_valid": true}
+{"id": "nlp_004954", "sentence": "Toulouse abrite", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005343", "sentence": "Mon ami habite à Marseille", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001099", "sentence": "Je veux partir pour Paris de Marseille", "origin": "Marseille", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003905", "sentence": "Je veux quitter vers Marseille de Nantes", "origin": "Nantes", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_000652", "sentence": "Villeurbanne est connue pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002944", "sentence": "Je veux aller vers Le Havre ?", "origin": null, "destination": "Le Havre", "is_valid": true}
+{"id": "nlp_000214", "sentence": "Je veux voyager en direction de Dijon ?", "origin": null, "destination": "Dijon", "is_valid": true}
+{"id": "nlp_005196", "sentence": "Je veux se rendre en direction de Le Havre", "origin": null, "destination": "Le Havre", "is_valid": true}
+{"id": "nlp_001903", "sentence": "Je veux quitter à Toulon", "origin": null, "destination": "Toulon", "is_valid": true}
+{"id": "nlp_004886", "sentence": "Je veux quitter à Paris à partir de Nice", "origin": "Nice", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001892", "sentence": "Je voudrais quitter Lille", "origin": "Lille", "destination": null, "is_valid": true}
+{"id": "nlp_005017", "sentence": "Je veux voyager à Lyon depuis Angers", "origin": "Angers", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004646", "sentence": "J'ai visité Caen", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004962", "sentence": "Je veux aller pour Lyon de Toulouse", "origin": "Toulouse", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002187", "sentence": "Je veux quitter pour Lyon depuis Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005055", "sentence": "Valence est réputée pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005014", "sentence": "J'ai visité Tours", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000215", "sentence": "Mon ami habite à Mulhouse", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001514", "sentence": "Je veux voyager jusqu'à Reims", "origin": null, "destination": "Reims", "is_valid": true}
+{"id": "nlp_001078", "sentence": "Je veux quitter à Angers", "origin": null, "destination": "Angers", "is_valid": true}
+{"id": "nlp_000875", "sentence": "Je veux se rendre pour Lyon depuis Paris", "origin": "Paris", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001540", "sentence": "Je veux partir pour Lyon depuis Toulon", "origin": "Toulon", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001245", "sentence": "Je ne crois pas", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002243", "sentence": "Marseille et Nantes sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005440", "sentence": "Paris et Lyon sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002486", "sentence": "Je veux partir à Paris de Strasbourg", "origin": "Strasbourg", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003369", "sentence": "J'ai visité Nancy", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003392", "sentence": "Je veux se rendre en direction de Rennes ?", "origin": null, "destination": "Rennes", "is_valid": true}
+{"id": "nlp_002611", "sentence": "Je veux quitter vers Lyon de Paris", "origin": "Paris", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005187", "sentence": "J'ai visité Calais", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001193", "sentence": "Je veux quitter pour Toulon ?", "origin": null, "destination": "Toulon", "is_valid": true}
+{"id": "nlp_002602", "sentence": "Je veux aller à Lyon à partir de Reims", "origin": "Reims", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001509", "sentence": "Je veux reculer", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000970", "sentence": "Je veux quitter à Bordeaux ?", "origin": null, "destination": "Bordeaux", "is_valid": true}
+{"id": "nlp_004367", "sentence": "Je veux se rendre jusqu'à Dijon", "origin": null, "destination": "Dijon", "is_valid": true}
+{"id": "nlp_004566", "sentence": "Mon ami habite à Boulogne-Billancourt", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000556", "sentence": "Mon ami habite à Orléans", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002601", "sentence": "Je veux voyager pour Paris à partir de Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001295", "sentence": "Je veux voyager en direction de Paris ?", "origin": null, "destination": "Paris", "is_valid": true}
+{"id": "nlp_005346", "sentence": "Mon ami habite à Lyon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001190", "sentence": "Je veux aller vers Marseille de Lyon", "origin": "Lyon", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_005299", "sentence": "Cannes est réputée pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001108", "sentence": "J'ai visité Nantes et Nice", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004292", "sentence": "Je veux se rendre vers Strasbourg ?", "origin": null, "destination": "Strasbourg", "is_valid": true}
+{"id": "nlp_002532", "sentence": "Je souhaite quitter Reims", "origin": "Reims", "destination": null, "is_valid": true}
+{"id": "nlp_001132", "sentence": "Je veux aller pour Paris ?", "origin": null, "destination": "Paris", "is_valid": true}
+{"id": "nlp_001658", "sentence": "Mon ami habite à Marseille et travaille à Paris", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004435", "sentence": "Je veux voyager vers Marseille depuis Lyon", "origin": "Lyon", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_004760", "sentence": "J'ai visité Brest", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001136", "sentence": "Je veux voyager à Villeurbanne ?", "origin": null, "destination": "Villeurbanne", "is_valid": true}
+{"id": "nlp_001694", "sentence": "Je veux quitter à Nice", "origin": null, "destination": "Nice", "is_valid": true}
+{"id": "nlp_001080", "sentence": "Grenoble est connue pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004442", "sentence": "Je veux partir à Lyon depuis Bordeaux", "origin": "Bordeaux", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003680", "sentence": "Je veux quitter Strasbourg", "origin": "Strasbourg", "destination": null, "is_valid": true}
+{"id": "nlp_002698", "sentence": "Je veux partir à Paris à partir de Bordeaux", "origin": "Bordeaux", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004960", "sentence": "Je veux aller jusqu'à Nîmes ?", "origin": null, "destination": "Nîmes", "is_valid": true}
+{"id": "nlp_002560", "sentence": "Je veux se rendre en direction de Dijon ?", "origin": null, "destination": "Dijon", "is_valid": true}
+{"id": "nlp_003494", "sentence": "Je veux partir vers Lyon de Saint-Étienne", "origin": "Saint-Étienne", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001252", "sentence": "Je souhaite partir à partir de Montpellier", "origin": "Montpellier", "destination": null, "is_valid": true}
+{"id": "nlp_004694", "sentence": "Je veux partir quittant Nice", "origin": "Nice", "destination": null, "is_valid": true}
+{"id": "nlp_001970", "sentence": "Je veux voyager jusqu'à Toulon ?", "origin": null, "destination": "Toulon", "is_valid": true}
+{"id": "nlp_003419", "sentence": "Mon ami habite à Tours", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001864", "sentence": "Je veux partir à Lyon", "origin": null, "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005125", "sentence": "Je veux quitter vers Lyon de Le Havre", "origin": "Le Havre", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005018", "sentence": "Je veux partir pour Lyon à partir de Toulouse", "origin": "Toulouse", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004266", "sentence": "Je veux voyager vers Paris à partir de Grenoble", "origin": "Grenoble", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003132", "sentence": "Je veux aller pour Lyon à partir de Villeurbanne", "origin": "Villeurbanne", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000720", "sentence": "Je veux partir pour Paris à partir de Marseille", "origin": "Marseille", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001125", "sentence": "Strasbourg et Rennes sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005339", "sentence": "Je veux aller pour Saint-Étienne ?", "origin": null, "destination": "Saint-Étienne", "is_valid": true}
+{"id": "nlp_002800", "sentence": "Je veux conserver", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001243", "sentence": "J'ai visité Amiens", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001848", "sentence": "Je veux aller vers Paris à partir de Dijon", "origin": "Dijon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002296", "sentence": "Je voudrais partir de Paris", "origin": "Paris", "destination": null, "is_valid": true}
+{"id": "nlp_004547", "sentence": "Je veux aller vers Toulouse", "origin": null, "destination": "Toulouse", "is_valid": true}
+{"id": "nlp_000242", "sentence": "J'ai visité Tours", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003172", "sentence": "Je veux partir jusqu'à Reims ?", "origin": null, "destination": "Reims", "is_valid": true}
+{"id": "nlp_002111", "sentence": "Je souhaite partir quittant Villeurbanne", "origin": "Villeurbanne", "destination": null, "is_valid": true}
+{"id": "nlp_005127", "sentence": "Je veux quitter Lille", "origin": "Lille", "destination": null, "is_valid": true}
+{"id": "nlp_000508", "sentence": "J'ai visité Lyon et Montpellier", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002260", "sentence": "Je veux se rendre pour Lyon de Nantes", "origin": "Nantes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004107", "sentence": "J'ai visité Cannes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001935", "sentence": "Je veux voyager vers Paris depuis Rennes", "origin": "Rennes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002477", "sentence": "Je veux partir pour Lyon de Bordeaux", "origin": "Bordeaux", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005600", "sentence": "Je veux aller pour Paris à partir de Saint-Étienne", "origin": "Saint-Étienne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002912", "sentence": "Je veux aller pour Dijon", "origin": null, "destination": "Dijon", "is_valid": true}
+{"id": "nlp_002883", "sentence": "Je veux partir à Lyon de Angers", "origin": "Angers", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002841", "sentence": "Je veux voyager à Lyon de Strasbourg", "origin": "Strasbourg", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005246", "sentence": "J'ai visité Orléans", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001287", "sentence": "Mon ami habite à Paris", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003223", "sentence": "J'ai visité Nice", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005506", "sentence": "Je veux se rendre à Paris de Saint-Étienne", "origin": "Saint-Étienne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002733", "sentence": "J'ai visité Bordeaux", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005285", "sentence": "J'ai visité Lyon et Reims", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004337", "sentence": "Je veux quitter pour Lyon de Bordeaux", "origin": "Bordeaux", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005806", "sentence": "Je souhaite partir quittant Montpellier", "origin": "Montpellier", "destination": null, "is_valid": true}
+{"id": "nlp_000326", "sentence": "Je voudrais partir à partir de Strasbourg", "origin": "Strasbourg", "destination": null, "is_valid": true}
+{"id": "nlp_000177", "sentence": "Je veux quitter jusqu'à Rennes ?", "origin": null, "destination": "Rennes", "is_valid": true}
+{"id": "nlp_004594", "sentence": "Je veux quitter vers Dijon ?", "origin": null, "destination": "Dijon", "is_valid": true}
+{"id": "nlp_003752", "sentence": "Je veux aller pour Lyon de Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004102", "sentence": "Je veux partir pour Lyon ?", "origin": null, "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001630", "sentence": "Clermont-Ferrand est célèbre pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001528", "sentence": "Je veux voyager vers Paris de Marseille", "origin": "Marseille", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000722", "sentence": "Je veux voyager en direction de Nice ?", "origin": null, "destination": "Nice", "is_valid": true}
+{"id": "nlp_004355", "sentence": "Brest est la capitale", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004892", "sentence": "Je veux quitter Nantes", "origin": "Nantes", "destination": null, "is_valid": true}
+{"id": "nlp_003971", "sentence": "Mon ami habite à Lyon et travaille à Nice", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002585", "sentence": "Je veux voyager jusqu'à Paris", "origin": null, "destination": "Paris", "is_valid": true}
+{"id": "nlp_000816", "sentence": "Je veux partir vers Lyon depuis Strasbourg", "origin": "Strasbourg", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004166", "sentence": "Nantes a un beau", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003119", "sentence": "Je veux se rendre vers Paris depuis Toulon", "origin": "Toulon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001894", "sentence": "J'ai visité Aix-en-Provence", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003167", "sentence": "Mon ami habite à Lyon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002397", "sentence": "J'ai visité Paris", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000157", "sentence": "Je veux partir en direction de Marseille ?", "origin": null, "destination": "Marseille", "is_valid": true}
+{"id": "nlp_000884", "sentence": "Je veux se rendre pour Paris de Lille", "origin": "Lille", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002951", "sentence": "Je veux se rendre vers Paris de Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005490", "sentence": "Je veux quitter à Lyon ?", "origin": null, "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005508", "sentence": "Je veux se rendre vers Paris de Saint-Étienne", "origin": "Saint-Étienne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000546", "sentence": "Je veux aller vers Reims ?", "origin": null, "destination": "Reims", "is_valid": true}
+{"id": "nlp_005751", "sentence": "Je préfère Paris à Bordeaux", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003809", "sentence": "Je souhaite partir de Dijon", "origin": "Dijon", "destination": null, "is_valid": true}
+{"id": "nlp_000435", "sentence": "Je veux quitter pour Lyon depuis Nantes", "origin": "Nantes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002223", "sentence": "Je veux partir pour Paris depuis Angers", "origin": "Angers", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005063", "sentence": "Je veux se rendre vers Toulouse", "origin": null, "destination": "Toulouse", "is_valid": true}
+{"id": "nlp_001645", "sentence": "Je veux quitter à Lyon depuis Saint-Étienne", "origin": "Saint-Étienne", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002327", "sentence": "Je veux aller vers Lyon depuis Angers", "origin": "Angers", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000493", "sentence": "Je veux voyager vers Marseille", "origin": null, "destination": "Marseille", "is_valid": true}
+{"id": "nlp_001396", "sentence": "Je veux quitter pour Marseille de Lyon", "origin": "Lyon", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_002093", "sentence": "Je veux partir depuis Grenoble", "origin": "Grenoble", "destination": null, "is_valid": true}
+{"id": "nlp_000357", "sentence": "Mon ami habite à Dijon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005800", "sentence": "Je souhaite partir en partant de Montpellier", "origin": "Montpellier", "destination": null, "is_valid": true}
+{"id": "nlp_004776", "sentence": "Je veux partir vers Marseille de Nantes", "origin": "Nantes", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_003086", "sentence": "Je veux aller à Nantes", "origin": null, "destination": "Nantes", "is_valid": true}
+{"id": "nlp_000151", "sentence": "Je veux partir à Lyon à partir de Nîmes", "origin": "Nîmes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001158", "sentence": "Mon ami habite à Dijon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005104", "sentence": "Mon ami habite à Rouen", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003957", "sentence": "Je veux quitter pour Lyon à partir de Montpellier", "origin": "Montpellier", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004496", "sentence": "Je veux partir jusqu'à Angers ?", "origin": null, "destination": "Angers", "is_valid": true}
+{"id": "nlp_002119", "sentence": "Mon ami habite à Avignon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005523", "sentence": "Mon ami habite à Cannes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004477", "sentence": "Je veux aller vers Reims", "origin": null, "destination": "Reims", "is_valid": true}
+{"id": "nlp_001670", "sentence": "Mon ami habite à Nice et travaille à Toulon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001736", "sentence": "Marseille est la capitale", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004408", "sentence": "Je veux partir vers Lyon depuis Marseille", "origin": "Marseille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001713", "sentence": "Je veux quitter vers Lyon depuis Reims", "origin": "Reims", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002719", "sentence": "Nantes et Nice sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000187", "sentence": "Je veux partir à partir de Rennes", "origin": "Rennes", "destination": null, "is_valid": true}
+{"id": "nlp_003860", "sentence": "Je veux partir pour Paris depuis Le Havre", "origin": "Le Havre", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003687", "sentence": "Je souhaite quitter Rennes", "origin": "Rennes", "destination": null, "is_valid": true}
+{"id": "nlp_002500", "sentence": "Caen est célèbre pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000912", "sentence": "J'ai visité Strasbourg", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002813", "sentence": "Je veux quitter vers Lyon depuis Toulon", "origin": "Toulon", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000113", "sentence": "Mon ami habite à Toulouse", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002357", "sentence": "Mon ami habite à Marseille", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001210", "sentence": "Je veux se rendre vers Lyon de Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005088", "sentence": "Je veux partir vers Lyon à partir de Lille", "origin": "Lille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005615", "sentence": "Je veux se rendre jusqu'à Nantes ?", "origin": null, "destination": "Nantes", "is_valid": true}
+{"id": "nlp_000447", "sentence": "J'ai visité Tours", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000921", "sentence": "Je veux aller pour Paris depuis Marseille", "origin": "Marseille", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000703", "sentence": "Je veux aller en direction de Angers ?", "origin": null, "destination": "Angers", "is_valid": true}
+{"id": "nlp_001278", "sentence": "J'ai visité Metz", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003063", "sentence": "Je veux quitter à Lyon à partir de Montpellier", "origin": "Montpellier", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001636", "sentence": "Mon ami habite à Toulouse et travaille à Nice", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001913", "sentence": "J'ai visité Perpignan", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000368", "sentence": "Je veux voyager à Lyon de Dijon", "origin": "Dijon", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003609", "sentence": "Je veux se rendre jusqu'à Strasbourg", "origin": null, "destination": "Strasbourg", "is_valid": true}
+{"id": "nlp_001195", "sentence": "Nancy est une belle ville", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005106", "sentence": "Mon ami habite à Dunkerque", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003623", "sentence": "Je veux voyager pour Lyon depuis Lille", "origin": "Lille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005049", "sentence": "Je veux dire non", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002865", "sentence": "Je voudrais quitter Toulouse", "origin": "Toulouse", "destination": null, "is_valid": true}
+{"id": "nlp_001387", "sentence": "Je veux quitter à Lyon de Montpellier", "origin": "Montpellier", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002498", "sentence": "Mon ami habite à Villeurbanne", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000199", "sentence": "Mon ami habite à Mulhouse", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004866", "sentence": "Je veux voyager pour Lyon depuis Reims", "origin": "Reims", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002823", "sentence": "Euh... je veux aller à Paris... depuis Lyon", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005541", "sentence": "Je veux partir pour Grenoble ?", "origin": null, "destination": "Grenoble", "is_valid": true}
+{"id": "nlp_001561", "sentence": "Je veux voyager vers Lyon depuis Marseille", "origin": "Marseille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002854", "sentence": "Je veux voyager vers Lyon depuis Dijon", "origin": "Dijon", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002993", "sentence": "Je veux aller en direction de Villeurbanne ?", "origin": null, "destination": "Villeurbanne", "is_valid": true}
+{"id": "nlp_003470", "sentence": "Je veux quitter vers Lyon de Marseille", "origin": "Marseille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003389", "sentence": "J'ai visité Orléans", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000922", "sentence": "JE VEUX ALLER À PARIS DEPUIS LYON", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005607", "sentence": "Je veux se rendre pour Paris à partir de Saint-Étienne", "origin": "Saint-Étienne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004719", "sentence": "Je veux voyager pour Angers ?", "origin": null, "destination": "Angers", "is_valid": true}
+{"id": "nlp_005431", "sentence": "Je veux se rendre pour Paris depuis Rennes", "origin": "Rennes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003524", "sentence": "Je veux partir pour Lyon depuis Bordeaux", "origin": "Bordeaux", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002182", "sentence": "Je veux quitter vers Lyon depuis Toulouse", "origin": "Toulouse", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000587", "sentence": "Reims compte", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001986", "sentence": "Je veux quitter vers Lyon depuis Bordeaux", "origin": "Bordeaux", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002018", "sentence": "Je veux faire voir", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004295", "sentence": "Je veux se rendre pour Paris depuis Le Havre", "origin": "Le Havre", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005047", "sentence": "J'ai visité Strasbourg et Nice", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004598", "sentence": "Je veux aller vers Lyon depuis Rennes", "origin": "Rennes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001607", "sentence": "Je veux se rendre vers Lyon de Angers", "origin": "Angers", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004681", "sentence": "J'ai visité Montpellier et Lille", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003239", "sentence": "Je préfère Nice à Toulon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005591", "sentence": "J'ai visité Caen", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001623", "sentence": "Je veux se rendre à Lyon de Rennes", "origin": "Rennes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004582", "sentence": "Je veux partir jusqu'à Bordeaux", "origin": null, "destination": "Bordeaux", "is_valid": true}
+{"id": "nlp_003940", "sentence": "Je veux se rendre vers Villeurbanne ?", "origin": null, "destination": "Villeurbanne", "is_valid": true}
+{"id": "nlp_001105", "sentence": "Je voudrais quitter Bordeaux", "origin": "Bordeaux", "destination": null, "is_valid": true}
+{"id": "nlp_001069", "sentence": "Je veux partir en direction de Angers", "origin": null, "destination": "Angers", "is_valid": true}
+{"id": "nlp_003560", "sentence": "J'ai visité Chambéry", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004111", "sentence": "Je veux quitter vers Lyon de Strasbourg", "origin": "Strasbourg", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003265", "sentence": "Je veux se rendre à Lyon depuis Nîmes", "origin": "Nîmes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000697", "sentence": "Mon ami habite à Saint-Étienne", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005814", "sentence": "Je veux partir vers Lyon depuis Nîmes", "origin": "Nîmes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003271", "sentence": "Je souhaite partir quittant Bordeaux", "origin": "Bordeaux", "destination": null, "is_valid": true}
+{"id": "nlp_005740", "sentence": "Orléans est célèbre pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000404", "sentence": "Je veux se rendre vers Nîmes ?", "origin": null, "destination": "Nîmes", "is_valid": true}
+{"id": "nlp_004682", "sentence": "Je veux quitter pour Paris à partir de Nice", "origin": "Nice", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003899", "sentence": "Je veux partir vers Paris à partir de Bordeaux", "origin": "Bordeaux", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000677", "sentence": "Lyon compte", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002754", "sentence": "Strasbourg est plus grande que Montpellier", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001083", "sentence": "Je souhaite partir depuis Saint-Étienne", "origin": "Saint-Étienne", "destination": null, "is_valid": true}
+{"id": "nlp_001213", "sentence": "Je veux se rendre jusqu'à Rennes", "origin": null, "destination": "Rennes", "is_valid": true}
+{"id": "nlp_003231", "sentence": "Toulouse est plus grande que Lille", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002374", "sentence": "J'ai visité Lyon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003539", "sentence": "J'ai visité Marseille", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001820", "sentence": "Je veux partir à Dijon", "origin": null, "destination": "Dijon", "is_valid": true}
+{"id": "nlp_000738", "sentence": "Je veux partir pour Marseille depuis Nantes", "origin": "Nantes", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_005446", "sentence": "Je veux aller à Lyon depuis Toulouse", "origin": "Toulouse", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004713", "sentence": "J'ai visité Strasbourg et Lyon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004876", "sentence": "Mon ami habite à Annecy", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003651", "sentence": "Je veux voyager vers Bordeaux", "origin": null, "destination": "Bordeaux", "is_valid": true}
+{"id": "nlp_003219", "sentence": "Je veux aller à Paris, depuis Lyon", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000414", "sentence": "Je veux se rendre vers Paris ?", "origin": null, "destination": "Paris", "is_valid": true}
+{"id": "nlp_001255", "sentence": "Je veux voyager jusqu'à Toulouse", "origin": null, "destination": "Toulouse", "is_valid": true}
+{"id": "nlp_005499", "sentence": "Mon ami habite à Valence", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004116", "sentence": "Mon ami habite à Annecy", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002678", "sentence": "J'ai visité Nancy", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001226", "sentence": "Je souhaite partir de Marseille", "origin": "Marseille", "destination": null, "is_valid": true}
+{"id": "nlp_004628", "sentence": "Je veux quitter Toulon", "origin": "Toulon", "destination": null, "is_valid": true}
+{"id": "nlp_004424", "sentence": "Je veux quitter pour Lyon depuis Rennes", "origin": "Rennes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002616", "sentence": "Mon ami habite à Boulogne-Billancourt", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000338", "sentence": "Je veux se rendre vers Marseille à partir de Strasbourg", "origin": "Strasbourg", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_004296", "sentence": "Toulouse et Reims sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002497", "sentence": "Je veux partir pour Marseille à partir de Lyon", "origin": "Lyon", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_000444", "sentence": "J'ai visité Nantes et Toulon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003134", "sentence": "Je veux aller à Lyon depuis Reims", "origin": "Reims", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005179", "sentence": "Je veux partir pour Saint-Étienne ?", "origin": null, "destination": "Saint-Étienne", "is_valid": true}
+{"id": "nlp_005193", "sentence": "Je veux partir à Montpellier ?", "origin": null, "destination": "Montpellier", "is_valid": true}
+{"id": "nlp_000094", "sentence": "J'ai visité Avignon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004935", "sentence": "Je veux quitter en direction de Dijon", "origin": null, "destination": "Dijon", "is_valid": true}
+{"id": "nlp_005348", "sentence": "Je veux partir à Lyon à partir de Paris", "origin": "Paris", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001858", "sentence": "Je veux voyager à Paris depuis Reims", "origin": "Reims", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000988", "sentence": "C'est court", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003413", "sentence": "Je veux se rendre à Marseille de Nice", "origin": "Nice", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_003558", "sentence": "Je veux aller pour Paris de Saint-Étienne", "origin": "Saint-Étienne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002851", "sentence": "Mon ami habite à Annecy", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002740", "sentence": "Je veux aller à Bordeaux", "origin": null, "destination": "Bordeaux", "is_valid": true}
+{"id": "nlp_000459", "sentence": "Je veux voyager à Paris à partir de Lille", "origin": "Lille", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000643", "sentence": "Je préfère Strasbourg à Paris", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005660", "sentence": "Je veux partir à Lyon de Reims", "origin": "Reims", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005374", "sentence": "Je veux quitter pour Lyon depuis Nîmes", "origin": "Nîmes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000307", "sentence": "Je veux partir à Marseille à partir de Paris", "origin": "Paris", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_005385", "sentence": "Je veux quitter pour Lyon de Toulon", "origin": "Toulon", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005262", "sentence": "Je veux partir vers Lyon à partir de Bordeaux", "origin": "Bordeaux", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004877", "sentence": "Je veux se rendre à Lyon depuis Grenoble", "origin": "Grenoble", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000782", "sentence": "Toulouse et Bordeaux sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004721", "sentence": "Je veux partir depuis Paris", "origin": "Paris", "destination": null, "is_valid": true}
+{"id": "nlp_004000", "sentence": "Je veux aller à Lyon de Grenoble", "origin": "Grenoble", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001417", "sentence": "J'ai visité Calais", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003953", "sentence": "Montpellier est plus grande que Nantes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005796", "sentence": "Je veux voyager pour Paris de Villeurbanne", "origin": "Villeurbanne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000633", "sentence": "Boulogne-Billancourt abrite", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001782", "sentence": "Je veux partir vers Marseille depuis Nantes", "origin": "Nantes", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_004662", "sentence": "Je veux se rendre pour Lyon à partir de Nantes", "origin": "Nantes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003276", "sentence": "Je veux partir de Rennes", "origin": "Rennes", "destination": null, "is_valid": true}
+{"id": "nlp_004674", "sentence": "C'est trop cher", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000753", "sentence": "Je veux quitter pour Lyon de Strasbourg", "origin": "Strasbourg", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005409", "sentence": "Je veux voyager pour Rennes", "origin": null, "destination": "Rennes", "is_valid": true}
+{"id": "nlp_002100", "sentence": "Je veux se rendre à Nîmes ?", "origin": null, "destination": "Nîmes", "is_valid": true}
+{"id": "nlp_001909", "sentence": "Orléans abrite", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002047", "sentence": "Je veux se rendre pour Lyon depuis Reims", "origin": "Reims", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004770", "sentence": "Je veux se rendre vers Saint-Étienne", "origin": null, "destination": "Saint-Étienne", "is_valid": true}
+{"id": "nlp_005553", "sentence": "Je veux voyager vers Paris à partir de Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002171", "sentence": "Je veux quitter vers Marseille depuis Paris", "origin": "Paris", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_001134", "sentence": "Je veux partir vers Paris de Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001279", "sentence": "Mon ami habite à Rennes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002914", "sentence": "Mon ami habite à Clermont-Ferrand", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003772", "sentence": "Je veux aller vers Lyon de Rennes", "origin": "Rennes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000310", "sentence": "Je veux partir vers Paris de Toulouse", "origin": "Toulouse", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000773", "sentence": "Je veux apprécier", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001268", "sentence": "Orléans est située", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004683", "sentence": "Je voudrais partir quittant Lyon", "origin": "Lyon", "destination": null, "is_valid": true}
+{"id": "nlp_004675", "sentence": "Je souhaite partir à partir de Toulon", "origin": "Toulon", "destination": null, "is_valid": true}
+{"id": "nlp_004558", "sentence": "Je veux aller à Lyon de Bordeaux", "origin": "Bordeaux", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004189", "sentence": "Je veux se rendre vers Montpellier ?", "origin": null, "destination": "Montpellier", "is_valid": true}
+{"id": "nlp_004536", "sentence": "J'ai visité Nantes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002261", "sentence": "Je veux partir quittant Reims", "origin": "Reims", "destination": null, "is_valid": true}
+{"id": "nlp_000178", "sentence": "Je veux partir pour Lyon depuis Paris", "origin": "Paris", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002580", "sentence": "Je veux voyager à Paris à partir de Bordeaux", "origin": "Bordeaux", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001760", "sentence": "J'ai visité Nantes et Strasbourg", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001818", "sentence": "Mon ami habite à Mulhouse", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002461", "sentence": "Je veux partir à Lyon à partir de Angers", "origin": "Angers", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000054", "sentence": "Je veux quitter pour Lyon depuis Paris", "origin": "Paris", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002473", "sentence": "Je veux quitter Rennes", "origin": "Rennes", "destination": null, "is_valid": true}
+{"id": "nlp_005787", "sentence": "Mon ami habite à Montpellier", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004241", "sentence": "Je veux quitter vers Lyon depuis Rennes", "origin": "Rennes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000134", "sentence": "Je veux partir quittant Lyon", "origin": "Lyon", "destination": null, "is_valid": true}
+{"id": "nlp_004881", "sentence": "Rennes possède", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002331", "sentence": "Toulon est connue pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000284", "sentence": "J'ai visité Montpellier et Rennes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000002", "sentence": "Je veux partir de Bordeaux", "origin": "Bordeaux", "destination": null, "is_valid": true}
+{"id": "nlp_005818", "sentence": "Villeurbanne produit", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003666", "sentence": "J'ai visité Rouen", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003707", "sentence": "Je veux aller pour Nantes", "origin": null, "destination": "Nantes", "is_valid": true}
+{"id": "nlp_002950", "sentence": "C'est hors de mon budget", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002082", "sentence": "J'ai visité Nantes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004508", "sentence": "Je veux voyager à Le Havre", "origin": null, "destination": "Le Havre", "is_valid": true}
+{"id": "nlp_003073", "sentence": "Je veux suggérer", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001753", "sentence": "Je veux se rendre vers Paris à partir de Saint-Étienne", "origin": "Saint-Étienne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004470", "sentence": "Je veux se rendre pour Villeurbanne", "origin": null, "destination": "Villeurbanne", "is_valid": true}
+{"id": "nlp_004614", "sentence": "Je veux aller pour Lyon depuis Toulouse", "origin": "Toulouse", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001972", "sentence": "Je veux quitter Villeurbanne", "origin": "Villeurbanne", "destination": null, "is_valid": true}
+{"id": "nlp_004985", "sentence": "Mon ami habite à Nancy", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002650", "sentence": "Bordeaux abrite", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003528", "sentence": "Nantes est plus grande que Bordeaux", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005188", "sentence": "J'ai visité Metz", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003378", "sentence": "Mon ami habite à Nice", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003046", "sentence": "Je veux partir à Lyon à partir de Grenoble", "origin": "Grenoble", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002660", "sentence": "Je veux voyager vers Dijon", "origin": null, "destination": "Dijon", "is_valid": true}
+{"id": "nlp_004507", "sentence": "Limoges compte", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002582", "sentence": "Mon ami habite à Rennes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002887", "sentence": "Annecy produit", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003630", "sentence": "Mon ami habite à Nîmes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004915", "sentence": "Je veux partir en partant de Angers", "origin": "Angers", "destination": null, "is_valid": true}
+{"id": "nlp_004374", "sentence": "Je veux voyager vers Paris depuis Grenoble", "origin": "Grenoble", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001296", "sentence": "J'ai visité Marseille et Nantes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005387", "sentence": "Je veux voyager en direction de Angers ?", "origin": null, "destination": "Angers", "is_valid": true}
+{"id": "nlp_002765", "sentence": "Je veux gagner", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004135", "sentence": "Je veux aller pour Lille", "origin": null, "destination": "Lille", "is_valid": true}
+{"id": "nlp_003290", "sentence": "Mon ami habite à Nice et travaille à Bordeaux", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004506", "sentence": "Je voudrais quitter Lyon", "origin": "Lyon", "destination": null, "is_valid": true}
+{"id": "nlp_001478", "sentence": "Je veux se rendre jusqu'à Strasbourg ?", "origin": null, "destination": "Strasbourg", "is_valid": true}
+{"id": "nlp_001367", "sentence": "Je veux aller pour Strasbourg", "origin": null, "destination": "Strasbourg", "is_valid": true}
+{"id": "nlp_000853", "sentence": "Je veux quitter pour Paris de Marseille", "origin": "Marseille", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003499", "sentence": "Mon ami habite à Saint-Étienne", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005450", "sentence": "Strasbourg et Saint-Étienne sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003758", "sentence": "J'ai visité Bordeaux", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002933", "sentence": "Je veux aller vers Angers ?", "origin": null, "destination": "Angers", "is_valid": true}
+{"id": "nlp_004724", "sentence": "Je veux voyager à Reims", "origin": null, "destination": "Reims", "is_valid": true}
+{"id": "nlp_005232", "sentence": "Mon ami habite à Toulouse et travaille à Saint-Étienne", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000865", "sentence": "Mon ami habite à Rouen", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003402", "sentence": "Je veux se rendre pour Paris depuis Reims", "origin": "Reims", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004573", "sentence": "Je veux quitter vers Paris à partir de Nice", "origin": "Nice", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005588", "sentence": "Je veux aller pour Marseille depuis Montpellier", "origin": "Montpellier", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_001466", "sentence": "Je veux quitter vers Lille", "origin": null, "destination": "Lille", "is_valid": true}
+{"id": "nlp_005724", "sentence": "J'ai visité Angers", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004670", "sentence": "Je veux quitter Nantes", "origin": "Nantes", "destination": null, "is_valid": true}
+{"id": "nlp_005606", "sentence": "Toulouse et Lyon sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005382", "sentence": "Je veux partir de Toulouse", "origin": "Toulouse", "destination": null, "is_valid": true}
+{"id": "nlp_004311", "sentence": "Je veux partir vers Paris à partir de Montpellier", "origin": "Montpellier", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001583", "sentence": "Calais est connue pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001553", "sentence": "Je veux quitter vers Paris de Lille", "origin": "Lille", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003157", "sentence": "Je veux se rendre à Paris depuis Toulon", "origin": "Toulon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004356", "sentence": "J'ai visité Valence", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001893", "sentence": "J'ai visité Annecy", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000830", "sentence": "Je veux quitter vers Lyon à partir de Reims", "origin": "Reims", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000796", "sentence": "Je veux se rendre jusqu'à Saint-Étienne", "origin": null, "destination": "Saint-Étienne", "is_valid": true}
+{"id": "nlp_004256", "sentence": "Je veux se rendre pour Lyon depuis Nantes", "origin": "Nantes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001769", "sentence": "Je veux partir pour Lyon de Lille", "origin": "Lille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000639", "sentence": "Je veux voyager à Lyon", "origin": null, "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002490", "sentence": "Je veux quitter à Paris depuis Dijon", "origin": "Dijon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000577", "sentence": "Nancy est célèbre pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000334", "sentence": "Montpellier et Reims sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004334", "sentence": "Je veux se rendre pour Lyon de Saint-Étienne", "origin": "Saint-Étienne", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002178", "sentence": "Je veux aller vers Paris depuis Lyon", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005054", "sentence": "Je souhaite quitter Strasbourg", "origin": "Strasbourg", "destination": null, "is_valid": true}
+{"id": "nlp_000478", "sentence": "J'ai visité Le Mans", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003024", "sentence": "Je veux se rendre à Lyon de Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003408", "sentence": "J'ai visité Metz", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004572", "sentence": "Je crois que oui", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002957", "sentence": "Je veux quitter pour Paris depuis Angers", "origin": "Angers", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000498", "sentence": "Je veux quitter vers Marseille depuis Nantes", "origin": "Nantes", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_005235", "sentence": "Nantes compte", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003835", "sentence": "Je préfère Strasbourg à Lyon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005829", "sentence": "Je veux quitter pour Paris de Villeurbanne", "origin": "Villeurbanne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004026", "sentence": "J'ai visité Reims", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005372", "sentence": "Je veux se rendre pour Montpellier", "origin": null, "destination": "Montpellier", "is_valid": true}
+{"id": "nlp_001710", "sentence": "Je veux faire bâtir", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000108", "sentence": "Je veux voyager pour Marseille depuis Paris", "origin": "Paris", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_000581", "sentence": "Strasbourg est plus grande que Toulon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004964", "sentence": "Je veux voyager vers Paris de Dijon", "origin": "Dijon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001809", "sentence": "Je veux partir à Paris depuis Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003002", "sentence": "Je veux se rendre pour Rennes", "origin": null, "destination": "Rennes", "is_valid": true}
+{"id": "nlp_000403", "sentence": "Je veux voyager à Lyon à partir de Nantes", "origin": "Nantes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002097", "sentence": "Mon ami habite à Le Havre", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004836", "sentence": "Je veux partir vers Lyon à partir de Nantes", "origin": "Nantes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005112", "sentence": "Je veux quitter à Lyon depuis Nîmes", "origin": "Nîmes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004308", "sentence": "Je souhaite quitter Grenoble", "origin": "Grenoble", "destination": null, "is_valid": true}
+{"id": "nlp_004014", "sentence": "Le Havre est célèbre pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005390", "sentence": "Je veux quitter à Marseille depuis Strasbourg", "origin": "Strasbourg", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_003184", "sentence": "Je voudrais partir quittant Nice", "origin": "Nice", "destination": null, "is_valid": true}
+{"id": "nlp_005258", "sentence": "Je veux voyager vers Marseille à partir de Lyon", "origin": "Lyon", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_004678", "sentence": "Mon ami habite à Nancy", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000261", "sentence": "Je veux partir depuis Toulon", "origin": "Toulon", "destination": null, "is_valid": true}
+{"id": "nlp_000809", "sentence": "Je veux se rendre pour Lyon depuis Strasbourg", "origin": "Strasbourg", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001570", "sentence": "Je veux économiser", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003977", "sentence": "Je veux se rendre à Lyon de Montpellier", "origin": "Montpellier", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000877", "sentence": "Je veux quitter Paris", "origin": "Paris", "destination": null, "is_valid": true}
+{"id": "nlp_001656", "sentence": "Je veux aller à Grenoble ?", "origin": null, "destination": "Grenoble", "is_valid": true}
+{"id": "nlp_000257", "sentence": "Je veux voyager en direction de Nice", "origin": null, "destination": "Nice", "is_valid": true}
+{"id": "nlp_001464", "sentence": "Je veux se rendre vers Paris depuis Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001064", "sentence": "J'ai visité Montpellier", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000359", "sentence": "Je veux voyager vers Lyon de Montpellier", "origin": "Montpellier", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000547", "sentence": "Mon ami habite à Le Havre", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005398", "sentence": "Je veux aller pour Marseille depuis Paris", "origin": "Paris", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_004287", "sentence": "Je veux quitter Marseille", "origin": "Marseille", "destination": null, "is_valid": true}
+{"id": "nlp_000789", "sentence": "Je veux voyager à Paris de Nantes", "origin": "Nantes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005707", "sentence": "Je veux partir vers Lyon depuis Montpellier", "origin": "Montpellier", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002639", "sentence": "Je veux voyager à Paris depuis Toulouse", "origin": "Toulouse", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005251", "sentence": "Je veux quitter à Lyon depuis Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003358", "sentence": "Je veux se rendre à Lille", "origin": null, "destination": "Lille", "is_valid": true}
+{"id": "nlp_002643", "sentence": "Grenoble est célèbre pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002320", "sentence": "On verra", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005023", "sentence": "J'ai visité Strasbourg", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001263", "sentence": "Je veux quitter vers Paris depuis Toulouse", "origin": "Toulouse", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004518", "sentence": "J'ai visité Nice", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004076", "sentence": "Je veux partir vers Lyon depuis Angers", "origin": "Angers", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004294", "sentence": "Mon ami habite à Calais", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001556", "sentence": "Je veux partir vers Lyon de Lille", "origin": "Lille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003175", "sentence": "Je veux quitter pour Lyon depuis Toulouse", "origin": "Toulouse", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004416", "sentence": "Mon ami habite à Chambéry", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005393", "sentence": "Bien sûr", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000519", "sentence": "Je veux quitter Bordeaux", "origin": "Bordeaux", "destination": null, "is_valid": true}
+{"id": "nlp_002628", "sentence": "Mon ami habite à Montpellier et travaille à Nantes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001957", "sentence": "Je veux analyser", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005081", "sentence": "J'ai visité Saint-Étienne", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002983", "sentence": "J'ai visité Nantes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005077", "sentence": "Je veux partir quittant Villeurbanne", "origin": "Villeurbanne", "destination": null, "is_valid": true}
+{"id": "nlp_000154", "sentence": "Je veux se rendre pour Paris à partir de Le Havre", "origin": "Le Havre", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001520", "sentence": "Marseille produit", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003106", "sentence": "J'ai visité Saint-Étienne", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004145", "sentence": "Je veux se rendre à Marseille depuis Montpellier", "origin": "Montpellier", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_005227", "sentence": "Je veux quitter vers Marseille de Strasbourg", "origin": "Strasbourg", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_000006", "sentence": "Aix-en-Provence est située", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003720", "sentence": "Je veux voyager pour Marseille de Nice", "origin": "Nice", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_003008", "sentence": "J'ai visité Villeurbanne", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004437", "sentence": "Je veux se rendre à Paris à partir de Angers", "origin": "Angers", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002158", "sentence": "J'ai visité Villeurbanne", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002423", "sentence": "Je veux accepter", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003682", "sentence": "Je veux se rendre à Paris à partir de Montpellier", "origin": "Montpellier", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005719", "sentence": "Je veux quitter Dijon", "origin": "Dijon", "destination": null, "is_valid": true}
+{"id": "nlp_004352", "sentence": "Je veux quitter à Paris ?", "origin": null, "destination": "Paris", "is_valid": true}
+{"id": "nlp_000565", "sentence": "Je veux aller à Lyon de Reims", "origin": "Reims", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001314", "sentence": "Certainement", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004543", "sentence": "Je veux quitter vers Paris de Rennes", "origin": "Rennes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004905", "sentence": "Je veux partir pour Lyon de Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002256", "sentence": "Je voudrais partir en partant de Nantes", "origin": "Nantes", "destination": null, "is_valid": true}
+{"id": "nlp_003838", "sentence": "Metz est réputée pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002652", "sentence": "Mon ami habite à Limoges", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002849", "sentence": "C'est lourd", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004454", "sentence": "Je veux voyager vers Marseille depuis Nice", "origin": "Nice", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_001529", "sentence": "Très bien", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004643", "sentence": "Rennes est célèbre pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001555", "sentence": "Excusez-moi", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004015", "sentence": "Je veux aller pour Paris de Grenoble", "origin": "Grenoble", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004447", "sentence": "Je veux partir à Paris ?", "origin": null, "destination": "Paris", "is_valid": true}
+{"id": "nlp_002415", "sentence": "Mon ami habite à Lyon et travaille à Toulouse", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004580", "sentence": "Je veux se rendre à Grenoble ?", "origin": null, "destination": "Grenoble", "is_valid": true}
+{"id": "nlp_003585", "sentence": "J'ai visité Nancy", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003976", "sentence": "Je veux faire édifier", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000324", "sentence": "Mon ami habite à Le Mans", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002054", "sentence": "Le Havre est située", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001104", "sentence": "Je veux se rendre en direction de Nîmes ?", "origin": null, "destination": "Nîmes", "is_valid": true}
+{"id": "nlp_002935", "sentence": "Je veux aller à Strasbourg ?", "origin": null, "destination": "Strasbourg", "is_valid": true}
+{"id": "nlp_003095", "sentence": "Je veux quitter pour Lyon depuis Dijon", "origin": "Dijon", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000175", "sentence": "Je veux se rendre en direction de Nantes ?", "origin": null, "destination": "Nantes", "is_valid": true}
+{"id": "nlp_001581", "sentence": "J'ai visité Bordeaux", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003594", "sentence": "Je veux voyager à Marseille à partir de Strasbourg", "origin": "Strasbourg", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_002846", "sentence": "Nantes et Toulouse sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005596", "sentence": "Je préfère Montpellier à Bordeaux", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004575", "sentence": "Je veux aller à Paris à partir de Angers", "origin": "Angers", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002595", "sentence": "Je veux partir vers Lyon de Rennes", "origin": "Rennes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001907", "sentence": "Je veux aller à Paris depuis Villeurbanne", "origin": "Villeurbanne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003997", "sentence": "Mon ami habite à Reims", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001031", "sentence": "Je veux se rendre à Nice ?", "origin": null, "destination": "Nice", "is_valid": true}
+{"id": "nlp_000880", "sentence": "Montpellier et Nice sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004394", "sentence": "Je veux quitter Lille", "origin": "Lille", "destination": null, "is_valid": true}
+{"id": "nlp_001261", "sentence": "Je veux se rendre vers Rennes", "origin": null, "destination": "Rennes", "is_valid": true}
+{"id": "nlp_005281", "sentence": "Je veux quitter vers Paris", "origin": null, "destination": "Paris", "is_valid": true}
+{"id": "nlp_002913", "sentence": "Je veux voyager vers Angers ?", "origin": null, "destination": "Angers", "is_valid": true}
+{"id": "nlp_000490", "sentence": "Calais est réputée pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000492", "sentence": "Je veux voyager vers Lyon depuis Reims", "origin": "Reims", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005122", "sentence": "Je veux courir", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002773", "sentence": "Je veux aller vers Paris à partir de Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005068", "sentence": "Paris et Rennes sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000749", "sentence": "J'ai visité Lyon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004096", "sentence": "Lyon et Strasbourg sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001292", "sentence": "Je veux aller pour Paris depuis Toulon", "origin": "Toulon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002038", "sentence": "Je veux voyager vers Lyon depuis Nîmes", "origin": "Nîmes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005767", "sentence": "Je veux voyager à Paris de Villeurbanne", "origin": "Villeurbanne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005675", "sentence": "Strasbourg est située", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001270", "sentence": "Lyon et Nantes sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004885", "sentence": "Je souhaite quitter Paris", "origin": "Paris", "destination": null, "is_valid": true}
+{"id": "nlp_003894", "sentence": "Je veux quitter pour Bordeaux", "origin": null, "destination": "Bordeaux", "is_valid": true}
+{"id": "nlp_004761", "sentence": "Je veux se rendre vers Paris depuis Villeurbanne", "origin": "Villeurbanne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000345", "sentence": "J'ai visité Saint-Étienne", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000074", "sentence": "Je veux perdre", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001992", "sentence": "Je veux partir à Marseille à partir de Nice", "origin": "Nice", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_003243", "sentence": "Je veux partir en direction de Le Havre", "origin": null, "destination": "Le Havre", "is_valid": true}
+{"id": "nlp_000981", "sentence": "Mon ami habite à Montpellier et travaille à Marseille", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004790", "sentence": "Mon ami habite à Nice", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002262", "sentence": "Je veux partir de Toulon", "origin": "Toulon", "destination": null, "is_valid": true}
+{"id": "nlp_001372", "sentence": "J'ai visité Rennes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000124", "sentence": "Mon ami habite à Valence", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002659", "sentence": "Je veux quitter en direction de Strasbourg", "origin": null, "destination": "Strasbourg", "is_valid": true}
+{"id": "nlp_003557", "sentence": "Je veux partir à partir de Le Havre", "origin": "Le Havre", "destination": null, "is_valid": true}
+{"id": "nlp_005185", "sentence": "J'ai visité Grenoble", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001934", "sentence": "Mon ami habite à Nancy", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000926", "sentence": "Marseille et Reims sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001785", "sentence": "Je veux se rendre en direction de Nice", "origin": null, "destination": "Nice", "is_valid": true}
+{"id": "nlp_005462", "sentence": "Je veux voyager en direction de Rennes ?", "origin": null, "destination": "Rennes", "is_valid": true}
+{"id": "nlp_000427", "sentence": "J'ai visité Paris et Rennes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002953", "sentence": "Je veux quitter vers Paris de Toulon", "origin": "Toulon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001628", "sentence": "Orléans est la capitale", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002448", "sentence": "J'ai besoin d'aide", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005231", "sentence": "Je souhaite quitter Montpellier", "origin": "Montpellier", "destination": null, "is_valid": true}
+{"id": "nlp_003943", "sentence": "Je veux quitter pour Paris à partir de Bordeaux", "origin": "Bordeaux", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002076", "sentence": "Je veux voyager vers Villeurbanne", "origin": null, "destination": "Villeurbanne", "is_valid": true}
+{"id": "nlp_001001", "sentence": "Je veux partir à partir de Toulon", "origin": "Toulon", "destination": null, "is_valid": true}
+{"id": "nlp_004268", "sentence": "Je veux se rendre à Lyon de Lille", "origin": "Lille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004503", "sentence": "Paris possède", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000346", "sentence": "J'ai visité Lyon et Bordeaux", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005155", "sentence": "Je veux voyager en direction de Toulouse ?", "origin": null, "destination": "Toulouse", "is_valid": true}
+{"id": "nlp_001300", "sentence": "Je souhaite partir quittant Lyon", "origin": "Lyon", "destination": null, "is_valid": true}
+{"id": "nlp_002647", "sentence": "Je veux quitter vers Paris à partir de Lille", "origin": "Lille", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002557", "sentence": "Je veux partir vers Paris depuis Dijon", "origin": "Dijon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005583", "sentence": "Je veux quitter pour Paris de Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003188", "sentence": "Je veux partir vers Paris depuis Rennes", "origin": "Rennes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003874", "sentence": "Nice et Bordeaux sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001708", "sentence": "J'ai visité Marseille", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005456", "sentence": "Je préfère Paris à Le Havre", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004270", "sentence": "Je souhaite quitter Le Havre", "origin": "Le Havre", "destination": null, "is_valid": true}
+{"id": "nlp_000770", "sentence": "Je veux voyager à Paris de Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003776", "sentence": "Je veux aller pour Paris de Villeurbanne", "origin": "Villeurbanne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001632", "sentence": "J'ai visité Orléans", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000275", "sentence": "Je veux se rendre en direction de Toulon", "origin": null, "destination": "Toulon", "is_valid": true}
+{"id": "nlp_002025", "sentence": "Mon ami habite à Clermont-Ferrand", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003629", "sentence": "Mon ami habite à Amiens", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003153", "sentence": "Je veux partir pour Lyon de Villeurbanne", "origin": "Villeurbanne", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002040", "sentence": "Je souhaite partir à partir de Paris", "origin": "Paris", "destination": null, "is_valid": true}
+{"id": "nlp_001000", "sentence": "Je veux quitter pour Paris depuis Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000104", "sentence": "Je veux se rendre à Paris de Lyon", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003126", "sentence": "J'ai visité Avignon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002049", "sentence": "Je veux se rendre à Paris", "origin": null, "destination": "Paris", "is_valid": true}
+{"id": "nlp_001575", "sentence": "Je veux quitter vers Angers ?", "origin": null, "destination": "Angers", "is_valid": true}
+{"id": "nlp_001488", "sentence": "Je veux partir vers Lyon à partir de Nîmes", "origin": "Nîmes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003852", "sentence": "Je veux aller pour Bordeaux ?", "origin": null, "destination": "Bordeaux", "is_valid": true}
+{"id": "nlp_004450", "sentence": "Je veux faire sélectionner", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000585", "sentence": "Besançon possède", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003215", "sentence": "Je veux se rendre jusqu'à Nîmes", "origin": null, "destination": "Nîmes", "is_valid": true}
+{"id": "nlp_002184", "sentence": "Je veux quitter pour Lyon depuis Villeurbanne", "origin": "Villeurbanne", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000460", "sentence": "Je veux quitter vers Marseille depuis Strasbourg", "origin": "Strasbourg", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_001197", "sentence": "Je veux aller à Paris... depuis Lyon", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000658", "sentence": "Montpellier est plus grande que Strasbourg", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002706", "sentence": "Nîmes est une belle ville", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000260", "sentence": "Je voudrais partir quittant Toulouse", "origin": "Toulouse", "destination": null, "is_valid": true}
+{"id": "nlp_003799", "sentence": "Je veux quitter Toulouse", "origin": "Toulouse", "destination": null, "is_valid": true}
+{"id": "nlp_003043", "sentence": "Je veux voyager vers Paris depuis Nantes", "origin": "Nantes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004083", "sentence": "Je veux quitter à Marseille à partir de Lyon", "origin": "Lyon", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_002553", "sentence": "Je veux se rendre à Paris depuis Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003443", "sentence": "Je veux voyager à Paris de Strasbourg", "origin": "Strasbourg", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002801", "sentence": "Mulhouse est une belle ville", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001780", "sentence": "Toulouse et Paris sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004044", "sentence": "Je veux partir jusqu'à Bordeaux ?", "origin": null, "destination": "Bordeaux", "is_valid": true}
+{"id": "nlp_000121", "sentence": "Je veux proposer", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001235", "sentence": "Je veux partir à Marseille de Lyon", "origin": "Lyon", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_000739", "sentence": "Je veux voyager en direction de Nîmes", "origin": null, "destination": "Nîmes", "is_valid": true}
+{"id": "nlp_001908", "sentence": "Je veux se rendre pour Bordeaux", "origin": null, "destination": "Bordeaux", "is_valid": true}
+{"id": "nlp_000068", "sentence": "Je souhaite partir en partant de Nice", "origin": "Nice", "destination": null, "is_valid": true}
+{"id": "nlp_003592", "sentence": "Mon ami habite à Rouen", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005834", "sentence": "Je veux quitter vers Paris de Nantes", "origin": "Nantes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002206", "sentence": "Je souhaite quitter Marseille", "origin": "Marseille", "destination": null, "is_valid": true}
+{"id": "nlp_002312", "sentence": "Je veux quitter vers Marseille à partir de Nantes", "origin": "Nantes", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_000838", "sentence": "Je veux se rendre pour Lyon depuis Lille", "origin": "Lille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001524", "sentence": "Je veux quitter pour Marseille de Nantes", "origin": "Nantes", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_000182", "sentence": "Je veux partir pour Lyon à partir de Montpellier", "origin": "Montpellier", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004383", "sentence": "Caen est située", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000407", "sentence": "Je veux quitter vers Paris depuis Nantes", "origin": "Nantes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001247", "sentence": "Je veux quitter à Paris de Lyon", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000159", "sentence": "Avignon est une belle ville", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002627", "sentence": "Je veux voyager à Marseille depuis Nantes", "origin": "Nantes", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_001539", "sentence": "Je veux voyager à Lyon depuis Nantes", "origin": "Nantes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004031", "sentence": "Je veux se rendre pour Marseille de Lyon", "origin": "Lyon", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_005102", "sentence": "Je veux quitter pour Strasbourg", "origin": null, "destination": "Strasbourg", "is_valid": true}
+{"id": "nlp_002230", "sentence": "Rouen est célèbre pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003710", "sentence": "Toulouse est connue pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005061", "sentence": "Mon ami habite à Toulon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003731", "sentence": "Je veux partir depuis Nice", "origin": "Nice", "destination": null, "is_valid": true}
+{"id": "nlp_005218", "sentence": "Perpignan est la capitale", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000905", "sentence": "Valence abrite", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002373", "sentence": "J'ai visité Chambéry", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001120", "sentence": "Je veux faire adorer", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001495", "sentence": "Je veux partir vers Marseille à partir de Paris", "origin": "Paris", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_000561", "sentence": "Je veux quitter en direction de Nîmes ?", "origin": null, "destination": "Nîmes", "is_valid": true}
+{"id": "nlp_001541", "sentence": "Tours est connue pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003383", "sentence": "Je préfère Lyon à Nice", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002203", "sentence": "Je souhaite voyager de Bordeaux a Toulouse", "origin": "Bordeaux", "destination": "Toulouse", "is_valid": true}
+{"id": "nlp_004358", "sentence": "Lyon et Toulouse sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005313", "sentence": "Je veux se rendre pour Lyon à partir de Dijon", "origin": "Dijon", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002333", "sentence": "Grenoble produit", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002228", "sentence": "Je voudrais partir depuis Marseille", "origin": "Marseille", "destination": null, "is_valid": true}
+{"id": "nlp_005609", "sentence": "Je veux quitter à Marseille depuis Toulouse", "origin": "Toulouse", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_005685", "sentence": "Je veux partir vers Lyon à partir de Marseille", "origin": "Marseille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005024", "sentence": "Je veux partir vers Montpellier", "origin": null, "destination": "Montpellier", "is_valid": true}
+{"id": "nlp_004233", "sentence": "Je veux partir en direction de Reims", "origin": null, "destination": "Reims", "is_valid": true}
+{"id": "nlp_001963", "sentence": "Nice est connue pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005123", "sentence": "Paris et Nantes sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003459", "sentence": "Je veux aller en direction de Saint-Étienne ?", "origin": null, "destination": "Saint-Étienne", "is_valid": true}
+{"id": "nlp_000649", "sentence": "Je veux quitter pour Lyon à partir de Nîmes", "origin": "Nîmes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002155", "sentence": "Je veux aller pour Lyon à partir de Angers", "origin": "Angers", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001808", "sentence": "Je veux compléter", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003100", "sentence": "Je veux créer", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003193", "sentence": "J'ai visité Avignon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005292", "sentence": "Saint-Denis abrite", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001338", "sentence": "Je veux voyager à Lyon de Le Havre", "origin": "Le Havre", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002048", "sentence": "Rouen est connue pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003234", "sentence": "Je veux partir vers Lyon depuis Dijon", "origin": "Dijon", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003581", "sentence": "J'ai visité Boulogne-Billancourt", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004593", "sentence": "Je souhaite quitter Lille", "origin": "Lille", "destination": null, "is_valid": true}
+{"id": "nlp_003373", "sentence": "Strasbourg et Le Havre sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001545", "sentence": "Le Havre est une belle ville", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003061", "sentence": "Je veux quitter à Marseille de Nantes", "origin": "Nantes", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_004491", "sentence": "Je veux partir pour Paris depuis Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000060", "sentence": "Je veux aller vers Rennes ?", "origin": null, "destination": "Rennes", "is_valid": true}
+{"id": "nlp_001895", "sentence": "Je veux voyager vers Lyon depuis Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004891", "sentence": "Je veux se rendre à Paris à partir de Nantes", "origin": "Nantes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002400", "sentence": "Je veux voyager à Paris à partir de Nantes", "origin": "Nantes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003527", "sentence": "Je veux se rendre vers Lyon de Marseille", "origin": "Marseille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000075", "sentence": "Je veux voyager vers Paris à partir de Le Havre", "origin": "Le Havre", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002455", "sentence": "Chambéry possède", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003909", "sentence": "Je veux partir vers Lyon à partir de Toulon", "origin": "Toulon", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004030", "sentence": "Amiens est une belle ville", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005635", "sentence": "Je veux voyager à Lyon depuis Le Havre", "origin": "Le Havre", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000069", "sentence": "Je veux partir à partir de Reims", "origin": "Reims", "destination": null, "is_valid": true}
+{"id": "nlp_004384", "sentence": "J'ai visité Tours", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_003844", "sentence": "Je veux se rendre vers Lyon à partir de Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002350", "sentence": "Je veux quitter vers Paris depuis Le Havre", "origin": "Le Havre", "destination": "Paris", "is_valid": true}
+{"id": "nlp_002818", "sentence": "Je veux partir quittant Lille", "origin": "Lille", "destination": null, "is_valid": true}
+{"id": "nlp_001117", "sentence": "Je veux se rendre vers Paris depuis Reims", "origin": "Reims", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004288", "sentence": "Je veux aller vers Paris depuis Bordeaux", "origin": "Bordeaux", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000001", "sentence": "Mon ami habite à Nancy", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000087", "sentence": "Mon ami habite à Marseille et travaille à Nice", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002487", "sentence": "Je veux aller à Toulouse ?", "origin": null, "destination": "Toulouse", "is_valid": true}
+{"id": "nlp_001276", "sentence": "Je veux quitter jusqu'à Grenoble ?", "origin": null, "destination": "Grenoble", "is_valid": true}
+{"id": "nlp_002129", "sentence": "Je veux quitter pour Paris à partir de Reims", "origin": "Reims", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003377", "sentence": "Mon ami habite à Boulogne-Billancourt", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002997", "sentence": "Je veux partir en direction de Nice ?", "origin": null, "destination": "Nice", "is_valid": true}
+{"id": "nlp_002523", "sentence": "Je veux partir pour Paris depuis Dijon", "origin": "Dijon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003620", "sentence": "Je veux partir vers Paris de Marseille", "origin": "Marseille", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000734", "sentence": "Mon ami habite à Dunkerque", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001861", "sentence": "Je veux demander", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004421", "sentence": "Je veux partir vers Paris à partir de Grenoble", "origin": "Grenoble", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003946", "sentence": "J'ai visité Le Mans", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002845", "sentence": "Je veux partir à Rennes", "origin": null, "destination": "Rennes", "is_valid": true}
+{"id": "nlp_002537", "sentence": "Mon ami habite à Bordeaux", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004373", "sentence": "Je veux se rendre pour Lyon", "origin": null, "destination": "Lyon", "is_valid": true}
+{"id": "nlp_005240", "sentence": "Je veux quitter pour Villeurbanne ?", "origin": null, "destination": "Villeurbanne", "is_valid": true}
+{"id": "nlp_005242", "sentence": "Mon ami habite à Paris et travaille à Toulon", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004289", "sentence": "Je veux partir à Lyon de Saint-Étienne", "origin": "Saint-Étienne", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003564", "sentence": "Mon ami habite à Perpignan", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004621", "sentence": "J'ai visité Mulhouse", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005209", "sentence": "Je veux quitter jusqu'à Angers", "origin": null, "destination": "Angers", "is_valid": true}
+{"id": "nlp_005170", "sentence": "Je veux voyager en direction de Toulon ?", "origin": null, "destination": "Toulon", "is_valid": true}
+{"id": "nlp_003741", "sentence": "Je préfère Nantes à Bordeaux", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004896", "sentence": "Je veux partir pour Paris de Grenoble", "origin": "Grenoble", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004841", "sentence": "J'ai visité Toulouse", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001451", "sentence": "Je veux aller à Paris de Lyon", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004418", "sentence": "Je veux voyager vers Villeurbanne ?", "origin": null, "destination": "Villeurbanne", "is_valid": true}
+{"id": "nlp_005715", "sentence": "Amiens possède", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001107", "sentence": "Je veux aller à Lyon de Marseille", "origin": "Marseille", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003645", "sentence": "Je veux aller pour Paris de Toulon", "origin": "Toulon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_004494", "sentence": "Mon ami habite à Strasbourg", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002232", "sentence": "Je veux se rendre en direction de Lyon", "origin": null, "destination": "Lyon", "is_valid": true}
+{"id": "nlp_004429", "sentence": "Je veux partir à Rennes ?", "origin": null, "destination": "Rennes", "is_valid": true}
+{"id": "nlp_003828", "sentence": "Je veux se rendre à Paris depuis Grenoble", "origin": "Grenoble", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003901", "sentence": "J'ai visité Saint-Étienne", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002665", "sentence": "Je veux voyager à Lyon de Saint-Étienne", "origin": "Saint-Étienne", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_002924", "sentence": "Je veux quitter à Paris depuis Strasbourg", "origin": "Strasbourg", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005436", "sentence": "Je préfère Toulouse à Montpellier", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000288", "sentence": "Je souhaite quitter Reims", "origin": "Reims", "destination": null, "is_valid": true}
+{"id": "nlp_000235", "sentence": "Je veux quitter vers Lyon depuis Dijon", "origin": "Dijon", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001398", "sentence": "Nantes et Marseille sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004316", "sentence": "Metz est célèbre pour", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001076", "sentence": "J'ai visité Chambéry", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001036", "sentence": "Je veux partir pour Nîmes ?", "origin": null, "destination": "Nîmes", "is_valid": true}
+{"id": "nlp_005133", "sentence": "Je veux quitter pour Lyon à partir de Nice", "origin": "Nice", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_003631", "sentence": "J'ai visité Limoges", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002328", "sentence": "Je veux partir jusqu'à Paris ?", "origin": null, "destination": "Paris", "is_valid": true}
+{"id": "nlp_002027", "sentence": "Je veux quitter pour Paris de Dijon", "origin": "Dijon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001879", "sentence": "J'ai visité Boulogne-Billancourt", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002535", "sentence": "Je veux se rendre en direction de Rennes", "origin": null, "destination": "Rennes", "is_valid": true}
+{"id": "nlp_003194", "sentence": "Dijon est une belle ville", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005365", "sentence": "Je veux partir jusqu'à Toulouse ?", "origin": null, "destination": "Toulouse", "is_valid": true}
+{"id": "nlp_000691", "sentence": "Je voudrais partir quittant Marseille", "origin": "Marseille", "destination": null, "is_valid": true}
+{"id": "nlp_001273", "sentence": "Je veux voyager à Marseille à partir de Nantes", "origin": "Nantes", "destination": "Marseille", "is_valid": true}
+{"id": "nlp_005064", "sentence": "Nice et Montpellier sont deux belles villes", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002151", "sentence": "Je veux faire monter", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000852", "sentence": "Je crois que non", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000682", "sentence": "Je veux voyager jusqu'à Saint-Étienne", "origin": null, "destination": "Saint-Étienne", "is_valid": true}
+{"id": "nlp_004293", "sentence": "Je veux voyager vers Paris à partir de Villeurbanne", "origin": "Villeurbanne", "destination": "Paris", "is_valid": true}
+{"id": "nlp_005826", "sentence": "Je veux voyager vers Paris à partir de Dijon", "origin": "Dijon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000216", "sentence": "C'est payant", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000441", "sentence": "J'ai visité Saint-Denis", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_004493", "sentence": "Je veux se rendre en direction de Grenoble", "origin": null, "destination": "Grenoble", "is_valid": true}
+{"id": "nlp_003877", "sentence": "Je veux se rendre à Lyon de Saint-Étienne", "origin": "Saint-Étienne", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_000523", "sentence": "Je veux quitter à Lille", "origin": null, "destination": "Lille", "is_valid": true}
+{"id": "nlp_000783", "sentence": "Je veux faire choisir", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_000844", "sentence": "Je veux aller pour Paris à partir de Nîmes", "origin": "Nîmes", "destination": "Paris", "is_valid": true}
+{"id": "nlp_003253", "sentence": "Je souhaite partir en partant de Lyon", "origin": "Lyon", "destination": null, "is_valid": true}
+{"id": "nlp_001368", "sentence": "Je veux quitter vers Lyon à partir de Rennes", "origin": "Rennes", "destination": "Lyon", "is_valid": true}
+{"id": "nlp_001726", "sentence": "Je veux quitter en direction de Nice ?", "origin": null, "destination": "Nice", "is_valid": true}
+{"id": "nlp_000656", "sentence": "Je veux réaliser", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005741", "sentence": "Je veux donner", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_002062", "sentence": "Mon ami habite à Dunkerque", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_005424", "sentence": "Je veux partir vers Nice", "origin": null, "destination": "Nice", "is_valid": true}
+{"id": "nlp_001923", "sentence": "Je veux quitter pour Paris à partir de Lyon", "origin": "Lyon", "destination": "Paris", "is_valid": true}
+{"id": "nlp_001025", "sentence": "Je veux voyager pour Paris depuis Grenoble", "origin": "Grenoble", "destination": "Paris", "is_valid": true}
+{"id": "nlp_000190", "sentence": "J'ai visité Nancy", "origin": null, "destination": null, "is_valid": false}
+{"id": "nlp_001507", "sentence": "Je veux se rendre pour Lyon de Toulouse", "origin": "Toulouse", "destination": "Lyon", "is_valid": true}

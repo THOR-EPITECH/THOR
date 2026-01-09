@@ -110,6 +110,71 @@ Le dataset doit être au format JSONL :
 }
 ```
 
+## Fine-tuning (Entraînement)
+
+Pour améliorer les performances sur l'extraction des villes de départ et d'arrivée, vous pouvez fine-tuner le modèle spaCy sur vos données.
+
+### Prérequis
+
+- Dataset d'entraînement au format JSONL avec annotations `origin` et `destination`
+- Dataset de validation (optionnel mais recommandé)
+
+### Entraînement
+
+```bash
+# Entraînement avec train et validation
+python -m src.cli.nlp train \
+    --train-dataset data/splits/train/train_nlp.jsonl \
+    --valid-dataset data/splits/valid/valid_nlp.jsonl \
+    --model spacy \
+    --n-iter 20 \
+    --dropout 0.1 \
+    --output-dir models/nlp/spacy_finetuned
+```
+
+**Paramètres**:
+- `--n-iter`: Nombre d'itérations d'entraînement (défaut: 20)
+- `--dropout`: Taux de dropout (défaut: 0.1)
+- `--output-dir`: Dossier où sauvegarder le modèle entraîné
+
+### Utiliser le modèle fine-tuné
+
+1. Créez un fichier de configuration :
+```yaml
+# configs/nlp/spacy_finetuned.yaml
+nlp:
+  model_name: fr_core_news_md
+  custom_model_path: models/nlp/spacy_finetuned/model
+```
+
+2. Utilisez-le dans vos commandes :
+```bash
+# Évaluation
+python -m src.cli.nlp evaluate \
+    --dataset data/splits/test/test_nlp.jsonl \
+    --model spacy \
+    --config configs/nlp/spacy_finetuned.yaml \
+    --output-dir results/nlp/spacy_finetuned_test
+
+# Pipeline
+python -m src.cli.pipeline \
+    --audio audio.wav \
+    --stt-model whisper \
+    --nlp-model spacy \
+    --config configs/nlp/spacy_finetuned.yaml
+```
+
+### Comment ça marche
+
+Le fine-tuning :
+1. Convertit vos données JSONL en format spaCy avec labels `ORIGIN` et `DESTINATION`
+2. Charge le modèle de base `fr_core_news_md`
+3. Ajoute les nouveaux labels au NER
+4. Entraîne le modèle sur vos données spécifiques
+5. Sauvegarde le modèle fine-tuné
+
+Le modèle fine-tuné apprend à reconnaître directement les villes comme `ORIGIN` ou `DESTINATION` selon le contexte, améliorant ainsi la précision sur différentes tournures de phrase.
+
 ## Ajouter un nouveau modèle
 
 1. Créez un fichier dans `models/` (ex: `my_model.py`)

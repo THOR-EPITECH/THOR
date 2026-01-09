@@ -71,6 +71,16 @@ class Pipeline:
         
         logger.info(f"Extraction: {nlp_result.origin} → {nlp_result.destination}")
         
+        # Génère un message d'erreur si une ville manque
+        error_message = None
+        if nlp_result.is_valid:
+            if not nlp_result.origin and not nlp_result.destination:
+                error_message = "❌ Erreur : Aucune ville détectée. Veuillez préciser une ville de départ et/ou d'arrivée."
+            elif not nlp_result.origin:
+                error_message = "⚠️ Attention : La ville de départ est manquante. Veuillez préciser d'où vous partez."
+            elif not nlp_result.destination:
+                error_message = "⚠️ Attention : La ville d'arrivée est manquante. Veuillez préciser votre destination."
+        
         return {
             "audio_path": str(audio_path),
             "transcript": transcript,
@@ -78,6 +88,7 @@ class Pipeline:
             "destination": nlp_result.destination,
             "is_valid": nlp_result.is_valid,
             "confidence": nlp_result.confidence,
+            "error_message": error_message,
             "stt_metadata": stt_result.metadata,
             "nlp_metadata": {
                 **nlp_result.metadata,

@@ -1,0 +1,201 @@
+[
+  {
+    "text": "Je veux partir en partant de Angers",
+    "origin": "Angers",
+    "destination": null,
+    "is_valid": true,
+    "confidence": 0.7,
+    "entities": [
+      "Angers"
+    ]
+  },
+  {
+    "text": "Je veux voyager vers Paris depuis Nantes",
+    "origin": "Nantes",
+    "destination": "Paris",
+    "is_valid": true,
+    "confidence": 0.7,
+    "entities": [
+      "Paris",
+      "Nantes"
+    ]
+  },
+  {
+    "text": "Je veux aller pour Lille",
+    "origin": null,
+    "destination": "Lille",
+    "is_valid": true,
+    "confidence": 0.7,
+    "entities": [
+      "Lille"
+    ]
+  },
+  {
+    "text": "C'est payant",
+    "origin": null,
+    "destination": null,
+    "is_valid": false,
+    "confidence": 0.0,
+    "entities": []
+  },
+  {
+    "text": "Je veux quitter à Paris depuis Rennes",
+    "origin": "Rennes",
+    "destination": "Paris",
+    "is_valid": true,
+    "confidence": 0.7,
+    "entities": [
+      "Rennes",
+      "Paris"
+    ]
+  },
+  {
+    "text": "J'ai visité Saint-Denis",
+    "origin": null,
+    "destination": "Saint-Denis",
+    "is_valid": false,
+    "confidence": 0.7,
+    "entities": [
+      "Saint-Denis"
+    ]
+  },
+  {
+    "text": "Je veux voyager en direction de Nîmes",
+    "origin": null,
+    "destination": "Nîmes",
+    "is_valid": true,
+    "confidence": 0.7,
+    "entities": [
+      "Nîmes"
+    ]
+  },
+  {
+    "text": "Je veux quitter vers Marseille depuis Paris",
+    "origin": "Paris",
+    "destination": "Marseille",
+    "is_valid": true,
+    "confidence": 0.7,
+    "entities": [
+      "Marseille",
+      "Paris"
+    ]
+  },
+  {
+    "text": "Valence abrite",
+    "origin": null,
+    "destination": null,
+    "is_valid": false,
+    "confidence": 0.0,
+    "entities": []
+  },
+  {
+    "text": "Je veux voyager pour Paris de Nantes",
+    "origin": "Nantes",
+    "destination": "Paris",
+    "is_valid": true,
+    "confidence": 0.7,
+    "entities": [
+      "Paris",
+      "Nantes"
+    ]
+  },
+  {
+    "text": "Je veux aller à Lyon de Reims",
+    "origin": "Reims",
+    "destination": "Lyon",
+    "is_valid": true,
+    "confidence": 0.7,
+    "entities": [
+      "Lyon",
+      "Reims"
+    ]
+  },
+  {
+    "text": "Mon ami habite à Paris",
+    "origin": null,
+    "destination": "Paris",
+    "is_valid": false,
+    "confidence": 0.7,
+    "entities": [
+      "Paris"
+    ]
+  },
+  {
+    "text": "Je veux partir pour Nîmes ?",
+    "origin": null,
+    "destination": "Nîmes",
+    "is_valid": true,
+    "confidence": 0.7,
+    "entities": [
+      "Nîmes"
+    ]
+  },
+  {
+    "text": "Je veux se rendre pour Lyon à partir de Nantes",
+    "origin": "Nantes",
+    "destination": "Lyon",
+    "is_valid": true,
+    "confidence": 0.7,
+    "entities": [
+      "Lyon",
+      "Nantes"
+    ]
+  },
+  {
+    "text": "Je veux quitter Toulon",
+    "origin": "Toulon",
+    "destination": null,
+    "is_valid": true,
+    "confidence": 0.7,
+    "entities": [
+      "Toulon"
+    ]
+  },
+  {
+    "text": "Mon ami habite à Dunkerque",
+    "origin": null,
+    "destination": "Dunkerque",
+    "is_valid": false,
+    "confidence": 0.7,
+    "entities": [
+      "Dunkerque"
+    ]
+  },
+  {
+    "text": "Je veux faire adorer",
+    "origin": null,
+    "destination": null,
+    "is_valid": false,
+    "confidence": 0.0,
+    "entities": []
+  },
+  {
+    "text": "Strasbourg et Le Havre sont deux belles villes",
+    "origin": null,
+    "destination": "Havre",
+    "is_valid": false,
+    "confidence": 0.7,
+    "entities": [
+      "Havre"
+    ]
+  },
+  {
+    "text": "Je veux aller à Lyon depuis Reims",
+    "origin": "Reims",
+    "destination": "Lyon",
+    "is_valid": true,
+    "confidence": 0.7,
+    "entities": [
+      "Lyon",
+      "Reims"
+    ]
+  },
+  {
+    "text": "Je veux épargner",
+    "origin": null,
+    "destination": null,
+    "is_valid": false,
+    "confidence": 0.0,
+    "entities": []
+  }
+]

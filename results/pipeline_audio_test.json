@@ -1,0 +1,42 @@
+[
+  {
+    "audio": "data/raw/audio/sample_000001.wav",
+    "transcript": "Je voudrais bien aller à Paris.",
+    "origin": null,
+    "destination": "Paris",
+    "is_valid": true,
+    "confidence": 0.7
+  },
+  {
+    "audio": "data/raw/audio/sample_000002.wav",
+    "transcript": "Je veux voyager de Toulouse à Bordeaux.",
+    "origin": "Toulouse",
+    "destination": "Bordeaux",
+    "is_valid": true,
+    "confidence": 0.7
+  },
+  {
+    "audio": "data/raw/audio/sample_000003.wav",
+    "transcript": "Pouvez-vous me dire comment aller de Strasbourg à Nancy ?",
+    "origin": "Strasbourg",
+    "destination": "Nancy",
+    "is_valid": true,
+    "confidence": 0.7
+  },
+  {
+    "audio": "data/raw/audio/sample_000004.wav",
+    "transcript": "Pourriez-vous m'aider à trouver un trajet vers Paris ?",
+    "origin": null,
+    "destination": "Paris",
+    "is_valid": true,
+    "confidence": 0.7
+  },
+  {
+    "audio": "data/raw/audio/sample_000005.wav",
+    "transcript": "Comment me rendre à Strasbourg depuis Nancy ?",
+    "origin": "Nancy",
+    "destination": "Strasbourg",
+    "is_valid": true,
+    "confidence": 0.7
+  }
+]

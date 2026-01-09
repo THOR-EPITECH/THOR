@@ -1,6 +1,7 @@
 """
 Interfaces pour les modèles NLP.
 """
+from pathlib import Path
 from abc import ABC, abstractmethod
 from src.common.types import NLPExtraction
 
@@ -39,6 +40,18 @@ class NLPModel(ABC):
     
     def _load_model(self):
         """Charge le modèle (à implémenter par les sous-classes)."""
+        pass
+    
+    def train(self, train_dataset: str | Path, valid_dataset: str | Path = None, output_dir: str | Path = None):
+        """
+        Entraîne le modèle sur un dataset.
+        
+        Args:
+            train_dataset: Chemin vers le dataset d'entraînement (JSONL)
+            valid_dataset: Chemin vers le dataset de validation (JSONL, optionnel)
+            output_dir: Dossier où sauvegarder le modèle entraîné
+        """
+        # Par défaut, ne fait rien (pour les modèles qui ne nécessitent pas d'entraînement)
         pass
     
     @property

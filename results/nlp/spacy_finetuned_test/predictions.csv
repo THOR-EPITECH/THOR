@@ -1,0 +1,877 @@
+id,text,reference_origin,reference_destination,reference_is_valid,predicted_origin,predicted_destination,predicted_is_valid,precision,recall,f1,tp,fp,fn,origin_accuracy,destination_accuracy,both_correct,validation_accuracy
+nlp_000452,Je veux se rendre pour Lyon depuis Bordeaux,Bordeaux,Lyon,True,Bordeaux,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001215,Je veux quitter Angers,Angers,,True,,Angers,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_001515,Je veux se rendre en direction de Montpellier ?,,Montpellier,True,,Montpellier,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000401,Dijon produit,,,False,,Dijon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001701,Je veux voyager vers Lyon depuis Toulouse,Toulouse,Lyon,True,Toulouse,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004568,Je veux se rendre à Lyon de Villeurbanne,Villeurbanne,Lyon,True,Lyon,Villeurbanne,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_002279,Je veux voyager pour Lyon ?,,Lyon,True,,Lyon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004484,J'ai visité Reims,,,False,,Reims,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002005,Je veux aller pour Lyon à partir de Dijon,Dijon,Lyon,True,Dijon,Dijon,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_005410,Je veux aller pour Paris de Montpellier,Montpellier,Paris,True,Paris,Montpellier,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_004917,Je veux se rendre pour Marseille à partir de Toulouse,Toulouse,Marseille,True,Toulouse,Toulouse,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_004926,Strasbourg compte,,,False,,Strasbourg,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000651,Je préfère Lyon à Toulon,,,False,Toulon,Lyon,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005766,Je veux se rendre vers Le Havre ?,,Le Havre,True,,Le Havre,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003360,Mon ami habite à Brest,,,False,,Brest,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003718,Je veux se rendre pour Lyon de Paris,Paris,Lyon,True,,Lyon de Paris,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_003898,Je veux quitter pour Paris à partir de Strasbourg,Strasbourg,Paris,True,Strasbourg,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004824,Je veux quitter vers Dijon,,Dijon,True,,Dijon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001777,Je veux se rendre à Lyon depuis Lille,Lille,Lyon,True,Lille,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001949,Je veux partir en partant de Nîmes,Nîmes,,True,,Nîmes,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_004043,Je veux aller vers Marseille à partir de Paris,Paris,Marseille,True,Paris,Paris,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_005082,Mon ami habite à Amiens,,,False,,Amiens,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000048,Je veux quitter pour Lyon de Le Havre,Le Havre,Lyon,True,,Lyon,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_004453,Paris est connue pour,,,False,,Paris,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004085,Montpellier et Marseille sont deux belles villes,,,False,Montpellier,Marseille,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004077,Le Havre compte,,,False,,Le Havre,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005454,Mon ami habite à Limoges,,,False,,Limoges,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000101,Je veux partir vers Paris de Strasbourg,Strasbourg,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_002074,Je veux quitter à Marseille de Lyon,Lyon,Marseille,True,Lyon,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000029,Je veux aller vers Lyon à partir de Paris,Paris,Lyon,True,Paris,Paris,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_005095,Je veux partir pour Paris depuis Toulouse,Toulouse,Paris,True,Paris,Toulouse,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005131,Je veux voyager vers Lyon à partir de Marseille,Marseille,Lyon,True,Marseille,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000964,Je veux aller en direction de Marseille ?,,Marseille,True,,Marseille,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001481,Je veux voyager à Lyon depuis Saint-Étienne,Saint-Étienne,Lyon,True,Saint-Étienne,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002366,Je veux aller à Paris depuis Toulon,Toulon,Paris,True,Toulon,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003656,Je veux secourir,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_002536,Mon ami habite à Amiens,,,False,,Amiens,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002524,Mon ami habite à Nantes,,,False,,Nantes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003438,Mulhouse est située,,,False,,Mulhouse,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000421,Je veux quitter jusqu'à Paris ?,,Paris,True,,Paris,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005030,Mon ami habite à Boulogne-Billancourt,,,False,,Billancourt,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001185,Je veux se rendre à Marseille de Paris,Paris,Marseille,True,Paris,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001329,J'ai visité Strasbourg,,,False,,Strasbourg,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001230,Je veux quitter à Paris depuis Rennes,Rennes,Paris,True,Paris,Rennes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_004633,Montpellier est plus grande que Paris,,,False,Paris,Montpellier,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_002746,Je veux quitter vers Lyon,,Lyon,True,,Lyon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001400,Je veux aller pour Lyon de Le Havre,Le Havre,Lyon,True,,Lyon,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_000360,Je veux aller jusqu'à Grenoble,,Grenoble,True,,Grenoble,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003118,Je veux se rendre vers Toulon ?,,Toulon,True,,Toulon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004509,Je veux se rendre vers Toulouse ?,,Toulouse,True,,Toulouse,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003103,J'ai visité Toulon,,,False,,Toulon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001310,Je voudrais quitter Montpellier,Montpellier,,True,,Montpellier,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_004192,Perpignan produit,,,False,,Perpignan,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003147,Mon ami habite à Perpignan,,,False,,Perpignan,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005640,Je veux aller pour Lyon à partir de Nice,Nice,Lyon,True,Nice,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000699,Je veux se rendre pour Paris depuis Lyon,Lyon,Paris,True,Paris,Lyon,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_002974,Je veux quitter à Saint-Étienne ?,,Saint-Étienne,True,,Saint-Étienne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005557,Je veux partir en partant de Nice,Nice,,True,,Nice,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_000936,Je veux partir pour Lyon depuis Toulouse,Toulouse,Lyon,True,Toulouse,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000748,J'ai visité Paris et Saint-Étienne,,,False,Saint-Étienne,Paris,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_001013,Besançon abrite,,,False,,Besançon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001344,Je veux quitter Reims,Reims,,True,,Reims,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_002655,Je veux voyager à Lyon de Rennes,Rennes,Lyon,True,Lyon,Rennes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005661,Je veux se rendre vers Reims ?,,Reims,True,,Reims,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005684,C'est formidable,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_003725,Mon ami habite à Caen,,,False,,Caen,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001655,Je veux aller vers Lyon de Dijon,Dijon,Lyon,True,,Dijon,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_005503,Je veux voyager vers Lyon à partir de Toulouse,Toulouse,Lyon,True,Toulouse,Toulouse,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_003717,Je souhaite quitter Nîmes,Nîmes,,True,,Nîmes,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_005628,Je veux voyager pour Lyon de Nîmes,Nîmes,Lyon,True,,Lyon de Nîmes,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_000205,Je veux quitter en direction de Saint-Étienne ?,,Saint-Étienne,True,,Saint-Étienne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003694,Mon ami habite à Le Mans,,,False,Le Mans,Mans,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005298,Je veux épargner,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_003388,Je souhaite quitter Le Havre,Le Havre,,True,,Le Havre,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_003221,Je veux se rendre pour Paris de Le Havre,Le Havre,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_001109,Mon ami habite à Le Mans,,,False,Le Mans,Mans,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005253,J'ai visité Orléans,,,False,,Orléans,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004796,J'ai visité Calais,,,False,,Calais,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001473,Je veux monter,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_000928,Je veux quitter à Lyon depuis Villeurbanne,Villeurbanne,Lyon,True,Lyon,Villeurbanne,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005212,Je veux se rendre vers Lyon à partir de Lille,Lille,Lyon,True,Lille,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000741,Je veux voyager à Grenoble,,Grenoble,True,,Grenoble,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003701,Je veux aller vers Paris à partir de Rennes,Rennes,Paris,True,Rennes,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003798,Nice a un beau,,,False,,Nice,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001166,Je veux se rendre à Paris depuis Montpellier,Montpellier,Paris,True,Montpellier,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004236,Je veux quitter vers Paris à partir de Montpellier,Montpellier,Paris,True,Montpellier,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005270,Je veux quitter pour Angers ?,,Angers,True,,Angers,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005531,Mon ami habite à Boulogne-Billancourt,,,False,,Billancourt,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002412,Je préfère Toulouse à Rennes,,,False,Toulouse,Rennes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_003461,Je préfère Marseille à Toulon,,,False,Toulon,Marseille,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_001364,Je veux aller pour Paris depuis Nice,Nice,Paris,True,Paris,Nice,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003780,Je veux aller à Marseille depuis Toulouse,Toulouse,Marseille,True,Toulouse,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002343,Je veux quitter vers Lyon depuis Montpellier,Montpellier,Lyon,True,Lyon,Montpellier,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_002495,Besançon produit,,,False,,Besançon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003261,Je veux voyager vers Lyon à partir de Paris,Paris,Lyon,True,Paris,Paris,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_003601,Je veux voyager jusqu'à Saint-Étienne ?,,Saint-Étienne,True,,Saint-Étienne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002386,Strasbourg et Paris sont deux belles villes,,,False,Strasbourg,Paris,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005536,Je veux quitter jusqu'à Saint-Étienne,,Saint-Étienne,True,,Saint-Étienne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005323,Je veux aller à Lyon à partir de Nice,Nice,Lyon,True,Nice,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004229,Je veux se rendre vers Lyon depuis Le Havre,Le Havre,Lyon,True,Le Havre,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003174,Je souhaite partir depuis Lyon,Lyon,,True,Lyon,Lyon,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_004569,Je veux se rendre pour Lyon à partir de Nice,Nice,Lyon,True,Nice,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000322,Je veux quitter vers Marseille à partir de Strasbourg,Strasbourg,Marseille,True,Strasbourg,Strasbourg,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_003241,Je préfère Strasbourg à Nantes,,,False,Strasbourg,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004407,Je souhaite partir depuis Le Havre,Le Havre,,True,Le Havre,Le Havre,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_004250,Je veux voyager à Lille,,Lille,True,,Lille,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002013,Je veux voyager jusqu'à Bordeaux,,Bordeaux,True,,Bordeaux,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000348,Je veux quitter à Lyon à partir de Le Havre,Le Havre,Lyon,True,Le Havre,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003743,Je veux se rendre pour Lyon de Nice,Nice,Lyon,True,,Lyon,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_003700,Je veux comprendre,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_000896,Je veux voyager vers Paris de Angers,Angers,Paris,True,Angers,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005177,Je veux se rendre vers Dijon,,Dijon,True,,Dijon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000316,Je veux aller jusqu'à Bordeaux ?,,Bordeaux,True,,Bordeaux,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004303,Mon ami habite à Bordeaux,,,False,,Bordeaux,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004393,Je souhaite quitter Angers,Angers,,True,,Angers,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_004865,Je veux aller à Nice ?,,Nice,True,,Nice,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004686,Je veux voyager pour Le Havre,,Le Havre,True,Le Havre,Havre,True,0.0,0.0,0.0,0,2,1,0.0,0.0,0.0,1.0
+nlp_005010,J'ai visité Toulon,,,False,,Toulon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003229,Je veux quitter à Paris depuis Saint-Étienne,Saint-Étienne,Paris,True,Saint-Étienne,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002564,Mon ami habite à Saint-Denis,,,False,,Saint-Denis,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003117,Je veux visiter,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_004981,Toulouse a un beau,,,False,,Toulouse,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000343,Je veux voyager pour Nîmes,,Nîmes,True,,Nîmes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003317,Je veux partir pour Grenoble,,Grenoble,True,,Grenoble,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003503,Mon ami habite à Clermont-Ferrand,,,False,,Clermont-Ferrand,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002022,Caen produit,,,False,,Caen,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003749,Je veux voyager pour Paris de Nantes,Nantes,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_002662,J'ai visité Clermont-Ferrand,,,False,,Clermont-Ferrand,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005203,Je veux aller à Paris de Le Havre,Le Havre,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_005190,Je veux partir vers Nîmes,,Nîmes,True,,Nîmes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003599,Je souhaite quitter Dijon,Dijon,,True,,Dijon,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_005784,Je veux aller à Le Havre,,Le Havre,True,,Le Havre,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000542,Mon ami habite à Aix-en-Provence,,,False,,Aix-en-Provence,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001676,Je veux voyager à Lyon depuis Paris,Paris,Lyon,True,Paris,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001662,Tours abrite,,,False,,Tours,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001824,Je souhaite partir de Nice,Nice,,True,Nice,Nice,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_003384,Je veux partir pour Paris à partir de Dijon,Dijon,Paris,True,Dijon,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002211,Je veux partir en partant de Nantes,Nantes,,True,,Nantes,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_000123,Je souhaite partir quittant Saint-Étienne,Saint-Étienne,,True,,Saint-Étienne,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_003348,Je veux quitter à Paris à partir de Reims,Reims,Paris,True,Reims,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000265,Je veux partir vers Le Havre,,Le Havre,True,Le Havre,Havre,True,0.0,0.0,0.0,0,2,1,0.0,0.0,0.0,1.0
+nlp_001854,Je voudrais quitter Montpellier,Montpellier,,True,,Montpellier,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_001584,Strasbourg et Lille sont deux belles villes,,,False,Strasbourg,Lille,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_001342,Je veux quitter vers Toulouse,,Toulouse,True,,Toulouse,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001127,Mon ami habite à Montpellier,,,False,,Montpellier,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003882,J'ai visité Saint-Étienne,,,False,,Saint-Étienne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005493,Avignon abrite,,,False,,Avignon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005537,Je veux voyager à Paris de Lyon,Lyon,Paris,True,Paris,Lyon,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_001508,Calais est célèbre pour,,,False,,Calais,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003064,Valence produit,,,False,,Valence,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003841,Je souhaite partir en partant de Nantes,Nantes,,True,,Nantes,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_004954,Toulouse abrite,,,False,,Toulouse,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005343,Mon ami habite à Marseille,,,False,,Marseille,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001099,Je veux partir pour Paris de Marseille,Marseille,Paris,True,Paris,Marseille,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003905,Je veux quitter vers Marseille de Nantes,Nantes,Marseille,True,Marseille,Nantes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000652,Villeurbanne est connue pour,,,False,,Villeurbanne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002944,Je veux aller vers Le Havre ?,,Le Havre,True,,Le Havre,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000214,Je veux voyager en direction de Dijon ?,,Dijon,True,,Dijon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005196,Je veux se rendre en direction de Le Havre,,Le Havre,True,Le Havre,Havre,True,0.0,0.0,0.0,0,2,1,0.0,0.0,0.0,1.0
+nlp_001903,Je veux quitter à Toulon,,Toulon,True,,Toulon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004886,Je veux quitter à Paris à partir de Nice,Nice,Paris,True,Nice,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001892,Je voudrais quitter Lille,Lille,,True,,Lille,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_005017,Je veux voyager à Lyon depuis Angers,Angers,Lyon,True,Angers,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004646,J'ai visité Caen,,,False,,Caen,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004962,Je veux aller pour Lyon de Toulouse,Toulouse,Lyon,True,,Lyon de Toulouse,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_002187,Je veux quitter pour Lyon depuis Nice,Nice,Lyon,True,Lyon,Nice,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005055,Valence est réputée pour,,,False,,Valence,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005014,J'ai visité Tours,,,False,,Tours,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000215,Mon ami habite à Mulhouse,,,False,,Mulhouse,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001514,Je veux voyager jusqu'à Reims,,Reims,True,,Reims,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001078,Je veux quitter à Angers,,Angers,True,,Angers,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000875,Je veux se rendre pour Lyon depuis Paris,Paris,Lyon,True,Paris,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001540,Je veux partir pour Lyon depuis Toulon,Toulon,Lyon,True,Toulon,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001245,Je ne crois pas,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_002243,Marseille et Nantes sont deux belles villes,,,False,Marseille,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005440,Paris et Lyon sont deux belles villes,,,False,Paris,Lyon,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_002486,Je veux partir à Paris de Strasbourg,Strasbourg,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_003369,J'ai visité Nancy,,,False,,Nancy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003392,Je veux se rendre en direction de Rennes ?,,Rennes,True,,Rennes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002611,Je veux quitter vers Lyon de Paris,Paris,Lyon,True,Paris,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005187,J'ai visité Calais,,,False,,Calais,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001193,Je veux quitter pour Toulon ?,,Toulon,True,,Toulon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002602,Je veux aller à Lyon à partir de Reims,Reims,Lyon,True,Reims,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001509,Je veux reculer,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_000970,Je veux quitter à Bordeaux ?,,Bordeaux,True,,Bordeaux,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004367,Je veux se rendre jusqu'à Dijon,,Dijon,True,,Dijon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004566,Mon ami habite à Boulogne-Billancourt,,,False,,Billancourt,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000556,Mon ami habite à Orléans,,,False,,Orléans,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002601,Je veux voyager pour Paris à partir de Nîmes,Nîmes,Paris,True,Paris,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_001295,Je veux voyager en direction de Paris ?,,Paris,True,,Paris,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005346,Mon ami habite à Lyon,,,False,,Lyon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001190,Je veux aller vers Marseille de Lyon,Lyon,Marseille,True,Lyon,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005299,Cannes est réputée pour,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_001108,J'ai visité Nantes et Nice,,,False,Nice,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004292,Je veux se rendre vers Strasbourg ?,,Strasbourg,True,,Strasbourg,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002532,Je souhaite quitter Reims,Reims,,True,,Reims,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_001132,Je veux aller pour Paris ?,,Paris,True,,Paris,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001658,Mon ami habite à Marseille et travaille à Paris,,,False,Paris,Marseille,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004435,Je veux voyager vers Marseille depuis Lyon,Lyon,Marseille,True,Lyon,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004760,J'ai visité Brest,,,False,,Brest,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001136,Je veux voyager à Villeurbanne ?,,Villeurbanne,True,,Villeurbanne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001694,Je veux quitter à Nice,,Nice,True,,Nice,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001080,Grenoble est connue pour,,,False,,Grenoble,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004442,Je veux partir à Lyon depuis Bordeaux,Bordeaux,Lyon,True,Bordeaux,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003680,Je veux quitter Strasbourg,Strasbourg,,True,,Strasbourg,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_002698,Je veux partir à Paris à partir de Bordeaux,Bordeaux,Paris,True,Bordeaux,Bordeaux,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_004960,Je veux aller jusqu'à Nîmes ?,,Nîmes,True,,Nîmes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002560,Je veux se rendre en direction de Dijon ?,,Dijon,True,,Dijon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003494,Je veux partir vers Lyon de Saint-Étienne,Saint-Étienne,Lyon,True,Saint-Étienne,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001252,Je souhaite partir à partir de Montpellier,Montpellier,,True,Montpellier,Montpellier,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_004694,Je veux partir quittant Nice,Nice,,True,,Nice,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_001970,Je veux voyager jusqu'à Toulon ?,,Toulon,True,,Toulon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003419,Mon ami habite à Tours,,,False,,Tours,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001864,Je veux partir à Lyon,,Lyon,True,,Lyon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005125,Je veux quitter vers Lyon de Le Havre,Le Havre,Lyon,True,,Lyon,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_005018,Je veux partir pour Lyon à partir de Toulouse,Toulouse,Lyon,True,Toulouse,Toulouse,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_004266,Je veux voyager vers Paris à partir de Grenoble,Grenoble,Paris,True,Grenoble,Grenoble,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_003132,Je veux aller pour Lyon à partir de Villeurbanne,Villeurbanne,Lyon,True,Villeurbanne,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000720,Je veux partir pour Paris à partir de Marseille,Marseille,Paris,True,Marseille,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001125,Strasbourg et Rennes sont deux belles villes,,,False,Strasbourg,Rennes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005339,Je veux aller pour Saint-Étienne ?,,Saint-Étienne,True,,Saint-Étienne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002800,Je veux conserver,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_001243,J'ai visité Amiens,,,False,,Amiens,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001848,Je veux aller vers Paris à partir de Dijon,Dijon,Paris,True,Dijon,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002296,Je voudrais partir de Paris,Paris,,True,Paris,Paris,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_004547,Je veux aller vers Toulouse,,Toulouse,True,,Toulouse,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000242,J'ai visité Tours,,,False,,Tours,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003172,Je veux partir jusqu'à Reims ?,,Reims,True,,Reims,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002111,Je souhaite partir quittant Villeurbanne,Villeurbanne,,True,,Villeurbanne,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_005127,Je veux quitter Lille,Lille,,True,,Lille,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_000508,J'ai visité Lyon et Montpellier,,,False,Lyon,Montpellier,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_002260,Je veux se rendre pour Lyon de Nantes,Nantes,Lyon,True,,Lyon de Nantes,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_004107,J'ai visité Cannes,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_001935,Je veux voyager vers Paris depuis Rennes,Rennes,Paris,True,Rennes,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002477,Je veux partir pour Lyon de Bordeaux,Bordeaux,Lyon,True,,Bordeaux,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_005600,Je veux aller pour Paris à partir de Saint-Étienne,Saint-Étienne,Paris,True,Saint-Étienne,Saint-Étienne,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_002912,Je veux aller pour Dijon,,Dijon,True,,Dijon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002883,Je veux partir à Lyon de Angers,Angers,Lyon,True,Angers,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002841,Je veux voyager à Lyon de Strasbourg,Strasbourg,Lyon,True,,Strasbourg,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_005246,J'ai visité Orléans,,,False,,Orléans,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001287,Mon ami habite à Paris,,,False,,Paris,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003223,J'ai visité Nice,,,False,,Nice,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005506,Je veux se rendre à Paris de Saint-Étienne,Saint-Étienne,Paris,True,Saint-Étienne,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002733,J'ai visité Bordeaux,,,False,,Bordeaux,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005285,J'ai visité Lyon et Reims,,,False,Lyon,Reims,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004337,Je veux quitter pour Lyon de Bordeaux,Bordeaux,Lyon,True,,Bordeaux,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_005806,Je souhaite partir quittant Montpellier,Montpellier,,True,,Montpellier,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_000326,Je voudrais partir à partir de Strasbourg,Strasbourg,,True,Strasbourg,Strasbourg,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_000177,Je veux quitter jusqu'à Rennes ?,,Rennes,True,,Rennes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004594,Je veux quitter vers Dijon ?,,Dijon,True,,Dijon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003752,Je veux aller pour Lyon de Nice,Nice,Lyon,True,,Lyon,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_004102,Je veux partir pour Lyon ?,,Lyon,True,,Lyon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001630,Clermont-Ferrand est célèbre pour,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_001528,Je veux voyager vers Paris de Marseille,Marseille,Paris,True,Paris,Marseille,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000722,Je veux voyager en direction de Nice ?,,Nice,True,,Nice,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004355,Brest est la capitale,,,False,,Brest,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004892,Je veux quitter Nantes,Nantes,,True,,Nantes,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_003971,Mon ami habite à Lyon et travaille à Nice,,,False,Lyon,Nice,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_002585,Je veux voyager jusqu'à Paris,,Paris,True,,Paris,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000816,Je veux partir vers Lyon depuis Strasbourg,Strasbourg,Lyon,True,Strasbourg,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004166,Nantes a un beau,,,False,,Nantes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003119,Je veux se rendre vers Paris depuis Toulon,Toulon,Paris,True,Toulon,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001894,J'ai visité Aix-en-Provence,,,False,,Aix-en-Provence,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003167,Mon ami habite à Lyon,,,False,,Lyon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002397,J'ai visité Paris,,,False,,Paris,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000157,Je veux partir en direction de Marseille ?,,Marseille,True,,Marseille,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000884,Je veux se rendre pour Paris de Lille,Lille,Paris,True,,Paris de Lille,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_002951,Je veux se rendre vers Paris de Nîmes,Nîmes,Paris,True,Paris,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005490,Je veux quitter à Lyon ?,,Lyon,True,,Lyon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005508,Je veux se rendre vers Paris de Saint-Étienne,Saint-Étienne,Paris,True,Saint-Étienne,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000546,Je veux aller vers Reims ?,,Reims,True,,Reims,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005751,Je préfère Paris à Bordeaux,,,False,Bordeaux,Paris,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_003809,Je souhaite partir de Dijon,Dijon,,True,Dijon,Dijon,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_000435,Je veux quitter pour Lyon depuis Nantes,Nantes,Lyon,True,Lyon,Nantes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_002223,Je veux partir pour Paris depuis Angers,Angers,Paris,True,Angers,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005063,Je veux se rendre vers Toulouse,,Toulouse,True,,Toulouse,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001645,Je veux quitter à Lyon depuis Saint-Étienne,Saint-Étienne,Lyon,True,Saint-Étienne,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002327,Je veux aller vers Lyon depuis Angers,Angers,Lyon,True,Angers,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000493,Je veux voyager vers Marseille,,Marseille,True,,Marseille,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001396,Je veux quitter pour Marseille de Lyon,Lyon,Marseille,True,Lyon,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002093,Je veux partir depuis Grenoble,Grenoble,,True,Grenoble,Grenoble,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_000357,Mon ami habite à Dijon,,,False,,Dijon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005800,Je souhaite partir en partant de Montpellier,Montpellier,,True,,Montpellier,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_004776,Je veux partir vers Marseille de Nantes,Nantes,Marseille,True,Marseille,Nantes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003086,Je veux aller à Nantes,,Nantes,True,,Nantes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000151,Je veux partir à Lyon à partir de Nîmes,Nîmes,Lyon,True,Lyon,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_001158,Mon ami habite à Dijon,,,False,,Dijon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005104,Mon ami habite à Rouen,,,False,,Rouen,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003957,Je veux quitter pour Lyon à partir de Montpellier,Montpellier,Lyon,True,Montpellier,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004496,Je veux partir jusqu'à Angers ?,,Angers,True,,Angers,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002119,Mon ami habite à Avignon,,,False,,Avignon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005523,Mon ami habite à Cannes,,,False,,Cannes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004477,Je veux aller vers Reims,,Reims,True,,Reims,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001670,Mon ami habite à Nice et travaille à Toulon,,,False,Toulon,Nice,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_001736,Marseille est la capitale,,,False,,Marseille,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004408,Je veux partir vers Lyon depuis Marseille,Marseille,Lyon,True,Lyon,Marseille,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_001713,Je veux quitter vers Lyon depuis Reims,Reims,Lyon,True,Lyon,Reims,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_002719,Nantes et Nice sont deux belles villes,,,False,Nice,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_000187,Je veux partir à partir de Rennes,Rennes,,True,Rennes,Rennes,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_003860,Je veux partir pour Paris depuis Le Havre,Le Havre,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_003687,Je souhaite quitter Rennes,Rennes,,True,,Rennes,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_002500,Caen est célèbre pour,,,False,,Caen,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000912,J'ai visité Strasbourg,,,False,,Strasbourg,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002813,Je veux quitter vers Lyon depuis Toulon,Toulon,Lyon,True,Toulon,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000113,Mon ami habite à Toulouse,,,False,,Toulouse,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002357,Mon ami habite à Marseille,,,False,,Marseille,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001210,Je veux se rendre vers Lyon de Nice,Nice,Lyon,True,Lyon,Nice,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005088,Je veux partir vers Lyon à partir de Lille,Lille,Lyon,True,Lille,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005615,Je veux se rendre jusqu'à Nantes ?,,Nantes,True,,Nantes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000447,J'ai visité Tours,,,False,,Tours,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000921,Je veux aller pour Paris depuis Marseille,Marseille,Paris,True,Paris,Marseille,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000703,Je veux aller en direction de Angers ?,,Angers,True,,Angers,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001278,J'ai visité Metz,,,False,,Metz,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003063,Je veux quitter à Lyon à partir de Montpellier,Montpellier,Lyon,True,Montpellier,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001636,Mon ami habite à Toulouse et travaille à Nice,,,False,Toulouse,Nice,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_001913,J'ai visité Perpignan,,,False,,Perpignan,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000368,Je veux voyager à Lyon de Dijon,Dijon,Lyon,True,,Dijon,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_003609,Je veux se rendre jusqu'à Strasbourg,,Strasbourg,True,,Strasbourg,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001195,Nancy est une belle ville,,,False,,Nancy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005106,Mon ami habite à Dunkerque,,,False,,Dunkerque,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003623,Je veux voyager pour Lyon depuis Lille,Lille,Lyon,True,Lyon,Lille,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005049,Je veux dire non,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_002865,Je voudrais quitter Toulouse,Toulouse,,True,,Toulouse,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_001387,Je veux quitter à Lyon de Montpellier,Montpellier,Lyon,True,Lyon,Montpellier,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_002498,Mon ami habite à Villeurbanne,,,False,,Villeurbanne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000199,Mon ami habite à Mulhouse,,,False,,Mulhouse,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004866,Je veux voyager pour Lyon depuis Reims,Reims,Lyon,True,Lyon,Reims,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_002823,Euh... je veux aller à Paris... depuis Lyon,Lyon,Paris,True,Lyon,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005541,Je veux partir pour Grenoble ?,,Grenoble,True,,Grenoble,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001561,Je veux voyager vers Lyon depuis Marseille,Marseille,Lyon,True,Marseille,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002854,Je veux voyager vers Lyon depuis Dijon,Dijon,Lyon,True,Dijon,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002993,Je veux aller en direction de Villeurbanne ?,,Villeurbanne,True,,Villeurbanne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003470,Je veux quitter vers Lyon de Marseille,Marseille,Lyon,True,Lyon,Marseille,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003389,J'ai visité Orléans,,,False,,Orléans,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000922,JE VEUX ALLER À PARIS DEPUIS LYON,Lyon,Paris,True,,PARIS,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_005607,Je veux se rendre pour Paris à partir de Saint-Étienne,Saint-Étienne,Paris,True,Saint-Étienne,Saint-Étienne,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_004719,Je veux voyager pour Angers ?,,Angers,True,,Angers,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005431,Je veux se rendre pour Paris depuis Rennes,Rennes,Paris,True,Paris,Rennes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003524,Je veux partir pour Lyon depuis Bordeaux,Bordeaux,Lyon,True,Bordeaux,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002182,Je veux quitter vers Lyon depuis Toulouse,Toulouse,Lyon,True,Toulouse,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000587,Reims compte,,,False,,Reims,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001986,Je veux quitter vers Lyon depuis Bordeaux,Bordeaux,Lyon,True,Bordeaux,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002018,Je veux faire voir,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_004295,Je veux se rendre pour Paris depuis Le Havre,Le Havre,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_005047,J'ai visité Strasbourg et Nice,,,False,Strasbourg,Nice,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004598,Je veux aller vers Lyon depuis Rennes,Rennes,Lyon,True,Rennes,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001607,Je veux se rendre vers Lyon de Angers,Angers,Lyon,True,Angers,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004681,J'ai visité Montpellier et Lille,,,False,Montpellier,Lille,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_003239,Je préfère Nice à Toulon,,,False,Toulon,Nice,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005591,J'ai visité Caen,,,False,,Caen,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001623,Je veux se rendre à Lyon de Rennes,Rennes,Lyon,True,Lyon,Rennes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_004582,Je veux partir jusqu'à Bordeaux,,Bordeaux,True,,Bordeaux,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003940,Je veux se rendre vers Villeurbanne ?,,Villeurbanne,True,,Villeurbanne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001105,Je voudrais quitter Bordeaux,Bordeaux,,True,,Bordeaux,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_001069,Je veux partir en direction de Angers,,Angers,True,,Angers,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003560,J'ai visité Chambéry,,,False,,Chambéry,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004111,Je veux quitter vers Lyon de Strasbourg,Strasbourg,Lyon,True,,Strasbourg,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_003265,Je veux se rendre à Lyon depuis Nîmes,Nîmes,Lyon,True,,Lyon,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_000697,Mon ami habite à Saint-Étienne,,,False,,Saint-Étienne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005814,Je veux partir vers Lyon depuis Nîmes,Nîmes,Lyon,True,Lyon,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003271,Je souhaite partir quittant Bordeaux,Bordeaux,,True,,Bordeaux,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_005740,Orléans est célèbre pour,,,False,,Orléans,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000404,Je veux se rendre vers Nîmes ?,,Nîmes,True,,Nîmes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004682,Je veux quitter pour Paris à partir de Nice,Nice,Paris,True,Nice,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003899,Je veux partir vers Paris à partir de Bordeaux,Bordeaux,Paris,True,Bordeaux,Bordeaux,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_000677,Lyon compte,,,False,,Lyon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002754,Strasbourg est plus grande que Montpellier,,,False,Strasbourg,Montpellier,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_001083,Je souhaite partir depuis Saint-Étienne,Saint-Étienne,,True,Saint-Étienne,Saint-Étienne,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_001213,Je veux se rendre jusqu'à Rennes,,Rennes,True,,Rennes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003231,Toulouse est plus grande que Lille,,,False,Toulouse,Lille,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_002374,J'ai visité Lyon,,,False,,Lyon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003539,J'ai visité Marseille,,,False,,Marseille,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001820,Je veux partir à Dijon,,Dijon,True,,Dijon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000738,Je veux partir pour Marseille depuis Nantes,Nantes,Marseille,True,Marseille,Nantes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005446,Je veux aller à Lyon depuis Toulouse,Toulouse,Lyon,True,Toulouse,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004713,J'ai visité Strasbourg et Lyon,,,False,Strasbourg,Lyon,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004876,Mon ami habite à Annecy,,,False,,Annecy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003651,Je veux voyager vers Bordeaux,,Bordeaux,True,,Bordeaux,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003219,"Je veux aller à Paris, depuis Lyon",Lyon,Paris,True,Lyon,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000414,Je veux se rendre vers Paris ?,,Paris,True,,Paris,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001255,Je veux voyager jusqu'à Toulouse,,Toulouse,True,,Toulouse,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005499,Mon ami habite à Valence,,,False,,Valence,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004116,Mon ami habite à Annecy,,,False,,Annecy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002678,J'ai visité Nancy,,,False,,Nancy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001226,Je souhaite partir de Marseille,Marseille,,True,Marseille,Marseille,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_004628,Je veux quitter Toulon,Toulon,,True,,Toulon,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_004424,Je veux quitter pour Lyon depuis Rennes,Rennes,Lyon,True,Lyon,Rennes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_002616,Mon ami habite à Boulogne-Billancourt,,,False,,Billancourt,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000338,Je veux se rendre vers Marseille à partir de Strasbourg,Strasbourg,Marseille,True,Strasbourg,Strasbourg,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_004296,Toulouse et Reims sont deux belles villes,,,False,Toulouse,Reims,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_002497,Je veux partir pour Marseille à partir de Lyon,Lyon,Marseille,True,Lyon,Lyon,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_000444,J'ai visité Nantes et Toulon,,,False,Toulon,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_003134,Je veux aller à Lyon depuis Reims,Reims,Lyon,True,Reims,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005179,Je veux partir pour Saint-Étienne ?,,Saint-Étienne,True,,Saint-Étienne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005193,Je veux partir à Montpellier ?,,Montpellier,True,,Montpellier,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000094,J'ai visité Avignon,,,False,,Avignon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004935,Je veux quitter en direction de Dijon,,Dijon,True,,Dijon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005348,Je veux partir à Lyon à partir de Paris,Paris,Lyon,True,Paris,Paris,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_001858,Je veux voyager à Paris depuis Reims,Reims,Paris,True,Reims,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000988,C'est court,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_003413,Je veux se rendre à Marseille de Nice,Nice,Marseille,True,Marseille,Nice,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003558,Je veux aller pour Paris de Saint-Étienne,Saint-Étienne,Paris,True,Saint-Étienne,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002851,Mon ami habite à Annecy,,,False,,Annecy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002740,Je veux aller à Bordeaux,,Bordeaux,True,,Bordeaux,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000459,Je veux voyager à Paris à partir de Lille,Lille,Paris,True,Lille,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000643,Je préfère Strasbourg à Paris,,,False,Strasbourg,Paris,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005660,Je veux partir à Lyon de Reims,Reims,Lyon,True,Lyon,Reims,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005374,Je veux quitter pour Lyon depuis Nîmes,Nîmes,Lyon,True,Lyon,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000307,Je veux partir à Marseille à partir de Paris,Paris,Marseille,True,Paris,Paris,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_005385,Je veux quitter pour Lyon de Toulon,Toulon,Lyon,True,,Toulon,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_005262,Je veux partir vers Lyon à partir de Bordeaux,Bordeaux,Lyon,True,Bordeaux,Bordeaux,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_004877,Je veux se rendre à Lyon depuis Grenoble,Grenoble,Lyon,True,Grenoble,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000782,Toulouse et Bordeaux sont deux belles villes,,,False,Bordeaux,Toulouse,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004721,Je veux partir depuis Paris,Paris,,True,Paris,Paris,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_004000,Je veux aller à Lyon de Grenoble,Grenoble,Lyon,True,Grenoble,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001417,J'ai visité Calais,,,False,,Calais,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003953,Montpellier est plus grande que Nantes,,,False,Montpellier,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005796,Je veux voyager pour Paris de Villeurbanne,Villeurbanne,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_000633,Boulogne-Billancourt abrite,,,False,,Boulogne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001782,Je veux partir vers Marseille depuis Nantes,Nantes,Marseille,True,Marseille,Nantes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_004662,Je veux se rendre pour Lyon à partir de Nantes,Nantes,Lyon,True,Nantes,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003276,Je veux partir de Rennes,Rennes,,True,Rennes,Rennes,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_004674,C'est trop cher,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_000753,Je veux quitter pour Lyon de Strasbourg,Strasbourg,Lyon,True,,Strasbourg,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_005409,Je veux voyager pour Rennes,,Rennes,True,,Rennes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002100,Je veux se rendre à Nîmes ?,,Nîmes,True,,Nîmes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001909,Orléans abrite,,,False,,Orléans,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002047,Je veux se rendre pour Lyon depuis Reims,Reims,Lyon,True,Lyon,Reims,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_004770,Je veux se rendre vers Saint-Étienne,,Saint-Étienne,True,,Saint-Étienne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005553,Je veux voyager vers Paris à partir de Nîmes,Nîmes,Paris,True,Paris,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_002171,Je veux quitter vers Marseille depuis Paris,Paris,Marseille,True,Paris,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001134,Je veux partir vers Paris de Nîmes,Nîmes,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_001279,Mon ami habite à Rennes,,,False,,Rennes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002914,Mon ami habite à Clermont-Ferrand,,,False,,Clermont-Ferrand,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003772,Je veux aller vers Lyon de Rennes,Rennes,Lyon,True,Lyon,Rennes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000310,Je veux partir vers Paris de Toulouse,Toulouse,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_000773,Je veux apprécier,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_001268,Orléans est située,,,False,,Orléans,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004683,Je voudrais partir quittant Lyon,Lyon,,True,,Lyon,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_004675,Je souhaite partir à partir de Toulon,Toulon,,True,Toulon,Toulon,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_004558,Je veux aller à Lyon de Bordeaux,Bordeaux,Lyon,True,Bordeaux,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004189,Je veux se rendre vers Montpellier ?,,Montpellier,True,,Montpellier,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004536,J'ai visité Nantes,,,False,,Nantes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002261,Je veux partir quittant Reims,Reims,,True,,Reims,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_000178,Je veux partir pour Lyon depuis Paris,Paris,Lyon,True,Paris,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002580,Je veux voyager à Paris à partir de Bordeaux,Bordeaux,Paris,True,Bordeaux,Bordeaux,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_001760,J'ai visité Nantes et Strasbourg,,,False,Strasbourg,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_001818,Mon ami habite à Mulhouse,,,False,,Mulhouse,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002461,Je veux partir à Lyon à partir de Angers,Angers,Lyon,True,Angers,Angers,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_000054,Je veux quitter pour Lyon depuis Paris,Paris,Lyon,True,Paris,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002473,Je veux quitter Rennes,Rennes,,True,,Rennes,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_005787,Mon ami habite à Montpellier,,,False,,Montpellier,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004241,Je veux quitter vers Lyon depuis Rennes,Rennes,Lyon,True,Lyon,Rennes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000134,Je veux partir quittant Lyon,Lyon,,True,,Lyon,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_004881,Rennes possède,,,False,,Rennes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002331,Toulon est connue pour,,,False,,Toulon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000284,J'ai visité Montpellier et Rennes,,,False,Montpellier,Rennes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_000002,Je veux partir de Bordeaux,Bordeaux,,True,Bordeaux,Bordeaux,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_005818,Villeurbanne produit,,,False,,Villeurbanne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003666,J'ai visité Rouen,,,False,,Rouen,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003707,Je veux aller pour Nantes,,Nantes,True,,Nantes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002950,C'est hors de mon budget,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_002082,J'ai visité Nantes,,,False,,Nantes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004508,Je veux voyager à Le Havre,,Le Havre,True,,Le Havre,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003073,Je veux suggérer,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_001753,Je veux se rendre vers Paris à partir de Saint-Étienne,Saint-Étienne,Paris,True,Saint-Étienne,Saint-Étienne,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_004470,Je veux se rendre pour Villeurbanne,,Villeurbanne,True,,Villeurbanne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004614,Je veux aller pour Lyon depuis Toulouse,Toulouse,Lyon,True,Toulouse,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001972,Je veux quitter Villeurbanne,Villeurbanne,,True,,Villeurbanne,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_004985,Mon ami habite à Nancy,,,False,,Nancy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002650,Bordeaux abrite,,,False,,Bordeaux,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003528,Nantes est plus grande que Bordeaux,,,False,Bordeaux,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005188,J'ai visité Metz,,,False,,Metz,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003378,Mon ami habite à Nice,,,False,,Nice,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003046,Je veux partir à Lyon à partir de Grenoble,Grenoble,Lyon,True,Grenoble,Grenoble,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_002660,Je veux voyager vers Dijon,,Dijon,True,,Dijon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004507,Limoges compte,,,False,,Limoges,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002582,Mon ami habite à Rennes,,,False,,Rennes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002887,Annecy produit,,,False,,Annecy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003630,Mon ami habite à Nîmes,,,False,,Nîmes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004915,Je veux partir en partant de Angers,Angers,,True,,Angers,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_004374,Je veux voyager vers Paris depuis Grenoble,Grenoble,Paris,True,Grenoble,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001296,J'ai visité Marseille et Nantes,,,False,Marseille,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005387,Je veux voyager en direction de Angers ?,,Angers,True,,Angers,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002765,Je veux gagner,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_004135,Je veux aller pour Lille,,Lille,True,,Lille,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003290,Mon ami habite à Nice et travaille à Bordeaux,,,False,Bordeaux,Nice,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004506,Je voudrais quitter Lyon,Lyon,,True,,Lyon,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_001478,Je veux se rendre jusqu'à Strasbourg ?,,Strasbourg,True,,Strasbourg,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001367,Je veux aller pour Strasbourg,,Strasbourg,True,,Strasbourg,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000853,Je veux quitter pour Paris de Marseille,Marseille,Paris,True,Paris,Marseille,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003499,Mon ami habite à Saint-Étienne,,,False,,Saint-Étienne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005450,Strasbourg et Saint-Étienne sont deux belles villes,,,False,Saint-Étienne,Strasbourg,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_003758,J'ai visité Bordeaux,,,False,,Bordeaux,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002933,Je veux aller vers Angers ?,,Angers,True,,Angers,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004724,Je veux voyager à Reims,,Reims,True,,Reims,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005232,Mon ami habite à Toulouse et travaille à Saint-Étienne,,,False,Saint-Étienne,Toulouse,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_000865,Mon ami habite à Rouen,,,False,,Rouen,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003402,Je veux se rendre pour Paris depuis Reims,Reims,Paris,True,Paris,Reims,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_004573,Je veux quitter vers Paris à partir de Nice,Nice,Paris,True,Nice,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005588,Je veux aller pour Marseille depuis Montpellier,Montpellier,Marseille,True,Marseille,Montpellier,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_001466,Je veux quitter vers Lille,,Lille,True,,Lille,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005724,J'ai visité Angers,,,False,,Angers,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004670,Je veux quitter Nantes,Nantes,,True,,Nantes,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_005606,Toulouse et Lyon sont deux belles villes,,,False,Lyon,Toulouse,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005382,Je veux partir de Toulouse,Toulouse,,True,Toulouse,Toulouse,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_004311,Je veux partir vers Paris à partir de Montpellier,Montpellier,Paris,True,Montpellier,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001583,Calais est connue pour,,,False,,Calais,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001553,Je veux quitter vers Paris de Lille,Lille,Paris,True,,Paris de Lille,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_003157,Je veux se rendre à Paris depuis Toulon,Toulon,Paris,True,Toulon,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004356,J'ai visité Valence,,,False,,Valence,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001893,J'ai visité Annecy,,,False,,Annecy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000830,Je veux quitter vers Lyon à partir de Reims,Reims,Lyon,True,Reims,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000796,Je veux se rendre jusqu'à Saint-Étienne,,Saint-Étienne,True,,Saint-Étienne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004256,Je veux se rendre pour Lyon depuis Nantes,Nantes,Lyon,True,Lyon,Nantes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_001769,Je veux partir pour Lyon de Lille,Lille,Lyon,True,,Lyon de Lille,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_000639,Je veux voyager à Lyon,,Lyon,True,,Lyon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002490,Je veux quitter à Paris depuis Dijon,Dijon,Paris,True,Paris,Dijon,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000577,Nancy est célèbre pour,,,False,,Nancy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000334,Montpellier et Reims sont deux belles villes,,,False,Montpellier,Reims,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004334,Je veux se rendre pour Lyon de Saint-Étienne,Saint-Étienne,Lyon,True,Saint-Étienne,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002178,Je veux aller vers Paris depuis Lyon,Lyon,Paris,True,Lyon,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005054,Je souhaite quitter Strasbourg,Strasbourg,,True,,Strasbourg,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_000478,J'ai visité Le Mans,,,False,,Le Mans,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003024,Je veux se rendre à Lyon de Nice,Nice,Lyon,True,Lyon,Nice,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003408,J'ai visité Metz,,,False,,Metz,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004572,Je crois que oui,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_002957,Je veux quitter pour Paris depuis Angers,Angers,Paris,True,Angers,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000498,Je veux quitter vers Marseille depuis Nantes,Nantes,Marseille,True,Marseille,Nantes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005235,Nantes compte,,,False,,Nantes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003835,Je préfère Strasbourg à Lyon,,,False,Strasbourg,Lyon,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005829,Je veux quitter pour Paris de Villeurbanne,Villeurbanne,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_004026,J'ai visité Reims,,,False,,Reims,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005372,Je veux se rendre pour Montpellier,,Montpellier,True,,Montpellier,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001710,Je veux faire bâtir,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_000108,Je veux voyager pour Marseille depuis Paris,Paris,Marseille,True,Paris,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000581,Strasbourg est plus grande que Toulon,,,False,Strasbourg,Toulon,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004964,Je veux voyager vers Paris de Dijon,Dijon,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_001809,Je veux partir à Paris depuis Nîmes,Nîmes,Paris,True,Paris,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003002,Je veux se rendre pour Rennes,,Rennes,True,,Rennes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000403,Je veux voyager à Lyon à partir de Nantes,Nantes,Lyon,True,Nantes,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002097,Mon ami habite à Le Havre,,,False,Le Havre,Havre,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004836,Je veux partir vers Lyon à partir de Nantes,Nantes,Lyon,True,Nantes,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005112,Je veux quitter à Lyon depuis Nîmes,Nîmes,Lyon,True,Lyon,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_004308,Je souhaite quitter Grenoble,Grenoble,,True,,Grenoble,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_004014,Le Havre est célèbre pour,,,False,,Le Havre,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005390,Je veux quitter à Marseille depuis Strasbourg,Strasbourg,Marseille,True,Strasbourg,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003184,Je voudrais partir quittant Nice,Nice,,True,,Nice,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_005258,Je veux voyager vers Marseille à partir de Lyon,Lyon,Marseille,True,Lyon,Lyon,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_004678,Mon ami habite à Nancy,,,False,,Nancy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000261,Je veux partir depuis Toulon,Toulon,,True,Toulon,Toulon,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_000809,Je veux se rendre pour Lyon depuis Strasbourg,Strasbourg,Lyon,True,Strasbourg,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001570,Je veux économiser,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_003977,Je veux se rendre à Lyon de Montpellier,Montpellier,Lyon,True,Lyon,Montpellier,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000877,Je veux quitter Paris,Paris,,True,,Paris,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_001656,Je veux aller à Grenoble ?,,Grenoble,True,,Grenoble,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000257,Je veux voyager en direction de Nice,,Nice,True,,Nice,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001464,Je veux se rendre vers Paris depuis Nîmes,Nîmes,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_001064,J'ai visité Montpellier,,,False,,Montpellier,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000359,Je veux voyager vers Lyon de Montpellier,Montpellier,Lyon,True,Lyon,Montpellier,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000547,Mon ami habite à Le Havre,,,False,Le Havre,Havre,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005398,Je veux aller pour Marseille depuis Paris,Paris,Marseille,True,Paris,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004287,Je veux quitter Marseille,Marseille,,True,,Marseille,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_000789,Je veux voyager à Paris de Nantes,Nantes,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_005707,Je veux partir vers Lyon depuis Montpellier,Montpellier,Lyon,True,Lyon,Montpellier,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_002639,Je veux voyager à Paris depuis Toulouse,Toulouse,Paris,True,Toulouse,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005251,Je veux quitter à Lyon depuis Nice,Nice,Lyon,True,Lyon,Nice,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003358,Je veux se rendre à Lille,,Lille,True,,Lille,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002643,Grenoble est célèbre pour,,,False,,Grenoble,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002320,On verra,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_005023,J'ai visité Strasbourg,,,False,,Strasbourg,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001263,Je veux quitter vers Paris depuis Toulouse,Toulouse,Paris,True,Paris,Toulouse,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_004518,J'ai visité Nice,,,False,,Nice,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004076,Je veux partir vers Lyon depuis Angers,Angers,Lyon,True,Angers,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004294,Mon ami habite à Calais,,,False,,Calais,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001556,Je veux partir vers Lyon de Lille,Lille,Lyon,True,,Lyon de Lille,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_003175,Je veux quitter pour Lyon depuis Toulouse,Toulouse,Lyon,True,Toulouse,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004416,Mon ami habite à Chambéry,,,False,,Chambéry,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005393,Bien sûr,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_000519,Je veux quitter Bordeaux,Bordeaux,,True,,Bordeaux,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_002628,Mon ami habite à Montpellier et travaille à Nantes,,,False,Montpellier,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_001957,Je veux analyser,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_005081,J'ai visité Saint-Étienne,,,False,,Saint-Étienne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002983,J'ai visité Nantes,,,False,,Nantes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005077,Je veux partir quittant Villeurbanne,Villeurbanne,,True,,Villeurbanne,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_000154,Je veux se rendre pour Paris à partir de Le Havre,Le Havre,Paris,True,Le Havre,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001520,Marseille produit,,,False,,Marseille,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003106,J'ai visité Saint-Étienne,,,False,,Saint-Étienne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004145,Je veux se rendre à Marseille depuis Montpellier,Montpellier,Marseille,True,Montpellier,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005227,Je veux quitter vers Marseille de Strasbourg,Strasbourg,Marseille,True,Strasbourg,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000006,Aix-en-Provence est située,,,False,,Aix-en-Provence,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003720,Je veux voyager pour Marseille de Nice,Nice,Marseille,True,Marseille,Nice,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003008,J'ai visité Villeurbanne,,,False,,Villeurbanne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004437,Je veux se rendre à Paris à partir de Angers,Angers,Paris,True,Angers,Angers,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_002158,J'ai visité Villeurbanne,,,False,,Villeurbanne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002423,Je veux accepter,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_003682,Je veux se rendre à Paris à partir de Montpellier,Montpellier,Paris,True,Montpellier,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005719,Je veux quitter Dijon,Dijon,,True,,Dijon,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_004352,Je veux quitter à Paris ?,,Paris,True,,Paris,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000565,Je veux aller à Lyon de Reims,Reims,Lyon,True,Lyon,Reims,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_001314,Certainement,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_004543,Je veux quitter vers Paris de Rennes,Rennes,Paris,True,Paris,Rennes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_004905,Je veux partir pour Lyon de Nice,Nice,Lyon,True,,Lyon,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_002256,Je voudrais partir en partant de Nantes,Nantes,,True,,Nantes,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_003838,Metz est réputée pour,,,False,,Metz,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002652,Mon ami habite à Limoges,,,False,,Limoges,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002849,C'est lourd,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_004454,Je veux voyager vers Marseille depuis Nice,Nice,Marseille,True,Nice,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001529,Très bien,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_004643,Rennes est célèbre pour,,,False,,Rennes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001555,Excusez-moi,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_004015,Je veux aller pour Paris de Grenoble,Grenoble,Paris,True,,Grenoble,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_004447,Je veux partir à Paris ?,,Paris,True,,Paris,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002415,Mon ami habite à Lyon et travaille à Toulouse,,,False,Toulouse,Lyon,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004580,Je veux se rendre à Grenoble ?,,Grenoble,True,,Grenoble,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003585,J'ai visité Nancy,,,False,,Nancy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003976,Je veux faire édifier,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_000324,Mon ami habite à Le Mans,,,False,Le Mans,Mans,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_002054,Le Havre est située,,,False,,Le Havre,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001104,Je veux se rendre en direction de Nîmes ?,,Nîmes,True,,Nîmes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002935,Je veux aller à Strasbourg ?,,Strasbourg,True,,Strasbourg,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003095,Je veux quitter pour Lyon depuis Dijon,Dijon,Lyon,True,Dijon,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000175,Je veux se rendre en direction de Nantes ?,,Nantes,True,,Nantes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001581,J'ai visité Bordeaux,,,False,,Bordeaux,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003594,Je veux voyager à Marseille à partir de Strasbourg,Strasbourg,Marseille,True,Strasbourg,Strasbourg,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_002846,Nantes et Toulouse sont deux belles villes,,,False,Toulouse,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005596,Je préfère Montpellier à Bordeaux,,,False,Bordeaux,Montpellier,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004575,Je veux aller à Paris à partir de Angers,Angers,Paris,True,Angers,Angers,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_002595,Je veux partir vers Lyon de Rennes,Rennes,Lyon,True,Lyon,Rennes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_001907,Je veux aller à Paris depuis Villeurbanne,Villeurbanne,Paris,True,Villeurbanne,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003997,Mon ami habite à Reims,,,False,,Reims,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001031,Je veux se rendre à Nice ?,,Nice,True,,Nice,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000880,Montpellier et Nice sont deux belles villes,,,False,Montpellier,Nice,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004394,Je veux quitter Lille,Lille,,True,,Lille,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_001261,Je veux se rendre vers Rennes,,Rennes,True,,Rennes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005281,Je veux quitter vers Paris,,Paris,True,,Paris,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002913,Je veux voyager vers Angers ?,,Angers,True,,Angers,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000490,Calais est réputée pour,,,False,,Calais,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000492,Je veux voyager vers Lyon depuis Reims,Reims,Lyon,True,Reims,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005122,Je veux courir,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_002773,Je veux aller vers Paris à partir de Nîmes,Nîmes,Paris,True,Paris,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005068,Paris et Rennes sont deux belles villes,,,False,Paris,Rennes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_000749,J'ai visité Lyon,,,False,,Lyon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004096,Lyon et Strasbourg sont deux belles villes,,,False,Strasbourg,Lyon,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_001292,Je veux aller pour Paris depuis Toulon,Toulon,Paris,True,Paris,Toulon,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_002038,Je veux voyager vers Lyon depuis Nîmes,Nîmes,Lyon,True,,Lyon,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_005767,Je veux voyager à Paris de Villeurbanne,Villeurbanne,Paris,True,Paris,Villeurbanne,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005675,Strasbourg est située,,,False,,Strasbourg,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001270,Lyon et Nantes sont deux belles villes,,,False,Lyon,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004885,Je souhaite quitter Paris,Paris,,True,,Paris,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_003894,Je veux quitter pour Bordeaux,,Bordeaux,True,,Bordeaux,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004761,Je veux se rendre vers Paris depuis Villeurbanne,Villeurbanne,Paris,True,Villeurbanne,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000345,J'ai visité Saint-Étienne,,,False,,Saint-Étienne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000074,Je veux perdre,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_001992,Je veux partir à Marseille à partir de Nice,Nice,Marseille,True,Nice,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003243,Je veux partir en direction de Le Havre,,Le Havre,True,Le Havre,Havre,True,0.0,0.0,0.0,0,2,1,0.0,0.0,0.0,1.0
+nlp_000981,Mon ami habite à Montpellier et travaille à Marseille,,,False,Montpellier,Marseille,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004790,Mon ami habite à Nice,,,False,,Nice,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002262,Je veux partir de Toulon,Toulon,,True,Toulon,Toulon,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_001372,J'ai visité Rennes,,,False,,Rennes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000124,Mon ami habite à Valence,,,False,,Valence,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002659,Je veux quitter en direction de Strasbourg,,Strasbourg,True,,Strasbourg,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003557,Je veux partir à partir de Le Havre,Le Havre,,True,Le Havre,Le Havre,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_005185,J'ai visité Grenoble,,,False,,Grenoble,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001934,Mon ami habite à Nancy,,,False,,Nancy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000926,Marseille et Reims sont deux belles villes,,,False,Marseille,Reims,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_001785,Je veux se rendre en direction de Nice,,Nice,True,,Nice,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005462,Je veux voyager en direction de Rennes ?,,Rennes,True,,Rennes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000427,J'ai visité Paris et Rennes,,,False,Paris,Rennes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_002953,Je veux quitter vers Paris de Toulon,Toulon,Paris,True,Paris,Toulon,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_001628,Orléans est la capitale,,,False,,Orléans,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002448,J'ai besoin d'aide,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_005231,Je souhaite quitter Montpellier,Montpellier,,True,,Montpellier,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_003943,Je veux quitter pour Paris à partir de Bordeaux,Bordeaux,Paris,True,Bordeaux,Bordeaux,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_002076,Je veux voyager vers Villeurbanne,,Villeurbanne,True,,Villeurbanne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001001,Je veux partir à partir de Toulon,Toulon,,True,Toulon,Toulon,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_004268,Je veux se rendre à Lyon de Lille,Lille,Lyon,True,,Lyon de Lille,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_004503,Paris possède,,,False,,Paris,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000346,J'ai visité Lyon et Bordeaux,,,False,Bordeaux,Lyon,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005155,Je veux voyager en direction de Toulouse ?,,Toulouse,True,,Toulouse,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001300,Je souhaite partir quittant Lyon,Lyon,,True,,Lyon,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_002647,Je veux quitter vers Paris à partir de Lille,Lille,Paris,True,Lille,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002557,Je veux partir vers Paris depuis Dijon,Dijon,Paris,True,Paris,Dijon,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005583,Je veux quitter pour Paris de Nîmes,Nîmes,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_003188,Je veux partir vers Paris depuis Rennes,Rennes,Paris,True,Paris,Rennes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003874,Nice et Bordeaux sont deux belles villes,,,False,Bordeaux,Nice,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_001708,J'ai visité Marseille,,,False,,Marseille,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005456,Je préfère Paris à Le Havre,,,False,,Paris,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004270,Je souhaite quitter Le Havre,Le Havre,,True,,Le Havre,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_000770,Je veux voyager à Paris de Nîmes,Nîmes,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_003776,Je veux aller pour Paris de Villeurbanne,Villeurbanne,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_001632,J'ai visité Orléans,,,False,,Orléans,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000275,Je veux se rendre en direction de Toulon,,Toulon,True,,Toulon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002025,Mon ami habite à Clermont-Ferrand,,,False,,Clermont-Ferrand,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003629,Mon ami habite à Amiens,,,False,,Amiens,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003153,Je veux partir pour Lyon de Villeurbanne,Villeurbanne,Lyon,True,,Lyon,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_002040,Je souhaite partir à partir de Paris,Paris,,True,Paris,Paris,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_001000,Je veux quitter pour Paris depuis Nîmes,Nîmes,Paris,True,Paris,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000104,Je veux se rendre à Paris de Lyon,Lyon,Paris,True,Paris,Lyon,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003126,J'ai visité Avignon,,,False,,Avignon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002049,Je veux se rendre à Paris,,Paris,True,,Paris,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001575,Je veux quitter vers Angers ?,,Angers,True,,Angers,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001488,Je veux partir vers Lyon à partir de Nîmes,Nîmes,Lyon,True,Lyon,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003852,Je veux aller pour Bordeaux ?,,Bordeaux,True,,Bordeaux,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004450,Je veux faire sélectionner,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_000585,Besançon possède,,,False,,Besançon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003215,Je veux se rendre jusqu'à Nîmes,,Nîmes,True,,Nîmes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002184,Je veux quitter pour Lyon depuis Villeurbanne,Villeurbanne,Lyon,True,Lyon,Villeurbanne,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000460,Je veux quitter vers Marseille depuis Strasbourg,Strasbourg,Marseille,True,Strasbourg,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001197,Je veux aller à Paris... depuis Lyon,Lyon,Paris,True,Lyon,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000658,Montpellier est plus grande que Strasbourg,,,False,Strasbourg,Montpellier,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_002706,Nîmes est une belle ville,,,False,,Nîmes,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000260,Je voudrais partir quittant Toulouse,Toulouse,,True,,Toulouse,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_003799,Je veux quitter Toulouse,Toulouse,,True,,Toulouse,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_003043,Je veux voyager vers Paris depuis Nantes,Nantes,Paris,True,Nantes,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004083,Je veux quitter à Marseille à partir de Lyon,Lyon,Marseille,True,Lyon,Lyon,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_002553,Je veux se rendre à Paris depuis Nîmes,Nîmes,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_003443,Je veux voyager à Paris de Strasbourg,Strasbourg,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_002801,Mulhouse est une belle ville,,,False,,Mulhouse,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001780,Toulouse et Paris sont deux belles villes,,,False,Paris,Toulouse,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004044,Je veux partir jusqu'à Bordeaux ?,,Bordeaux,True,,Bordeaux,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000121,Je veux proposer,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_001235,Je veux partir à Marseille de Lyon,Lyon,Marseille,True,Lyon,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000739,Je veux voyager en direction de Nîmes,,Nîmes,True,,Nîmes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001908,Je veux se rendre pour Bordeaux,,Bordeaux,True,,Bordeaux,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000068,Je souhaite partir en partant de Nice,Nice,,True,,Nice,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_003592,Mon ami habite à Rouen,,,False,,Rouen,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005834,Je veux quitter vers Paris de Nantes,Nantes,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_002206,Je souhaite quitter Marseille,Marseille,,True,,Marseille,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_002312,Je veux quitter vers Marseille à partir de Nantes,Nantes,Marseille,True,Nantes,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000838,Je veux se rendre pour Lyon depuis Lille,Lille,Lyon,True,Lyon,Lille,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_001524,Je veux quitter pour Marseille de Nantes,Nantes,Marseille,True,Marseille,Nantes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000182,Je veux partir pour Lyon à partir de Montpellier,Montpellier,Lyon,True,Montpellier,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004383,Caen est située,,,False,,Caen,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000407,Je veux quitter vers Paris depuis Nantes,Nantes,Paris,True,Paris,Nantes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_001247,Je veux quitter à Paris de Lyon,Lyon,Paris,True,Paris,Lyon,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000159,Avignon est une belle ville,,,False,,Avignon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002627,Je veux voyager à Marseille depuis Nantes,Nantes,Marseille,True,Nantes,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001539,Je veux voyager à Lyon depuis Nantes,Nantes,Lyon,True,Nantes,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004031,Je veux se rendre pour Marseille de Lyon,Lyon,Marseille,True,Lyon,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005102,Je veux quitter pour Strasbourg,,Strasbourg,True,,Strasbourg,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002230,Rouen est célèbre pour,,,False,,Rouen,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003710,Toulouse est connue pour,,,False,,Toulouse,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005061,Mon ami habite à Toulon,,,False,,Toulon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003731,Je veux partir depuis Nice,Nice,,True,Nice,Nice,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_005218,Perpignan est la capitale,,,False,,Perpignan,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000905,Valence abrite,,,False,,Valence,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002373,J'ai visité Chambéry,,,False,,Chambéry,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001120,Je veux faire adorer,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_001495,Je veux partir vers Marseille à partir de Paris,Paris,Marseille,True,Paris,Paris,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_000561,Je veux quitter en direction de Nîmes ?,,Nîmes,True,,Nîmes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001541,Tours est connue pour,,,False,,Tours,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003383,Je préfère Lyon à Nice,,,False,Lyon,Nice,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_002203,Je souhaite voyager de Bordeaux a Toulouse,Bordeaux,Toulouse,True,Bordeaux,Toulouse,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004358,Lyon et Toulouse sont deux belles villes,,,False,Toulouse,Lyon,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_005313,Je veux se rendre pour Lyon à partir de Dijon,Dijon,Lyon,True,Dijon,Dijon,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_002333,Grenoble produit,,,False,,Grenoble,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002228,Je voudrais partir depuis Marseille,Marseille,,True,Marseille,Marseille,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_005609,Je veux quitter à Marseille depuis Toulouse,Toulouse,Marseille,True,Toulouse,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005685,Je veux partir vers Lyon à partir de Marseille,Marseille,Lyon,True,Marseille,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005024,Je veux partir vers Montpellier,,Montpellier,True,,Montpellier,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004233,Je veux partir en direction de Reims,,Reims,True,,Reims,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001963,Nice est connue pour,,,False,,Nice,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005123,Paris et Nantes sont deux belles villes,,,False,Paris,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_003459,Je veux aller en direction de Saint-Étienne ?,,Saint-Étienne,True,,Saint-Étienne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000649,Je veux quitter pour Lyon à partir de Nîmes,Nîmes,Lyon,True,Lyon,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_002155,Je veux aller pour Lyon à partir de Angers,Angers,Lyon,True,Angers,Angers,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_001808,Je veux compléter,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_003100,Je veux créer,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_003193,J'ai visité Avignon,,,False,,Avignon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005292,Saint-Denis abrite,,,False,,Saint-Denis,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001338,Je veux voyager à Lyon de Le Havre,Le Havre,Lyon,True,,Lyon,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_002048,Rouen est connue pour,,,False,,Rouen,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003234,Je veux partir vers Lyon depuis Dijon,Dijon,Lyon,True,Dijon,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003581,J'ai visité Boulogne-Billancourt,,,False,,Boulogne-Billancourt,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004593,Je souhaite quitter Lille,Lille,,True,,Lille,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_003373,Strasbourg et Le Havre sont deux belles villes,,,False,,Strasbourg,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001545,Le Havre est une belle ville,,,False,,Le Havre,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003061,Je veux quitter à Marseille de Nantes,Nantes,Marseille,True,Marseille,Nantes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_004491,Je veux partir pour Paris depuis Nîmes,Nîmes,Paris,True,Paris,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000060,Je veux aller vers Rennes ?,,Rennes,True,,Rennes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001895,Je veux voyager vers Lyon depuis Nice,Nice,Lyon,True,Nice,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004891,Je veux se rendre à Paris à partir de Nantes,Nantes,Paris,True,Nantes,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002400,Je veux voyager à Paris à partir de Nantes,Nantes,Paris,True,Nantes,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003527,Je veux se rendre vers Lyon de Marseille,Marseille,Lyon,True,Lyon,Marseille,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000075,Je veux voyager vers Paris à partir de Le Havre,Le Havre,Paris,True,Le Havre,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002455,Chambéry possède,,,False,,Chambéry,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003909,Je veux partir vers Lyon à partir de Toulon,Toulon,Lyon,True,Toulon,Toulon,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_004030,Amiens est une belle ville,,,False,,Amiens,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005635,Je veux voyager à Lyon depuis Le Havre,Le Havre,Lyon,True,Le Havre,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000069,Je veux partir à partir de Reims,Reims,,True,Reims,Reims,True,0.5,1.0,0.6666666666666666,1,1,0,1.0,0.0,0.0,1.0
+nlp_004384,J'ai visité Tours,,,False,,Tours,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_003844,Je veux se rendre vers Lyon à partir de Nice,Nice,Lyon,True,Nice,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002350,Je veux quitter vers Paris depuis Le Havre,Le Havre,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_002818,Je veux partir quittant Lille,Lille,,True,,Lille,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_001117,Je veux se rendre vers Paris depuis Reims,Reims,Paris,True,Reims,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_004288,Je veux aller vers Paris depuis Bordeaux,Bordeaux,Paris,True,Bordeaux,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000001,Mon ami habite à Nancy,,,False,,Nancy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_000087,Mon ami habite à Marseille et travaille à Nice,,,False,Marseille,Nice,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_002487,Je veux aller à Toulouse ?,,Toulouse,True,,Toulouse,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001276,Je veux quitter jusqu'à Grenoble ?,,Grenoble,True,,Grenoble,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002129,Je veux quitter pour Paris à partir de Reims,Reims,Paris,True,Reims,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003377,Mon ami habite à Boulogne-Billancourt,,,False,,Billancourt,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002997,Je veux partir en direction de Nice ?,,Nice,True,,Nice,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002523,Je veux partir pour Paris depuis Dijon,Dijon,Paris,True,Paris,Dijon,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003620,Je veux partir vers Paris de Marseille,Marseille,Paris,True,Paris,Marseille,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_000734,Mon ami habite à Dunkerque,,,False,,Dunkerque,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001861,Je veux demander,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_004421,Je veux partir vers Paris à partir de Grenoble,Grenoble,Paris,True,Grenoble,Grenoble,True,0.5,0.5,0.5,1,1,1,1.0,0.0,0.0,1.0
+nlp_003946,J'ai visité Le Mans,,,False,,Le Mans,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002845,Je veux partir à Rennes,,Rennes,True,,Rennes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002537,Mon ami habite à Bordeaux,,,False,,Bordeaux,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004373,Je veux se rendre pour Lyon,,Lyon,True,,Lyon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005240,Je veux quitter pour Villeurbanne ?,,Villeurbanne,True,,Villeurbanne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005242,Mon ami habite à Paris et travaille à Toulon,,,False,Paris,Toulon,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004289,Je veux partir à Lyon de Saint-Étienne,Saint-Étienne,Lyon,True,Saint-Étienne,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003564,Mon ami habite à Perpignan,,,False,,Perpignan,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004621,J'ai visité Mulhouse,,,False,,Mulhouse,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005209,Je veux quitter jusqu'à Angers,,Angers,True,,Angers,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005170,Je veux voyager en direction de Toulon ?,,Toulon,True,,Toulon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003741,Je préfère Nantes à Bordeaux,,,False,Bordeaux,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004896,Je veux partir pour Paris de Grenoble,Grenoble,Paris,True,,Grenoble,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0
+nlp_004841,J'ai visité Toulouse,,,False,,Toulouse,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001451,Je veux aller à Paris de Lyon,Lyon,Paris,True,Paris,Lyon,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_004418,Je veux voyager vers Villeurbanne ?,,Villeurbanne,True,,Villeurbanne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005715,Amiens possède,,,False,,Amiens,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001107,Je veux aller à Lyon de Marseille,Marseille,Lyon,True,Lyon,Marseille,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003645,Je veux aller pour Paris de Toulon,Toulon,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_004494,Mon ami habite à Strasbourg,,,False,,Strasbourg,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002232,Je veux se rendre en direction de Lyon,,Lyon,True,,Lyon,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004429,Je veux partir à Rennes ?,,Rennes,True,,Rennes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003828,Je veux se rendre à Paris depuis Grenoble,Grenoble,Paris,True,Grenoble,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003901,J'ai visité Saint-Étienne,,,False,,Saint-Étienne,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002665,Je veux voyager à Lyon de Saint-Étienne,Saint-Étienne,Lyon,True,Saint-Étienne,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_002924,Je veux quitter à Paris depuis Strasbourg,Strasbourg,Paris,True,Paris,Strasbourg,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_005436,Je préfère Toulouse à Montpellier,,,False,Toulouse,Montpellier,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_000288,Je souhaite quitter Reims,Reims,,True,,Reims,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_000235,Je veux quitter vers Lyon depuis Dijon,Dijon,Lyon,True,Dijon,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001398,Nantes et Marseille sont deux belles villes,,,False,Marseille,Nantes,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_004316,Metz est célèbre pour,,,False,,Metz,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001076,J'ai visité Chambéry,,,False,,Chambéry,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001036,Je veux partir pour Nîmes ?,,Nîmes,True,,Nîmes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_005133,Je veux quitter pour Lyon à partir de Nice,Nice,Lyon,True,Nice,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_003631,J'ai visité Limoges,,,False,,Limoges,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002328,Je veux partir jusqu'à Paris ?,,Paris,True,,Paris,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_002027,Je veux quitter pour Paris de Dijon,Dijon,Paris,True,,Paris,True,1.0,0.5,0.6666666666666666,1,0,1,0.0,1.0,0.0,1.0
+nlp_001879,J'ai visité Boulogne-Billancourt,,,False,,Boulogne-Billancourt,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_002535,Je veux se rendre en direction de Rennes,,Rennes,True,,Rennes,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003194,Dijon est une belle ville,,,False,,Dijon,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005365,Je veux partir jusqu'à Toulouse ?,,Toulouse,True,,Toulouse,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000691,Je voudrais partir quittant Marseille,Marseille,,True,,Marseille,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_001273,Je veux voyager à Marseille à partir de Nantes,Nantes,Marseille,True,Nantes,Marseille,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005064,Nice et Montpellier sont deux belles villes,,,False,Montpellier,Nice,False,0.0,0.0,0.0,0,2,0,0.0,0.0,0.0,1.0
+nlp_002151,Je veux faire monter,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_000852,Je crois que non,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_000682,Je veux voyager jusqu'à Saint-Étienne,,Saint-Étienne,True,,Saint-Étienne,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_004293,Je veux voyager vers Paris à partir de Villeurbanne,Villeurbanne,Paris,True,Villeurbanne,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_005826,Je veux voyager vers Paris à partir de Dijon,Dijon,Paris,True,Dijon,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000216,C'est payant,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_000441,J'ai visité Saint-Denis,,,False,,Saint-Denis,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_004493,Je veux se rendre en direction de Grenoble,,Grenoble,True,,Grenoble,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_003877,Je veux se rendre à Lyon de Saint-Étienne,Saint-Étienne,Lyon,True,Saint-Étienne,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000523,Je veux quitter à Lille,,Lille,True,,Lille,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000783,Je veux faire choisir,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_000844,Je veux aller pour Paris à partir de Nîmes,Nîmes,Paris,True,Paris,Nîmes,True,0.0,0.0,0.0,0,2,2,0.0,0.0,0.0,1.0
+nlp_003253,Je souhaite partir en partant de Lyon,Lyon,,True,,Lyon,True,0.0,0.0,0.0,0,1,1,0.0,0.0,0.0,1.0
+nlp_001368,Je veux quitter vers Lyon à partir de Rennes,Rennes,Lyon,True,Rennes,Lyon,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001726,Je veux quitter en direction de Nice ?,,Nice,True,,Nice,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_000656,Je veux réaliser,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_005741,Je veux donner,,,False,,,False,0.0,0.0,0.0,0,0,0,1.0,1.0,1.0,1.0
+nlp_002062,Mon ami habite à Dunkerque,,,False,,Dunkerque,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_005424,Je veux partir vers Nice,,Nice,True,,Nice,True,1.0,1.0,1.0,1,0,0,1.0,1.0,1.0,1.0
+nlp_001923,Je veux quitter pour Paris à partir de Lyon,Lyon,Paris,True,Lyon,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_001025,Je veux voyager pour Paris depuis Grenoble,Grenoble,Paris,True,Grenoble,Paris,True,1.0,1.0,1.0,2,0,0,1.0,1.0,1.0,1.0
+nlp_000190,J'ai visité Nancy,,,False,,Nancy,False,0.0,0.0,0.0,0,1,0,1.0,0.0,0.0,1.0
+nlp_001507,Je veux se rendre pour Lyon de Toulouse,Toulouse,Lyon,True,,Lyon de Toulouse,True,0.0,0.0,0.0,0,1,2,0.0,0.0,0.0,1.0

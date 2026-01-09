@@ -26,6 +26,7 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path) ->
     destination = result.get("destination")
     is_valid = result.get("is_valid", False)
     confidence = result.get("confidence")
+    error_message = result.get("error_message")
     
     stt_metadata = result.get("stt_metadata", {})
     nlp_metadata = result.get("nlp_metadata", {})
@@ -64,7 +65,16 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path) ->
 - **Destination**: {destination if destination else "Non détectée"}
 - **Demande valide**: {"✅ Oui" if is_valid else "❌ Non"}
 - **Confiance**: {confidence_str}
-
+"""
+    
+    # Ajoute le message d'erreur si présent
+    if error_message:
+        report += f"""
+### ⚠️ Message d'erreur
+{error_message}
+"""
+    
+    report += f"""
 ### Métadonnées NLP
 - **Modèle**: {nlp_metadata.get('model', 'N/A')}
 - **Méthode d'extraction**: {nlp_metadata.get('extraction_method', 'N/A')}

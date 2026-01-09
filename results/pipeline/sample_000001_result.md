@@ -1,14 +1,14 @@
 # Rapport Pipeline - Traitement Audio
 
-**Date**: 2026-01-09 14:20:04  
-**Fichier audio**: data/raw/audio/sample_000160.wav
+**Date**: 2026-01-09 14:24:50  
+**Fichier audio**: data/raw/audio/sample_000001.wav
 
 ---
 
 ## 📝 Transcription (STT)
 
 ```
-Je veux voyager de Toulouse à Bordeaux.
+Je voudrais bien aller à Paris.
 ```
 
 ### Métadonnées STT
@@ -22,21 +22,24 @@ Je veux voyager de Toulouse à Bordeaux.
 ## 🎯 Extraction NLP
 
 ### Résultats
-- **Origine**: Toulouse
-- **Destination**: Bordeaux
+- **Origine**: Non détectée
+- **Destination**: Paris
 - **Demande valide**: ✅ Oui
-- **Confiance**: 0.70
+- **Confiance**: 0.60
+
+### ⚠️ Message d'erreur
+⚠️ Attention : La ville de départ est manquante. Veuillez préciser d'où vous partez.
 
 ### Métadonnées NLP
 - **Modèle**: spacy-fr_core_news_md
 - **Méthode d'extraction**: ner_patterns
-- **Lieux détectés**: Toulouse, Bordeaux
+- **Lieux détectés**: Paris
 
 ---
 
 ## 📊 Analyse
 
-✅ **Extraction complète** : Origine et destination détectées
+⚠️ **Destination seulement** : Origine manquante
 
 ✅ La demande est **valide** (demande de trajet détectée)
 
@@ -49,16 +52,15 @@ Je veux voyager de Toulouse à Bordeaux.
 2. **NLP** : Extraction origine/destination depuis le texte
 
 ### Entités détectées
-- Toulouse (LOC)
-- Bordeaux (LOC)
+- Paris (LOC)
 
 
 ---
 
 ## 📁 Fichiers
 
-- **Audio source**: `data/raw/audio/sample_000160.wav`
-- **Rapport généré**: `sample_000160_result.md`
+- **Audio source**: `data/raw/audio/sample_000001.wav`
+- **Rapport généré**: `sample_000001_result.md`
 
 ---
 
@@ -68,5 +70,5 @@ Ce rapport a été généré automatiquement par le pipeline THOR.
 
 Pour relancer le traitement :
 ```bash
-python -m src.cli.pipeline --audio data/raw/audio/sample_000160.wav --stt-model whisper --nlp-model spacy
+python -m src.cli.pipeline --audio data/raw/audio/sample_000001.wav --stt-model whisper --nlp-model spacy
 ```

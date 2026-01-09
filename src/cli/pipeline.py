@@ -62,11 +62,15 @@ def process_command(args):
     # Affiche les résultats
     print("\n=== Résultats ===")
     print(f"Transcription: {result['transcript']}")
-    print(f"Origine: {result['origin']}")
-    print(f"Destination: {result['destination']}")
+    print(f"Origine: {result['origin'] if result['origin'] else 'Non détectée'}")
+    print(f"Destination: {result['destination'] if result['destination'] else 'Non détectée'}")
     print(f"Valide: {result['is_valid']}")
     if result.get('confidence'):
         print(f"Confidence: {result['confidence']:.2f}")
+    
+    # Affiche le message d'erreur si présent
+    if result.get('error_message'):
+        print(f"\n{result['error_message']}")
     
     # Détermine le chemin de sortie
     if args.output:
