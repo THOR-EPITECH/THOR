@@ -15,7 +15,6 @@
 - [Modèles disponibles](#-modèles-disponibles)
 - [Documentation](#-documentation)
 - [Développement](#-développement)
-- [Contribution](#-contribution)
 
 ## 🎯 Vue d'ensemble
 
@@ -316,31 +315,6 @@ python -m src.cli.pipeline \
     --stt-model whisper \
     --nlp-model spacy
 ```
-
-## 🤝 Contribution
-
-Les contributions sont les bienvenues ! Pour contribuer :
-
-1. **Fork** le projet
-2. Créez une **branche** pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
-3. **Commitez** vos changements (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** vers la branche (`git push origin feature/AmazingFeature`)
-5. Ouvrez une **Pull Request**
-
-### Guidelines
-
-- Suivez les conventions de code (Black, Ruff)
-- Ajoutez des tests pour les nouvelles fonctionnalités
-- Mettez à jour la documentation si nécessaire
-- Assurez-vous que tous les tests passent
-
-## 📄 Licence
-
-Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
-
-## 👥 Auteurs
-
-**THOR Team**
 
 ---
 
