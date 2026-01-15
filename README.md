@@ -1,27 +1,65 @@
-# THOR - Travel Order Resolver
+# 🚂 THOR - Travel Order Resolver
 
-Système de traitement du langage naturel pour extraire des commandes de voyage depuis du texte ou de la parole, et trouver des itinéraires de train optimaux.
+> Système intelligent de traitement du langage naturel pour extraire des commandes de voyage depuis la parole ou le texte, et identifier les itinéraires de train optimaux.
 
-## 🏗️ Architecture
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Le projet se concentre actuellement sur le module **Speech-to-Text (STT)** : Conversion audio → texte.
+## 📋 Table des matières
 
-Les modules NLP et Pathfinding seront ajoutés ultérieurement.
+- [Vue d'ensemble](#-vue-densemble)
+- [Fonctionnalités](#-fonctionnalités)
+- [Installation](#-installation)
+- [Démarrage rapide](#-démarrage-rapide)
+- [Architecture](#-architecture)
+- [Modèles disponibles](#-modèles-disponibles)
+- [Documentation](#-documentation)
+- [Développement](#-développement)
+- [Contribution](#-contribution)
 
-Voir [ARCHITECTURE.md](ARCHITECTURE.md) pour plus de détails.
+## 🎯 Vue d'ensemble
+
+THOR est un système complet de traitement du langage naturel conçu pour :
+
+1. **Transcrire la parole en texte** (Speech-to-Text) avec plusieurs modèles
+2. **Extraire les informations de voyage** (origine, destination) depuis le texte
+3. **Trouver des itinéraires optimaux** (Pathfinding) - *en développement*
+
+Le système est modulaire, extensible et supporte le fine-tuning des modèles pour améliorer les performances sur des données spécifiques.
+
+## ✨ Fonctionnalités
+
+### 🎤 Speech-to-Text (STT)
+- **Multi-modèles** : Whisper, Vosk, Dummy
+- **Évaluation complète** : WER, CER, Latency, RTF
+- **Benchmark** : Comparaison de plusieurs modèles
+- **Support multilingue** : Français, Anglais, et plus (via Whisper)
+
+### 🧠 Natural Language Processing (NLP)
+- **Multi-modèles** : spaCy, Transformers (CamemBERT), Regex Advanced, Dummy
+- **Extraction intelligente** : Origine et destination depuis le texte
+- **Fine-tuning** : Support pour entraîner les modèles sur des données personnalisées
+- **Benchmark** : Comparaison de plusieurs modèles NLP
+- **Confiance dynamique** : Score de confiance calculé selon la qualité de l'extraction
+
+### 🔄 Pipeline complet
+- **End-to-end** : Audio → Transcription → Extraction → Résultat
+- **Rapports automatiques** : Génération de rapports Markdown détaillés
+- **Gestion d'erreurs** : Messages d'erreur spécifiques pour les informations manquantes
 
 ## 📦 Installation
 
 ### Prérequis
 
-- Python 3.9+
+- Python 3.9 ou supérieur
 - pip
+- (Optionnel) GPU pour de meilleures performances avec les modèles Transformers
 
 ### Installation de base
 
 ```bash
 # Clone le repository
-git clone <repo-url>
+git clone https://github.com/THOR-EPITECH/THOR.git
 cd THOR
 
 # Crée un environnement virtuel
@@ -30,81 +68,189 @@ source venv/bin/activate  # Sur Windows: venv\Scripts\activate
 
 # Installe les dépendances de base
 pip install -e .
-
-# Installe les dépendances optionnelles selon vos besoins
-pip install -e ".[stt]"      # Pour Speech-to-Text
-pip install -e ".[nlp]"       # Pour NLP
-pip install -e ".[pathfinding]"  # Pour Pathfinding
-pip install -e ".[dev]"       # Pour le développement
 ```
 
-### Configuration
-
-1. Copiez `.env.example` vers `.env` :
-```bash
-cp .env.example .env
-```
-
-2. Modifiez `.env` selon vos besoins (chemins, clés API, etc.)
-
-## 🚀 Utilisation
-
-### Speech-to-Text
-
-#### Transcrire un fichier audio
-```bash
-python -m src.cli.stt transcribe --audio path/to/audio.wav --model whisper
-```
-
-#### Évaluer un modèle
-```bash
-python -m src.cli.stt evaluate \
-    --dataset data/splits/test/test.jsonl \
-    --model whisper \
-    --config configs/stt/whisper_small.yaml \
-    --output-dir results/stt/whisper_test \
-    --analyze-errors
-```
-
-
-## 📊 Structure du projet
-
-```
-thor/
-  src/
-    common/          # Modules communs (types, config, logging, etc.)
-    stt/             # Module Speech-to-Text
-      models/        # Implémentations des modèles STT
-      eval/          # Métriques et évaluation
-    cli/             # Interfaces en ligne de commande
-  configs/           # Fichiers de configuration YAML
-  data/              # Données (raw, processed, splits)
-  results/           # Résultats des expériences
-  tests/             # Tests unitaires
-  docs/              # Documentation
-```
-
-## 🧪 Tests
+### Installation des modules optionnels
 
 ```bash
-# Lancer tous les tests
-pytest
+# Pour Speech-to-Text
+pip install -e ".[stt]"
 
-# Tests avec couverture
-pytest --cov=src tests/
+# Pour NLP
+pip install -e ".[nlp]"
+
+# Pour Pathfinding (en développement)
+pip install -e ".[pathfinding]"
+
+# Pour le développement
+pip install -e ".[dev]"
 ```
 
-## 📝 Documentation
+### Installation des modèles
 
-- **[📚 Guide complet des commandes](COMMANDES.md)** - Toutes les commandes disponibles
-- [Architecture complète](ARCHITECTURE.md)
-- [Documentation STT](src/stt/README.md)
-- [Documentation NLP](src/nlp/README.md)
-- [Documentation Pipeline](src/pipeline/README.md)
+```bash
+# Modèle spaCy français
+python -m spacy download fr_core_news_md
+
+# Modèle Vosk (optionnel, téléchargement manuel requis)
+# Voir docs/stt/vosk.md pour les instructions
+```
+
+## 🚀 Démarrage rapide
+
+### Transcription audio (STT)
+
+```bash
+# Transcription simple avec Whisper
+python -m src.cli.stt transcribe \
+    --audio data/raw/audio/sample_000001.wav \
+    --model whisper
+```
+
+### Extraction NLP
+
+```bash
+# Extraction depuis un texte
+python -m src.cli.nlp extract \
+    --text "Je veux aller à Paris depuis Lyon" \
+    --model spacy
+```
+
+### Pipeline complet
+
+```bash
+# Traitement complet : Audio → STT → NLP
+python -m src.cli.pipeline \
+    --audio data/raw/audio/sample_000001.wav \
+    --stt-model whisper \
+    --nlp-model spacy
+```
+
+### Entraînement d'un modèle NLP
+
+```bash
+# Entraîner le modèle spaCy
+python -m src.cli.nlp train \
+    --model spacy \
+    --train-dataset data/splits/train/train_nlp.jsonl \
+    --valid-dataset data/splits/valid/valid_nlp.jsonl \
+    --output-dir models/nlp/spacy_finetuned
+```
+
+### Benchmark de modèles
+
+```bash
+# Comparer plusieurs modèles NLP
+python -m src.cli.nlp benchmark \
+    --dataset data/splits/test/test_nlp.jsonl \
+    --models spacy transformers regex_advanced
+```
+
+## 🏗️ Architecture
+
+```
+THOR/
+├── src/
+│   ├── stt/              # Module Speech-to-Text
+│   │   ├── models/       # Modèles STT (Whisper, Vosk, Dummy)
+│   │   └── eval/         # Évaluation et métriques
+│   ├── nlp/              # Module Natural Language Processing
+│   │   ├── models/       # Modèles NLP (spaCy, Transformers, Regex, Dummy)
+│   │   ├── eval/         # Évaluation et benchmark
+│   │   └── training/     # Fine-tuning des modèles
+│   ├── pipeline/         # Pipeline complet Audio → STT → NLP
+│   ├── cli/              # Interfaces en ligne de commande
+│   └── common/           # Modules communs (types, config, logging)
+├── configs/              # Fichiers de configuration YAML
+├── data/                 # Données (raw, processed, splits)
+├── models/               # Modèles entraînés
+├── results/              # Résultats des expériences
+├── docs/                 # Documentation complète
+│   ├── stt/             # Documentation des modèles STT
+│   ├── nlp/             # Documentation des modèles NLP
+│   ├── COMMANDES.md     # Guide complet des commandes
+│   └── ARCHITECTURE.md  # Architecture détaillée
+└── scripts/             # Scripts utilitaires
+```
+
+## 🤖 Modèles disponibles
+
+### Modèles STT
+
+| Modèle | Précision | Vitesse | Offline | GPU | Documentation |
+|--------|-----------|---------|---------|-----|---------------|
+| **Whisper** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ✅ | Recommandé | [docs/stt/whisper.md](docs/stt/whisper.md) |
+| **Vosk** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ✅ | ❌ | [docs/stt/vosk.md](docs/stt/vosk.md) |
+| **Dummy** | ❌ | ⭐⭐⭐⭐⭐ | ✅ | ❌ | [docs/stt/dummy.md](docs/stt/dummy.md) |
+
+### Modèles NLP
+
+| Modèle | Précision | Vitesse | Fine-tuning | GPU | Documentation |
+|--------|-----------|---------|-------------|-----|---------------|
+| **spaCy** | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ✅ | ❌ | [docs/nlp/spacy.md](docs/nlp/spacy.md) |
+| **Transformers** | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ | ✅ | Recommandé | [docs/nlp/transformers.md](docs/nlp/transformers.md) |
+| **Regex Advanced** | ⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ❌ | ❌ | [docs/nlp/regex_advanced.md](docs/nlp/regex_advanced.md) |
+| **Dummy** | ⭐⭐ | ⭐⭐⭐⭐⭐ | ❌ | ❌ | [docs/nlp/dummy.md](docs/nlp/dummy.md) |
+
+## 📊 Métriques
+
+### Métriques STT
+- **WER** (Word Error Rate) : Taux d'erreur de mots
+- **CER** (Character Error Rate) : Taux d'erreur de caractères
+- **Latency** : Temps de traitement
+- **RTF** (Real-time Factor) : Ratio temps traitement / durée audio
+
+### Métriques NLP
+- **Precision** : Proportion d'entités extraites correctement
+- **Recall** : Proportion d'entités de référence trouvées
+- **F1-Score** : Moyenne harmonique de Precision et Recall
+- **Origin/Destination Accuracy** : Précision sur l'extraction spécifique
+- **Validation Accuracy** : Précision sur la détection de demande valide
+
+## 📚 Documentation
+
+### Documentation principale
+
+- **[📚 Guide complet des commandes](docs/COMMANDES.md)** - Toutes les commandes disponibles avec exemples
+- **[🏗️ Architecture détaillée](docs/ARCHITECTURE.md)** - Architecture complète du système
+
+### Documentation des modèles
+
+#### STT
+- **[Index STT](docs/stt/index.md)** - Vue d'ensemble des modèles STT
+- **[Whisper](docs/stt/whisper.md)** - Documentation complète du modèle Whisper
+- **[Vosk](docs/stt/vosk.md)** - Documentation complète du modèle Vosk
+- **[Dummy STT](docs/stt/dummy.md)** - Modèle baseline pour tests
+
+#### NLP
+- **[Index NLP](docs/nlp/index.md)** - Vue d'ensemble des modèles NLP
+- **[spaCy](docs/nlp/spacy.md)** - Documentation complète du modèle spaCy
+- **[Transformers](docs/nlp/transformers.md)** - Documentation complète du modèle Transformers
+- **[Regex Advanced](docs/nlp/regex_advanced.md)** - Documentation du modèle Regex
+- **[Dummy NLP](docs/nlp/dummy.md)** - Modèle baseline pour tests
+
+### Documentation des modules
+
+- **[Module STT](src/stt/README.md)** - Documentation du module Speech-to-Text
+- **[Module NLP](src/nlp/README.md)** - Documentation du module NLP
+- **[Module Pipeline](src/pipeline/README.md)** - Documentation du pipeline complet
 
 ## 🔧 Développement
 
-### Ajouter un nouveau modèle STT
+### Configuration de l'environnement de développement
+
+```bash
+# Installe les dépendances de développement
+pip install -e ".[dev]"
+
+# Configure les outils de formatage
+black src/ tests/
+ruff check src/ tests/
+```
+
+### Ajouter un nouveau modèle
+
+#### Modèle STT
 
 1. Créez un fichier dans `src/stt/models/` (ex: `my_model.py`)
 2. Implémentez l'interface `STTModel` :
@@ -112,50 +258,100 @@ pytest --cov=src tests/
 from src.stt.interfaces import STTModel
 from src.common.types import STTResult
 
-class MyModel(STTModel):
-    def transcribe(self, audio_path: str) -> STTResult:
+class MySTTModel(STTModel):
+    def transcribe(self, audio_path: str | Path) -> STTResult:
         # Votre implémentation
-        return STTResult(text="...")
+        return STTResult(text="...", ...)
 ```
-
 3. Créez une configuration dans `configs/stt/my_model.yaml`
-4. Ajoutez le modèle dans `src/cli/stt.py` si nécessaire
+4. Ajoutez le modèle dans `src/cli/stt.py`
 
-Voir `src/stt/models/dummy.py` pour un exemple minimal.
+#### Modèle NLP
 
-### Workflow de test
+1. Créez un fichier dans `src/nlp/models/` (ex: `my_model.py`)
+2. Implémentez l'interface `NLPModel` :
+```python
+from src.nlp.interfaces import NLPModel
+from src.common.types import NLPExtraction
+
+class MyNLPModel(NLPModel):
+    def extract(self, text: str) -> NLPExtraction:
+        # Votre implémentation
+        return NLPExtraction(origin="...", destination="...", ...)
+```
+3. Créez une configuration dans `configs/nlp/my_model.yaml`
+4. Ajoutez le modèle dans `src/cli/nlp.py`
+
+### Tests
 
 ```bash
-# Test STT
+# Lancer tous les tests
+pytest
+
+# Tests avec couverture
+pytest --cov=src tests/
+
+# Tests d'un module spécifique
+pytest tests/test_stt.py
+```
+
+### Workflow de développement
+
+```bash
+# 1. Test STT
 python -m src.cli.stt evaluate \
     --model whisper \
     --dataset data/splits/test/test.jsonl \
     --output-dir results/stt/whisper_test
+
+# 2. Test NLP
+python -m src.cli.nlp evaluate \
+    --model spacy \
+    --dataset data/splits/test/test_nlp.jsonl \
+    --output-dir results/nlp/spacy_test
+
+# 3. Test Pipeline
+python -m src.cli.pipeline \
+    --audio data/raw/audio/sample_000001.wav \
+    --stt-model whisper \
+    --nlp-model spacy
 ```
-
-## 📈 Métriques
-
-Le module STT expose des métriques standardisées :
-
-- **WER** (Word Error Rate) : Taux d'erreur de mots
-- **CER** (Character Error Rate) : Taux d'erreur de caractères
-- **Latency** : Temps de traitement
-- **Real-time Factor (RTF)** : Ratio temps traitement / durée audio
-
-Les résultats sont sauvegardés dans `results/runs/<timestamp>_stt_<model>/`
 
 ## 🤝 Contribution
 
-1. Créez une branche pour votre fonctionnalité
-2. Ajoutez des tests
-3. Assurez-vous que tous les tests passent
-4. Créez une pull request
+Les contributions sont les bienvenues ! Pour contribuer :
+
+1. **Fork** le projet
+2. Créez une **branche** pour votre fonctionnalité (`git checkout -b feature/AmazingFeature`)
+3. **Commitez** vos changements (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrez une **Pull Request**
+
+### Guidelines
+
+- Suivez les conventions de code (Black, Ruff)
+- Ajoutez des tests pour les nouvelles fonctionnalités
+- Mettez à jour la documentation si nécessaire
+- Assurez-vous que tous les tests passent
 
 ## 📄 Licence
 
-MIT
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 👥 Auteurs
 
-THOR Team
+**THOR Team**
 
+---
+
+## 🔗 Liens utiles
+
+- [Documentation complète](docs/)
+- [Guide des commandes](docs/COMMANDES.md)
+- [Architecture](docs/ARCHITECTURE.md)
+- [Issues](https://github.com/THOR-EPITECH/THOR/issues)
+- [Pull Requests](https://github.com/THOR-EPITECH/THOR/pulls)
+
+---
+
+**Note** : Le module Pathfinding est en cours de développement et sera disponible dans une future version.
