@@ -156,7 +156,7 @@ python -m src.cli.nlp evaluate \
 
 **Paramètres :**
 - `--dataset` (requis) : Chemin vers le fichier JSONL du dataset de test
-- `--model` (optionnel) : Modèle NLP à évaluer (`spacy`, `dummy`) - défaut: `dummy`
+- `--model` (optionnel) : Modèle NLP à évaluer (`dummy`, `regex_advanced`, `spacy`, `transformers`) - défaut: `dummy`
 - `--config` (optionnel) : Chemin vers un fichier de configuration YAML
 - `--output-dir` (optionnel) : Dossier de sortie pour les résultats - défaut: `results/nlp`
 
@@ -207,7 +207,7 @@ python -m src.cli.nlp train \
 **Paramètres :**
 - `--train-dataset` (requis) : Chemin vers le dataset d'entraînement (JSONL)
 - `--valid-dataset` (optionnel) : Chemin vers le dataset de validation (JSONL)
-- `--model` (optionnel) : Modèle NLP à entraîner (`spacy`) - défaut: `spacy`
+- `--model` (optionnel) : Modèle NLP à entraîner (`spacy`, `transformers`) - défaut: `spacy`
 - `--config` (optionnel) : Chemin vers un fichier de configuration YAML
 - `--output-dir` (optionnel) : Dossier où sauvegarder le modèle entraîné - défaut: `models/nlp`
 - `--n-iter` (optionnel) : Nombre d'itérations d'entraînement - défaut: `20`
@@ -219,6 +219,13 @@ python -m src.cli.nlp train \
 python -m src.cli.nlp train \
     --train-dataset data/splits/train/train_nlp.jsonl \
     --model spacy
+
+# Entraînement Transformers
+python -m src.cli.nlp train \
+    --train-dataset data/splits/train/train_nlp.jsonl \
+    --valid-dataset data/splits/valid/valid_nlp.jsonl \
+    --model transformers \
+    --output-dir models/nlp/transformers_finetuned
 
 # Entraînement complet avec validation
 python -m src.cli.nlp train \
@@ -245,6 +252,107 @@ Créez un fichier `configs/nlp/spacy_finetuned.yaml` :
 nlp:
   model_name: fr_core_news_md
   custom_model_path: models/nlp/spacy_finetuned/model
+```
+
+**Entraîner tous les modèles NLP d'un coup :**
+```bash
+# Avec PYTHONPATH pour que le script trouve les modules
+PYTHONPATH=. python3 scripts/train_all_nlp_models.py \
+    --train-dataset data/splits/train/train_nlp.jsonl \
+    --valid-dataset data/splits/valid/valid_nlp.jsonl \
+    --output-dir models/nlp
+```
+
+Ce script entraîne automatiquement :
+- **spaCy** → `models/nlp/spacy_finetuned/`
+- **Transformers** → `models/nlp/transformers_finetuned/`
+
+**Paramètres :**
+- `--train-dataset` (requis) : Chemin vers le dataset d'entraînement (JSONL)
+- `--valid-dataset` (optionnel) : Chemin vers le dataset de validation (JSONL)
+- `--output-dir` (optionnel) : Dossier de base pour sauvegarder les modèles - défaut: `models/nlp`
+
+**Note :** Les modèles `dummy` et `regex_advanced` ne nécessitent pas d'entraînement.
+
+---
+
+### Benchmarker plusieurs modèles NLP
+
+Compare plusieurs modèles NLP sur le même dataset et génère un rapport comparatif.
+
+```bash
+python -m src.cli.nlp benchmark \
+    --dataset <chemin_dataset> \
+    [--models <modèle1> [<modèle2> ...]] \
+    [--output-dir <dossier_sortie>] \
+    [--save-individual]
+```
+
+**Paramètres :**
+- `--dataset` (requis) : Chemin vers le fichier JSONL du dataset de test
+- `--models` (optionnel) : Liste des modèles à comparer (format: `model_name[:config_path]`) - défaut: `dummy spacy`
+- `--output-dir` (optionnel) : Dossier de sortie pour les résultats - défaut: `results/nlp/benchmark`
+- `--save-individual` (optionnel) : Sauvegarder les résultats individuels de chaque modèle (activé par défaut)
+
+**Format des modèles :**
+- `dummy` : Modèle baseline (regex simple)
+- `regex_advanced` ou `regex` : Modèle regex avancé avec liste de villes
+- `spacy` : Modèle spaCy de base
+- `spacy:configs/nlp/spacy_finetuned.yaml` : Modèle spaCy fine-tuné
+- `transformers` : Modèle Transformers (CamemBERT NER)
+- `transformers:configs/nlp/transformers_base.yaml` : Modèle Transformers avec configuration
+
+**Exemples :**
+```bash
+# Benchmark avec modèles par défaut (dummy, regex_advanced, spacy)
+python -m src.cli.nlp benchmark \
+    --dataset data/splits/test/test_nlp.jsonl
+
+# Benchmark avec tous les modèles disponibles
+python -m src.cli.nlp benchmark \
+    --dataset data/splits/test/test_nlp.jsonl \
+    --models dummy regex_advanced spacy spacy:configs/nlp/spacy_finetuned.yaml transformers \
+    --output-dir results/nlp/benchmark_all
+
+# Benchmark avec modèles spécifiques
+python -m src.cli.nlp benchmark \
+    --dataset data/splits/test/test_nlp.jsonl \
+    --models spacy spacy:configs/nlp/spacy_finetuned.yaml \
+    --output-dir results/nlp/benchmark_comparison
+
+# Benchmark sans sauvegarder les résultats individuels (seulement le rapport comparatif)
+python -m src.cli.nlp benchmark \
+    --dataset data/splits/test/test_nlp.jsonl \
+    --models dummy spacy \
+    --no-save-individual
+```
+
+**Fichiers générés :**
+- `benchmark_report.md` : Rapport markdown comparatif avec tableau récapitulatif
+- `comparison.json` : Résultats comparatifs au format JSON
+- `<model_name>/` : Dossiers individuels avec résultats détaillés (si `--save-individual` activé)
+  - `metrics.json` : Métriques du modèle
+  - `predictions.jsonl` : Prédictions détaillées
+  - `report.md` : Rapport individuel
+
+**Métriques comparées :**
+- **F1-Score** : Score F1 global
+- **Precision** : Précision globale
+- **Recall** : Rappel global
+- **Origin Accuracy** : Précision sur l'origine
+- **Destination Accuracy** : Précision sur la destination
+- **Validation Accuracy** : Précision sur la détection de demandes valides
+
+**Exemple de sortie :**
+```
+✅ Benchmark complete!
+Report: results/nlp/benchmark/benchmark_report.md
+Comparison: results/nlp/benchmark/comparison.json
+
+=== Résumé ===
+dummy: F1=0.5234
+spacy: F1=0.7891
+spacy (finetuned): F1=0.8456
 ```
 
 ---
@@ -686,4 +794,5 @@ python -m src.cli.nlp train --help
 ---
 
 **Dernière mise à jour :** 2026-01-09
+
 

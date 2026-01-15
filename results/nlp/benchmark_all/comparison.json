@@ -1,0 +1,115 @@
+{
+  "dummy": {
+    "metrics": {
+      "precision_mean": 0.2751141552511416,
+      "precision_std": 0.43622693261680684,
+      "recall_mean": 0.20776255707762556,
+      "recall_std": 0.3489828903773217,
+      "f1_mean": 0.2302130898021309,
+      "f1_std": 0.37168341281511197,
+      "tp_mean": 0.341324200913242,
+      "tp_std": 0.5663147550109241,
+      "fp_mean": 0.09931506849315068,
+      "fp_std": 0.3066232145631077,
+      "fn_mean": 0.6301369863013698,
+      "fn_std": 0.7023804790846175,
+      "origin_accuracy_mean": 0.7990867579908676,
+      "origin_accuracy_std": 0.4006833053603709,
+      "destination_accuracy_mean": 0.5707762557077626,
+      "destination_accuracy_std": 0.4949653741707488,
+      "both_correct_mean": 0.5,
+      "both_correct_std": 0.5,
+      "validation_accuracy_mean": 0.6381278538812786,
+      "validation_accuracy_std": 0.4805420855473037
+    },
+    "config": {},
+    "status": "success"
+  },
+  "regex_advanced": {
+    "metrics": {
+      "precision_mean": 0.509703196347032,
+      "precision_std": 0.4956057163339046,
+      "recall_mean": 0.3898401826484018,
+      "recall_std": 0.41671631342429977,
+      "f1_mean": 0.4297945205479452,
+      "f1_std": 0.4330333915581735,
+      "tp_mean": 0.610730593607306,
+      "tp_std": 0.6501309425713321,
+      "fp_mean": 0.6187214611872146,
+      "fp_std": 0.7027774058928484,
+      "fn_mean": 0.3607305936073059,
+      "fn_std": 0.48021248676291894,
+      "origin_accuracy_mean": 0.8082191780821918,
+      "origin_accuracy_std": 0.39370158529314836,
+      "destination_accuracy_mean": 0.295662100456621,
+      "destination_accuracy_std": 0.45633981067862134,
+      "both_correct_mean": 0.2705479452054795,
+      "both_correct_std": 0.44424290039411135,
+      "validation_accuracy_mean": 0.8595890410958904,
+      "validation_accuracy_std": 0.3474128977509874
+    },
+    "config": {},
+    "status": "success"
+  },
+  "spacy": {
+    "metrics": {
+      "precision_mean": 0.4069634703196347,
+      "precision_std": 0.47140555743311346,
+      "recall_mean": 0.4132420091324201,
+      "recall_std": 0.475911037758953,
+      "f1_mean": 0.40658295281582957,
+      "f1_std": 0.4686314835459513,
+      "tp_mean": 0.6244292237442922,
+      "tp_std": 0.7700421136943535,
+      "fp_mean": 0.723744292237443,
+      "fp_std": 0.7015525173595631,
+      "fn_mean": 0.3470319634703196,
+      "fn_std": 0.6625175823504929,
+      "origin_accuracy_mean": 0.726027397260274,
+      "origin_accuracy_std": 0.4459950848246495,
+      "destination_accuracy_mean": 0.4223744292237443,
+      "destination_accuracy_std": 0.4939375170622905,
+      "both_correct_mean": 0.4075342465753425,
+      "both_correct_std": 0.49137570599655256,
+      "validation_accuracy_mean": 1.0,
+      "validation_accuracy_std": 0.0
+    },
+    "config": {},
+    "status": "success"
+  },
+  "spacy (spacy_finetuned)": {
+    "metrics": {
+      "precision_mean": 0.6221461187214612,
+      "precision_std": 0.48485082827740195,
+      "recall_mean": 0.6210045662100456,
+      "recall_std": 0.4845483656980084,
+      "f1_mean": 0.6213850837138509,
+      "f1_std": 0.48451863202568507,
+      "tp_mean": 0.9691780821917808,
+      "tp_std": 0.8508442008567032,
+      "fp_mean": 0.2089041095890411,
+      "fp_std": 0.5110318909273227,
+      "fn_mean": 0.00228310502283105,
+      "fn_std": 0.04772727159901113,
+      "origin_accuracy_mean": 0.9497716894977168,
+      "origin_accuracy_std": 0.21841572133518536,
+      "destination_accuracy_mean": 0.839041095890411,
+      "destination_accuracy_std": 0.367493041155107,
+      "both_correct_mean": 0.83675799086758,
+      "both_correct_std": 0.36958633035710475,
+      "validation_accuracy_mean": 1.0,
+      "validation_accuracy_std": 0.0
+    },
+    "config": {
+      "model_name": "fr_core_news_md",
+      "custom_model_path": "models/nlp/spacy_finetuned/model"
+    },
+    "status": "success"
+  },
+  "transformers": {
+    "metrics": {},
+    "config": {},
+    "status": "error",
+    "error": "'NoneType' object has no attribute 'endswith'"
+  }
+}

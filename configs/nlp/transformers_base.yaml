@@ -1,0 +1,4 @@
+nlp:
+  model_name: Jean-Baptiste/camembert-ner
+  device: cpu  # ou "cuda" si GPU disponible
+

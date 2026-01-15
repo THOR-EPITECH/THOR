@@ -1,0 +1,4 @@
+nlp:
+  model_name: fr_core_news_md
+  # Pas de custom_model_path = modèle de base
+

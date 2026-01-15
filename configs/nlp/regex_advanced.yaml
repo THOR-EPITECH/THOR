@@ -1,0 +1,4 @@
+nlp:
+  # Pas de configuration spécifique pour regex_advanced
+  # Le modèle utilise des patterns et une liste de villes
+

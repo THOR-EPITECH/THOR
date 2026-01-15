@@ -2,3 +2,4 @@ nlp:
   model_name: fr_core_news_md
   custom_model_path: models/nlp/spacy_finetuned/model
 
+

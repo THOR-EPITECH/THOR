@@ -1,6 +1,6 @@
 # Rapport Pipeline - Traitement Audio
 
-**Date**: 2026-01-09 14:20:04  
+**Date**: 2026-01-15 11:11:47  
 **Fichier audio**: data/raw/audio/sample_000160.wav
 
 ---
