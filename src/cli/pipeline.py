@@ -52,7 +52,9 @@ def load_pathfinding_model(model_name: str, config: Config) -> "PathfindingModel
         pathfinding_config = config.get("pathfinding", {})
         return DijkstraPathfindingModel({
             "path_gares": pathfinding_config.get("path_gares", "data/train_station/dataset_gares.json"),
-            "path_liaisons": pathfinding_config.get("path_liaisons", "data/train_station/dataset_liaisons.json")
+            "path_liaisons_enhanced": pathfinding_config.get("path_liaisons_enhanced", "data/train_station/dataset_liaisons_enhanced.json"),
+            "path_liaisons": pathfinding_config.get("path_liaisons", "data/train_station/dataset_liaisons.json"),
+            "mode": pathfinding_config.get("mode", "time")  # Utilise les temps de trajet réels par défaut
         })
     else:
         raise ValueError(f"Unknown Pathfinding model: {model_name}")
@@ -95,11 +97,42 @@ def process_command(args):
     if result.get('route') and result['route'].get('steps'):
         route = result['route']
         print(f"\n=== Itinéraire ===")
-        print(f"Distance totale: {route['total_distance']:.2f} km" if route.get('total_distance') else "Distance: N/A")
-        print(f"Nombre d'étapes: {len(route['steps'])}")
-        print("Étapes:")
-        for i, step in enumerate(route['steps'], 1):
-            print(f"  {i}. {step}")
+        if route.get('total_time'):
+            hours = int(route['total_time'] // 60)
+            minutes = int(route['total_time'] % 60)
+            print(f"⏱️  Temps de trajet: {hours}h{minutes:02d} ({route['total_time']:.0f} min)")
+        if route.get('total_distance'):
+            print(f"📏 Distance totale: {route['total_distance']:.1f} km")
+        print(f"🛤️  Nombre d'étapes: {len(route['steps'])}")
+        
+        # Affiche les détails des segments si disponibles
+        segments = route.get('metadata', {}).get('segments', [])
+        if segments:
+            print("\n📊 Détails du trajet:")
+            for seg in segments:
+                train_type = seg.get('type_train', 'Autre')
+                if train_type == 'TGV':
+                    emoji = '🚄'
+                elif train_type == 'OUIGO':
+                    emoji = '🟢'
+                elif train_type == 'Intercités':
+                    emoji = '🚃'
+                elif train_type == 'TER':
+                    emoji = '🚈'
+                else:
+                    emoji = '🚂'
+                
+                temps = seg.get('temps_min', 0)
+                distance = seg.get('distance_km', 0)
+                nb_trains = seg.get('nb_trains_jour', 0)
+                
+                print(f"   {emoji} [{train_type:12}] {seg['from']} → {seg['to']}")
+                print(f"      ⏱️ {temps:.0f} min | 📏 {distance:.1f} km | 🚂 {nb_trains} trains/jour")
+        else:
+            # Fallback: juste la liste des étapes
+            print("\nÉtapes:")
+            for i, step in enumerate(route['steps'], 1):
+                print(f"  {i}. {step}")
     elif result.get('route') and result['route'].get('metadata', {}).get('error'):
         print(f"\n⚠️ Pathfinding: {result['route']['metadata']['error']}")
     
