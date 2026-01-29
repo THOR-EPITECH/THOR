@@ -11704,21 +11704,6 @@
     },
     {
         "uic": [
-            "87697300"
-        ],
-        "nom_gare": "Épinay - Villetaneuse T11",
-        "trigramme": "EPY",
-        "position_geographique": {
-            "lat": NaN,
-            "lon": NaN
-        },
-        "ville": {
-            "id_commune": "93031",
-            "nom_commune": "EPINAY-SUR-SEINE"
-        }
-    },
-    {
-        "uic": [
             "87545228"
         ],
         "nom_gare": "Épinay-sur-Orge",
@@ -11741,21 +11726,6 @@
         "position_geographique": {
             "lat": 48.9542084,
             "lon": 2.3026142
-        },
-        "ville": {
-            "id_commune": "93031",
-            "nom_commune": "EPINAY-SUR-SEINE"
-        }
-    },
-    {
-        "uic": [
-            "87697292"
-        ],
-        "nom_gare": "Épinay-sur-Seine T11",
-        "trigramme": "EPS",
-        "position_geographique": {
-            "lat": NaN,
-            "lon": NaN
         },
         "ville": {
             "id_commune": "93031",
@@ -17136,21 +17106,6 @@
     },
     {
         "uic": [
-            "87731430"
-        ],
-        "nom_gare": "La Défense Grande Arche RER E",
-        "trigramme": "DGA",
-        "position_geographique": {
-            "lat": NaN,
-            "lon": NaN
-        },
-        "ville": {
-            "id_commune": "92062",
-            "nom_commune": "PUTEAUX"
-        }
-    },
-    {
-        "uic": [
             "87009696"
         ],
         "nom_gare": "La Douzillère",
@@ -19273,21 +19228,6 @@
         "position_geographique": {
             "lat": 48.93096,
             "lon": 2.42571
-        },
-        "ville": {
-            "id_commune": "93029",
-            "nom_commune": "DRANCY"
-        }
-    },
-    {
-        "uic": [
-            "87697359"
-        ],
-        "nom_gare": "Le Bourget T11",
-        "trigramme": "BOT",
-        "position_geographique": {
-            "lat": NaN,
-            "lon": NaN
         },
         "ville": {
             "id_commune": "93029",
@@ -27112,21 +27052,6 @@
     },
     {
         "uic": [
-            "87731448"
-        ],
-        "nom_gare": "Neuilly Porte Maillot RER E",
-        "trigramme": "NEP",
-        "position_geographique": {
-            "lat": NaN,
-            "lon": NaN
-        },
-        "ville": {
-            "id_commune": "75117",
-            "nom_commune": "PARIS-17E-ARRONDISSEMENT"
-        }
-    },
-    {
-        "uic": [
             "87645507"
         ],
         "nom_gare": "Neussargues",
@@ -29196,21 +29121,6 @@
         "position_geographique": {
             "lat": 48.96409,
             "lon": 2.37213
-        },
-        "ville": {
-            "id_commune": "93059",
-            "nom_commune": "PIERREFITTE-SUR-SEINE"
-        }
-    },
-    {
-        "uic": [
-            "87697326"
-        ],
-        "nom_gare": "Pierrefitte - Stains T11",
-        "trigramme": "PFE",
-        "position_geographique": {
-            "lat": NaN,
-            "lon": NaN
         },
         "ville": {
             "id_commune": "93059",
@@ -34641,21 +34551,6 @@
         "position_geographique": {
             "lat": 48.8677671,
             "lon": 2.0509372
-        },
-        "ville": {
-            "id_commune": "78224",
-            "nom_commune": "L'ETANG-LA-VILLE"
-        }
-    },
-    {
-        "uic": [
-            "87733071"
-        ],
-        "nom_gare": "Saint-Nom-la-Bretèche Forêt de Marly T13",
-        "trigramme": "SNF",
-        "position_geographique": {
-            "lat": NaN,
-            "lon": NaN
         },
         "ville": {
             "id_commune": "78224",
