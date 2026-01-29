@@ -27,7 +27,7 @@ def load_stt_model(model_name: str, config: Config) -> "STTModel":
         from src.stt.models.vosk import VoskModel
         stt_config = config.get("stt", {})
         return VoskModel({
-            "model_path": stt_config.get("model_path", "models/vosk-fr"),
+            "model_path": stt_config.get("model_path", "models/stt/vosk-fr/vosk-model-fr-0.22"),
             "sample_rate": stt_config.get("sample_rate", 16000)
         })
     else:
