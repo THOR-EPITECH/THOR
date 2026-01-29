@@ -7,6 +7,7 @@ from src.common.config import Config
 from src.common.logging import setup_logging
 from src.stt.models.dummy import DummySTTModel
 from src.stt.models.whisper import WhisperModel
+from src.stt.models.vosk import VoskModel
 from src.stt.eval.evaluate import evaluate_model
 from src.stt.eval.error_analysis import analyze_errors
 
@@ -23,6 +24,12 @@ def load_model(model_name: str, config: Config) -> "STTModel":
             "model_size": stt_config.get("model_size", "small"),
             "language": stt_config.get("language", "fr"),
             "device": stt_config.get("device", "cpu")
+        })
+    elif model_name == "vosk":
+        stt_config = config.get("stt", {})
+        return VoskModel({
+            "model_path": stt_config.get("model_path", "models/stt/vosk-fr/vosk-model-fr-0.22"),
+            "sample_rate": stt_config.get("sample_rate", 16000)
         })
     else:
         raise ValueError(f"Unknown model: {model_name}")

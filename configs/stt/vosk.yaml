@@ -1,0 +1,3 @@
+model: vosk
+model_path: models/stt/vosk-fr/vosk-model-fr-0.22
+sample_rate: 16000

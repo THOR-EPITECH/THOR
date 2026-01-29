@@ -27,7 +27,7 @@ def load_stt_model(model_name: str, config: Config) -> "STTModel":
         from src.stt.models.vosk import VoskModel
         stt_config = config.get("stt", {})
         return VoskModel({
-            "model_path": stt_config.get("model_path", "models/vosk-fr"),
+            "model_path": stt_config.get("model_path", "models/stt/vosk-fr/vosk-model-fr-0.22"),
             "sample_rate": stt_config.get("sample_rate", 16000)
         })
     else:
@@ -60,6 +60,10 @@ def process_command(args):
     result = pipeline.process(args.audio)
     
     # Affiche les résultats
+    print("\n=== Configuration ===")
+    print(f"Modèle STT: {args.stt_model}")
+    print(f"Modèle NLP: {args.nlp_model}")
+    
     print("\n=== Résultats ===")
     print(f"Transcription: {result['transcript']}")
     print(f"Origine: {result['origin'] if result['origin'] else 'Non détectée'}")
@@ -76,11 +80,11 @@ def process_command(args):
     if args.output:
         output_path = Path(args.output)
     else:
-        # Génère un nom automatique basé sur l'audio
+        # Génère un nom automatique basé sur l'audio, STT et NLP
         audio_name = Path(args.audio).stem
         output_dir = Path("results/pipeline")
         output_dir.mkdir(parents=True, exist_ok=True)
-        output_path = output_dir / f"{audio_name}_result.json"
+        output_path = output_dir / f"{audio_name}_{args.stt_model}_{args.nlp_model}_result.json"
     
     # Sauvegarde JSON
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -91,8 +95,12 @@ def process_command(args):
     # Génère le rapport markdown
     from src.pipeline.report import generate_pipeline_report
     report_path = output_path.with_suffix('.md')
-    generate_pipeline_report(result, report_path)
+    generate_pipeline_report(result, report_path, stt_model_name=args.stt_model, nlp_model_name=args.nlp_model)
     print(f"Rapport markdown généré: {report_path}")
+    
+    # Affiche la commande pour refaire le test
+    print(f"\n=== Commande pour refaire le test ===")
+    print(f"python3 -m src.cli.pipeline --audio {args.audio} --stt-model {args.stt_model} --nlp-model {args.nlp_model}")
 
 
 def main():

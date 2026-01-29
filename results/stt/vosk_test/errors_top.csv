@@ -1,0 +1,21 @@
+id,wer,cer,reference,prediction
+sample_000171,1.0,0.725,Me gustaría viajar de Burdeos a Toulouse,mais story avait dit atteler
+sample_000066,1.0,0.6666666666666666,Marseille a un beau port,merci iran boycott
+sample_000081,0.9285714285714286,0.49295774647887325,A quelle heure y a-t-il des trains vers Paris en partance de Toulouse ?,aqua white hilda transvase pearson partons de toulouse
+sample_000187,0.8333333333333334,0.29411764705882354,J'ai un rendez-vous à Paris demain,giant rendez vous paris demain
+sample_000112,0.6,0.3793103448275862,Marseille est une belle ville,marseille est une bmw
+sample_000172,0.5,0.08333333333333333,Bonne soirée,bonne soirée
+sample_000134,0.5,0.07142857142857142,Merci beaucoup,merci beaucoup
+sample_000049,0.5,0.14285714285714285,Je veux aller à Paris depuis Lyon !,je veux aller à paris depuis lyon
+sample_000099,0.5,0.16666666666666666,Combien ça coûte ?,combien ça coûte
+sample_000131,0.5,0.14285714285714285,Quelle heure est-il ?,quelle heure est-il
+sample_000193,0.4444444444444444,0.09803921568627451,Comment puis-je me rendre de Bordeaux à Marseille ?,comment puis-je me rendre de bordeaux à marseille
+sample_000160,0.4285714285714286,0.07894736842105263,Je veux voyager de Toulouse à Bordeaux,je veux voyager de toulouse à bordeaux
+sample_000018,0.4285714285714286,0.09523809523809523,Comment pourrais-je me rendre à Toulouse ?,comment pourrais-je me rendre à toulouse
+sample_000094,0.4285714285714286,0.09090909090909091,Je veux aller à Paris depuis Lyon,je veux aller à paris depuis lyon
+sample_000182,0.4285714285714286,0.11764705882352941,"Je veux aller à Paris, depuis Lyon",je veux aller à paris depuis lyon
+sample_000030,0.4285714285714286,0.07142857142857142,Je souhaite voyager de Bordeaux à Toulouse,je souhaite voyager de bordeaux à toulouse
+sample_000153,0.4285714285714286,0.07894736842105263,Je veux voyager de Toulouse à Bordeaux,je veux voyager de toulouse à bordeaux
+sample_000085,0.4,0.09375,Quel temps fait-il aujourd'hui ?,quel temps fait-il aujourd'hui
+sample_000051,0.4,0.09523809523809523,Je veux aller à Paris,je veux aller à paris
+sample_000138,0.4,0.06666666666666667,Bordeaux est dans le sud-ouest,bordeaux et dans le sud-ouest

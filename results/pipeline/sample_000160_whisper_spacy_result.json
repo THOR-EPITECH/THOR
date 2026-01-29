@@ -14,17 +14,17 @@
   "nlp_metadata": {
     "model": "spacy-fr_core_news_md",
     "locations_found": [
-      "Toulouse",
-      "Bordeaux"
+      "Bordeaux",
+      "Toulouse"
     ],
     "extraction_method": "ner_patterns",
     "entities": [
       {
-        "text": "Toulouse",
+        "text": "Bordeaux",
         "label": "LOC"
       },
       {
-        "text": "Bordeaux",
+        "text": "Toulouse",
         "label": "LOC"
       }
     ]

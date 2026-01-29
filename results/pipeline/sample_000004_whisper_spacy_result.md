@@ -1,7 +1,12 @@
 # Rapport Pipeline - Traitement Audio
 
-**Date**: 2026-01-09 14:24:55  
+**Date**: 2026-01-29 15:45:22  
 **Fichier audio**: data/raw/audio/sample_000004.wav
+
+## 🔧 Configuration
+
+- **Modèle STT**: whisper
+- **Modèle NLP**: spacy
 
 ---
 
@@ -12,7 +17,7 @@ Pourriez-vous m'aider à trouver un trajet vers Paris ?
 ```
 
 ### Métadonnées STT
-- **Modèle**: whisper-small
+- **Modèle**: whisper
 - **Langue détectée**: fr
 - **Segments**: 1
 - **Temps de traitement**: N/A
@@ -31,7 +36,7 @@ Pourriez-vous m'aider à trouver un trajet vers Paris ?
 ⚠️ Attention : La ville de départ est manquante. Veuillez préciser d'où vous partez.
 
 ### Métadonnées NLP
-- **Modèle**: spacy-fr_core_news_md
+- **Modèle**: spacy
 - **Méthode d'extraction**: ner_patterns
 - **Lieux détectés**: Paris
 
@@ -60,7 +65,7 @@ Pourriez-vous m'aider à trouver un trajet vers Paris ?
 ## 📁 Fichiers
 
 - **Audio source**: `data/raw/audio/sample_000004.wav`
-- **Rapport généré**: `sample_000004_result.md`
+- **Rapport généré**: `sample_000004_whisper_spacy_result.md`
 
 ---
 
@@ -68,7 +73,7 @@ Pourriez-vous m'aider à trouver un trajet vers Paris ?
 
 Ce rapport a été généré automatiquement par le pipeline THOR.
 
-Pour relancer le traitement :
+Pour relancer le traitement avec les mêmes modèles :
 ```bash
-python -m src.cli.pipeline --audio data/raw/audio/sample_000004.wav --stt-model whisper --nlp-model spacy
+python3 -m src.cli.pipeline --audio data/raw/audio/sample_000004.wav --stt-model whisper --nlp-model spacy
 ```

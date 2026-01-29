@@ -1,0 +1,31 @@
+{
+  "audio_path": "data/raw/audio/sample_000160.wav",
+  "transcript": "je veux voyager de toulouse à bordeaux",
+  "origin": "toulouse",
+  "destination": "bordeaux",
+  "is_valid": true,
+  "confidence": 0.7,
+  "error_message": null,
+  "stt_metadata": {
+    "model": "vosk",
+    "model_path": "models/stt/vosk-fr/vosk-model-fr-0.22"
+  },
+  "nlp_metadata": {
+    "model": "spacy-fr_core_news_md",
+    "locations_found": [
+      "bordeaux",
+      "toulouse"
+    ],
+    "extraction_method": "ner_patterns",
+    "entities": [
+      {
+        "text": "bordeaux",
+        "label": "LOC"
+      },
+      {
+        "text": "toulouse",
+        "label": "LOC"
+      }
+    ]
+  }
+}
