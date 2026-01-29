@@ -21,7 +21,7 @@ def convert_csv_to_json():
         # Lecture du CSV
         df = pd.read_csv(input_path, sep=';', encoding='utf-8')
     except FileNotFoundError:
-        print(f"❌ Erreur : Le fichier est introuvable au chemin : {input_path}")
+        print(f"Erreur : Le fichier est introuvable au chemin : {input_path}")
         return
 
     json_result = []
@@ -53,7 +53,7 @@ def convert_csv_to_json():
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(json_result, f, ensure_ascii=False, indent=4)
     
-    print(f"✅ Conversion réussie !")
+    print(f"Conversion réussie !")
     print(f"Fichier créé : {output_file}")
 
 if __name__ == "__main__":
