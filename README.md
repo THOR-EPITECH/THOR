@@ -95,6 +95,137 @@ python -m spacy download fr_core_news_md
 # Voir docs/stt/vosk.md pour les instructions
 ```
 
+### Installation multi-plateforme
+
+THOR est compatible avec **Linux Ubuntu** et **Windows**. Voici les instructions spécifiques pour chaque plateforme :
+
+#### 🐧 Linux Ubuntu
+
+**Prérequis système :**
+
+```bash
+# Mettre à jour les paquets
+sudo apt update
+
+# Installer Python 3.9+ et pip si nécessaire
+sudo apt install python3 python3-pip python3-venv
+
+# Installer les dépendances système pour audio (si vous utilisez STT)
+sudo apt install ffmpeg portaudio19-dev python3-dev
+
+# Installer les dépendances pour les modèles Transformers (optionnel, pour GPU)
+sudo apt install build-essential
+```
+
+**Installation du projet :**
+
+```bash
+# Clone le repository
+git clone https://github.com/THOR-EPITECH/THOR.git
+cd THOR
+
+# Crée un environnement virtuel
+python3 -m venv venv
+source venv/bin/activate
+
+# Installe les dépendances de base
+pip install --upgrade pip
+pip install -e .
+
+# Installe les modules optionnels selon vos besoins
+pip install -e ".[stt]"      # Pour Speech-to-Text
+pip install -e ".[nlp]"      # Pour NLP
+pip install -e ".[dev]"      # Pour le développement
+
+# Télécharge le modèle spaCy français
+python -m spacy download fr_core_news_md
+```
+
+**Note pour GPU (CUDA) :** Si vous avez une carte graphique NVIDIA et souhaitez utiliser le GPU pour les modèles Transformers :
+
+```bash
+# Installer PyTorch avec support CUDA
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
+#### 🪟 Windows
+
+**Prérequis système :**
+
+1. **Installer Python 3.9+** :
+   - Téléchargez depuis [python.org](https://www.python.org/downloads/)
+   - ⚠️ **Important** : Cochez "Add Python to PATH" lors de l'installation
+   - Vérifiez l'installation : `python --version` dans PowerShell ou CMD
+
+2. **Installer Git** (si nécessaire) :
+   - Téléchargez depuis [git-scm.com](https://git-scm.com/download/win)
+
+3. **Installer FFmpeg** (pour le traitement audio avec STT) :
+   - Téléchargez depuis [ffmpeg.org](https://ffmpeg.org/download.html)
+   - Extrayez et ajoutez le dossier `bin` au PATH système
+   - Vérifiez : `ffmpeg -version` dans PowerShell
+
+**Installation du projet :**
+
+```powershell
+# Ouvrir PowerShell ou CMD en tant qu'administrateur (recommandé)
+
+# Clone le repository
+git clone https://github.com/THOR-EPITECH/THOR.git
+cd THOR
+
+# Crée un environnement virtuel
+python -m venv venv
+
+# Active l'environnement virtuel
+.\venv\Scripts\activate
+
+# Installe les dépendances de base
+python -m pip install --upgrade pip
+pip install -e .
+
+# Installe les modules optionnels selon vos besoins
+pip install -e ".[stt]"      # Pour Speech-to-Text
+pip install -e ".[nlp]"      # Pour NLP
+pip install -e ".[dev]"      # Pour le développement
+
+# Télécharge le modèle spaCy français
+python -m spacy download fr_core_news_md
+```
+
+**Note pour GPU (CUDA) :** Si vous avez une carte graphique NVIDIA :
+
+1. Installez [CUDA Toolkit](https://developer.nvidia.com/cuda-downloads)
+2. Installez PyTorch avec support CUDA :
+```powershell
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
+**Dépannage Windows :**
+
+- **Erreur "python n'est pas reconnu"** : Vérifiez que Python est dans le PATH ou utilisez `py` au lieu de `python`
+- **Erreur lors de l'activation du venv** : Exécutez PowerShell en tant qu'administrateur ou changez la politique d'exécution :
+  ```powershell
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+  ```
+- **Erreur avec FFmpeg** : Vérifiez que FFmpeg est dans le PATH système
+
+#### ✅ Vérification de l'installation
+
+Après l'installation sur n'importe quelle plateforme, vérifiez que tout fonctionne :
+
+```bash
+# Vérifier l'installation
+python -m src.cli.nlp extract --text "Je veux aller à Paris depuis Lyon" --model dummy
+
+# Devrait afficher :
+# {
+#   "origin": "Lyon",
+#   "destination": "Paris",
+#   ...
+# }
+```
+
 ## 🚀 Démarrage rapide
 
 ### Transcription audio (STT)
