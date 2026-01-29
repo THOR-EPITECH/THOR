@@ -6,7 +6,7 @@ from typing import Dict, Any
 from datetime import datetime
 
 
-def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, stt_model_name: str = None, nlp_model_name: str = None) -> Path:
+def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, stt_model_name: str = None, nlp_model_name: str = None, pathfinding_model_name: str = None) -> Path:
     """
     Génère un rapport markdown pour un résultat de pipeline.
     
@@ -34,6 +34,9 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, st
     # Récupère les noms des modèles
     stt_model = stt_model_name or stt_metadata.get('model', 'N/A')
     nlp_model = nlp_model_name or nlp_metadata.get('model', 'N/A')
+    pathfinding_model = pathfinding_model_name or "Non utilisé"
+    
+    route = result.get("route")
     
     # Formate les valeurs
     confidence_str = f"{confidence:.2f}" if confidence is not None else "N/A"
@@ -50,6 +53,7 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, st
 
 - **Modèle STT**: {stt_model}
 - **Modèle NLP**: {nlp_model}
+- **Modèle Pathfinding**: {pathfinding_model}
 
 ---
 
@@ -90,6 +94,46 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, st
 - **Lieux détectés**: {', '.join(nlp_metadata.get('locations_found', [])) if nlp_metadata.get('locations_found') else 'Aucun'}
 
 ---
+"""
+    
+    # Section Pathfinding
+    if route:
+        if route.get('steps'):
+            report += f"""
+## 🗺️ Itinéraire (Pathfinding)
+
+### Résultats
+- **Distance totale**: {route['total_distance']:.2f} km
+- **Nombre d'étapes**: {len(route['steps'])}
+- **Temps estimé**: {route.get('total_time', 'N/A')} minutes
+
+### Étapes du trajet
+"""
+            for i, step in enumerate(route['steps'], 1):
+                report += f"{i}. {step}\n"
+            
+            if route.get('metadata', {}).get('path_uic'):
+                report += f"""
+### Détails techniques
+- **UIC départ**: {route['metadata'].get('origin_uic', 'N/A')}
+- **UIC arrivée**: {route['metadata'].get('destination_uic', 'N/A')}
+- **Nombre de gares**: {route['metadata'].get('num_stations', 'N/A')}
+"""
+        elif route.get('metadata', {}).get('error'):
+            report += f"""
+## 🗺️ Itinéraire (Pathfinding)
+
+⚠️ **Erreur**: {route['metadata']['error']}
+"""
+        else:
+            report += """
+## 🗺️ Itinéraire (Pathfinding)
+
+❌ **Aucun itinéraire trouvé**
+"""
+    
+    report += """
+---
 
 ## 📊 Analyse
 
@@ -117,7 +161,13 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, st
 
 ### Pipeline utilisé
 1. **STT** : Transcription audio → texte
-2. **NLP** : Extraction origine/destination depuis le texte
+2. **NLP** : Extraction origine/destination depuis le texte"""
+    
+    if pathfinding_model_name:
+        report += """
+3. **Pathfinding** : Recherche d'itinéraire entre origine et destination"""
+    
+    report += """
 
 ### Entités détectées
 """
@@ -146,7 +196,12 @@ Ce rapport a été généré automatiquement par le pipeline THOR.
 
 Pour relancer le traitement avec les mêmes modèles :
 ```bash
-python3 -m src.cli.pipeline --audio {audio_path} --stt-model {stt_model} --nlp-model {nlp_model}
+python3 -m src.cli.pipeline --audio {audio_path} --stt-model {stt_model} --nlp-model {nlp_model}"""
+    
+    if pathfinding_model_name:
+        report += f" --pathfinding-model {pathfinding_model_name}"
+    
+    report += """
 ```
 """
     

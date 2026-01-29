@@ -1,5 +1,5 @@
 """
-CLI pour le pipeline complet Audio → STT → NLP.
+CLI pour le pipeline complet Audio → STT → NLP → Pathfinding.
 """
 import argparse
 import json
@@ -45,6 +45,19 @@ def load_nlp_model(model_name: str, config: Config) -> "NLPModel":
         raise ValueError(f"Unknown NLP model: {model_name}")
 
 
+def load_pathfinding_model(model_name: str, config: Config) -> "PathfindingModel":
+    """Charge un modèle Pathfinding."""
+    if model_name == "dijkstra":
+        from src.pathfinding.models.dijkstra import DijkstraPathfindingModel
+        pathfinding_config = config.get("pathfinding", {})
+        return DijkstraPathfindingModel({
+            "path_gares": pathfinding_config.get("path_gares", "data/train_station/dataset_gares.json"),
+            "path_liaisons": pathfinding_config.get("path_liaisons", "data/train_station/dataset_liaisons.json")
+        })
+    else:
+        raise ValueError(f"Unknown Pathfinding model: {model_name}")
+
+
 def process_command(args):
     """Commande pour traiter un fichier audio."""
     config = Config(args.config) if args.config else Config()
@@ -52,9 +65,13 @@ def process_command(args):
     # Charge les modèles
     stt_model = load_stt_model(args.stt_model, config)
     nlp_model = load_nlp_model(args.nlp_model, config)
+    pathfinding_model = None
+    
+    if args.pathfinding_model:
+        pathfinding_model = load_pathfinding_model(args.pathfinding_model, config)
     
     # Crée le pipeline
-    pipeline = Pipeline(stt_model, nlp_model)
+    pipeline = Pipeline(stt_model, nlp_model, pathfinding_model)
     
     # Traite l'audio
     result = pipeline.process(args.audio)
@@ -63,6 +80,8 @@ def process_command(args):
     print("\n=== Configuration ===")
     print(f"Modèle STT: {args.stt_model}")
     print(f"Modèle NLP: {args.nlp_model}")
+    if args.pathfinding_model:
+        print(f"Modèle Pathfinding: {args.pathfinding_model}")
     
     print("\n=== Résultats ===")
     print(f"Transcription: {result['transcript']}")
@@ -72,6 +91,18 @@ def process_command(args):
     if result.get('confidence'):
         print(f"Confidence: {result['confidence']:.2f}")
     
+    # Affiche l'itinéraire si disponible
+    if result.get('route') and result['route'].get('steps'):
+        route = result['route']
+        print(f"\n=== Itinéraire ===")
+        print(f"Distance totale: {route['total_distance']:.2f} km" if route.get('total_distance') else "Distance: N/A")
+        print(f"Nombre d'étapes: {len(route['steps'])}")
+        print("Étapes:")
+        for i, step in enumerate(route['steps'], 1):
+            print(f"  {i}. {step}")
+    elif result.get('route') and result['route'].get('metadata', {}).get('error'):
+        print(f"\n⚠️ Pathfinding: {result['route']['metadata']['error']}")
+    
     # Affiche le message d'erreur si présent
     if result.get('error_message'):
         print(f"\n{result['error_message']}")
@@ -80,11 +111,14 @@ def process_command(args):
     if args.output:
         output_path = Path(args.output)
     else:
-        # Génère un nom automatique basé sur l'audio, STT et NLP
+        # Génère un nom automatique basé sur l'audio, STT, NLP et Pathfinding
         audio_name = Path(args.audio).stem
         output_dir = Path("results/pipeline")
         output_dir.mkdir(parents=True, exist_ok=True)
-        output_path = output_dir / f"{audio_name}_{args.stt_model}_{args.nlp_model}_result.json"
+        if args.pathfinding_model:
+            output_path = output_dir / f"{audio_name}_{args.stt_model}_{args.nlp_model}_{args.pathfinding_model}_result.json"
+        else:
+            output_path = output_dir / f"{audio_name}_{args.stt_model}_{args.nlp_model}_result.json"
     
     # Sauvegarde JSON
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -95,12 +129,21 @@ def process_command(args):
     # Génère le rapport markdown
     from src.pipeline.report import generate_pipeline_report
     report_path = output_path.with_suffix('.md')
-    generate_pipeline_report(result, report_path, stt_model_name=args.stt_model, nlp_model_name=args.nlp_model)
+    generate_pipeline_report(
+        result, 
+        report_path, 
+        stt_model_name=args.stt_model, 
+        nlp_model_name=args.nlp_model,
+        pathfinding_model_name=args.pathfinding_model
+    )
     print(f"Rapport markdown généré: {report_path}")
     
     # Affiche la commande pour refaire le test
     print(f"\n=== Commande pour refaire le test ===")
-    print(f"python3 -m src.cli.pipeline --audio {args.audio} --stt-model {args.stt_model} --nlp-model {args.nlp_model}")
+    cmd = f"python3 -m src.cli.pipeline --audio {args.audio} --stt-model {args.stt_model} --nlp-model {args.nlp_model}"
+    if args.pathfinding_model:
+        cmd += f" --pathfinding-model {args.pathfinding_model}"
+    print(cmd)
 
 
 def main():
@@ -110,6 +153,7 @@ def main():
     parser.add_argument("--audio", required=True, help="Path to audio file")
     parser.add_argument("--stt-model", default="whisper", help="STT model to use (whisper, vosk)")
     parser.add_argument("--nlp-model", default="spacy", help="NLP model to use (spacy)")
+    parser.add_argument("--pathfinding-model", help="Pathfinding model to use (dijkstra, optional)")
     parser.add_argument("--config", help="Path to config file")
     parser.add_argument("--output", help="Path to save results JSON")
     

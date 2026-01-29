@@ -8,9 +8,10 @@ Guide complet de toutes les commandes disponibles dans le projet THOR.
 
 1. [Commandes STT (Speech-to-Text)](#commandes-stt)
 2. [Commandes NLP (Natural Language Processing)](#commandes-nlp)
-3. [Commandes Pipeline](#commandes-pipeline)
-4. [Scripts utilitaires](#scripts-utilitaires)
-5. [Configuration](#configuration)
+3. [Commandes Pathfinding](#commandes-pathfinding)
+4. [Commandes Pipeline](#commandes-pipeline)
+5. [Scripts utilitaires](#scripts-utilitaires)
+6. [Configuration](#configuration)
 
 ---
 
@@ -357,17 +358,146 @@ spacy (finetuned): F1=0.8456
 
 ---
 
+## 🗺️ Commandes Pathfinding
+
+### Trouver un itinéraire
+
+Trouve un itinéraire entre deux villes en utilisant le réseau ferroviaire.
+
+```bash
+python -m src.cli.pathfinding find-route \
+    --origin <ville_départ> \
+    --destination <ville_arrivée> \
+    [--model <modèle>] \
+    [--config <fichier_config>]
+```
+
+**Paramètres :**
+- `--origin` (requis) : Ville de départ
+- `--destination` (requis) : Ville d'arrivée
+- `--model` (optionnel) : Modèle Pathfinding à utiliser (`dijkstra`) - défaut: `dijkstra`
+- `--config` (optionnel) : Chemin vers un fichier de configuration YAML
+
+**Exemples :**
+```bash
+# Recherche d'itinéraire simple
+python -m src.cli.pathfinding find-route \
+    --origin Toulouse \
+    --destination Bordeaux
+
+# Avec configuration personnalisée
+python -m src.cli.pathfinding find-route \
+    --origin Paris \
+    --destination Lyon \
+    --model dijkstra \
+    --config configs/pathfinding/dijkstra.yaml
+```
+
+**Sortie :**
+```
+=== Itinéraire trouvé ===
+Origine: Toulouse
+Destination: Bordeaux
+Distance: 216.83 km
+Nombre d'étapes: 4
+
+Étapes:
+  1. Toulouse Matabiau
+  2. Bordeaux Saint-Jean
+  3. Mérignac Arlac
+  4. Caudéran Mérignac
+```
+
+**En cas d'erreur :**
+```
+❌ Aucun itinéraire trouvé
+Erreur: Ville de départ 'Paris' non trouvée
+```
+
+---
+
+### Évaluer un modèle Pathfinding
+
+Évalue un modèle Pathfinding sur un dataset de test.
+
+```bash
+python -m src.cli.pathfinding evaluate \
+    --dataset <chemin_dataset> \
+    [--model <modèle>] \
+    [--config <fichier_config>] \
+    [--output-dir <dossier_sortie>]
+```
+
+**Paramètres :**
+- `--dataset` (requis) : Chemin vers le fichier JSONL du dataset de test
+- `--model` (optionnel) : Modèle Pathfinding à évaluer (`dijkstra`) - défaut: `dijkstra`
+- `--config` (optionnel) : Chemin vers un fichier de configuration YAML
+- `--output-dir` (optionnel) : Dossier de sortie pour les résultats - défaut: `results/pathfinding`
+
+**Format du dataset :**
+Chaque ligne doit contenir :
+```json
+{
+  "id": "test_001",
+  "origin": "Toulouse",
+  "destination": "Bordeaux",
+  "reference_steps": ["Toulouse Matabiau", "Bordeaux Saint-Jean"],
+  "reference_distance": 216.83
+}
+```
+
+**Exemples :**
+```bash
+# Évaluation basique
+python -m src.cli.pathfinding evaluate \
+    --dataset data/splits/test/test_pathfinding.jsonl \
+    --model dijkstra
+
+# Évaluation avec sortie personnalisée
+python -m src.cli.pathfinding evaluate \
+    --dataset data/splits/test/test_pathfinding.jsonl \
+    --model dijkstra \
+    --output-dir results/pathfinding/dijkstra_test
+```
+
+**Fichiers générés :**
+- `metrics.json` : Métriques agrégées (précision, taux de succès, erreur de distance)
+- `predictions.jsonl` : Toutes les prédictions détaillées
+- `predictions.csv` : Même chose en format CSV
+- `report.md` : Rapport markdown complet
+
+**Métriques calculées :**
+- **Origin Accuracy** : Précision sur l'origine
+- **Destination Accuracy** : Précision sur la destination
+- **Route Found Rate** : Taux d'itinéraires trouvés
+- **Path Accuracy** : Précision du chemin (si étapes de référence fournies)
+- **Distance Error** : Erreur de distance (si distance de référence fournie)
+- **Num Steps** : Nombre moyen d'étapes
+
+**Exemple de sortie :**
+```
+=== Metrics ===
+origin_accuracy_mean: 1.0000
+destination_accuracy_mean: 1.0000
+route_found_mean: 0.5000
+route_found_rate: 0.5000
+num_steps_mean: 3.5000
+```
+
+---
+
 ## 🔄 Commandes Pipeline
 
-### Traiter un fichier audio complet (STT → NLP)
+### Traiter un fichier audio complet (STT → NLP → Pathfinding)
 
-Traite un fichier audio complet : transcription puis extraction origine/destination.
+Traite un fichier audio complet : transcription, extraction origine/destination, puis recherche d'itinéraire.
 
 ```bash
 python -m src.cli.pipeline \
     --audio <chemin_audio> \
     [--stt-model <modèle_stt>] \
     [--nlp-model <modèle_nlp>] \
+    [--pathfinding-model <modèle_pathfinding>] \
     [--config <fichier_config>] \
     [--output <chemin_sortie>]
 ```
@@ -376,39 +506,80 @@ python -m src.cli.pipeline \
 - `--audio` (requis) : Chemin vers le fichier audio
 - `--stt-model` (optionnel) : Modèle STT à utiliser (`whisper`, `vosk`) - défaut: `whisper`
 - `--nlp-model` (optionnel) : Modèle NLP à utiliser (`spacy`) - défaut: `spacy`
+- `--pathfinding-model` (optionnel) : Modèle Pathfinding à utiliser (`dijkstra`) - défaut: non utilisé
 - `--config` (optionnel) : Chemin vers un fichier de configuration YAML
 - `--output` (optionnel) : Chemin pour sauvegarder les résultats JSON (sinon généré automatiquement)
 
 **Exemples :**
 ```bash
-# Pipeline basique
+# Pipeline basique (sans pathfinding)
 python -m src.cli.pipeline \
     --audio data/raw/audio/sample_000160.wav
+
+# Pipeline complet avec pathfinding
+python -m src.cli.pipeline \
+    --audio data/raw/audio/sample_000160.wav \
+    --stt-model whisper \
+    --nlp-model spacy \
+    --pathfinding-model dijkstra
 
 # Pipeline avec modèles spécifiques
 python -m src.cli.pipeline \
     --audio data/raw/audio/sample_000160.wav \
     --stt-model whisper \
     --nlp-model spacy \
+    --pathfinding-model dijkstra \
     --config configs/nlp/spacy_finetuned.yaml
 
 # Pipeline avec sortie personnalisée
 python -m src.cli.pipeline \
     --audio data/raw/audio/sample_000160.wav \
+    --pathfinding-model dijkstra \
     --output results/pipeline/mon_resultat.json
 ```
 
-**Sortie :**
+**Sortie (sans pathfinding) :**
 ```
+=== Configuration ===
+Modèle STT: whisper
+Modèle NLP: spacy
+
 === Résultats ===
 Transcription: Je veux voyager de Toulouse à Bordeaux.
 Origine: Toulouse
 Destination: Bordeaux
 Valide: True
-Confidence: 1.00
+Confidence: 0.70
 
-Résultats JSON sauvegardés dans: results/pipeline/sample_000160_result.json
-Rapport markdown généré: results/pipeline/sample_000160_result.md
+Résultats JSON sauvegardés dans: results/pipeline/sample_000160_whisper_spacy_result.json
+Rapport markdown généré: results/pipeline/sample_000160_whisper_spacy_result.md
+```
+
+**Sortie (avec pathfinding) :**
+```
+=== Configuration ===
+Modèle STT: whisper
+Modèle NLP: spacy
+Modèle Pathfinding: dijkstra
+
+=== Résultats ===
+Transcription: Je veux voyager de Toulouse à Bordeaux.
+Origine: Toulouse
+Destination: Bordeaux
+Valide: True
+Confidence: 0.70
+
+=== Itinéraire ===
+Distance totale: 216.83 km
+Nombre d'étapes: 4
+Étapes:
+  1. Toulouse Matabiau
+  2. Bordeaux Saint-Jean
+  3. Mérignac Arlac
+  4. Caudéran Mérignac
+
+Résultats JSON sauvegardés dans: results/pipeline/sample_000160_whisper_spacy_dijkstra_result.json
+Rapport markdown généré: results/pipeline/sample_000160_whisper_spacy_dijkstra_result.md
 ```
 
 **Messages d'erreur possibles :**
@@ -417,8 +588,10 @@ Rapport markdown généré: results/pipeline/sample_000160_result.md
 - `❌ Erreur : Aucune ville détectée. Veuillez préciser une ville de départ et/ou d'arrivée.`
 
 **Fichiers générés :**
-- `{audio_name}_result.json` : Résultats au format JSON
-- `{audio_name}_result.md` : Rapport markdown détaillé
+- `{audio_name}_{stt_model}_{nlp_model}[_{pathfinding_model}]_result.json` : Résultats au format JSON
+- `{audio_name}_{stt_model}_{nlp_model}[_{pathfinding_model}]_result.md` : Rapport markdown détaillé
+
+**Note :** Le nom du fichier inclut les modèles utilisés pour faciliter l'identification.
 
 ---
 
@@ -684,6 +857,23 @@ Chaque ligne contient :
 }
 ```
 
+### Dataset Pathfinding (JSONL)
+
+Chaque ligne contient :
+```json
+{
+  "id": "path_001",
+  "origin": "Toulouse",
+  "destination": "Bordeaux",
+  "reference_steps": ["Toulouse Matabiau", "Bordeaux Saint-Jean"],
+  "reference_distance": 216.83
+}
+```
+
+**Champs optionnels :**
+- `reference_steps` : Liste des étapes de référence pour calculer la précision du chemin
+- `reference_distance` : Distance de référence en km pour calculer l'erreur de distance
+
 ---
 
 ## 📊 Résultats générés
@@ -708,8 +898,15 @@ results/
       report.md             # Rapport markdown
   
   pipeline/
-    <audio_name>_result.json  # Résultats JSON
-    <audio_name>_result.md     # Rapport markdown
+    <audio_name>_<stt>_<nlp>_[<pathfinding>]_result.json  # Résultats JSON
+    <audio_name>_<stt>_<nlp>_[<pathfinding>]_result.md    # Rapport markdown
+  
+  pathfinding/
+    <model>_test/
+      metrics.json          # Métriques agrégées
+      predictions.jsonl     # Prédictions détaillées
+      predictions.csv       # Format CSV
+      report.md             # Rapport markdown
 ```
 
 ---
@@ -753,15 +950,26 @@ python -m src.cli.nlp evaluate \
     --output-dir results/nlp/spacy_finetuned_test
 ```
 
-### Workflow 3 : Pipeline complet
+### Workflow 3 : Pipeline complet avec pathfinding
 
 ```bash
-# Traiter un fichier audio complet
+# Traiter un fichier audio complet avec itinéraire
 python -m src.cli.pipeline \
     --audio data/raw/audio/sample_000160.wav \
     --stt-model whisper \
     --nlp-model spacy \
+    --pathfinding-model dijkstra \
     --config configs/nlp/spacy_finetuned.yaml
+```
+
+### Workflow 4 : Évaluer le pathfinding
+
+```bash
+# Évaluer le modèle pathfinding
+python -m src.cli.pathfinding evaluate \
+    --dataset data/splits/test/test_pathfinding.jsonl \
+    --model dijkstra \
+    --output-dir results/pathfinding/dijkstra_test
 ```
 
 ---
@@ -782,6 +990,7 @@ Pour obtenir l'aide d'une commande :
 ```bash
 python -m src.cli.stt --help
 python -m src.cli.nlp --help
+python -m src.cli.pathfinding --help
 python -m src.cli.pipeline --help
 ```
 
@@ -789,10 +998,12 @@ Pour obtenir l'aide d'une sous-commande :
 ```bash
 python -m src.cli.stt transcribe --help
 python -m src.cli.nlp train --help
+python -m src.cli.pathfinding find-route --help
+python -m src.cli.pathfinding evaluate --help
 ```
 
 ---
 
-**Dernière mise à jour :** 2026-01-09
+**Dernière mise à jour :** 2026-01-29
 
 
