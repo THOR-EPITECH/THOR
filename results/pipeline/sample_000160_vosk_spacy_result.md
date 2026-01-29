@@ -1,20 +1,25 @@
 # Rapport Pipeline - Traitement Audio
 
-**Date**: 2026-01-15 11:11:47  
+**Date**: 2026-01-29 15:43:45  
 **Fichier audio**: data/raw/audio/sample_000160.wav
+
+## 🔧 Configuration
+
+- **Modèle STT**: vosk
+- **Modèle NLP**: spacy
 
 ---
 
 ## 📝 Transcription (STT)
 
 ```
-Je veux voyager de Toulouse à Bordeaux.
+je veux voyager de toulouse à bordeaux
 ```
 
 ### Métadonnées STT
-- **Modèle**: whisper-small
-- **Langue détectée**: fr
-- **Segments**: 1
+- **Modèle**: vosk
+- **Langue détectée**: N/A
+- **Segments**: N/A
 - **Temps de traitement**: N/A
 
 ---
@@ -22,15 +27,15 @@ Je veux voyager de Toulouse à Bordeaux.
 ## 🎯 Extraction NLP
 
 ### Résultats
-- **Origine**: Toulouse
-- **Destination**: Bordeaux
+- **Origine**: toulouse
+- **Destination**: bordeaux
 - **Demande valide**: ✅ Oui
 - **Confiance**: 0.70
 
 ### Métadonnées NLP
-- **Modèle**: spacy-fr_core_news_md
+- **Modèle**: spacy
 - **Méthode d'extraction**: ner_patterns
-- **Lieux détectés**: Toulouse, Bordeaux
+- **Lieux détectés**: bordeaux, toulouse
 
 ---
 
@@ -49,8 +54,8 @@ Je veux voyager de Toulouse à Bordeaux.
 2. **NLP** : Extraction origine/destination depuis le texte
 
 ### Entités détectées
-- Toulouse (LOC)
-- Bordeaux (LOC)
+- bordeaux (LOC)
+- toulouse (LOC)
 
 
 ---
@@ -58,7 +63,7 @@ Je veux voyager de Toulouse à Bordeaux.
 ## 📁 Fichiers
 
 - **Audio source**: `data/raw/audio/sample_000160.wav`
-- **Rapport généré**: `sample_000160_result.md`
+- **Rapport généré**: `sample_000160_vosk_spacy_result.md`
 
 ---
 
@@ -66,7 +71,7 @@ Je veux voyager de Toulouse à Bordeaux.
 
 Ce rapport a été généré automatiquement par le pipeline THOR.
 
-Pour relancer le traitement :
+Pour relancer le traitement avec les mêmes modèles :
 ```bash
-python -m src.cli.pipeline --audio data/raw/audio/sample_000160.wav --stt-model whisper --nlp-model spacy
+python3 -m src.cli.pipeline --audio data/raw/audio/sample_000160.wav --stt-model vosk --nlp-model spacy
 ```

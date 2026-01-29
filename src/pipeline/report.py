@@ -6,7 +6,7 @@ from typing import Dict, Any
 from datetime import datetime
 
 
-def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path) -> Path:
+def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, stt_model_name: str = None, nlp_model_name: str = None) -> Path:
     """
     Génère un rapport markdown pour un résultat de pipeline.
     
@@ -31,6 +31,10 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path) ->
     stt_metadata = result.get("stt_metadata", {})
     nlp_metadata = result.get("nlp_metadata", {})
     
+    # Récupère les noms des modèles
+    stt_model = stt_model_name or stt_metadata.get('model', 'N/A')
+    nlp_model = nlp_model_name or nlp_metadata.get('model', 'N/A')
+    
     # Formate les valeurs
     confidence_str = f"{confidence:.2f}" if confidence is not None else "N/A"
     processing_time = stt_metadata.get('processing_time')
@@ -42,6 +46,11 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path) ->
 **Date**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}  
 **Fichier audio**: {audio_path}
 
+## 🔧 Configuration
+
+- **Modèle STT**: {stt_model}
+- **Modèle NLP**: {nlp_model}
+
 ---
 
 ## 📝 Transcription (STT)
@@ -51,8 +60,8 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path) ->
 ```
 
 ### Métadonnées STT
-- **Modèle**: {stt_metadata.get('model', 'N/A')}
-- **Langue détectée**: {stt_metadata.get('detected_language', 'N/A')}
+- **Modèle**: {stt_model}
+- **Langue détectée**: {stt_metadata.get('detected_language', stt_metadata.get('language', 'N/A'))}
 - **Segments**: {stt_metadata.get('segments', 'N/A')}
 - **Temps de traitement**: {processing_time_str}
 
@@ -76,7 +85,7 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path) ->
     
     report += f"""
 ### Métadonnées NLP
-- **Modèle**: {nlp_metadata.get('model', 'N/A')}
+- **Modèle**: {nlp_model}
 - **Méthode d'extraction**: {nlp_metadata.get('extraction_method', 'N/A')}
 - **Lieux détectés**: {', '.join(nlp_metadata.get('locations_found', [])) if nlp_metadata.get('locations_found') else 'Aucun'}
 
@@ -135,9 +144,9 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path) ->
 
 Ce rapport a été généré automatiquement par le pipeline THOR.
 
-Pour relancer le traitement :
+Pour relancer le traitement avec les mêmes modèles :
 ```bash
-python -m src.cli.pipeline --audio {audio_path} --stt-model whisper --nlp-model spacy
+python3 -m src.cli.pipeline --audio {audio_path} --stt-model {stt_model} --nlp-model {nlp_model}
 ```
 """
     

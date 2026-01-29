@@ -1,24 +1,25 @@
 {
-  "audio_path": "data/raw/audio/sample_000001.wav",
-  "transcript": "je voudrais bien aller à paris",
+  "audio_path": "data/raw/audio/sample_000004.wav",
+  "transcript": "Pourriez-vous m'aider à trouver un trajet vers Paris ?",
   "origin": null,
-  "destination": "paris",
+  "destination": "Paris",
   "is_valid": true,
   "confidence": 0.6,
   "error_message": "⚠️ Attention : La ville de départ est manquante. Veuillez préciser d'où vous partez.",
   "stt_metadata": {
-    "model": "vosk",
-    "model_path": "models/stt/vosk-fr/vosk-model-fr-0.22"
+    "model": "whisper-small",
+    "segments": 1,
+    "detected_language": "fr"
   },
   "nlp_metadata": {
     "model": "spacy-fr_core_news_md",
     "locations_found": [
-      "paris"
+      "Paris"
     ],
     "extraction_method": "ner_patterns",
     "entities": [
       {
-        "text": "paris",
+        "text": "Paris",
         "label": "LOC"
       }
     ]

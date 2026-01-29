@@ -1,20 +1,25 @@
 # Rapport Pipeline - Traitement Audio
 
-**Date**: 2026-01-29 15:31:27  
-**Fichier audio**: data/raw/audio/sample_000001.wav
+**Date**: 2026-01-29 15:45:22  
+**Fichier audio**: data/raw/audio/sample_000004.wav
+
+## 🔧 Configuration
+
+- **Modèle STT**: whisper
+- **Modèle NLP**: spacy
 
 ---
 
 ## 📝 Transcription (STT)
 
 ```
-je voudrais bien aller à paris
+Pourriez-vous m'aider à trouver un trajet vers Paris ?
 ```
 
 ### Métadonnées STT
-- **Modèle**: vosk
-- **Langue détectée**: N/A
-- **Segments**: N/A
+- **Modèle**: whisper
+- **Langue détectée**: fr
+- **Segments**: 1
 - **Temps de traitement**: N/A
 
 ---
@@ -23,7 +28,7 @@ je voudrais bien aller à paris
 
 ### Résultats
 - **Origine**: Non détectée
-- **Destination**: paris
+- **Destination**: Paris
 - **Demande valide**: ✅ Oui
 - **Confiance**: 0.60
 
@@ -31,9 +36,9 @@ je voudrais bien aller à paris
 ⚠️ Attention : La ville de départ est manquante. Veuillez préciser d'où vous partez.
 
 ### Métadonnées NLP
-- **Modèle**: spacy-fr_core_news_md
+- **Modèle**: spacy
 - **Méthode d'extraction**: ner_patterns
-- **Lieux détectés**: paris
+- **Lieux détectés**: Paris
 
 ---
 
@@ -52,15 +57,15 @@ je voudrais bien aller à paris
 2. **NLP** : Extraction origine/destination depuis le texte
 
 ### Entités détectées
-- paris (LOC)
+- Paris (LOC)
 
 
 ---
 
 ## 📁 Fichiers
 
-- **Audio source**: `data/raw/audio/sample_000001.wav`
-- **Rapport généré**: `sample_000001_result.md`
+- **Audio source**: `data/raw/audio/sample_000004.wav`
+- **Rapport généré**: `sample_000004_whisper_spacy_result.md`
 
 ---
 
@@ -68,7 +73,7 @@ je voudrais bien aller à paris
 
 Ce rapport a été généré automatiquement par le pipeline THOR.
 
-Pour relancer le traitement :
+Pour relancer le traitement avec les mêmes modèles :
 ```bash
-python -m src.cli.pipeline --audio data/raw/audio/sample_000001.wav --stt-model whisper --nlp-model spacy
+python3 -m src.cli.pipeline --audio data/raw/audio/sample_000004.wav --stt-model whisper --nlp-model spacy
 ```
