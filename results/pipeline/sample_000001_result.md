@@ -1,6 +1,6 @@
 # Rapport Pipeline - Traitement Audio
 
-**Date**: 2026-01-09 14:24:50  
+**Date**: 2026-01-29 15:31:27  
 **Fichier audio**: data/raw/audio/sample_000001.wav
 
 ---
@@ -8,13 +8,13 @@
 ## 📝 Transcription (STT)
 
 ```
-Je voudrais bien aller à Paris.
+je voudrais bien aller à paris
 ```
 
 ### Métadonnées STT
-- **Modèle**: whisper-small
-- **Langue détectée**: fr
-- **Segments**: 1
+- **Modèle**: vosk
+- **Langue détectée**: N/A
+- **Segments**: N/A
 - **Temps de traitement**: N/A
 
 ---
@@ -23,7 +23,7 @@ Je voudrais bien aller à Paris.
 
 ### Résultats
 - **Origine**: Non détectée
-- **Destination**: Paris
+- **Destination**: paris
 - **Demande valide**: ✅ Oui
 - **Confiance**: 0.60
 
@@ -33,7 +33,7 @@ Je voudrais bien aller à Paris.
 ### Métadonnées NLP
 - **Modèle**: spacy-fr_core_news_md
 - **Méthode d'extraction**: ner_patterns
-- **Lieux détectés**: Paris
+- **Lieux détectés**: paris
 
 ---
 
@@ -52,7 +52,7 @@ Je voudrais bien aller à Paris.
 2. **NLP** : Extraction origine/destination depuis le texte
 
 ### Entités détectées
-- Paris (LOC)
+- paris (LOC)
 
 
 ---

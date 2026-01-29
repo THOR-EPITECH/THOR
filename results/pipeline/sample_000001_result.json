@@ -1,0 +1,26 @@
+{
+  "audio_path": "data/raw/audio/sample_000001.wav",
+  "transcript": "je voudrais bien aller à paris",
+  "origin": null,
+  "destination": "paris",
+  "is_valid": true,
+  "confidence": 0.6,
+  "error_message": "⚠️ Attention : La ville de départ est manquante. Veuillez préciser d'où vous partez.",
+  "stt_metadata": {
+    "model": "vosk",
+    "model_path": "models/stt/vosk-fr/vosk-model-fr-0.22"
+  },
+  "nlp_metadata": {
+    "model": "spacy-fr_core_news_md",
+    "locations_found": [
+      "paris"
+    ],
+    "extraction_method": "ner_patterns",
+    "entities": [
+      {
+        "text": "paris",
+        "label": "LOC"
+      }
+    ]
+  }
+}
