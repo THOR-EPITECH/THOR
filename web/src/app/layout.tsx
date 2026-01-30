@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "THOR - Train Horaires Optimisés Routes",
+  title: "THOR",
   description: "Trouvez le meilleur itinéraire ferroviaire en France avec l'IA",
   icons: {
     icon: "/favicon.ico",

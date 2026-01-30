@@ -58,11 +58,10 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-lg font-semibold tracking-tight">THOR</span>
-            <span className="text-xs text-neutral-500 hidden sm:block">Train Horaires Optimisés Routes</span>
           </div>
           
           <a 
-            href="https://github.com" 
+            href="https://github.com/THOR-EPITECH/THOR" 
             target="_blank" 
             rel="noopener noreferrer"
             className="p-2 text-neutral-500 hover:text-white transition-colors"

@@ -8,6 +8,10 @@ export interface Segment {
   nb_trains_jour: number;
   type_train: 'TGV' | 'OUIGO' | 'Intercités' | 'TER' | 'Autre';
   types_details?: Record<string, number>;
+  geometry?: {
+    type: 'LineString';
+    coordinates: number[][];  // [[lon, lat], [lon, lat], ...]
+  };
 }
 
 export interface RouteMetadata {
