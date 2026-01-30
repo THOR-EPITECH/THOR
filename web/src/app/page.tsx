@@ -45,6 +45,12 @@ export default function Home() {
     }
   };
 
+  const handleVoiceResult = (data: PipelineResult) => {
+    setError(null);
+    setResult(data);
+    setIsLoading(false);
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       {/* Header */}
@@ -81,7 +87,11 @@ export default function Home() {
 
           {/* Search */}
           <div className="mb-16">
-            <SearchInput onSearch={handleSearch} isLoading={isLoading} />
+            <SearchInput 
+              onSearch={handleSearch} 
+              onVoiceResult={handleVoiceResult}
+              isLoading={isLoading} 
+            />
           </div>
 
           {/* Loading */}
@@ -134,7 +144,7 @@ export default function Home() {
             <div className="text-center py-16 text-neutral-500">
               <p className="mb-8">Exemples de recherches</p>
               <div className="flex flex-wrap gap-3 justify-center">
-                {['Paris → Bordeaux', 'Lyon → Marseille', 'Toulouse → Bordeaux'].map((example) => (
+                {['Paris → Bordeaux', 'Lyon → Marseille', 'Bordeaux → Toulouse'].map((example) => (
                   <button
                     key={example}
                     onClick={() => handleSearch(`Je veux aller de ${example.replace(' → ', ' à ')}`)}

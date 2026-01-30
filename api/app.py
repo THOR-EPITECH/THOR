@@ -332,9 +332,18 @@ def pipeline():
         
         try:
             # Étape 1: STT
-            stt_model = get_stt_model()
-            stt_result = stt_model.transcribe(tmp_path)
-            transcript = stt_result.text
+            logger.info(f"Transcription audio: format={audio_format}, taille={len(audio_bytes)} bytes")
+            try:
+                stt_model = get_stt_model()
+                stt_result = stt_model.transcribe(tmp_path)
+                transcript = stt_result.text
+                logger.info(f"Transcription réussie: '{transcript}'")
+            except Exception as e:
+                logger.error(f"Erreur lors de la transcription: {e}")
+                return jsonify({
+                    'error': f'Erreur lors de la transcription audio: {str(e)}',
+                    'details': 'Vérifiez que le format audio est supporté (wav, mp3, webm)'
+                }), 500
             
             # Étape 2: NLP
             nlp_model = get_nlp_model()
@@ -374,7 +383,8 @@ def pipeline():
             return jsonify(result)
             
         finally:
-            os.unlink(tmp_path)
+            if os.path.exists(tmp_path):
+                os.unlink(tmp_path)
             
     except Exception as e:
         logger.error(f"Erreur dans /api/pipeline: {e}")
