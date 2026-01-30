@@ -1,9 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Mic, MicOff, Search, Loader2, Sparkles } from 'lucide-react';
+import { Mic, MicOff, ArrowRight, Loader2 } from 'lucide-react';
 
 interface SearchInputProps {
   onSearch: (text: string) => void;
@@ -15,9 +13,9 @@ export default function SearchInput({ onSearch, isLoading }: SearchInputProps) {
   const [isListening, setIsListening] = useState(false);
   const [speechSupported, setSpeechSupported] = useState(false);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    // Vérifier si la Web Speech API est supportée
     if (typeof window !== 'undefined') {
       const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
       setSpeechSupported(!!SpeechRecognition);
@@ -39,8 +37,7 @@ export default function SearchInput({ onSearch, isLoading }: SearchInputProps) {
           setIsListening(false);
         };
         
-        recognition.onerror = (event) => {
-          console.error('Speech recognition error:', event.error);
+        recognition.onerror = () => {
           setIsListening(false);
         };
         
@@ -75,103 +72,66 @@ export default function SearchInput({ onSearch, isLoading }: SearchInputProps) {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      handleSubmit(e);
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="relative">
-      <div className="relative group">
-        {/* Effet de lueur */}
-        <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500/20 via-purple-500/20 to-pink-500/20 rounded-2xl blur-lg opacity-0 group-focus-within:opacity-100 transition-opacity duration-500" />
+    <form onSubmit={handleSubmit}>
+      <div className="relative">
+        <input
+          ref={inputRef}
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder={isListening ? "Je vous écoute..." : "De Paris à Bordeaux..."}
+          disabled={isLoading}
+          className="w-full h-14 px-5 pr-28 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-500 focus:outline-none focus:border-white/30 transition-colors"
+        />
         
-        <div className="relative flex items-center gap-2 p-2 bg-slate-900/90 backdrop-blur-xl rounded-2xl border border-slate-700/50 group-focus-within:border-cyan-500/50 transition-colors">
-          {/* Bouton micro */}
+        <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
+          {/* Mic button */}
           {speechSupported && (
-            <Button
+            <button
               type="button"
-              variant="ghost"
-              size="icon"
               onClick={toggleListening}
               disabled={isLoading}
-              className={`relative rounded-xl transition-all duration-300 ${
+              className={`p-2.5 rounded-lg transition-colors ${
                 isListening 
-                  ? 'bg-rose-500/20 text-rose-400 hover:bg-rose-500/30' 
-                  : 'text-slate-400 hover:text-cyan-400 hover:bg-cyan-500/10'
+                  ? 'bg-red-500/20 text-red-400' 
+                  : 'text-neutral-500 hover:text-white hover:bg-white/5'
               }`}
             >
               {isListening ? (
-                <>
-                  <MicOff className="w-5 h-5" />
-                  <span className="absolute inset-0 rounded-xl animate-ping bg-rose-500/20" />
-                </>
+                <MicOff className="w-5 h-5" />
               ) : (
                 <Mic className="w-5 h-5" />
               )}
-            </Button>
+            </button>
           )}
           
-          {/* Input texte */}
-          <div className="flex-1 relative">
-            <Input
-              type="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder={isListening ? "Je vous écoute..." : "Ex: Je veux aller de Paris à Bordeaux"}
-              disabled={isLoading || isListening}
-              className="border-0 bg-transparent text-white placeholder:text-slate-500 focus-visible:ring-0 focus-visible:ring-offset-0 text-base py-6"
-            />
-            {isListening && (
-              <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
-                <span className="w-2 h-2 bg-rose-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                <span className="w-2 h-2 bg-rose-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                <span className="w-2 h-2 bg-rose-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
-              </div>
-            )}
-          </div>
-          
-          {/* Bouton rechercher */}
-          <Button
+          {/* Submit button */}
+          <button
             type="submit"
             disabled={!text.trim() || isLoading}
-            className="rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-6 py-6 transition-all duration-300 disabled:opacity-50"
+            className="p-2.5 rounded-lg bg-white text-black hover:bg-neutral-200 disabled:opacity-30 disabled:hover:bg-white transition-all"
           >
             {isLoading ? (
               <Loader2 className="w-5 h-5 animate-spin" />
             ) : (
-              <>
-                <Search className="w-5 h-5 mr-2" />
-                Rechercher
-              </>
+              <ArrowRight className="w-5 h-5" />
             )}
-          </Button>
+          </button>
         </div>
       </div>
-      
-      {/* Suggestions */}
-      <div className="flex flex-wrap gap-2 mt-4 justify-center">
-        {['Paris → Bordeaux', 'Lyon → Marseille', 'Paris → Rennes', 'Toulouse → Bordeaux'].map((suggestion) => (
-          <button
-            key={suggestion}
-            type="button"
-            onClick={() => {
-              setText(`Je veux aller de ${suggestion.replace(' → ', ' à ')}`);
-            }}
-            className="px-3 py-1.5 text-sm text-slate-400 bg-slate-800/50 hover:bg-slate-700/50 rounded-full border border-slate-700/50 hover:border-cyan-500/30 transition-all duration-200 flex items-center gap-1.5"
-          >
-            <Sparkles className="w-3 h-3" />
-            {suggestion}
-          </button>
-        ))}
-      </div>
+
+      {/* Listening indicator */}
+      {isListening && (
+        <div className="flex items-center justify-center gap-1.5 mt-4">
+          <span className="w-1.5 h-1.5 bg-red-400 rounded-full animate-pulse" />
+          <span className="text-sm text-neutral-500">Écoute en cours...</span>
+        </div>
+      )}
     </form>
   );
 }
 
-// Déclaration des types pour la Web Speech API
 declare global {
   interface Window {
     SpeechRecognition: typeof SpeechRecognition;

@@ -6,6 +6,7 @@ Cette API expose les fonctionnalités du projet THOR via des endpoints REST.
 
 import os
 import sys
+import json
 import tempfile
 import base64
 from pathlib import Path
@@ -70,9 +71,33 @@ def get_pathfinding_model():
     return _models['pathfinding']
 
 
+# Cache pour les géométries des liaisons
+_shapes_cache = None
+
+def get_shapes_data():
+    """Charge les géométries des voies ferrées."""
+    global _shapes_cache
+    if _shapes_cache is None:
+        shapes_path = Path('data/train_station/dataset_liaisons_with_shapes.json')
+        if shapes_path.exists():
+            logger.info("Chargement des géométries de voies...")
+            with open(shapes_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            # Indexer par (depart, arrivee)
+            _shapes_cache = {}
+            for l in data.get('liaisons', []):
+                key = (str(l.get('depart')), str(l.get('arrivee')))
+                if l.get('geometry'):
+                    _shapes_cache[key] = l['geometry']
+            logger.info(f"  → {len(_shapes_cache)} géométries chargées")
+        else:
+            _shapes_cache = {}
+    return _shapes_cache
+
+
 def route_to_dict(route):
     """Convertit un objet Route en dictionnaire JSON-serializable."""
-    return {
+    result = {
         'origin': route.origin,
         'destination': route.destination,
         'steps': route.steps,
@@ -80,6 +105,31 @@ def route_to_dict(route):
         'total_time': route.total_time,
         'metadata': route.metadata
     }
+    
+    # Ajouter les géométries des voies pour chaque segment
+    shapes = get_shapes_data()
+    if shapes and route.metadata.get('segments'):
+        path_uic = route.metadata.get('path_uic', [])
+        for i, segment in enumerate(route.metadata['segments']):
+            if i < len(path_uic) - 1:
+                uic_from = path_uic[i]
+                uic_to = path_uic[i + 1]
+                
+                # Chercher la géométrie dans le bon sens d'abord
+                geometry = shapes.get((uic_from, uic_to))
+                
+                if geometry:
+                    segment['geometry'] = geometry
+                else:
+                    # Chercher dans le sens inverse et inverser les coordonnées
+                    reverse_geometry = shapes.get((uic_to, uic_from))
+                    if reverse_geometry:
+                        segment['geometry'] = {
+                            'type': 'LineString',
+                            'coordinates': list(reversed(reverse_geometry['coordinates']))
+                        }
+    
+    return result
 
 
 @app.route('/api/health', methods=['GET'])

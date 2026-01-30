@@ -4,123 +4,125 @@ import { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Segment } from '@/types';
-import { getStationPosition } from '@/data/stations';
 
 interface RouteMapClientProps {
   segments: Segment[];
-  steps: string[];
 }
 
-// Icônes personnalisées pour les gares
+// Station marker
 const createStationIcon = (isTerminal: boolean) => {
+  const size = isTerminal ? 12 : 8;
   return L.divIcon({
     className: 'custom-marker',
-    html: `
-      <div class="relative">
-        <div class="${isTerminal ? 'w-5 h-5 bg-cyan-500' : 'w-3 h-3 bg-amber-500'} rounded-full border-2 border-white shadow-lg ${isTerminal ? 'animate-pulse' : ''}"></div>
-        ${isTerminal ? '<div class="absolute -inset-1 bg-cyan-500/30 rounded-full animate-ping"></div>' : ''}
-      </div>
-    `,
-    iconSize: [isTerminal ? 20 : 12, isTerminal ? 20 : 12],
-    iconAnchor: [isTerminal ? 10 : 6, isTerminal ? 10 : 6],
+    html: `<div style="
+      width: ${size}px;
+      height: ${size}px;
+      background: ${isTerminal ? '#fff' : '#666'};
+      border: 2px solid ${isTerminal ? '#fff' : '#333'};
+      border-radius: 50%;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    "></div>`,
+    iconSize: [size, size],
+    iconAnchor: [size / 2, size / 2],
   });
 };
 
-export default function RouteMapClient({ segments, steps }: RouteMapClientProps) {
+// Train type colors (muted)
+function getTrainColor(type: string): string {
+  switch (type) {
+    case 'TGV': return '#f43f5e';
+    case 'OUIGO': return '#06b6d4';
+    case 'Intercités': return '#8b5cf6';
+    case 'TER': return '#f59e0b';
+    default: return '#6b7280';
+  }
+}
+
+const MIN_GEOMETRY_POINTS = 10;
+
+export default function RouteMapClient({ segments }: RouteMapClientProps) {
   const mapRef = useRef<L.Map | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current || mapRef.current) return;
+    if (!containerRef.current) return;
 
-    // Obtenir les positions des gares
-    const positions = steps
-      .map(step => {
-        const pos = getStationPosition(step);
-        return pos ? { name: step, ...pos } : null;
-      })
-      .filter((p): p is { name: string; lat: number; lon: number } => p !== null);
+    if (mapRef.current) {
+      mapRef.current.remove();
+      mapRef.current = null;
+    }
 
-    if (positions.length === 0) return;
+    const validSegments = segments.filter(
+      seg => seg.geometry?.coordinates && seg.geometry.coordinates.length >= MIN_GEOMETRY_POINTS
+    );
 
-    // Créer la carte
+    if (validSegments.length === 0) return;
+
     const map = L.map(containerRef.current, {
       zoomControl: false,
       attributionControl: false,
     });
     mapRef.current = map;
 
-    // Ajouter les contrôles de zoom en bas à droite
     L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-    // Tuile sombre pour le style
+    // Dark tile layer
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       maxZoom: 19,
     }).addTo(map);
 
-    // Ajouter les marqueurs et la ligne du trajet
     const bounds = L.latLngBounds([]);
-    const routeCoords: L.LatLngExpression[] = [];
 
-    positions.forEach((pos, index) => {
-      const latLng: L.LatLngExpression = [pos.lat, pos.lon];
-      bounds.extend(latLng);
-      routeCoords.push(latLng);
-
-      const isTerminal = index === 0 || index === positions.length - 1;
-      const marker = L.marker(latLng, { icon: createStationIcon(isTerminal) });
+    validSegments.forEach((segment, index) => {
+      const coords = segment.geometry!.coordinates;
+      const color = getTrainColor(segment.type_train);
       
-      // Popup avec les infos de la gare
-      const segment = segments[index];
-      const popupContent = `
-        <div class="font-sans">
-          <strong class="text-cyan-400">${pos.name}</strong>
-          ${segment ? `<br><span class="text-xs text-slate-400">${segment.type_train} • ${segment.temps_min} min</span>` : ''}
-        </div>
-      `;
-      marker.bindPopup(popupContent, {
-        className: 'dark-popup',
-      });
+      const routeCoords: L.LatLngExpression[] = coords.map(
+        coord => [coord[1], coord[0]] as L.LatLngExpression
+      );
       
-      marker.addTo(map);
-    });
+      routeCoords.forEach(coord => bounds.extend(coord));
 
-    // Tracer la ligne du trajet avec un dégradé
-    if (routeCoords.length > 1) {
-      // Ligne principale
+      // Main line
       L.polyline(routeCoords, {
-        color: '#06b6d4',
-        weight: 4,
+        color: color,
+        weight: 3,
         opacity: 0.8,
         lineJoin: 'round',
+        lineCap: 'round',
       }).addTo(map);
 
-      // Ligne de lueur
-      L.polyline(routeCoords, {
-        color: '#06b6d4',
-        weight: 8,
-        opacity: 0.3,
-        lineJoin: 'round',
-      }).addTo(map);
+      // Markers
+      const firstCoord = routeCoords[0];
+      const lastCoord = routeCoords[routeCoords.length - 1];
+      
+      if (index === 0) {
+        L.marker(firstCoord, { icon: createStationIcon(true) })
+          .bindPopup(`<strong>${segment.from}</strong>`)
+          .addTo(map);
+      }
+      
+      L.marker(lastCoord, { icon: createStationIcon(index === validSegments.length - 1) })
+        .bindPopup(`<strong>${segment.to}</strong>`)
+        .addTo(map);
+    });
+
+    if (bounds.isValid()) {
+      map.fitBounds(bounds, { padding: [40, 40] });
     }
 
-    // Ajuster la vue
-    map.fitBounds(bounds, { padding: [50, 50] });
-
-    // Cleanup
     return () => {
       if (mapRef.current) {
         mapRef.current.remove();
         mapRef.current = null;
       }
     };
-  }, [segments, steps]);
+  }, [segments]);
 
   return (
     <div 
       ref={containerRef} 
-      className="w-full h-[400px] rounded-xl overflow-hidden border border-slate-700/50"
-      style={{ background: '#0f172a' }}
+      className="w-full h-[400px] rounded-xl overflow-hidden border border-white/5"
     />
   );
 }

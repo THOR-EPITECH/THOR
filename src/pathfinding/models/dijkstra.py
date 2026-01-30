@@ -367,42 +367,86 @@ class DijkstraPathfindingModel(PathfindingModel):
         matches.sort(key=lambda x: -x[1])
         return matches[0][0] if matches else None
     
+    def _find_all_uics_for_city(self, city_name: str) -> list[str]:
+        """
+        Trouve TOUS les UICs des gares principales pour une grande ville.
+        Utile pour Paris, Lyon, Marseille etc. qui ont plusieurs gares.
+        Exclut automatiquement les gares d'aéroport et secondaires.
+        """
+        city_name_lower = city_name.lower().strip()
+        candidates = []
+        
+        # Termes à exclure (on veut les gares de centre-ville, pas les aéroports)
+        exclude_terms = ['rer', 'banlieue', 'aéroport', 'exupéry', 'cdg', 'charles de gaulle']
+        
+        for uic, station in self._stations_by_uic.items():
+            if uic not in self._graph:
+                continue
+            gare_nom = station.get('nom_gare', '').lower()
+            
+            # Le nom de gare commence par la ville
+            if gare_nom.startswith(city_name_lower + ' ') or gare_nom.startswith(city_name_lower + '-'):
+                # Exclure les gares secondaires
+                if not any(term in gare_nom for term in exclude_terms):
+                    candidates.append(uic)
+        
+        return candidates
+    
     def find_route(self, origin: str, destination: str) -> Route:
         """
         Trouve un itinéraire entre deux villes.
         
-        L'algorithme optimise maintenant le temps de trajet total plutôt
-        que la distance géographique.
+        Pour les grandes villes avec plusieurs gares (Paris, Lyon...),
+        l'algorithme teste plusieurs gares et choisit le meilleur trajet.
         """
         if not self._initialized:
             self.initialize()
         
-        # Chercher les UIC avec la méthode améliorée
-        origin_uic = self._find_uic_for_city(origin)
-        destination_uic = self._find_uic_for_city(destination)
+        # Pour les grandes villes, récupérer TOUTES les gares possibles
+        origin_uics = self._find_all_uics_for_city(origin)
+        destination_uics = self._find_all_uics_for_city(destination)
         
-        # Fallback: chercher par nom de gare exact
-        if not origin_uic:
-            origin_uic = self._find_uic_by_name(origin)
-        if not destination_uic:
-            destination_uic = self._find_uic_by_name(destination)
+        # Fallback: chercher une seule gare
+        if not origin_uics:
+            origin_uic = self._find_uic_for_city(origin) or self._find_uic_by_name(origin)
+            origin_uics = [origin_uic] if origin_uic else []
         
-        if not origin_uic:
+        if not destination_uics:
+            destination_uic = self._find_uic_for_city(destination) or self._find_uic_by_name(destination)
+            destination_uics = [destination_uic] if destination_uic else []
+        
+        if not origin_uics:
             logger.warning(f"Origin '{origin}' not found")
             return Route(origin=origin, destination=destination, steps=[], 
                        metadata={"error": f"Ville/gare de départ '{origin}' non trouvée"})
         
-        if not destination_uic:
+        if not destination_uics:
             logger.warning(f"Destination '{destination}' not found")
             return Route(origin=origin, destination=destination, steps=[],
                        metadata={"error": f"Ville/gare d'arrivée '{destination}' non trouvée"})
         
-        # Recherche du chemin optimal
-        total_weight, chemin_uic = find_shortest_path(self._graph, origin_uic, destination_uic)
+        # Recherche du MEILLEUR chemin parmi toutes les combinaisons origine/destination
+        best_weight = float('inf')
+        best_path = None
+        best_origin_uic = None
+        best_destination_uic = None
         
-        if not chemin_uic:
+        for origin_uic in origin_uics:
+            for destination_uic in destination_uics:
+                weight, path = find_shortest_path(self._graph, origin_uic, destination_uic)
+                if path and weight < best_weight:
+                    best_weight = weight
+                    best_path = path
+                    best_origin_uic = origin_uic
+                    best_destination_uic = destination_uic
+        
+        if not best_path:
             return Route(origin=origin, destination=destination, steps=[],
                        metadata={"error": "Aucun chemin trouvé"})
+        
+        chemin_uic = best_path
+        origin_uic = best_origin_uic
+        destination_uic = best_destination_uic
         
         # Construire les étapes détaillées
         steps = [self._stations_by_uic[uic]['nom_gare'] for uic in chemin_uic]
