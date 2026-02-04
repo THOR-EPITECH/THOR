@@ -1,7 +1,7 @@
 # Rapport Pipeline - Traitement Audio
 
-**Date**: 2026-01-30 00:27:10  
-**Fichier audio**: data/raw/audio/sample_000160.wav
+**Date**: 2026-01-30 00:09:07  
+**Fichier audio**: data/raw/audio/sample_000193.wav
 
 ## 🔧 Configuration
 
@@ -14,7 +14,7 @@
 ## 📝 Transcription (STT)
 
 ```
-Je veux voyager de Toulouse à Bordeaux.
+Comment puis-je me rendre de bordeaux à Marseille ?
 ```
 
 ### Métadonnées STT
@@ -28,39 +28,37 @@ Je veux voyager de Toulouse à Bordeaux.
 ## 🎯 Extraction NLP
 
 ### Résultats
-- **Origine**: Toulouse
-- **Destination**: Bordeaux
+- **Origine**: bordeaux
+- **Destination**: Marseille
 - **Demande valide**: ✅ Oui
 - **Confiance**: 0.70
 
 ### Métadonnées NLP
 - **Modèle**: spacy
 - **Méthode d'extraction**: ner_patterns
-- **Lieux détectés**: Bordeaux, Toulouse
+- **Lieux détectés**: bordeaux, Marseille
 
 ---
 
 ## 🗺️ Itinéraire (Pathfinding)
 
 ### Résultats
-- **⏱️ Temps de trajet**: 2h23 (143 min)
-- **📏 Distance totale**: 209.5 km
-- **🛤️ Nombre d'étapes**: 2
+- **Distance totale**: 1185.99 km
+- **Nombre d'étapes**: 6
+- **Temps estimé**: 347.5 minutes
 
-### 📊 Détails du trajet
+### Étapes du trajet
+1. Bordeaux Saint-Jean
+2. Massy TGV
+3. Marne-la-Vallée Chessy
+4. Lyon Saint-Exupéry TGV
+5. Aix-en-Provence TGV
+6. Marseille Saint-Charles
 
-| # | Type | Départ | Arrivée | Temps | Distance | Trains/jour |
-|---|------|--------|---------|-------|----------|-------------|
-| 1 | 🚄 TGV | Toulouse Matabiau | Bordeaux Saint-Jean | 143 min | 209.5 km | 17 |
-
-### 🚂 Types de trains utilisés
-- 🚄 **TGV**: 1 segment(s)
-
-### 🔧 Détails techniques
-- **Mode**: temps_reel
-- **UIC départ**: 87611004
-- **UIC arrivée**: 87581009
-- **Nombre de gares**: 2
+### Détails techniques
+- **UIC départ**: 87581009
+- **UIC arrivée**: 87751008
+- **Nombre de gares**: 6
 
 ---
 
@@ -80,16 +78,16 @@ Je veux voyager de Toulouse à Bordeaux.
 3. **Pathfinding** : Recherche d'itinéraire entre origine et destination
 
 ### Entités détectées
-- Bordeaux (LOC)
-- Toulouse (LOC)
+- bordeaux (LOC)
+- Marseille (LOC)
 
 
 ---
 
 ## 📁 Fichiers
 
-- **Audio source**: `data/raw/audio/sample_000160.wav`
-- **Rapport généré**: `sample_000160_whisper_spacy_dijkstra_result.md`
+- **Audio source**: `data/raw/audio/sample_000193.wav`
+- **Rapport généré**: `sample_000193_whisper_spacy_dijkstra_result.md`
 
 ---
 
@@ -99,5 +97,5 @@ Ce rapport a été généré automatiquement par le pipeline THOR.
 
 Pour relancer le traitement avec les mêmes modèles :
 ```bash
-python3 -m src.cli.pipeline --audio data/raw/audio/sample_000160.wav --stt-model whisper --nlp-model spacy --pathfinding-model dijkstra
+python3 -m src.cli.pipeline --audio data/raw/audio/sample_000193.wav --stt-model whisper --nlp-model spacy --pathfinding-model dijkstra
 ```

@@ -1,0 +1,95 @@
+{
+  "audio_path": "data/raw/audio/sample_000193.wav",
+  "transcript": "Comment puis-je me rendre de bordeaux à Marseille ?",
+  "origin": "bordeaux",
+  "destination": "Marseille",
+  "is_valid": true,
+  "confidence": 0.7,
+  "error_message": null,
+  "route": {
+    "steps": [
+      "Bordeaux Saint-Jean",
+      "Massy TGV",
+      "Marne-la-Vallée Chessy",
+      "Lyon Saint-Exupéry TGV",
+      "Aix-en-Provence TGV",
+      "Marseille Saint-Charles"
+    ],
+    "total_distance": 1185.99,
+    "total_time": 347.5,
+    "metadata": {
+      "origin_uic": "87581009",
+      "destination_uic": "87751008",
+      "path_uic": [
+        "87581009",
+        "87393702",
+        "87111849",
+        "87762906",
+        "87319012",
+        "87751008"
+      ],
+      "num_stations": 6,
+      "mode": "temps_reel",
+      "segments": [
+        {
+          "from": "Bordeaux Saint-Jean",
+          "to": "Massy TGV",
+          "temps_min": 130.1,
+          "distance_km": 483.75,
+          "nb_trains_jour": 109
+        },
+        {
+          "from": "Massy TGV",
+          "to": "Marne-la-Vallée Chessy",
+          "temps_min": 29.5,
+          "distance_km": 41.42,
+          "nb_trains_jour": 378
+        },
+        {
+          "from": "Marne-la-Vallée Chessy",
+          "to": "Lyon Saint-Exupéry TGV",
+          "temps_min": 103.3,
+          "distance_km": 390.43,
+          "nb_trains_jour": 24
+        },
+        {
+          "from": "Lyon Saint-Exupéry TGV",
+          "to": "Aix-en-Provence TGV",
+          "temps_min": 72.1,
+          "distance_km": 252.68,
+          "nb_trains_jour": 10
+        },
+        {
+          "from": "Aix-en-Provence TGV",
+          "to": "Marseille Saint-Charles",
+          "temps_min": 12.5,
+          "distance_km": 17.71,
+          "nb_trains_jour": 317
+        }
+      ]
+    }
+  },
+  "stt_metadata": {
+    "model": "whisper-small",
+    "segments": 1,
+    "detected_language": "fr"
+  },
+  "nlp_metadata": {
+    "model": "spacy-fr_core_news_md",
+    "locations_found": [
+      "bordeaux",
+      "Marseille"
+    ],
+    "extraction_method": "ner_patterns",
+    "entities": [
+      {
+        "text": "bordeaux",
+        "label": "LOC"
+      },
+      {
+        "text": "Marseille",
+        "label": "LOC"
+      }
+    ]
+  }
+}

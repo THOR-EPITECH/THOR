@@ -493,11 +493,19 @@ python -m src.cli.nlp evaluate \
     --dataset data/splits/test/test_nlp.jsonl \
     --output-dir results/nlp/spacy_test
 
-# 3. Test Pipeline
+# 3. Test Pathfinding
+python -m src.cli.pathfinding find-route \
+    --origin Toulouse \
+    --destination Bordeaux \
+    --model dijkstra
+
+# 4. Test Pipeline
 python -m src.cli.pipeline \
     --audio data/raw/audio/sample_000001.wav \
     --stt-model whisper \
     --nlp-model spacy
+    --pathfinding-model dijkstra
+
 ```
 
 ---

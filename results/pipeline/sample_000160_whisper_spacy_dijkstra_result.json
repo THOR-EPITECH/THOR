@@ -9,22 +9,32 @@
   "route": {
     "steps": [
       "Toulouse Matabiau",
-      "Bordeaux Saint-Jean",
-      "Mérignac Arlac",
-      "Caudéran Mérignac"
+      "Bordeaux Saint-Jean"
     ],
-    "total_distance": 216.82580057187113,
-    "total_time": null,
+    "total_distance": 209.53,
+    "total_time": 143.4,
     "metadata": {
       "origin_uic": "87611004",
-      "destination_uic": "87581538",
+      "destination_uic": "87581009",
       "path_uic": [
         "87611004",
-        "87581009",
-        "87278259",
-        "87581538"
+        "87581009"
       ],
-      "num_stations": 4
+      "num_stations": 2,
+      "mode": "temps_reel",
+      "segments": [
+        {
+          "from": "Toulouse Matabiau",
+          "to": "Bordeaux Saint-Jean",
+          "temps_min": 143.4,
+          "distance_km": 209.53,
+          "nb_trains_jour": 17,
+          "type_train": "TGV",
+          "types_details": {
+            "TGV": 17
+          }
+        }
+      ]
     }
   },
   "stt_metadata": {
@@ -35,17 +45,17 @@
   "nlp_metadata": {
     "model": "spacy-fr_core_news_md",
     "locations_found": [
-      "Toulouse",
-      "Bordeaux"
+      "Bordeaux",
+      "Toulouse"
     ],
     "extraction_method": "ner_patterns",
     "entities": [
       {
-        "text": "Toulouse",
+        "text": "Bordeaux",
         "label": "LOC"
       },
       {
-        "text": "Bordeaux",
+        "text": "Toulouse",
         "label": "LOC"
       }
     ]
