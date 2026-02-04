@@ -5,7 +5,8 @@ import { PipelineResult } from '@/types';
 import SearchInput from '@/components/SearchInput';
 import RouteDetails from '@/components/RouteDetails';
 import RouteMap from '@/components/RouteMap';
-import { ArrowRight, Github, Loader2 } from 'lucide-react';
+import { ArrowRight, Github, Loader2, Book } from 'lucide-react';
+import Link from 'next/link';
 
 export default function Home() {
   const [result, setResult] = useState<PipelineResult | null>(null);
@@ -57,17 +58,28 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <span className="text-lg font-semibold tracking-tight">THOR</span>
+            <Link href="/" className="text-lg font-semibold tracking-tight hover:text-white transition-colors">
+              THOR
+            </Link>
           </div>
           
-          <a 
-            href="https://github.com/THOR-EPITECH/THOR" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="p-2 text-neutral-500 hover:text-white transition-colors"
-          >
-            <Github className="w-5 h-5" />
-          </a>
+          <div className="flex items-center gap-2">
+            <Link 
+              href="/docs"
+              className="p-2 text-neutral-500 hover:text-white transition-colors"
+              title="Documentation"
+            >
+              <Book className="w-5 h-5" />
+            </Link>
+            <a 
+              href="https://github.com/THOR-EPITECH/THOR" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="p-2 text-neutral-500 hover:text-white transition-colors"
+            >
+              <Github className="w-5 h-5" />
+            </a>
+          </div>
         </div>
       </header>
 
