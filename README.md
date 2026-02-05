@@ -22,7 +22,7 @@ THOR est un système complet de traitement du langage naturel conçu pour :
 
 1. **Transcrire la parole en texte** (Speech-to-Text) avec plusieurs modèles
 2. **Extraire les informations de voyage** (origine, destination) depuis le texte
-3. **Trouver des itinéraires optimaux** (Pathfinding) - *en développement*
+3. **Trouver des itinéraires optimaux** (Pathfinding) avec algorithmes de recherche de chemin
 
 Le système est modulaire, extensible et supporte le fine-tuning des modèles pour améliorer les performances sur des données spécifiques.
 
@@ -41,10 +41,17 @@ Le système est modulaire, extensible et supporte le fine-tuning des modèles po
 - **Benchmark** : Comparaison de plusieurs modèles NLP
 - **Confiance dynamique** : Score de confiance calculé selon la qualité de l'extraction
 
+### 🗺️ Pathfinding
+- **Algorithme Dijkstra** : Recherche du chemin le plus court entre gares
+- **Graphe ferroviaire** : Utilise les données de gares et liaisons SNCF
+- **Évaluation complète** : Métriques de précision, taux de succès, erreur de distance
+- **Distance géographique** : Calcul avec formule de Haversine
+
 ### 🔄 Pipeline complet
-- **End-to-end** : Audio → Transcription → Extraction → Résultat
+- **End-to-end** : Audio → Transcription → Extraction → Pathfinding → Itinéraire
 - **Rapports automatiques** : Génération de rapports Markdown détaillés
 - **Gestion d'erreurs** : Messages d'erreur spécifiques pour les informations manquantes
+- **Support pathfinding** : Optionnel, peut être activé avec `--pathfinding-model`
 
 ## 📦 Installation
 
@@ -254,6 +261,29 @@ python -m src.cli.pipeline \
     --audio data/raw/audio/sample_000001.wav \
     --stt-model whisper \
     --nlp-model spacy
+
+# Pipeline avec pathfinding : Audio → STT → NLP → Pathfinding
+python -m src.cli.pipeline \
+    --audio data/raw/audio/sample_000160.wav \
+    --stt-model whisper \
+    --nlp-model spacy \
+    --pathfinding-model dijkstra
+```
+
+### Recherche d'itinéraire (Pathfinding)
+
+```bash
+# Trouver un itinéraire entre deux villes
+python -m src.cli.pathfinding find-route \
+    --origin Toulouse \
+    --destination Bordeaux \
+    --model dijkstra
+
+# Évaluer le modèle pathfinding
+python -m src.cli.pathfinding evaluate \
+    --dataset data/splits/test/test_pathfinding.jsonl \
+    --model dijkstra \
+    --output-dir results/pathfinding/dijkstra_test
 ```
 
 ### Entraînement d'un modèle NLP
@@ -276,6 +306,21 @@ python -m src.cli.nlp benchmark \
     --models spacy transformers regex_advanced
 ```
 
+### Pathfinding
+
+```bash
+# Trouver un itinéraire
+python -m src.cli.pathfinding find-route \
+    --origin Toulouse \
+    --destination Bordeaux \
+    --model dijkstra
+
+# Évaluer le pathfinding
+python -m src.cli.pathfinding evaluate \
+    --dataset data/splits/test/test_pathfinding.jsonl \
+    --model dijkstra
+```
+
 ## 🏗️ Architecture
 
 ```
@@ -288,7 +333,10 @@ THOR/
 │   │   ├── models/       # Modèles NLP (spaCy, Transformers, Regex, Dummy)
 │   │   ├── eval/         # Évaluation et benchmark
 │   │   └── training/     # Fine-tuning des modèles
-│   ├── pipeline/         # Pipeline complet Audio → STT → NLP
+│   ├── pipeline/         # Pipeline complet Audio → STT → NLP → Pathfinding
+│   ├── pathfinding/      # Module Pathfinding
+│   │   ├── models/       # Modèles Pathfinding (Dijkstra)
+│   │   └── eval/         # Évaluation et métriques
 │   ├── cli/              # Interfaces en ligne de commande
 │   └── common/           # Modules communs (types, config, logging)
 ├── configs/              # Fichiers de configuration YAML
@@ -298,6 +346,7 @@ THOR/
 ├── docs/                 # Documentation complète
 │   ├── stt/             # Documentation des modèles STT
 │   ├── nlp/             # Documentation des modèles NLP
+│   ├── pathfinding/     # Documentation des modèles Pathfinding
 │   ├── COMMANDES.md     # Guide complet des commandes
 │   └── ARCHITECTURE.md  # Architecture détaillée
 └── scripts/             # Scripts utilitaires
@@ -358,6 +407,10 @@ THOR/
 - **[Transformers](docs/nlp/transformers.md)** - Documentation complète du modèle Transformers
 - **[Regex Advanced](docs/nlp/regex_advanced.md)** - Documentation du modèle Regex
 - **[Dummy NLP](docs/nlp/dummy.md)** - Modèle baseline pour tests
+
+#### Pathfinding
+- **[Index Pathfinding](docs/pathfinding/index.md)** - Vue d'ensemble des modèles Pathfinding
+- **[Dijkstra](docs/pathfinding/dijkstra.md)** - Documentation complète du modèle Dijkstra
 
 ### Documentation des modules
 
@@ -440,11 +493,19 @@ python -m src.cli.nlp evaluate \
     --dataset data/splits/test/test_nlp.jsonl \
     --output-dir results/nlp/spacy_test
 
-# 3. Test Pipeline
+# 3. Test Pathfinding
+python -m src.cli.pathfinding find-route \
+    --origin Toulouse \
+    --destination Bordeaux \
+    --model dijkstra
+
+# 4. Test Pipeline
 python -m src.cli.pipeline \
     --audio data/raw/audio/sample_000001.wav \
     --stt-model whisper \
     --nlp-model spacy
+    --pathfinding-model dijkstra
+
 ```
 
 ---
@@ -459,4 +520,4 @@ python -m src.cli.pipeline \
 
 ---
 
-**Note** : Le module Pathfinding est en cours de développement et sera disponible dans une future version.
+**Note** : Le module Pathfinding est maintenant disponible et intégré dans le pipeline complet.

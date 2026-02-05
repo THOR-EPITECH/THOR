@@ -1,0 +1,21 @@
+{
+  "audio_path": "data/raw/audio/sample_000194.wav",
+  "transcript": "Excusez-moi.",
+  "origin": null,
+  "destination": null,
+  "is_valid": false,
+  "confidence": 0.2,
+  "error_message": null,
+  "route": null,
+  "stt_metadata": {
+    "model": "whisper-small",
+    "segments": 1,
+    "detected_language": "fr"
+  },
+  "nlp_metadata": {
+    "model": "spacy-fr_core_news_md",
+    "locations_found": [],
+    "extraction_method": "ner_patterns",
+    "entities": []
+  }
+}

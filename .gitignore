@@ -31,3 +31,4 @@ results/runs/**/plots/*.pdf
 !results/**/*.json
 !results/**/*.csv
 
+.idea/

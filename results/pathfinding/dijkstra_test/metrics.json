@@ -1,0 +1,12 @@
+{
+  "origin_accuracy_mean": 1.0,
+  "origin_accuracy_std": 0.0,
+  "destination_accuracy_mean": 1.0,
+  "destination_accuracy_std": 0.0,
+  "route_found_mean": 0.5,
+  "route_found_std": 0.5773502691896257,
+  "num_steps_mean": 3.5,
+  "num_steps_std": 4.725815626252609,
+  "route_found_count": 2,
+  "route_found_rate": 0.5
+}

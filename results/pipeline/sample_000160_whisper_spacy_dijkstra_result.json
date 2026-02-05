@@ -1,0 +1,63 @@
+{
+  "audio_path": "data/raw/audio/sample_000160.wav",
+  "transcript": "Je veux voyager de Toulouse à Bordeaux.",
+  "origin": "Toulouse",
+  "destination": "Bordeaux",
+  "is_valid": true,
+  "confidence": 0.7,
+  "error_message": null,
+  "route": {
+    "steps": [
+      "Toulouse Matabiau",
+      "Bordeaux Saint-Jean"
+    ],
+    "total_distance": 209.53,
+    "total_time": 143.4,
+    "metadata": {
+      "origin_uic": "87611004",
+      "destination_uic": "87581009",
+      "path_uic": [
+        "87611004",
+        "87581009"
+      ],
+      "num_stations": 2,
+      "mode": "temps_reel",
+      "segments": [
+        {
+          "from": "Toulouse Matabiau",
+          "to": "Bordeaux Saint-Jean",
+          "temps_min": 143.4,
+          "distance_km": 209.53,
+          "nb_trains_jour": 17,
+          "type_train": "TGV",
+          "types_details": {
+            "TGV": 17
+          }
+        }
+      ]
+    }
+  },
+  "stt_metadata": {
+    "model": "whisper-small",
+    "segments": 1,
+    "detected_language": "fr"
+  },
+  "nlp_metadata": {
+    "model": "spacy-fr_core_news_md",
+    "locations_found": [
+      "Bordeaux",
+      "Toulouse"
+    ],
+    "extraction_method": "ner_patterns",
+    "entities": [
+      {
+        "text": "Bordeaux",
+        "label": "LOC"
+      },
+      {
+        "text": "Toulouse",
+        "label": "LOC"
+      }
+    ]
+  }
+}

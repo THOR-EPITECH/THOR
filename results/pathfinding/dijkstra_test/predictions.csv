@@ -1,0 +1,5 @@
+id,origin,destination,predicted_steps,predicted_distance,reference_steps,reference_distance,route_found,origin_accuracy,destination_accuracy,path_accuracy,distance_error,distance_relative_error,num_steps
+test_001,Toulouse,Bordeaux,"['Toulouse Matabiau', 'Bordeaux Saint-Jean', 'Mérignac Arlac', 'Caudéran Mérignac']",216.82580057187113,,,1.0,1.0,1.0,,,,4
+test_002,Paris,Lyon,[],,,,0.0,1.0,1.0,,,,0
+test_003,Lyon,Marseille,"['Lyon Vaise', 'Lyon Perrache', 'Valence TGV Rhône-Alpes Sud', 'Orange', 'Avignon Centre', 'Miramas', 'Vitrolles Aéroport Marseille Provence', 'Pas des Lanciers', ""L'Estaque"", 'Arenc Euroméditerranée']",292.1834256018065,,,1.0,1.0,1.0,,,,10
+test_004,Bordeaux,Paris,[],,,,0.0,1.0,1.0,,,,0

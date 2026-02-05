@@ -1,0 +1,4 @@
+{"id": "test_001", "origin": "Toulouse", "destination": "Bordeaux"}
+{"id": "test_002", "origin": "Paris", "destination": "Lyon"}
+{"id": "test_003", "origin": "Lyon", "destination": "Marseille"}
+{"id": "test_004", "origin": "Bordeaux", "destination": "Paris"}
