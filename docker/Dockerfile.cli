@@ -1,0 +1,81 @@
+# Dockerfile pour le CLI THOR (tests des modeles)
+# Compatible: Linux, macOS (Intel + Apple Silicon), Windows
+FROM --platform=$BUILDPLATFORM python:3.11-slim
+
+# Arguments pour le multi-architecture
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+
+WORKDIR /app
+
+# Installation des dependances systeme
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    ffmpeg \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copie des fichiers de requirements
+COPY requirements.txt .
+COPY api/requirements.txt ./api-requirements.txt
+
+# Installation des dependances Python completes
+RUN pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir -r api-requirements.txt \
+    && pip install --no-cache-dir \
+        spacy>=3.7.0 \
+        openai-whisper>=20231117 \
+        jiwer>=3.0.0 \
+        soundfile>=0.12.0 \
+        librosa>=0.10.0 \
+        transformers>=4.30.0 \
+        torch>=2.0.0 \
+        datasets>=2.14.0 \
+        seqeval>=1.2.2 \
+        networkx>=3.0 \
+        scipy>=1.10.0 \
+        gtts>=2.3.0
+
+# ===========================================
+# Installation des modeles
+# ===========================================
+
+# Modele spaCy francais (NLP)
+RUN python -m spacy download fr_core_news_md \
+    && python -m spacy download fr_core_news_sm
+
+# Pre-telechargement des modeles Whisper (STT)
+# small = bon compromis performance/qualite
+# tiny = rapide pour tests
+RUN python -c "import whisper; whisper.load_model('small'); whisper.load_model('tiny')"
+
+# Pre-telechargement du modele CamemBERT pour NER (Transformers)
+RUN python -c "from transformers import AutoTokenizer, AutoModelForTokenClassification; \
+    AutoTokenizer.from_pretrained('Jean-Baptiste/camembert-ner'); \
+    AutoModelForTokenClassification.from_pretrained('Jean-Baptiste/camembert-ner')"
+
+# ===========================================
+# Copie du code source
+# ===========================================
+
+COPY src/ ./src/
+COPY api/ ./api/
+COPY scripts/ ./scripts/
+COPY configs/ ./configs/
+COPY data/ ./data/
+
+# Creation des dossiers de resultats et modeles
+RUN mkdir -p results models
+
+# Variables d'environnement
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
+ENV HF_HOME=/app/.cache/huggingface
+ENV TRANSFORMERS_CACHE=/app/.cache/huggingface
+
+# Volume pour les resultats et modeles
+VOLUME ["/app/results", "/app/models", "/app/data"]
+
+# Commande par defaut (shell interactif)
+CMD ["/bin/bash"]

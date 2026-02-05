@@ -1,0 +1,103 @@
+# Docker Compose pour THOR
+# Compatible: Linux, macOS (Intel + Apple Silicon), Windows
+#
+# Usage:
+#   docker-compose up -d                    # Lance tous les services
+#   docker-compose up -d api                # Lance uniquement l'API
+#   docker-compose up -d web                # Lance uniquement le frontend
+#   docker-compose run --rm cli             # Lance le CLI interactif
+#   docker-compose run --rm cli python -m src.cli.nlp extract --text "Je veux aller de Paris a Lyon"
+#
+# Build:
+#   docker-compose build                    # Build standard
+#   docker-compose build --no-cache         # Rebuild complet
+
+services:
+  # ===========================================
+  # API Flask Backend
+  # ===========================================
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+      platforms:
+        - "linux/amd64"
+        - "linux/arm64"
+    image: thor-api:latest
+    container_name: thor-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data/train_station:/app/data/train_station:ro
+      - ./configs:/app/configs:ro
+      - ./models:/app/models:ro
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+      - FLASK_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 120s
+    networks:
+      - thor-network
+
+  # ===========================================
+  # Frontend Next.js
+  # ===========================================
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.web
+      platforms:
+        - "linux/amd64"
+        - "linux/arm64"
+    image: thor-web:latest
+    container_name: thor-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PYTHON_BACKEND_URL=http://api:8000
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - thor-network
+
+  # ===========================================
+  # CLI pour tester les modeles
+  # ===========================================
+  cli:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.cli
+      platforms:
+        - "linux/amd64"
+        - "linux/arm64"
+    image: thor-cli:latest
+    container_name: thor-cli
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+      - ./models:/app/models
+      - ./configs:/app/configs
+    environment:
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
+    stdin_open: true
+    tty: true
+    networks:
+      - thor-network
+    profiles:
+      - cli
+
+networks:
+  thor-network:
+    name: thor-network
+    driver: bridge
