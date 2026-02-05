@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { Mic, MicOff, ArrowRight, Loader2 } from 'lucide-react';
+import { Mic, ArrowRight, Loader2 } from 'lucide-react';
 
 interface SearchInputProps {
   onSearch: (text: string) => void;
@@ -210,7 +210,7 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
           type="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder={isRecording ? "🎤 Enregistrement en cours..." : isProcessing ? "⏳ Traitement..." : "De Paris à Bordeaux..."}
+          placeholder={isRecording ? "Enregistrement en cours..." : isProcessing ? "Traitement..." : "De Paris à Bordeaux..."}
           disabled={isLoading || isRecording || isProcessing}
           className="w-full h-14 px-5 pr-28 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-neutral-500 focus:outline-none focus:border-white/30 transition-colors"
         />
@@ -233,7 +233,10 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
             }`}
           >
             {isRecording ? (
-              <MicOff className="w-5 h-5" />
+              <span className="relative flex h-5 w-5 items-center justify-center">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
+                <span className="relative inline-flex h-3 w-3 rounded-full bg-red-500" />
+              </span>
             ) : (
               <Mic className="w-5 h-5" />
             )}

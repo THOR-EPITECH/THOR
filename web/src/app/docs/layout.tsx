@@ -1,6 +1,7 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { 
   Book, 
@@ -15,7 +16,10 @@ import {
   Server,
   ChevronRight,
   Github,
-  ArrowLeft
+  ArrowLeft,
+  Lightbulb,
+  BarChart3,
+  Database
 } from 'lucide-react';
 
 const navigation = [
@@ -42,6 +46,14 @@ const navigation = [
       { title: 'API REST', href: '/docs/api', icon: Server },
       { title: 'Commandes CLI', href: '/docs/cli', icon: Code },
     ]
+  },
+  {
+    title: 'Recherche',
+    items: [
+      { title: 'Benchmarks', href: '/docs/benchmarks', icon: BarChart3 },
+      { title: 'Datasets', href: '/docs/datasets', icon: Database },
+      { title: 'Améliorations', href: '/docs/improvements', icon: Lightbulb },
+    ]
   }
 ];
 
@@ -54,6 +66,11 @@ export default function DocsLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  
+  // Scroll to top on page change with smooth animation
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
   
   // Find current page index for pagination
   const currentIndex = allPages.findIndex(page => page.href === pathname);
@@ -150,7 +167,10 @@ export default function DocsLayout({
 
         {/* Main content */}
         <main className="flex-1 lg:ml-64 min-h-screen">
-          <div className="max-w-3xl mx-auto px-6 py-12 lg:py-16 mt-12 lg:mt-0">
+          <div 
+            key={pathname}
+            className="max-w-3xl mx-auto px-6 py-12 lg:py-16 mt-12 lg:mt-0 animate-fade-in"
+          >
             {children}
 
             {/* Pagination */}
