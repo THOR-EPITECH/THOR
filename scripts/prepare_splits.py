@@ -33,49 +33,40 @@ def split_dataset(
         shuffle: Mélanger les données avant de diviser
         seed: Seed pour la reproductibilité
     """
-    # Vérifie que les ratios somment à 1.0
     total_ratio = train_ratio + valid_ratio + test_ratio
     if abs(total_ratio - 1.0) > 0.01:
         raise ValueError(f"Ratios must sum to 1.0, got {total_ratio}")
     
-    # Charge les données
     logger.info(f"Loading dataset from {input_file}")
     data = list(read_jsonl(input_file))
     logger.info(f"Loaded {len(data)} samples")
     
-    # Mélange si demandé
     if shuffle:
         random.seed(seed)
         random.shuffle(data)
     
-    # Calcule les indices de division
     n_total = len(data)
     n_train = int(n_total * train_ratio)
     n_valid = int(n_total * valid_ratio)
-    # n_test = n_total - n_train - n_valid (reste)
     
-    # Divise
     train_data = data[:n_train]
     valid_data = data[n_train:n_train + n_valid]
     test_data = data[n_train + n_valid:]
     
     logger.info(f"Split: train={len(train_data)}, valid={len(valid_data)}, test={len(test_data)}")
     
-    # Crée les dossiers
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "train").mkdir(exist_ok=True)
     (output_dir / "valid").mkdir(exist_ok=True)
     (output_dir / "test").mkdir(exist_ok=True)
     
-    # Sauvegarde (fichiers nommés selon le split)
     write_jsonl(output_dir / "train" / "train.jsonl", train_data)
     write_jsonl(output_dir / "valid" / "valid.jsonl", valid_data)
     write_jsonl(output_dir / "test" / "test.jsonl", test_data)
     
     logger.info(f"Splits saved to {output_dir}")
     
-    # Sauvegarde un manifest
     manifest = {
         "source": str(input_file),
         "total_samples": n_total,

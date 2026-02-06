@@ -74,7 +74,6 @@ function CodeBlock({ children, title }: { children: string; title?: string }) {
 export default function DocsBenchmarks() {
   return (
     <div>
-      {/* Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
           <span>Docs</span>
@@ -90,7 +89,6 @@ export default function DocsBenchmarks() {
         </p>
       </div>
 
-      {/* Test info */}
       <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 mb-8">
         <div className="flex items-center gap-3 mb-4">
           <BarChart3 className="w-5 h-5 text-neutral-400" />
@@ -112,7 +110,6 @@ export default function DocsBenchmarks() {
         </div>
       </div>
 
-      {/* Glossaire des métriques */}
       <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 mb-12">
         <div className="flex items-center gap-3 mb-6">
           <HelpCircle className="w-5 h-5 text-neutral-400" />
@@ -120,7 +117,6 @@ export default function DocsBenchmarks() {
         </div>
         
         <div className="space-y-6">
-          {/* STT Metrics */}
           <div>
             <h4 className="text-sm font-medium text-blue-400 mb-3 flex items-center gap-2">
               <Mic className="w-4 h-4" />
@@ -159,7 +155,6 @@ export default function DocsBenchmarks() {
             </div>
           </div>
 
-          {/* NLP Metrics */}
           <div>
             <h4 className="text-sm font-medium text-purple-400 mb-3 flex items-center gap-2">
               <Brain className="w-4 h-4" />
@@ -213,7 +208,6 @@ export default function DocsBenchmarks() {
             </div>
           </div>
 
-          {/* Example */}
           <div className="p-4 rounded-lg bg-white/5 border border-white/10">
             <h4 className="text-sm font-medium mb-3">Exemple concret</h4>
             <p className="text-sm text-neutral-400 mb-3">
@@ -245,7 +239,6 @@ export default function DocsBenchmarks() {
         </div>
       </div>
 
-      {/* STT Benchmark */}
       <section className="mb-16">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-blue-500/10">
@@ -254,7 +247,6 @@ export default function DocsBenchmarks() {
           <h2 className="text-2xl font-bold">Speech-to-Text</h2>
         </div>
 
-        {/* Metrics comparison */}
         <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 mb-6">
           <h3 className="font-semibold mb-6 flex items-center gap-2">
             <Target className="w-4 h-4 text-neutral-400" />
@@ -288,7 +280,6 @@ export default function DocsBenchmarks() {
           </div>
         </div>
 
-        {/* Real example */}
         <div className="grid md:grid-cols-2 gap-4 mb-6">
           <div className="p-4 rounded-xl bg-green-500/5 border border-green-500/20">
             <div className="text-xs text-green-400 font-medium mb-2">Whisper</div>
@@ -318,7 +309,6 @@ export default function DocsBenchmarks() {
         </div>
       </section>
 
-      {/* NLP Benchmark */}
       <section className="mb-16">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-purple-500/10">
@@ -327,7 +317,6 @@ export default function DocsBenchmarks() {
           <h2 className="text-2xl font-bold">Natural Language Processing</h2>
         </div>
 
-        {/* Results table */}
         <div className="rounded-xl border border-white/10 overflow-hidden mb-6">
           <table className="w-full text-sm">
             <thead>
@@ -388,7 +377,6 @@ export default function DocsBenchmarks() {
           </table>
         </div>
 
-        {/* Visual comparison */}
         <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 mb-6">
           <h3 className="font-semibold mb-4">Comparaison F1-Score</h3>
           <div className="space-y-4">
@@ -423,7 +411,6 @@ export default function DocsBenchmarks() {
           </div>
         </div>
 
-        {/* Key insight */}
         <div className="p-4 rounded-lg bg-purple-500/5 border border-purple-500/20 mb-6">
           <div className="flex items-start gap-3">
             <Zap className="w-5 h-5 text-purple-400 mt-0.5" />
@@ -451,7 +438,6 @@ export default function DocsBenchmarks() {
         </div>
       </section>
 
-      {/* Pathfinding */}
       <section className="mb-16">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-green-500/10">
@@ -512,7 +498,6 @@ export default function DocsBenchmarks() {
         </div>
       </section>
 
-      {/* Pipeline E2E */}
       <section className="mb-16">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-orange-500/10">
@@ -566,7 +551,6 @@ export default function DocsBenchmarks() {
         </div>
       </section>
 
-      {/* Final summary */}
       <section>
         <h2 className="text-2xl font-bold mb-6">Récapitulatif des choix</h2>
         <div className="rounded-xl border border-white/10 overflow-hidden">

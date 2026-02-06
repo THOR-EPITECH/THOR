@@ -13,7 +13,6 @@ from pathlib import Path
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-# Ajouter le répertoire parent au path pour les imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.stt.models.whisper import WhisperModel
@@ -26,7 +25,6 @@ logger = setup_logging(module="api")
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3000", "http://localhost:3001", "http://127.0.0.1:3000", "http://127.0.0.1:3001"])
 
-# Configuration des modèles (chargement lazy)
 _models = {
     'stt': None,
     'nlp': None,
@@ -71,7 +69,6 @@ def get_pathfinding_model():
     return _models['pathfinding']
 
 
-# Cache pour les géométries des liaisons
 _shapes_cache = None
 
 def get_shapes_data():
@@ -83,7 +80,6 @@ def get_shapes_data():
             logger.info("Chargement des géométries de voies...")
             with open(shapes_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-            # Indexer par (depart, arrivee)
             _shapes_cache = {}
             for l in data.get('liaisons', []):
                 key = (str(l.get('depart')), str(l.get('arrivee')))
@@ -106,7 +102,6 @@ def route_to_dict(route):
         'metadata': route.metadata
     }
     
-    # Ajouter les géométries des voies pour chaque segment
     shapes = get_shapes_data()
     if shapes and route.metadata.get('segments'):
         path_uic = route.metadata.get('path_uic', [])
@@ -115,13 +110,11 @@ def route_to_dict(route):
                 uic_from = path_uic[i]
                 uic_to = path_uic[i + 1]
                 
-                # Chercher la géométrie dans le bon sens d'abord
                 geometry = shapes.get((uic_from, uic_to))
                 
                 if geometry:
                     segment['geometry'] = geometry
                 else:
-                    # Chercher dans le sens inverse et inverser les coordonnées
                     reverse_geometry = shapes.get((uic_to, uic_from))
                     if reverse_geometry:
                         segment['geometry'] = {
@@ -190,7 +183,6 @@ def search():
         if not text:
             return jsonify({'error': 'Le champ "text" est requis'}), 400
         
-        # Analyse NLP
         nlp_model = get_nlp_model()
         nlp_result = nlp_model.extract(text)
         
@@ -206,7 +198,6 @@ def search():
             'nlp_metadata': nlp_result.metadata
         }
         
-        # Si origine et destination détectées, trouver l'itinéraire
         if origin and destination:
             pathfinding_model = get_pathfinding_model()
             route = pathfinding_model.find_route(origin, destination)
@@ -295,7 +286,6 @@ def transcribe():
         if not audio_base64:
             return jsonify({'error': 'Le champ "audio" (base64) est requis'}), 400
         
-        # Décoder l'audio base64 et sauvegarder temporairement
         audio_bytes = base64.b64decode(audio_base64)
         
         with tempfile.NamedTemporaryFile(suffix=f'.{audio_format}', delete=False) as tmp_file:
@@ -303,7 +293,6 @@ def transcribe():
             tmp_path = tmp_file.name
         
         try:
-            # Transcrire avec Whisper
             stt_model = get_stt_model()
             stt_result = stt_model.transcribe(tmp_path)
             
@@ -312,7 +301,6 @@ def transcribe():
                 'metadata': stt_result.metadata
             })
         finally:
-            # Nettoyer le fichier temporaire
             os.unlink(tmp_path)
             
     except Exception as e:
@@ -344,7 +332,6 @@ def pipeline():
         if not audio_base64:
             return jsonify({'error': 'Le champ "audio" (base64) est requis'}), 400
         
-        # Décoder l'audio
         audio_bytes = base64.b64decode(audio_base64)
         
         with tempfile.NamedTemporaryFile(suffix=f'.{audio_format}', delete=False) as tmp_file:
@@ -352,7 +339,6 @@ def pipeline():
             tmp_path = tmp_file.name
         
         try:
-            # Étape 1: STT
             logger.info(f"Transcription audio: format={audio_format}, taille={len(audio_bytes)} bytes")
             try:
                 stt_model = get_stt_model()
@@ -366,7 +352,6 @@ def pipeline():
                     'details': 'Vérifiez que le format audio est supporté (wav, mp3, webm)'
                 }), 500
             
-            # Étape 2: NLP
             nlp_model = get_nlp_model()
             nlp_result = nlp_model.extract(transcript)
             
@@ -384,7 +369,6 @@ def pipeline():
                 'nlp_metadata': nlp_result.metadata
             }
             
-            # Étape 3: Pathfinding
             if origin and destination:
                 pathfinding_model = get_pathfinding_model()
                 route = pathfinding_model.find_route(origin, destination)
@@ -434,7 +418,6 @@ def list_stations():
         for uic, station in pathfinding_model._stations_by_uic.items():
             name = station.get('nom_gare', '')
             if not query or query in name.lower():
-                # Vérifier si la gare est dans le graphe (a des connexions)
                 if uic in pathfinding_model._graph:
                     stations.append({
                         'name': name,
@@ -444,7 +427,6 @@ def list_stations():
                         'lon': station.get('position_geographique', {}).get('lon')
                     })
         
-        # Trier par nombre de connexions (gares principales en premier)
         stations.sort(key=lambda s: -len(pathfinding_model._graph.get(s['uic'], [])))
         
         return jsonify({

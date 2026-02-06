@@ -62,15 +62,11 @@ class TransformersNERModel(NLPModel):
             
             logger.info(f"Loading Transformers model: {self.model_name}")
             
-            # Si c'est un modèle NER pré-entraîné problématique, utilise un modèle de base
-            # et crée un pipeline token-classification
             if "camembert-ner" in self.model_name.lower() or "ner" in self.model_name.lower():
                 logger.info("Model name suggests NER model, but using camembert-base for reliability")
-                # Utilise camembert-base et crée un pipeline token-classification
                 from transformers import AutoTokenizer, AutoModelForTokenClassification
                 try:
                     tokenizer = AutoTokenizer.from_pretrained("camembert-base", use_fast=False)
-                    # Charge un modèle avec des labels (même si pas entraîné, ça fonctionne pour l'extraction)
                     model = AutoModelForTokenClassification.from_pretrained(
                         "camembert-base",
                         num_labels=5  # O, B-ORIGIN, I-ORIGIN, B-DESTINATION, I-DESTINATION
@@ -87,7 +83,6 @@ class TransformersNERModel(NLPModel):
                     logger.error(f"Failed to load camembert-base: {e}")
                     raise
             else:
-                # Essaie de charger le modèle directement
                 try:
                     self._ner_pipeline = pipeline(
                         "ner",
@@ -116,10 +111,8 @@ class TransformersNERModel(NLPModel):
         if not self._initialized:
             self.initialize()
         
-        # Extraction NER
         entities = self._ner_pipeline(text)
         
-        # Filtre les entités de type LOC (location)
         locations = []
         for entity in entities:
             if entity.get("entity_group") in ["LOC", "MISC"] or "LOC" in str(entity.get("label", "")):
@@ -127,13 +120,10 @@ class TransformersNERModel(NLPModel):
                 if city:
                     locations.append(city)
         
-        # Utilise des patterns pour déterminer origine/destination
         origin, destination = self._extract_with_patterns(text, locations)
         
-        # Détermine si c'est une demande valide
         is_valid = self._is_valid_request(text, origin, destination)
         
-        # Calcule la confiance
         confidence = self._calculate_confidence(origin, destination, entities, is_valid)
         
         return NLPExtraction(
@@ -199,10 +189,8 @@ class TransformersNERModel(NLPModel):
         travel_keywords = ["aller", "rendre", "voyager", "trajet", "route", "chemin", "partir", "se rendre"]
         text_lower = text.lower()
         
-        # Doit contenir un mot-clé de trajet
         has_travel_keyword = any(kw in text_lower for kw in travel_keywords)
         
-        # Doit avoir au moins une ville
         has_location = origin is not None or destination is not None
         
         return has_travel_keyword and has_location

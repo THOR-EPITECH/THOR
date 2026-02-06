@@ -73,7 +73,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       
-      // Déterminer le meilleur format audio supporté
       let mimeType = 'audio/webm;codecs=opus';
       if (!MediaRecorder.isTypeSupported(mimeType)) {
         mimeType = 'audio/webm';
@@ -97,7 +96,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
       mediaRecorder.onstop = async () => {
         stream.getTracks().forEach(track => track.stop());
         
-        // Convertir l'audio en blob et l'envoyer au backend
         const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
         await sendAudioToPipeline(audioBlob);
       };
@@ -136,16 +134,13 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
     
-    // Configuration de l'encodage WAV
     const sampleRate = audioBuffer.sampleRate;
     const numberOfChannels = audioBuffer.numberOfChannels;
     const length = audioBuffer.length;
     
-    // Allouer le buffer pour le fichier WAV (44 bytes header + audio data)
     const wavBuffer = new ArrayBuffer(44 + length * numberOfChannels * 2);
     const view = new DataView(wavBuffer);
     
-    // Écrire l'en-tête WAV (format RIFF)
     const writeString = (offset: number, string: string) => {
       for (let i = 0; i < string.length; i++) {
         view.setUint8(offset + i, string.charCodeAt(i));
@@ -166,7 +161,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
     writeString(36, 'data');
     view.setUint32(40, length * numberOfChannels * 2, true);
     
-    // Encoder les samples audio en PCM 16-bit
     let offset = 44;
     for (let i = 0; i < length; i++) {
       for (let channel = 0; channel < numberOfChannels; channel++) {
@@ -192,15 +186,12 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
     setIsProcessing(true);
     
     try {
-      // Étape 1: Conversion en format WAV
       const wavBlob = await convertToWav(audioBlob);
       
-      // Étape 2: Encodage en base64 pour transmission
       const base64Audio = await new Promise<string>((resolve, reject) => {
         const reader = new FileReader();
         reader.onloadend = () => {
           const result = reader.result as string;
-          // Retirer le préfixe data URL pour n'avoir que le base64
           const base64 = result.includes(',') ? result.split(',')[1] : result;
           resolve(base64);
         };
@@ -208,7 +199,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
         reader.readAsDataURL(wavBlob);
       });
       
-      // Étape 3: Envoi au backend pour traitement
       const response = await fetch('/api/pipeline', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -218,7 +208,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
         }),
       });
 
-      // Validation de la réponse
       const contentType = response.headers.get('content-type');
       let data;
       
@@ -235,12 +224,10 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
         throw new Error(data.error || data.message || `Erreur ${response.status} lors du traitement audio`);
       }
 
-      // Mise à jour de l'UI avec la transcription
       if (data.transcript) {
         setText(data.transcript);
       }
 
-      // Transmission du résultat complet au composant parent
       onVoiceResult(data);
     } catch (error) {
       console.error('Error processing audio:', error);

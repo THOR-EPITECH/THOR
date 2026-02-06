@@ -60,22 +60,18 @@ def generate_audio_pyttsx3(text: str, output_path: str, language: str = "fr"):
     
     engine = pyttsx3.init()
     
-    # Configure la voix selon la langue
     voices = engine.getProperty('voices')
     if language == "fr":
-        # Cherche une voix française
         for voice in voices:
             if 'french' in voice.name.lower() or 'fr' in voice.id.lower():
                 engine.setProperty('voice', voice.id)
                 break
     elif language == "es":
-        # Cherche une voix espagnole
         for voice in voices:
             if 'spanish' in voice.name.lower() or 'es' in voice.id.lower():
                 engine.setProperty('voice', voice.id)
                 break
     
-    # Configure la vitesse et le volume
     engine.setProperty('rate', 150)  # Vitesse de parole
     engine.setProperty('volume', 0.9)  # Volume
     
@@ -98,11 +94,8 @@ def detect_language(text: str) -> str:
     """
     text_lower = text.lower()
     
-    # Mots clés français
     french_words = ['je', 'veux', 'aller', 'depuis', 'comment', 'rendre', 'souhaite']
-    # Mots clés anglais
     english_words = ['i', 'want', 'go', 'from', 'how', 'get', 'would']
-    # Mots clés espagnol
     spanish_words = ['quiero', 'ir', 'desde', 'cómo', 'llegar', 'me']
     
     french_count = sum(1 for word in french_words if word in text_lower)
@@ -154,21 +147,17 @@ def generate_audio_from_dataset(
             logger.warning(f"Sample {sample.get('id')} has no transcript, skipping")
             continue
         
-        # Construit le chemin de sortie
         output_path = audio_dir / audio_path.name if audio_path.name else f"{sample.get('id', i)}.wav"
         
-        # Skip si existe déjà
         if skip_existing and output_path.exists():
             skipped += 1
             if i % 100 == 0:
                 logger.info(f"Progress: {i}/{total} (generated: {generated}, skipped: {skipped}, errors: {errors})")
             continue
         
-        # Détecte la langue
         language = detect_language(transcript)
         
         try:
-            # Génère l'audio
             if tts_engine == "gtts":
                 generate_audio_gtts(transcript, str(output_path), language=language)
             elif tts_engine == "pyttsx3":
@@ -204,7 +193,6 @@ def main():
     
     args = parser.parse_args()
     
-    # Vérifie la disponibilité du moteur TTS
     if args.tts_engine == "gtts" and not GTTS_AVAILABLE:
         logger.error("gTTS is not available. Install with: pip install gtts")
         logger.info("Or use pyttsx3: pip install pyttsx3")

@@ -65,7 +65,6 @@ def evaluate_command(args):
     for key, value in metrics.items():
         print(f"{key}: {value:.4f}" if isinstance(value, float) else f"{key}: {value}")
     
-    # Analyse des erreurs
     if args.analyze_errors:
         logger.info("Analyzing errors...")
         analyze_errors(

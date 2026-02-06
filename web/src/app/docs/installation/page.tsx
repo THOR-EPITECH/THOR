@@ -30,7 +30,6 @@ function Step({ number, title, children }: { number: number; title: string; chil
 export default function DocsInstallation() {
   return (
     <div>
-      {/* Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
           <span>Docs</span>
@@ -43,7 +42,6 @@ export default function DocsInstallation() {
         </p>
       </div>
 
-      {/* Prerequisites */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Prérequis</h2>
         <div className="grid gap-3">
@@ -71,7 +69,6 @@ export default function DocsInstallation() {
         </div>
       </div>
 
-      {/* Steps */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-8">Étapes d'installation</h2>
         
@@ -138,7 +135,6 @@ npm run dev`}</CodeBlock>
         </div>
       </div>
 
-      {/* Verification */}
       <div className="p-6 rounded-xl bg-green-500/5 border border-green-500/20">
         <h3 className="font-semibold text-green-400 mb-3 flex items-center gap-2">
           <CheckCircle2 className="w-5 h-5" />

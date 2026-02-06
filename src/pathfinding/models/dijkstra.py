@@ -85,7 +85,6 @@ def load_data_enhanced(path_gares: str, path_liaisons_enhanced: str) -> tuple[di
 
     for g in data_gares:
         code_insee = str(g['ville']['id_commune'])
-        # Indexer par TOUS les codes UIC de la gare
         for uic in g['uic']:
             uic_str = str(uic)
             stations_by_uic[uic_str] = g
@@ -98,8 +97,6 @@ def load_data_enhanced(path_gares: str, path_liaisons_enhanced: str) -> tuple[di
     if isinstance(liaisons, dict):
         liaisons = data_enhanced
     
-    # Coefficients de pénalité par type de train
-    # Plus le coefficient est bas, plus le train est favorisé
     TRAIN_TYPE_PENALTY = {
         'TGV': 1.0,           # Priorité maximale
         'OUIGO': 1.0,         # Même priorité que TGV
@@ -120,24 +117,20 @@ def load_data_enhanced(path_gares: str, path_liaisons_enhanced: str) -> tuple[di
         if uic_dep not in stations_by_uic or uic_arr not in stations_by_uic:
             continue
         
-        # Utiliser le temps de trajet moyen comme poids principal
         temps = l.get('temps_moyen_min', 0)
         
-        # Si pas de temps disponible, fallback sur la distance
         if temps <= 0:
             temps = haversine(
                 stations_by_uic[uic_dep]['position_geographique'],
                 stations_by_uic[uic_arr]['position_geographique']
             )
         
-        # Appliquer la pénalité selon le type de train
         train_type = l.get('type_train', 'Autre')
         penalty = TRAIN_TYPE_PENALTY.get(train_type, 2.0)
         temps_pondere = temps * penalty
         
         graph.setdefault(uic_dep, []).append((uic_arr, temps_pondere))
         
-        # Stocker les infos détaillées
         edge_info[(uic_dep, uic_arr)] = {
             'temps_moyen': l.get('temps_moyen_min', 0),
             'temps_min': l.get('temps_min_min', 0),
@@ -194,7 +187,6 @@ def find_shortest_path(graph: dict, start_uic: str, end_uic: str) -> tuple[float
     return None, None
 
 
-# --- Classe principale ---
 
 class DijkstraPathfindingModel(PathfindingModel):
     """
@@ -221,7 +213,6 @@ class DijkstraPathfindingModel(PathfindingModel):
             "data/train_station/dataset_liaisons.json"
         )
         
-        # Mode: "time" (temps de trajet) ou "distance" (distance géo)
         self.mode = self.config.get("mode", "time")
         
         self._stations_by_uic = {}
@@ -332,13 +323,11 @@ class DijkstraPathfindingModel(PathfindingModel):
         """Trouve l'UIC d'une gare à partir de son nom exact ou partiel."""
         name_lower = name.lower().strip()
         
-        # Recherche exacte
         for uic, station in self._stations_by_uic.items():
             if station.get('nom_gare', '').lower() == name_lower:
                 if uic in self._graph:
                     return uic
         
-        # Recherche partielle, priorité aux gares dans le graphe
         matches = []
         for uic, station in self._stations_by_uic.items():
             gare_nom = station.get('nom_gare', '').lower()
@@ -346,7 +335,6 @@ class DijkstraPathfindingModel(PathfindingModel):
                 in_graph = uic in self._graph
                 matches.append((uic, in_graph))
         
-        # Priorité aux gares dans le graphe
         matches.sort(key=lambda x: -x[1])
         return matches[0][0] if matches else None
     
@@ -359,7 +347,6 @@ class DijkstraPathfindingModel(PathfindingModel):
         city_name_lower = city_name.lower().strip()
         candidates = []
         
-        # Termes à exclure (on veut les gares de centre-ville, pas les aéroports)
         exclude_terms = ['rer', 'banlieue', 'aéroport', 'exupéry', 'cdg', 'charles de gaulle']
         
         for uic, station in self._stations_by_uic.items():
@@ -367,9 +354,7 @@ class DijkstraPathfindingModel(PathfindingModel):
                 continue
             gare_nom = station.get('nom_gare', '').lower()
             
-            # Le nom de gare commence par la ville
             if gare_nom.startswith(city_name_lower + ' ') or gare_nom.startswith(city_name_lower + '-'):
-                # Exclure les gares secondaires
                 if not any(term in gare_nom for term in exclude_terms):
                     candidates.append(uic)
         
@@ -385,11 +370,9 @@ class DijkstraPathfindingModel(PathfindingModel):
         if not self._initialized:
             self.initialize()
         
-        # Pour les grandes villes, récupérer TOUTES les gares possibles
         origin_uics = self._find_all_uics_for_city(origin)
         destination_uics = self._find_all_uics_for_city(destination)
         
-        # Fallback: chercher une seule gare
         if not origin_uics:
             origin_uic = self._find_uic_for_city(origin) or self._find_uic_by_name(origin)
             origin_uics = [origin_uic] if origin_uic else []
@@ -408,7 +391,6 @@ class DijkstraPathfindingModel(PathfindingModel):
             return Route(origin=origin, destination=destination, steps=[],
                        metadata={"error": f"Ville/gare d'arrivée '{destination}' non trouvée"})
         
-        # Recherche du MEILLEUR chemin parmi toutes les combinaisons origine/destination
         best_weight = float('inf')
         best_path = None
         best_origin_uic = None
@@ -431,10 +413,8 @@ class DijkstraPathfindingModel(PathfindingModel):
         origin_uic = best_origin_uic
         destination_uic = best_destination_uic
         
-        # Construire les étapes détaillées
         steps = [self._stations_by_uic[uic]['nom_gare'] for uic in chemin_uic]
         
-        # Calculer les statistiques du trajet
         total_time = 0
         total_distance = 0
         segment_details = []
@@ -448,7 +428,6 @@ class DijkstraPathfindingModel(PathfindingModel):
             temps = edge.get('temps_moyen', 0)
             distance = edge.get('distance_km', 0)
             
-            # Si pas d'info enrichie, calculer la distance
             if distance == 0:
                 distance = haversine(
                     self._stations_by_uic[uic_from]['position_geographique'],

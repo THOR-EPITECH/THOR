@@ -18,7 +18,6 @@ function CodeBlock({ children, title }: { children: string; title?: string }) {
 export default function DocsSTT() {
   return (
     <div>
-      {/* Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
           <span>Docs</span>
@@ -34,7 +33,6 @@ export default function DocsSTT() {
         </p>
       </div>
 
-      {/* What is Whisper */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Qu'est-ce que Whisper ?</h2>
         <div className="prose prose-invert max-w-none">
@@ -59,7 +57,6 @@ export default function DocsSTT() {
         </div>
       </div>
 
-      {/* Model sizes */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Tailles de modèle</h2>
         <div className="rounded-xl border border-white/10 overflow-hidden">
@@ -114,7 +111,6 @@ export default function DocsSTT() {
         </p>
       </div>
 
-      {/* Configuration */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
           <Settings className="w-6 h-6 text-neutral-400" />
@@ -160,7 +156,6 @@ compute_type: float32`}</CodeBlock>
         </div>
       </div>
 
-      {/* Usage */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Utilisation</h2>
         
@@ -183,7 +178,6 @@ print(result.text)       # Texte transcrit
 print(result.confidence) # Score de confiance`}</CodeBlock>
       </div>
 
-      {/* Formats */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Formats audio supportés</h2>
         <div className="grid grid-cols-4 gap-3">
@@ -206,7 +200,6 @@ print(result.confidence) # Score de confiance`}</CodeBlock>
         </div>
       </div>
 
-      {/* Performance */}
       <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5">
         <h2 className="text-xl font-bold mb-4 flex items-center gap-2">
           <Clock className="w-5 h-5 text-neutral-400" />

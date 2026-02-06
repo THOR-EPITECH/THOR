@@ -83,7 +83,6 @@ class DummyNLPModel(NLPModel):
     def _normalize_city(self, city: str) -> str:
         """Normalise le nom de ville."""
         city = city.strip()
-        # Capitalise la première lettre de chaque mot
         words = city.split()
         normalized = ' '.join(word.capitalize() for word in words)
         return normalized

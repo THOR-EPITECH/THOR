@@ -102,14 +102,11 @@ def benchmark_command(args):
     """Commande pour benchmarker plusieurs modèles."""
     from src.nlp.models.spacy_fr import SpacyFRModel
     
-    # Parse les modèles à comparer
     models_to_benchmark = []
     
-    # Modèles par défaut si aucun spécifié
     if not args.models:
         args.models = ["dummy", "regex_advanced", "spacy"]
     
-    # Charge chaque modèle avec sa config
     for model_spec in args.models:
         parts = model_spec.split(":")
         model_name = parts[0]
@@ -149,7 +146,6 @@ def benchmark_command(args):
             logger.error(f"Failed to load model {model_name}: {e}")
             continue
         
-        # Nom complet pour le benchmark
         display_name = f"{model_name}"
         if config_path:
             display_name += f" ({Path(config_path).stem})"
@@ -167,7 +163,6 @@ def benchmark_command(args):
     
     logger.info(f"Benchmarking {len(models_to_benchmark)} models on {args.dataset}")
     
-    # Lance le benchmark
     results = benchmark_models(
         models=models_to_benchmark,
         dataset_path=args.dataset,
@@ -179,7 +174,6 @@ def benchmark_command(args):
     print(f"Report: {results['report_path']}")
     print(f"Comparison: {results['comparison_path']}")
     
-    # Affiche un résumé
     print("\n=== Résumé ===")
     for model_name, result in results["results"].items():
         if result.get("status") == "success":

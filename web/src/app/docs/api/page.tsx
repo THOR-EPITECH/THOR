@@ -48,7 +48,6 @@ function Endpoint({ method, path, description, children }: {
 export default function DocsAPI() {
   return (
     <div>
-      {/* Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
           <span>Docs</span>
@@ -61,7 +60,6 @@ export default function DocsAPI() {
         </p>
       </div>
 
-      {/* Base URL */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Configuration</h2>
         <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5">
@@ -76,11 +74,9 @@ export default function DocsAPI() {
         </div>
       </div>
 
-      {/* Endpoints */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Endpoints</h2>
 
-        {/* Health */}
         <Endpoint 
           method="GET" 
           path="/api/health"
@@ -99,7 +95,6 @@ export default function DocsAPI() {
 }`}</CodeBlock>
         </Endpoint>
 
-        {/* Pipeline */}
         <Endpoint 
           method="POST" 
           path="/api/pipeline"
@@ -139,7 +134,6 @@ export default function DocsAPI() {
 }`}</CodeBlock>
         </Endpoint>
 
-        {/* Search */}
         <Endpoint 
           method="POST" 
           path="/api/search"
@@ -156,7 +150,6 @@ export default function DocsAPI() {
   -d '{"text": "Je veux aller de Paris à Lyon"}'`}</CodeBlock>
         </Endpoint>
 
-        {/* Route */}
         <Endpoint 
           method="POST" 
           path="/api/route"
@@ -195,7 +188,6 @@ export default function DocsAPI() {
 }`}</CodeBlock>
         </Endpoint>
 
-        {/* Stations */}
         <Endpoint 
           method="GET" 
           path="/api/stations"
@@ -218,7 +210,6 @@ export default function DocsAPI() {
         </Endpoint>
       </div>
 
-      {/* Error handling */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Gestion des erreurs</h2>
         <div className="space-y-4">
@@ -254,7 +245,6 @@ export default function DocsAPI() {
 }`}</CodeBlock>
       </div>
 
-      {/* Tips */}
       <div className="p-6 rounded-xl bg-blue-500/5 border border-blue-500/20">
         <h3 className="font-semibold text-blue-400 mb-4 flex items-center gap-2">
           <Zap className="w-5 h-5" />

@@ -76,20 +76,16 @@ class WhisperModel(STTModel):
         start_time = time.time()
         
         try:
-            # Charge l'audio avec librosa/soundfile si disponible (évite besoin de ffmpeg)
             if AUDIO_AVAILABLE:
-                # Charge l'audio et convertit en format attendu par Whisper (float32, 16kHz)
                 audio, sr = librosa.load(str(audio_path), sr=16000, mono=True)
                 audio = audio.astype(np.float32)
                 
-                # Transcription avec Whisper en passant directement l'audio
                 result = self._model.transcribe(
                     audio,
                     language=self.language,
                     task="transcribe"
                 )
             else:
-                # Fallback : laisse Whisper charger le fichier (nécessite ffmpeg)
                 logger.warning("soundfile/librosa not available, Whisper will try to load file directly (requires ffmpeg)")
                 result = self._model.transcribe(
                     str(audio_path),

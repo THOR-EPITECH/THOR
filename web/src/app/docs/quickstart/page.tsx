@@ -19,7 +19,6 @@ function CodeBlock({ children, title }: { children: string; title?: string }) {
 export default function DocsQuickstart() {
   return (
     <div>
-      {/* Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
           <span>Docs</span>
@@ -32,7 +31,6 @@ export default function DocsQuickstart() {
         </p>
       </div>
 
-      {/* Web Interface */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
           <div className="p-2 rounded-lg bg-blue-500/10">
@@ -100,7 +98,6 @@ export default function DocsQuickstart() {
         </div>
       </div>
 
-      {/* CLI Examples */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
           <div className="p-2 rounded-lg bg-green-500/10">
@@ -136,7 +133,6 @@ export default function DocsQuickstart() {
         </div>
       </div>
 
-      {/* Example output */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Exemple de résultat</h2>
         <CodeBlock title="Résultat pipeline Toulouse → Bordeaux">{`=== Résultats ===
@@ -156,7 +152,6 @@ Confidence: 0.70
       ⏱️ 143 min | 📏 209.5 km | 🚂 17 trains/jour`}</CodeBlock>
       </div>
 
-      {/* Next steps */}
       <div className="p-6 rounded-xl bg-gradient-to-r from-white/5 to-white/[0.02] border border-white/10">
         <h3 className="font-semibold mb-4">Prochaines étapes</h3>
         <div className="grid gap-3">
