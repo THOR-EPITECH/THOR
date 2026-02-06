@@ -42,12 +42,16 @@ const MIN_GEOMETRY_POINTS = 10;
 export default function RouteMapClient({ segments }: RouteMapClientProps) {
   const mapRef = useRef<L.Map | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const [railwayTracks, setRailwayTracks] = useState<RailwayTracksData | null>(null);
+  const railwayTracksRef = useRef<RailwayTracksData | null>(null);
 
   useEffect(() => {
+    if (railwayTracksRef.current) return;
+    
     fetch('/api/railway-tracks')
       .then(res => res.json())
-      .then(data => setRailwayTracks(data))
+      .then(data => {
+        railwayTracksRef.current = data;
+      })
       .catch(err => console.error('Failed to load railway tracks:', err));
   }, []);
 
@@ -77,8 +81,8 @@ export default function RouteMapClient({ segments }: RouteMapClientProps) {
       maxZoom: 19,
     }).addTo(map);
 
-    if (railwayTracks) {
-      const trackLines = Object.values(railwayTracks.lines);
+    if (railwayTracksRef.current) {
+      const trackLines = Object.values(railwayTracksRef.current.lines);
       trackLines.forEach(line => {
         const coords: L.LatLngExpression[] = line.geometry.coordinates.map(
           coord => [coord[1], coord[0]] as L.LatLngExpression
@@ -137,7 +141,7 @@ export default function RouteMapClient({ segments }: RouteMapClientProps) {
         mapRef.current = null;
       }
     };
-  }, [segments, railwayTracks]);
+  }, [segments]);
 
   return (
     <div 
