@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Segment } from '@/types';
+import type { RailwayTracksData } from '@/types/railway';
 
 interface RouteMapClientProps {
   segments: Segment[];
@@ -41,6 +42,14 @@ const MIN_GEOMETRY_POINTS = 10;
 export default function RouteMapClient({ segments }: RouteMapClientProps) {
   const mapRef = useRef<L.Map | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [railwayTracks, setRailwayTracks] = useState<RailwayTracksData | null>(null);
+
+  useEffect(() => {
+    fetch('/api/railway-tracks')
+      .then(res => res.json())
+      .then(data => setRailwayTracks(data))
+      .catch(err => console.error('Failed to load railway tracks:', err));
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -67,6 +76,22 @@ export default function RouteMapClient({ segments }: RouteMapClientProps) {
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       maxZoom: 19,
     }).addTo(map);
+
+    if (railwayTracks) {
+      const trackLines = Object.values(railwayTracks.lines);
+      trackLines.forEach(line => {
+        const coords: L.LatLngExpression[] = line.geometry.coordinates.map(
+          coord => [coord[1], coord[0]] as L.LatLngExpression
+        );
+        
+        L.polyline(coords, {
+          color: '#475569',
+          weight: 1,
+          opacity: 0.25,
+          interactive: false,
+        }).addTo(map);
+      });
+    }
 
     const bounds = L.latLngBounds([]);
 
@@ -112,7 +137,7 @@ export default function RouteMapClient({ segments }: RouteMapClientProps) {
         mapRef.current = null;
       }
     };
-  }, [segments]);
+  }, [segments, railwayTracks]);
 
   return (
     <div 
