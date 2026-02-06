@@ -320,7 +320,7 @@ class DijkstraPathfindingModel(PathfindingModel):
         return candidates[0][0]
     
     def _find_uic_by_name(self, name: str) -> Optional[str]:
-        """Trouve l'UIC d'une gare à partir de son nom exact ou partiel."""
+        """Trouve l'UIC d'une gare à partir de son nom exact ou partiel avec scoring."""
         name_lower = name.lower().strip()
         
         for uic, station in self._stations_by_uic.items():
@@ -331,12 +331,50 @@ class DijkstraPathfindingModel(PathfindingModel):
         matches = []
         for uic, station in self._stations_by_uic.items():
             gare_nom = station.get('nom_gare', '').lower()
-            if name_lower in gare_nom or gare_nom in name_lower:
-                in_graph = uic in self._graph
-                matches.append((uic, in_graph))
+            ville_nom = station.get('ville', {}).get('nom_commune', '').lower()
+            
+            score = 0
+            in_graph = uic in self._graph
+            
+            if name_lower == gare_nom:
+                score = 1000
+            elif gare_nom.startswith(name_lower + ' ') or gare_nom.startswith(name_lower + '-'):
+                score = 500
+            elif ville_nom == name_lower:
+                score = 400
+            elif name_lower in gare_nom.split():
+                score = 300
+            elif name_lower in gare_nom:
+                score = 100
+            elif gare_nom in name_lower:
+                score = 50
+            else:
+                continue
+            
+            if any(term in gare_nom for term in ['saint-charles', 'part-dieu', 'saint-jean', 
+                                                   'montparnasse', 'gare de lyon', 'gare du nord',
+                                                   'perrache', 'matabiau']):
+                score += 200
+            
+            if 'tgv' in gare_nom or 'centrale' in gare_nom:
+                score += 100
+            
+            if any(term in gare_nom for term in ['aéroport', 'banlieue', 'rer', '-en-']):
+                score -= 300
+            
+            num_connections = len(self._graph.get(uic, []))
+            score += min(num_connections * 2, 100)
+            
+            if not in_graph:
+                score -= 500
+            
+            matches.append((uic, score))
+        
+        if not matches:
+            return None
         
         matches.sort(key=lambda x: -x[1])
-        return matches[0][0] if matches else None
+        return matches[0][0]
     
     def _find_all_uics_for_city(self, city_name: str) -> list[str]:
         """
