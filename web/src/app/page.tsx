@@ -1,3 +1,14 @@
+/**
+ * Page d'accueil de l'application THOR.
+ * 
+ * Cette page permet aux utilisateurs de :
+ * - Rechercher des itinéraires ferroviaires par texte ou voix
+ * - Visualiser les résultats (transcription, extraction NLP, itinéraire)
+ * - Voir la carte interactive de l'itinéraire
+ * 
+ * @module app/page
+ */
+
 'use client';
 
 import { useState } from 'react';
@@ -8,11 +19,28 @@ import RouteMap from '@/components/RouteMap';
 import { ArrowRight, Github, Loader2, Book } from 'lucide-react';
 import Link from 'next/link';
 
+/**
+ * Composant principal de la page d'accueil.
+ * 
+ * Gère l'état global de la recherche et affiche les différentes sections
+ * (header, formulaire, résultats, footer).
+ * 
+ * @returns {JSX.Element} Page d'accueil complète
+ */
 export default function Home() {
   const [result, setResult] = useState<PipelineResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  /**
+   * Gère la recherche d'itinéraire par texte.
+   * 
+   * Envoie une requête à l'API /api/search avec le texte saisi,
+   * puis met à jour l'état avec le résultat ou l'erreur.
+   * 
+   * @param {string} text - Texte de la requête (ex: "Je veux aller de Paris à Lyon")
+   * @async
+   */
   const handleSearch = async (text: string) => {
     setIsLoading(true);
     setError(null);
@@ -46,6 +74,14 @@ export default function Home() {
     }
   };
 
+  /**
+   * Gère le résultat d'une recherche vocale.
+   * 
+   * Appelé par SearchInput après traitement complet de l'audio
+   * (transcription + extraction + pathfinding).
+   * 
+   * @param {PipelineResult} data - Résultat complet du pipeline
+   */
   const handleVoiceResult = (data: PipelineResult) => {
     setError(null);
     setResult(data);
@@ -54,7 +90,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
-      {/* Header */}
+      {/* En-tête avec logo et navigation */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -83,10 +119,10 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Main */}
+      {/* Contenu principal */}
       <main className="pt-32 pb-24 px-6">
         <div className="max-w-2xl mx-auto">
-          {/* Hero */}
+          {/* Section hero avec titre et description */}
           <div className="text-center mb-12">
             <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight mb-4">
               Trouvez votre trajet
@@ -96,7 +132,7 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Search */}
+          {/* Formulaire de recherche */}
           <div className="mb-16">
             <SearchInput 
               onSearch={handleSearch} 
@@ -105,14 +141,14 @@ export default function Home() {
             />
           </div>
 
-          {/* Loading */}
+          {/* État de chargement */}
           {isLoading && (
             <div className="flex items-center justify-center py-16">
               <Loader2 className="w-6 h-6 animate-spin text-neutral-500" />
             </div>
           )}
 
-          {/* Error */}
+          {/* Affichage des erreurs */}
           {error && (
             <div className="text-center py-8 animate-fade-in">
               <p className="text-red-400 mb-2">{error}</p>
@@ -120,10 +156,10 @@ export default function Home() {
             </div>
           )}
 
-          {/* Results */}
+          {/* Affichage des résultats */}
           {result && (
             <div className="space-y-8 animate-fade-in">
-              {/* Query confirmation */}
+              {/* Confirmation de la requête */}
               <div className="text-center pb-6 border-b border-white/5">
                 <p className="text-sm text-neutral-500 mb-2">Votre recherche</p>
                 <p className="text-lg">"{result.transcript}"</p>
@@ -136,7 +172,7 @@ export default function Home() {
                 )}
               </div>
 
-              {/* Route */}
+              {/* Détails de l'itinéraire et carte */}
               {result.route && result.route.steps && result.route.steps.length > 0 ? (
                 <div className="space-y-8 stagger-children">
                   <RouteDetails route={result.route} />
@@ -150,7 +186,7 @@ export default function Home() {
             </div>
           )}
 
-          {/* Empty state */}
+          {/* État vide avec exemples */}
           {!isLoading && !error && !result && (
             <div className="text-center py-16 text-neutral-500">
               <p className="mb-8">Exemples de recherches</p>
@@ -170,7 +206,7 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Footer */}
+      {/* Pied de page */}
       <footer className="fixed bottom-0 left-0 right-0 border-t border-white/5 bg-[#0a0a0a]/80 backdrop-blur-md">
         <div className="max-w-6xl mx-auto px-6 h-12 flex items-center justify-between text-xs text-neutral-500">
           <span>THOR — Projet EPITECH 2026</span>

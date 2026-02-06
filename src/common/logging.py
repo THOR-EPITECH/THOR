@@ -1,5 +1,8 @@
 """
-Configuration du logging unifié.
+Configuration du logging unifié pour l'application THOR.
+
+Ce module fournit une fonction utilitaire pour configurer de manière cohérente
+le logging dans tous les modules de l'application.
 """
 import logging
 import sys
@@ -13,15 +16,29 @@ def setup_logging(
     module: Optional[str] = None
 ) -> logging.Logger:
     """
-    Configure le logging.
+    Configure et retourne un logger Python standard.
+    
+    Le logger est configuré avec:
+    - Un formatter avec timestamp
+    - Un handler console (stdout)
+    - Un handler fichier optionnel
+    - Prévention des handlers dupliqués
     
     Args:
-        level: Niveau de log (DEBUG, INFO, WARNING, ERROR)
-        log_file: Chemin vers le fichier de log (optionnel)
-        module: Nom du module pour le logger
+        level (str, optional): Niveau de log. Valeurs: DEBUG, INFO, WARNING, ERROR, CRITICAL.
+            Par défaut "INFO".
+        log_file (Optional[str], optional): Chemin vers le fichier de log. Si fourni, les logs
+            seront également écrits dans ce fichier.
+        module (Optional[str], optional): Nom du module pour identifier le logger.
+            Si None, utilise "thor" comme nom par défaut.
     
     Returns:
-        Logger configuré
+        logging.Logger: Instance de logger configurée.
+        
+    Example:
+        >>> logger = setup_logging(level="DEBUG", module="pathfinding")
+        >>> logger.info("Recherche d'itinéraire en cours...")
+        >>> logger.error("Aucun chemin trouvé")
     """
     logger_name = module or "thor"
     logger = logging.getLogger(logger_name)
