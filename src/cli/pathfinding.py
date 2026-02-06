@@ -70,14 +70,12 @@ def main():
     parser = argparse.ArgumentParser(description="THOR Pathfinding CLI")
     subparsers = parser.add_subparsers(dest="command", help="Command to run")
     
-    # Commande find-route
     find_parser = subparsers.add_parser("find-route", help="Find a route between two cities")
     find_parser.add_argument("--origin", required=True, help="Origin city")
     find_parser.add_argument("--destination", required=True, help="Destination city")
     find_parser.add_argument("--model", default="dijkstra", help="Pathfinding model to use")
     find_parser.add_argument("--config", help="Path to config file")
     
-    # Commande evaluate
     eval_parser = subparsers.add_parser("evaluate", help="Evaluate a model")
     eval_parser.add_argument("--dataset", required=True, help="Path to dataset JSONL")
     eval_parser.add_argument("--model", default="dijkstra", help="Pathfinding model to use")

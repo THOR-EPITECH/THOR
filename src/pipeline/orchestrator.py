@@ -126,20 +126,17 @@ class Pipeline:
         
         logger.info(f"Processing audio: {audio_path}")
         
-        # Étape 1: Transcription STT
         logger.info("Step 1: Transcribing audio...")
         stt_result = self.stt_model.transcribe(audio_path)
         transcript = stt_result.text
         
         logger.info(f"Transcription: {transcript}")
         
-        # Étape 2: Extraction NLP
         logger.info("Step 2: Extracting origin/destination...")
         nlp_result = self.nlp_model.extract(transcript)
         
         logger.info(f"Extraction: {nlp_result.origin} → {nlp_result.destination}")
         
-        # Génère un message d'erreur si une ville manque
         error_message = None
         route = None
         
@@ -151,7 +148,6 @@ class Pipeline:
             elif not nlp_result.destination:
                 error_message = "⚠️ Attention : La ville d'arrivée est manquante. Veuillez préciser votre destination."
             elif self.pathfinding_model and nlp_result.origin and nlp_result.destination:
-                # Étape 3: Pathfinding
                 logger.info("Step 3: Finding route...")
                 route = self.pathfinding_model.find_route(nlp_result.origin, nlp_result.destination)
                 if route.steps:

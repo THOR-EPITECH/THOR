@@ -43,23 +43,18 @@ class Config:
         Note:
             L'ordre de priorité est: overrides > config_path > base.yaml > env vars
         """
-        # Charge les variables d'environnement
         load_dotenv()
         
-        # Charge la config de base
         base_config_path = Path(__file__).parent.parent.parent / "configs" / "base.yaml"
         self.config = self._load_yaml(base_config_path) if base_config_path.exists() else {}
         
-        # Charge la config spécifique si fournie
         if config_path:
             specific_config = self._load_yaml(config_path)
             self.config = self._merge_config(self.config, specific_config)
         
-        # Applique les overrides
         if overrides:
             self.config = self._merge_config(self.config, overrides)
         
-        # Remplace les variables d'environnement
         self.config = self._replace_env_vars(self.config)
     
     @staticmethod

@@ -20,7 +20,6 @@ class RegexAdvancedModel(NLPModel):
     la précision par rapport au modèle dummy.
     """
     
-    # Liste de villes françaises communes
     FRENCH_CITIES = {
         "paris", "lyon", "marseille", "toulouse", "nice", "nantes", "strasbourg",
         "montpellier", "bordeaux", "lille", "rennes", "reims", "saint-étienne",
@@ -48,7 +47,7 @@ class RegexAdvancedModel(NLPModel):
     
     def __init__(self, config: dict = None):
         super().__init__(config)
-        self._initialized = True  # Pas besoin de charger un modèle
+        self._initialized = True
     
     def _load_model(self):
         """Pas de modèle à charger pour regex."""
@@ -137,11 +136,9 @@ class RegexAdvancedModel(NLPModel):
         
         text_lower = text.lower().strip()
         
-        # Vérifie dans la liste de villes connues
         if text_lower in self.FRENCH_CITIES:
             return True
         
-        # Vérifie si ça ressemble à un nom de ville (commence par majuscule, pas de chiffres)
         if re.match(r'^[A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?$', text):
             return True
         
@@ -169,10 +166,8 @@ class RegexAdvancedModel(NLPModel):
         ]
         text_lower = text.lower()
         
-        # Doit contenir un mot-clé de trajet
         has_travel_keyword = any(kw in text_lower for kw in travel_keywords)
         
-        # Doit avoir au moins une ville
         has_location = origin is not None or destination is not None
         
         return has_travel_keyword and has_location

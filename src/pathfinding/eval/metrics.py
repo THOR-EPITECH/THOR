@@ -23,7 +23,6 @@ def calculate_path_accuracy(
     if not reference_steps or not predicted_steps:
         return 0.0
     
-    # Compare les étapes dans l'ordre
     correct = 0
     min_len = min(len(reference_steps), len(predicted_steps))
     
@@ -76,7 +75,6 @@ def calculate_pathfinding_result(
     """
     metrics = {}
     
-    # Vérification origine/destination
     origin_correct = (result.origin.lower() == reference_origin.lower()) if result.origin else False
     destination_correct = (result.destination.lower() == reference_destination.lower()) if result.destination else False
     
@@ -84,13 +82,11 @@ def calculate_pathfinding_result(
     metrics["destination_accuracy"] = 1.0 if destination_correct else 0.0
     metrics["route_found"] = 1.0 if result.steps else 0.0
     
-    # Précision du chemin si les étapes de référence sont fournies
     if reference_steps:
         metrics["path_accuracy"] = calculate_path_accuracy(reference_steps, result.steps)
     else:
         metrics["path_accuracy"] = None
     
-    # Erreur de distance si la distance de référence est fournie
     if reference_distance is not None and result.total_distance is not None:
         metrics["distance_error"] = calculate_distance_error(reference_distance, result.total_distance)
         metrics["distance_relative_error"] = metrics["distance_error"] / reference_distance if reference_distance > 0 else None
@@ -98,7 +94,6 @@ def calculate_pathfinding_result(
         metrics["distance_error"] = None
         metrics["distance_relative_error"] = None
     
-    # Nombre d'étapes
     metrics["num_steps"] = len(result.steps) if result.steps else 0
     
     return metrics
@@ -119,7 +114,6 @@ def aggregate_metrics(metrics_list: List[Dict[str, float]]) -> Dict[str, float]:
     
     aggregated = {}
     
-    # Liste des clés numériques
     numeric_keys = [
         "origin_accuracy", "destination_accuracy", "route_found",
         "path_accuracy", "distance_error", "distance_relative_error", "num_steps"
@@ -134,7 +128,6 @@ def aggregate_metrics(metrics_list: List[Dict[str, float]]) -> Dict[str, float]:
             else:
                 aggregated[f"{key}_std"] = 0.0
     
-    # Statistiques supplémentaires
     route_found_count = sum(1 for m in metrics_list if m.get("route_found", 0) == 1.0)
     aggregated["route_found_count"] = route_found_count
     aggregated["route_found_rate"] = route_found_count / len(metrics_list) if metrics_list else 0.0

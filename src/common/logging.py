@@ -44,22 +44,18 @@ def setup_logging(
     logger = logging.getLogger(logger_name)
     logger.setLevel(getattr(logging, level.upper()))
     
-    # Évite les handlers dupliqués
     if logger.handlers:
         return logger
     
-    # Format
     formatter = logging.Formatter(
         '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         datefmt='%Y-%m-%d %H:%M:%S'
     )
     
-    # Handler console
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
     
-    # Handler fichier si spécifié
     if log_file:
         log_path = Path(log_file)
         log_path.parent.mkdir(parents=True, exist_ok=True)

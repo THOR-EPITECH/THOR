@@ -75,28 +75,22 @@ def convert_to_spacy_format(
         
         entities = []
         
-        # Trouve les positions de l'origine
         if origin:
             origin_positions = find_city_in_text(text, origin)
             for start, end in origin_positions:
                 entities.append((start, end, "ORIGIN"))
         
-        # Trouve les positions de la destination
         if destination:
             dest_positions = find_city_in_text(text, destination)
             for start, end in dest_positions:
-                # Évite les doublons si origine et destination sont la même ville
                 if not any(start == orig_start and end == orig_end 
                           for orig_start, orig_end, _ in entities):
                     entities.append((start, end, "DESTINATION"))
         
-        # Trie les entités par position (spaCy le requiert)
         entities.sort(key=lambda x: x[0])
         
-        # Vérifie qu'il n'y a pas de chevauchement
         valid_entities = []
         for i, (start, end, label) in enumerate(entities):
-            # Vérifie les chevauchements avec les entités précédentes
             overlaps = False
             for prev_start, prev_end, _ in valid_entities:
                 if not (end <= prev_start or start >= prev_end):
@@ -109,12 +103,10 @@ def convert_to_spacy_format(
         if valid_entities:
             training_data.append((text, {"entities": valid_entities}))
         else:
-            # Si pas d'entités, on ajoute quand même pour l'entraînement négatif
             training_data.append((text, {"entities": []}))
     
     logger.info(f"Converted {len(training_data)} samples")
     
-    # Sauvegarde si demandé
     if output_path:
         import json
         output_path = Path(output_path)

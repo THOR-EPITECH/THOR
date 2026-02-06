@@ -17,7 +17,6 @@ from src.common.logging import setup_logging
 logger = setup_logging(module="pathfinding.dijkstra")
 
 
-# --- Fonctions utilitaires ---
 
 def haversine(pos1: dict, pos2: dict) -> float:
     """Calcule la distance en km entre deux positions GPS."""
@@ -240,7 +239,6 @@ class DijkstraPathfindingModel(PathfindingModel):
         if not path_gares.exists():
             raise FileNotFoundError(f"Gares file not found: {path_gares}")
         
-        # Essayer le fichier enrichi d'abord
         if self.mode == "time" and path_liaisons_enhanced.exists():
             logger.info(f"Loading enhanced data (temps de trajet réels)")
             logger.info(f"  Gares: {path_gares}")
@@ -282,66 +280,51 @@ class DijkstraPathfindingModel(PathfindingModel):
         city_name_lower = city_name.lower().strip()
         candidates = []
         
-        # Étape 1: Chercher les gares dont le nom COMMENCE par la ville ou
-        # dont la commune correspond
         for uic, station in self._stations_by_uic.items():
             gare_nom = station.get('nom_gare', '').lower()
             ville_nom = station.get('ville', {}).get('nom_commune', '').lower()
             
-            # Correspondance exacte du nom de gare
             if gare_nom == city_name_lower:
                 candidates.append((uic, station, 200))
                 continue
             
-            # Le nom de gare COMMENCE par la ville (ex: "Lyon Part Dieu", pas "Paris Gare de Lyon")
             if gare_nom.startswith(city_name_lower + ' ') or gare_nom.startswith(city_name_lower + '-'):
                 score = 100
-                # Bonus pour les grandes gares principales
                 if any(term in gare_nom for term in ['part-dieu', 'part dieu', 'saint-jean', 
                                                        'saint-charles', 'perrache', 'montparnasse']):
                     score += 50
                 if any(term in gare_nom for term in ['tgv', 'central', 'centre']):
                     score += 30
-                # Pénalité pour les gares secondaires
                 if any(term in gare_nom for term in ['aéroport', 'banlieue', 'rer', 'gorge', 'vaise', 'saint-paul']):
                     score -= 20
                 candidates.append((uic, station, score))
                 continue
             
-            # Correspondance exacte sur le nom de commune
             if ville_nom == city_name_lower:
                 score = 80
                 candidates.append((uic, station, score))
             elif city_name_lower in ville_nom and not ville_nom.startswith('paris'):
-                # Éviter de matcher les arrondissements parisiens pour d'autres villes
                 candidates.append((uic, station, 40))
         
         if not candidates:
-            # Fallback: recherche plus permissive pour les noms composés
             for uic, station in self._stations_by_uic.items():
                 gare_nom = station.get('nom_gare', '').lower()
-                # Ex: "Saint-Étienne" dans "Saint-Étienne Châteaucreux"
                 if city_name_lower in gare_nom and not 'gare de' in gare_nom:
                     candidates.append((uic, station, 30))
         
         if not candidates:
             return None
         
-        # Filtrer les candidats qui sont dans le graphe
         candidates_in_graph = [(uic, s, score) for uic, s, score in candidates if uic in self._graph]
         
         if candidates_in_graph:
-            # Bonus significatif pour les gares bien connectées
             for i, (uic, s, score) in enumerate(candidates_in_graph):
                 nb_connections = len(self._graph.get(uic, []))
-                # Les gares très connectées sont généralement les gares principales
                 candidates_in_graph[i] = (uic, s, score + nb_connections * 2)
             
-            # Trier par score et retourner le meilleur
             candidates_in_graph.sort(key=lambda x: -x[2])
             return candidates_in_graph[0][0]
         
-        # Sinon, retourner le meilleur candidat même hors graphe
         candidates.sort(key=lambda x: -x[2])
         return candidates[0][0]
     

@@ -42,10 +42,8 @@ def evaluate_model(
     
     logger.info(f"Evaluating model {model.name} on {dataset_path}")
     
-    # Initialise le modèle
     model.initialize()
     
-    # Charge le dataset
     samples = []
     metrics_list = []
     predictions = []
@@ -55,7 +53,6 @@ def evaluate_model(
         reference = item.get("transcript", "")
         sample_id = item.get("id", "")
         
-        # Récupère les infos audio
         try:
             audio_info = get_audio_info(audio_path)
             audio_duration = audio_info["duration"]
@@ -63,15 +60,12 @@ def evaluate_model(
             logger.warning(f"Failed to get audio info for {audio_path}: {e}")
             audio_duration = 0.0
         
-        # Transcription
         try:
             result = model.transcribe(audio_path)
             
-            # Évaluation
             metrics = evaluate_stt_result(result, reference, audio_duration)
             metrics_list.append(metrics)
             
-            # Sauvegarde prédiction
             predictions.append({
                 "id": sample_id,
                 "audio_path": str(audio_path),
@@ -96,28 +90,24 @@ def evaluate_model(
                 "error": str(e)
             })
     
-    # Agrège les métriques
     aggregated = aggregate_metrics(metrics_list)
     
-    # Sauvegarde
     if save_predictions:
         write_jsonl(output_dir / "predictions.jsonl", predictions)
         write_csv(output_dir / "predictions.csv", predictions)
     
-    # Sauvegarde métriques
     with open(output_dir / "metrics.json", "w", encoding="utf-8") as f:
         json.dump(aggregated, f, indent=2, ensure_ascii=False)
     
     logger.info(f"Evaluation complete. WER: {aggregated.get('wer_mean', 'N/A'):.4f}")
     
-    # Génère le rapport markdown
     try:
         report_path = save_report(
             output_dir,
             model.name,
             dataset_path,
             aggregated,
-            config=None  # TODO: passer la config si disponible
+            config=None
         )
         logger.info(f"Report generated: {report_path}")
     except Exception as e:

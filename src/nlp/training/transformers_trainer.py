@@ -43,20 +43,17 @@ def convert_to_ner_format(spacy_data: List[Tuple[str, Dict]]) -> List[Dict]:
     for text, annotations in spacy_data:
         entities = annotations.get("entities", [])
         
-        # Crée les labels BIO
         tokens = text.split()
         labels = ["O"] * len(tokens)
         
         for start, end, label in entities:
-            # Trouve les tokens correspondants
             char_to_token = {}
             char_pos = 0
             for i, token in enumerate(tokens):
                 for j in range(len(token)):
                     char_to_token[char_pos + j] = i
-                char_pos += len(token) + 1  # +1 pour l'espace
+                char_pos += len(token) + 1
             
-            # Marque les tokens
             start_token = char_to_token.get(start, 0)
             end_token = char_to_token.get(end, len(tokens) - 1)
             
@@ -106,8 +103,6 @@ def train_transformers_model(
     
     logger.info(f"Loading base model: {base_model_name}")
     
-    # Utilise camembert-base comme modèle de base (plus fiable que les modèles NER pré-entraînés)
-    # Si le modèle demandé contient "ner", on utilise camembert-base à la place
     if "ner" in base_model_name.lower() or "camembert-ner" in base_model_name.lower():
         logger.info("Using camembert-base as base model (more reliable for fine-tuning)")
         base_model = "camembert-base"
@@ -117,14 +112,11 @@ def train_transformers_model(
     try:
         from transformers import CamembertConfig
         
-        # Charge le tokenizer
-        tokenizer = AutoTokenizer.from_pretrained(base_model, use_fast=False)  # use_fast=False pour éviter les problèmes
+        tokenizer = AutoTokenizer.from_pretrained(base_model, use_fast=False)
         
-        # Crée la configuration avec 5 labels
         config = CamembertConfig.from_pretrained(base_model)
         config.num_labels = 5
         
-        # Charge le modèle avec la nouvelle configuration
         model = AutoModelForTokenClassification.from_pretrained(base_model, config=config)
         
         logger.info(f"Successfully loaded {base_model} with 5 labels (O, B-ORIGIN, I-ORIGIN, B-DESTINATION, I-DESTINATION)")
@@ -132,15 +124,12 @@ def train_transformers_model(
         logger.error(f"Failed to load model {base_model}: {e}")
         raise
     
-    # Convertit les données
     train_ner = convert_to_ner_format(train_data)
     valid_ner = convert_to_ner_format(valid_data) if valid_data else None
     
-    # Crée les datasets
     train_dataset = Dataset.from_list(train_ner)
     valid_dataset = Dataset.from_list(valid_ner) if valid_ner else None
     
-    # Tokenize
     def tokenize_and_align_labels(examples):
         tokenized_inputs = tokenizer(
             examples["tokens"],
@@ -167,14 +156,12 @@ def train_transformers_model(
         tokenized_inputs["labels"] = labels
         return tokenized_inputs
     
-    # Label mapping
     label_to_id = {"O": 0, "B-ORIGIN": 1, "I-ORIGIN": 2, "B-DESTINATION": 3, "I-DESTINATION": 4}
     
     train_dataset = train_dataset.map(tokenize_and_align_labels, batched=True)
     if valid_dataset:
         valid_dataset = valid_dataset.map(tokenize_and_align_labels, batched=True)
     
-    # Arguments d'entraînement
     training_args = TrainingArguments(
         output_dir=str(output_dir / "checkpoints"),
         num_train_epochs=n_epochs,
@@ -186,13 +173,11 @@ def train_transformers_model(
         logging_steps=10,
         save_strategy="epoch",
         eval_strategy="epoch" if valid_dataset else "no",  # eval_strategy au lieu de evaluation_strategy
-        eval_steps=100 if valid_dataset else None,  # Évalue tous les 100 steps
+        eval_steps=100 if valid_dataset else None,
     )
     
-    # Data collator
     data_collator = DataCollatorForTokenClassification(tokenizer)
     
-    # Trainer
     trainer = Trainer(
         model=model,
         args=training_args,
@@ -202,11 +187,9 @@ def train_transformers_model(
         tokenizer=tokenizer,
     )
     
-    # Entraînement
     logger.info(f"Starting training for {n_epochs} epochs...")
     trainer.train()
     
-    # Sauvegarde
     model_path = output_dir / "model"
     model.save_pretrained(str(model_path))
     tokenizer.save_pretrained(str(model_path))

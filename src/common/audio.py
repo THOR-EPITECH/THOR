@@ -36,18 +36,14 @@ def resample_audio(
     if not AUDIO_AVAILABLE:
         raise ImportError("soundfile and librosa are required for audio processing")
     
-    # Charge l'audio
     audio, sr = librosa.load(str(input_path), sr=None, mono=mono)
     
-    # Rééchantillonne si nécessaire
     if sr != target_sr:
         audio = librosa.resample(audio, orig_sr=sr, target_sr=target_sr)
     
-    # Assure que c'est mono
     if len(audio.shape) > 1:
         audio = np.mean(audio, axis=0)
     
-    # Sauvegarde
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     sf.write(str(output_path), audio, target_sr)

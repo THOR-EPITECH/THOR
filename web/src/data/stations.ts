@@ -1,4 +1,3 @@
-// Positions GPS des principales gares françaises
 export const stationPositions: Record<string, { lat: number; lon: number }> = {
   'Paris Montparnasse': { lat: 48.8412, lon: 2.3205 },
   'Paris Gare de Lyon': { lat: 48.8443, lon: 2.3737 },
@@ -55,12 +54,10 @@ export const stationPositions: Record<string, { lat: number; lon: number }> = {
 };
 
 export function getStationPosition(stationName: string): { lat: number; lon: number } | null {
-  // Recherche exacte
   if (stationPositions[stationName]) {
     return stationPositions[stationName];
   }
   
-  // Recherche partielle
   const normalizedName = stationName.toLowerCase();
   for (const [name, pos] of Object.entries(stationPositions)) {
     if (name.toLowerCase().includes(normalizedName) || normalizedName.includes(name.toLowerCase())) {

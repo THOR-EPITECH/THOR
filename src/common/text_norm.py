@@ -29,20 +29,16 @@ def normalize_text(
     if not text:
         return ""
     
-    # Minuscules
     if lowercase:
         text = text.lower()
     
-    # Accents
     if remove_accents:
         text = unicodedata.normalize('NFD', text)
         text = ''.join(c for c in text if unicodedata.category(c) != 'Mn')
     
-    # Ponctuation
     if remove_punctuation:
         text = re.sub(r'[^\w\s]', '', text)
     
-    # Espaces
     if normalize_whitespace:
         text = re.sub(r'\s+', ' ', text)
         text = text.strip()
@@ -60,11 +56,9 @@ def clean_station_name(name: str) -> str:
     Returns:
         Nom nettoyé
     """
-    # Supprime les préfixes/suffixes communs
     name = re.sub(r'^(gare de|gare d\'|gare du|gare des|gare)\s+', '', name, flags=re.IGNORECASE)
     name = name.strip()
     
-    # Normalise les espaces et tirets
     name = re.sub(r'\s+', ' ', name)
     name = re.sub(r'\s*-\s*', '-', name)
     

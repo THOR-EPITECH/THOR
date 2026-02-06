@@ -204,37 +204,30 @@ class SpacyFRModel(NLPModel):
         
         text_lower = text.lower()
         
-        # Pattern 1: "depuis X" (cherche d'abord l'origine avec "depuis")
-        # Ex: "aller à Paris depuis Lyon" -> origine: Lyon
         pattern_depuis = re.search(r'depuis\s+([a-zéèêàôùç-]+(?:\s+[a-zéèêàôùç-]+)?)', text, re.IGNORECASE)
         if pattern_depuis:
             origin_candidate = clean_station_name(pattern_depuis.group(1))
-            # Cherche la destination AVANT "depuis"
             text_avant_depuis = text[:pattern_depuis.start()]
             pattern_dest = re.search(r'(?:aller|rendre|voyager|se\s+rendre)\s+(?:à|vers|a)\s+([a-zéèêàôùç-]+(?:\s+[a-zéèêàôùç-]+)?)', text_avant_depuis, re.IGNORECASE)
             if pattern_dest:
                 dest_candidate = clean_station_name(pattern_dest.group(1))
-                # Match avec les villes trouvées
                 for city in cities:
                     if city.lower() == origin_candidate.lower():
                         origin = city
                     if city.lower() == dest_candidate.lower():
                         destination = city
         
-        # Pattern 2: "de X à Y" ou "de X a Y" (si pas déjà trouvé)
         if not origin or not destination:
             pattern_de_a = re.search(r'\bde\s+([a-zéèêàôùç-]+(?:\s+[a-zéèêàôùç-]+)?)\s+(?:à|vers|pour|a)\s+([a-zéèêàôùç-]+(?:\s+[a-zéèêàôùç-]+)?)', text, re.IGNORECASE)
             if pattern_de_a:
                 origin_candidate = clean_station_name(pattern_de_a.group(1))
                 dest_candidate = clean_station_name(pattern_de_a.group(2))
-                # Match avec les villes trouvées
                 for city in cities:
                     if city.lower() == origin_candidate.lower() and not origin:
                         origin = city
                     if city.lower() == dest_candidate.lower() and not destination:
                         destination = city
         
-        # Pattern 3: "aller à X" ou "aller a X" (destination seulement) - seulement si pas déjà trouvé
         if not destination:
             pattern_aller_a = re.search(r'(?:aller|rendre|voyager|se\s+rendre)\s+(?:à|vers|a)\s+([a-zéèêàôùç-]+(?:\s+[a-zéèêàôùç-]+)?)', text, re.IGNORECASE)
             if pattern_aller_a:
@@ -244,7 +237,6 @@ class SpacyFRModel(NLPModel):
                         destination = city
                         break
         
-        # Pattern 4: "partir de X" (origine seulement) - seulement si pas déjà trouvé
         if not origin:
             pattern_partir_de = re.search(r'(?:partir|quitter)\s+(?:de|depuis)\s+([a-zéèêàôùç-]+(?:\s+[a-zéèêàôùç-]+)?)', text, re.IGNORECASE)
             if pattern_partir_de:
@@ -254,8 +246,6 @@ class SpacyFRModel(NLPModel):
                         origin = city
                         break
         
-        # Si on a trouvé des villes mais pas de pattern clair, prend les premières
-        # (seulement si on a exactement 2 villes)
         if not origin and not destination and len(cities) == 2:
             origin = cities[0]
             destination = cities[1]

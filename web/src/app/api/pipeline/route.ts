@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-// URL du backend Python Flask
 const PYTHON_BACKEND_URL = process.env.PYTHON_BACKEND_URL || 'http://localhost:8000';
 
 export async function POST(request: NextRequest) {
@@ -15,7 +14,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Proxy vers le backend Flask
     const response = await fetch(`${PYTHON_BACKEND_URL}/api/pipeline`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -25,7 +23,6 @@ export async function POST(request: NextRequest) {
       }),
     });
 
-    // Vérifier le Content-Type
     const contentType = response.headers.get('content-type');
     if (!contentType || !contentType.includes('application/json')) {
       const text = await response.text();
@@ -50,7 +47,6 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Erreur API pipeline:', error);
     
-    // Vérifier si c'est une erreur de connexion au backend
     if (error instanceof TypeError && error.message.includes('fetch')) {
       return NextResponse.json(
         { 

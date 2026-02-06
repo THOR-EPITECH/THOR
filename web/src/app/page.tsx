@@ -90,7 +90,6 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
-      {/* En-tête avec logo et navigation */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -119,10 +118,8 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Contenu principal */}
       <main className="pt-32 pb-24 px-6">
         <div className="max-w-2xl mx-auto">
-          {/* Section hero avec titre et description */}
           <div className="text-center mb-12">
             <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight mb-4">
               Trouvez votre trajet
@@ -132,7 +129,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Formulaire de recherche */}
           <div className="mb-16">
             <SearchInput 
               onSearch={handleSearch} 
@@ -141,14 +137,12 @@ export default function Home() {
             />
           </div>
 
-          {/* État de chargement */}
           {isLoading && (
             <div className="flex items-center justify-center py-16">
               <Loader2 className="w-6 h-6 animate-spin text-neutral-500" />
             </div>
           )}
 
-          {/* Affichage des erreurs */}
           {error && (
             <div className="text-center py-8 animate-fade-in">
               <p className="text-red-400 mb-2">{error}</p>
@@ -156,10 +150,8 @@ export default function Home() {
             </div>
           )}
 
-          {/* Affichage des résultats */}
           {result && (
             <div className="space-y-8 animate-fade-in">
-              {/* Confirmation de la requête */}
               <div className="text-center pb-6 border-b border-white/5">
                 <p className="text-sm text-neutral-500 mb-2">Votre recherche</p>
                 <p className="text-lg">"{result.transcript}"</p>
@@ -172,7 +164,6 @@ export default function Home() {
                 )}
               </div>
 
-              {/* Détails de l'itinéraire et carte */}
               {result.route && result.route.steps && result.route.steps.length > 0 ? (
                 <div className="space-y-8 stagger-children">
                   <RouteDetails route={result.route} />
@@ -186,7 +177,6 @@ export default function Home() {
             </div>
           )}
 
-          {/* État vide avec exemples */}
           {!isLoading && !error && !result && (
             <div className="text-center py-16 text-neutral-500">
               <p className="mb-8">Exemples de recherches</p>
@@ -206,7 +196,6 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Pied de page */}
       <footer className="fixed bottom-0 left-0 right-0 border-t border-white/5 bg-[#0a0a0a]/80 backdrop-blur-md">
         <div className="max-w-6xl mx-auto px-6 h-12 flex items-center justify-between text-xs text-neutral-500">
           <span>THOR — Projet EPITECH 2026</span>

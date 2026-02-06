@@ -288,7 +288,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
         />
         
         <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-          {/* Mic button - enregistrement audio */}
           <button
             type="button"
             onClick={toggleRecording}
@@ -314,7 +313,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
             )}
           </button>
           
-          {/* Submit button */}
           <button
             type="submit"
             disabled={!text.trim() || isLoading || isRecording || isProcessing}
@@ -329,7 +327,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
         </div>
       </div>
 
-      {/* Recording indicator */}
       {isRecording && (
         <div className="flex items-center justify-center gap-1.5 mt-4">
           <span className="w-2 h-2 bg-red-400 rounded-full animate-pulse" />

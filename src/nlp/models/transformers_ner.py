@@ -155,19 +155,16 @@ class TransformersNERModel(NLPModel):
         origin = None
         destination = None
         
-        # Patterns pour origine
         origin_patterns = [
             r'(?:de|depuis|partir de|partant de)\s+([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)',
             r'([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)\s+(?:vers|à|pour)',
         ]
         
-        # Patterns pour destination
         dest_patterns = [
             r'(?:à|vers|pour|aller à|rendre à)\s+([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)',
             r'(?:aller|rendre|voyager)\s+(?:à|vers|en)\s+([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)',
         ]
         
-        # Cherche origine
         for pattern in origin_patterns:
             match = re.search(pattern, text, re.IGNORECASE)
             if match:
@@ -176,7 +173,6 @@ class TransformersNERModel(NLPModel):
                     origin = candidate
                     break
         
-        # Cherche destination
         for pattern in dest_patterns:
             match = re.search(pattern, text, re.IGNORECASE)
             if match:
@@ -185,17 +181,13 @@ class TransformersNERModel(NLPModel):
                     destination = candidate
                     break
         
-        # Si pas trouvé par patterns, utilise les locations trouvées
         if not origin and not destination and locations:
-            # Prend la première comme destination par défaut
             destination = locations[0]
         elif not origin and locations and destination:
-            # Si on a une destination mais pas d'origine, prend la première location restante
             remaining = [loc for loc in locations if loc.lower() != destination.lower()]
             if remaining:
                 origin = remaining[0]
         elif not destination and locations and origin:
-            # Si on a une origine mais pas de destination, prend la première location restante
             remaining = [loc for loc in locations if loc.lower() != origin.lower()]
             if remaining:
                 destination = remaining[0]
@@ -221,17 +213,14 @@ class TransformersNERModel(NLPModel):
         if not is_valid:
             return 0.0
         
-        confidence = 0.5  # Base
+        confidence = 0.5
         
-        # Bonus si on a les deux
         if origin and destination:
             confidence += 0.3
         
-        # Bonus si on a trouvé des entités
         if entities:
             confidence += 0.1
         
-        # Bonus si les entités sont bien formées
         if origin and len(origin) > 2:
             confidence += 0.05
         if destination and len(destination) > 2:
@@ -253,12 +242,9 @@ class TransformersNERModel(NLPModel):
         output_dir = Path(output_dir) if output_dir else Path("models/nlp/transformers_finetuned")
         output_dir.mkdir(parents=True, exist_ok=True)
         
-        # Convertit le dataset au format spaCy (réutilisable)
-        # convert_to_spacy_format attend un chemin de fichier, pas un générateur
         train_data = convert_to_spacy_format(train_dataset)
         valid_data = convert_to_spacy_format(valid_dataset) if valid_dataset else None
         
-        # Entraîne le modèle
         model_path = train_transformers_model(
             base_model_name=self.model_name,
             train_data=train_data,

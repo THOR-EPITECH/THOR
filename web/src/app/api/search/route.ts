@@ -35,7 +35,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { text, origin, destination } = body;
 
-    // Cas 1: Recherche par texte libre (NLP + Pathfinding)
     if (text) {
       const response = await fetch(`${PYTHON_BACKEND_URL}/api/search`, {
         method: 'POST',
@@ -55,7 +54,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(data);
     }
 
-    // Cas 2: Recherche directe par origine et destination
     if (origin && destination) {
       const response = await fetch(`${PYTHON_BACKEND_URL}/api/route`, {
         method: 'POST',
@@ -73,7 +71,6 @@ export async function POST(request: NextRequest) {
 
       const data = await response.json();
       
-      // Formater la réponse au format PipelineResult
       return NextResponse.json({
         transcript: `Trajet de ${origin} à ${destination}`,
         origin,
@@ -92,7 +89,6 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Erreur API:', error);
     
-    // Gestion des erreurs de connexion au backend
     if (error instanceof TypeError && error.message.includes('fetch')) {
       return NextResponse.json(
         { 

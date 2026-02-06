@@ -38,16 +38,13 @@ def analyze_errors(
             "prediction": item.get("prediction", "")
         })
         
-        if wer > 0.5:  # Erreurs importantes
+        if wer > 0.5:
             high_wer_samples.append(item)
     
-    # Trie par WER décroissant
     errors.sort(key=lambda x: x["wer"], reverse=True)
     
-    # Sauvegarde top erreurs
     write_csv(output_dir / "errors_top.csv", errors[:top_n])
     
-    # Analyse des patterns d'erreur
     analysis = {
         "total_samples": len(errors),
         "high_error_samples": len(high_wer_samples),

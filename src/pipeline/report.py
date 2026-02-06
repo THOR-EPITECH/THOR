@@ -31,19 +31,16 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, st
     stt_metadata = result.get("stt_metadata", {})
     nlp_metadata = result.get("nlp_metadata", {})
     
-    # Récupère les noms des modèles
     stt_model = stt_model_name or stt_metadata.get('model', 'N/A')
     nlp_model = nlp_model_name or nlp_metadata.get('model', 'N/A')
     pathfinding_model = pathfinding_model_name or "Non utilisé"
     
     route = result.get("route")
     
-    # Formate les valeurs
     confidence_str = f"{confidence:.2f}" if confidence is not None else "N/A"
     processing_time = stt_metadata.get('processing_time')
     processing_time_str = f"{processing_time:.2f}s" if processing_time else "N/A"
     
-    # Génère le rapport
     report = f"""# Rapport Pipeline - Traitement Audio
 
 **Date**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}  
@@ -80,7 +77,6 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, st
 - **Confiance**: {confidence_str}
 """
     
-    # Ajoute le message d'erreur si présent
     if error_message:
         report += f"""
 ### ⚠️ Message d'erreur
@@ -96,7 +92,6 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, st
 ---
 """
     
-    # Section Pathfinding
     if route:
         if route.get('steps'):
             total_time = route.get('total_time', 0)
@@ -113,7 +108,6 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, st
 - **🛤️ Nombre d'étapes**: {len(route['steps'])}
 """
             
-            # Détails des segments si disponibles
             segments = route.get('metadata', {}).get('segments', [])
             if segments:
                 report += """
@@ -141,7 +135,6 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, st
                     
                     report += f"| {i} | {type_emoji} | {seg['from']} | {seg['to']} | {temps:.0f} min | {distance:.1f} km | {nb_trains} |\n"
                 
-                # Résumé par type de train
                 train_types = {}
                 for seg in segments:
                     t = seg.get('type_train', 'Autre')
@@ -192,7 +185,6 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, st
 
 """
     
-    # Analyse de la qualité
     if origin and destination:
         report += "✅ **Extraction complète** : Origine et destination détectées\n\n"
     elif origin:
@@ -207,7 +199,6 @@ def generate_pipeline_report(result: Dict[str, Any], output_path: str | Path, st
     else:
         report += "❌ La demande est **invalide** (pas une demande de trajet)\n\n"
     
-    # Détails de l'extraction
     report += """---
 
 ## 🔍 Détails techniques
@@ -258,7 +249,6 @@ python3 -m src.cli.pipeline --audio {audio_path} --stt-model {stt_model} --nlp-m
 ```
 """
     
-    # Sauvegarde
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(report)
     

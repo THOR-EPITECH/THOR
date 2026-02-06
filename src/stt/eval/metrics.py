@@ -5,7 +5,7 @@ import time
 from typing import List, Dict, Any
 from src.common.types import STTResult, AudioSample
 try:
-    import jiwer  # Word Error Rate
+    import jiwer
 except ImportError:
     jiwer = None
 
@@ -25,13 +25,10 @@ def calculate_wer(reference: str, hypothesis: str) -> float:
         return 1.0 if hypothesis.strip() else 0.0
     
     if jiwer is None:
-        # Implémentation simple si jiwer n'est pas disponible
         ref_words = reference.split()
         hyp_words = hypothesis.split()
-        # Distance de Levenshtein simplifiée au niveau des mots
         if len(ref_words) == 0:
             return 1.0 if hyp_words else 0.0
-        # Approximation simple
         matches = sum(1 for w in hyp_words if w in ref_words)
         return 1.0 - (matches / max(len(ref_words), len(hyp_words)))
     
@@ -53,8 +50,6 @@ def calculate_cer(reference: str, hypothesis: str) -> float:
         return 1.0 if hypothesis else 0.0
     
     if jiwer is None:
-        # Implémentation simple si jiwer n'est pas disponible
-        # Distance de Levenshtein au niveau des caractères
         def levenshtein(s1, s2):
             if len(s1) < len(s2):
                 return levenshtein(s2, s1)

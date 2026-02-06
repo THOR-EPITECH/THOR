@@ -81,7 +81,6 @@ def train_command(args):
     if args.valid_dataset:
         logger.info(f"Using validation dataset: {args.valid_dataset}")
     
-    # Passe les paramètres d'entraînement dans la config
     if args.n_iter:
         model.config["n_iter"] = args.n_iter
     if args.dropout:
@@ -196,20 +195,17 @@ def main():
     parser = argparse.ArgumentParser(description="THOR NLP CLI")
     subparsers = parser.add_subparsers(dest="command", help="Command to run")
     
-    # Commande extract
     extract_parser = subparsers.add_parser("extract", help="Extract origin/destination from text")
     extract_parser.add_argument("--text", required=True, help="Text to analyze")
     extract_parser.add_argument("--model", default="dummy", help="NLP model to use")
     extract_parser.add_argument("--config", help="Path to config file")
     
-    # Commande evaluate
     eval_parser = subparsers.add_parser("evaluate", help="Evaluate a model")
     eval_parser.add_argument("--dataset", required=True, help="Path to dataset JSONL")
     eval_parser.add_argument("--model", default="dummy", help="NLP model to use")
     eval_parser.add_argument("--config", help="Path to config file")
     eval_parser.add_argument("--output-dir", default="results/nlp", help="Output directory")
     
-    # Commande train
     train_parser = subparsers.add_parser("train", help="Train (fine-tune) a model")
     train_parser.add_argument("--train-dataset", required=True, help="Path to training dataset JSONL")
     train_parser.add_argument("--valid-dataset", help="Path to validation dataset JSONL")
@@ -219,7 +215,6 @@ def main():
     train_parser.add_argument("--n-iter", type=int, default=20, help="Number of training iterations")
     train_parser.add_argument("--dropout", type=float, default=0.1, help="Dropout rate")
     
-    # Commande benchmark
     benchmark_parser = subparsers.add_parser("benchmark", help="Benchmark multiple NLP models")
     benchmark_parser.add_argument("--dataset", required=True, help="Path to dataset JSONL")
     benchmark_parser.add_argument("--models", nargs="+", help="Models to benchmark (format: model_name[:config_path]). Default: dummy spacy")
