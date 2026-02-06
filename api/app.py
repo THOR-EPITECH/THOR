@@ -132,9 +132,30 @@ def route_to_dict(route):
     return result
 
 
+@app.route('/', methods=['GET'])
+def home():
+    """Page d'accueil avec la liste des endpoints."""
+    return jsonify({
+        'name': 'THOR API',
+        'version': '1.0.0',
+        'description': 'Travel Order Resolver - API pour extraire des commandes de voyage',
+        'endpoints': {
+            'GET /': 'Cette page',
+            'GET /api/health': 'Health check',
+            'POST /api/search': 'Analyser un texte et trouver un itineraire',
+            'POST /api/route': 'Trouver un itineraire entre deux villes',
+            'POST /api/transcribe': 'Transcrire un audio en texte',
+            'POST /api/pipeline': 'Pipeline complet (audio -> route)',
+            'GET /api/stations': 'Liste des gares disponibles',
+            'POST /api/preload': 'Precharger les modeles'
+        },
+        'docs': 'https://github.com/THOR-EPITECH/THOR'
+    })
+
+
 @app.route('/api/health', methods=['GET'])
 def health_check():
-    """Vérifie l'état de l'API."""
+    """Verifie l'etat de l'API."""
     return jsonify({
         'status': 'ok',
         'message': 'THOR API is running',

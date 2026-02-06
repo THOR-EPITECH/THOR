@@ -1,0 +1,57 @@
+# Dockerfile pour l'API Flask THOR
+# Compatible: Linux, macOS (Intel + Apple Silicon), Windows
+FROM --platform=$BUILDPLATFORM python:3.11-slim
+
+# Arguments pour le multi-architecture
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+
+WORKDIR /app
+
+# Installation des dependances systeme
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    ffmpeg \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copie des fichiers de requirements
+COPY requirements.txt .
+COPY api/requirements.txt ./api-requirements.txt
+
+# Installation des dependances Python
+RUN pip install --no-cache-dir -r requirements.txt \
+    && pip install --no-cache-dir -r api-requirements.txt \
+    && pip install --no-cache-dir spacy openai-whisper jiwer soundfile
+
+# Installation du modele spaCy francais
+RUN python -m spacy download fr_core_news_md
+
+# Pre-telechargement du modele Whisper small
+# Le modele sera stocke dans ~/.cache/whisper/
+RUN python -c "import whisper; whisper.load_model('small')"
+
+# Copie du code source
+COPY src/ ./src/
+COPY api/ ./api/
+COPY configs/ ./configs/
+COPY data/train_station/ ./data/train_station/
+
+# Copie des modeles fine-tunes si presents (optionnel)
+# Utiliser: docker build --build-arg INCLUDE_MODELS=true
+ARG INCLUDE_MODELS=false
+RUN mkdir -p ./models
+
+# Variables d'environnement
+ENV PYTHONPATH=/app
+ENV PYTHONUNBUFFERED=1
+
+# Exposition du port
+EXPOSE 8000
+
+# Healthcheck
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD curl -f http://localhost:8000/api/health || exit 1
+
+# Commande de demarrage
+CMD ["python", "api/app.py", "--host", "0.0.0.0", "--port", "8000"]
