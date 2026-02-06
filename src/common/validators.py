@@ -126,17 +126,40 @@ class CityValidator:
             except:
                 pass
         
-        default_cities = {
-            "paris", "lyon", "marseille", "toulouse", "nice", "nantes",
-            "montpellier", "strasbourg", "bordeaux", "lille", "rennes",
-            "reims", "saint-étienne", "toulon", "grenoble", "dijon",
-            "angers", "nîmes", "villeurbanne", "le mans", "aix-en-provence",
-            "clermont-ferrand", "brest", "tours", "amiens", "limoges",
-            "annecy", "perpignan", "boulogne-billancourt", "metz", "besançon",
-            "orléans", "rouen", "argenteuil", "mulhouse", "caen"
-        }
+        if not valid_cities:
+            gares_file = Path("data/train_station/dataset_gares.json")
+            if gares_file.exists():
+                try:
+                    with open(gares_file, 'r', encoding='utf-8') as f:
+                        gares = json.load(f)
+                        for gare in gares:
+                            if 'nom_gare' in gare:
+                                name = gare['nom_gare'].lower()
+                                valid_cities.add(name)
+                                parts = name.split()
+                                if parts:
+                                    valid_cities.add(parts[0])
+                            if 'ville' in gare and 'nom_commune' in gare['ville']:
+                                ville = gare['ville']['nom_commune'].lower()
+                                valid_cities.add(ville)
+                except:
+                    pass
         
-        return valid_cities if valid_cities else default_cities
+        if not valid_cities:
+            default_cities = {
+                "paris", "lyon", "marseille", "toulouse", "nice", "nantes",
+                "montpellier", "strasbourg", "bordeaux", "lille", "rennes",
+                "reims", "saint-étienne", "toulon", "grenoble", "dijon",
+                "angers", "nîmes", "villeurbanne", "le mans", "aix-en-provence",
+                "clermont-ferrand", "brest", "tours", "amiens", "limoges",
+                "annecy", "perpignan", "boulogne-billancourt", "metz", "besançon",
+                "orléans", "rouen", "argenteuil", "mulhouse", "caen", "bayonne",
+                "dax", "avignon", "valence", "chambéry", "le havre", "nancy",
+                "saint-malo", "quimper", "lorient", "vannes", "angoulême"
+            }
+            return default_cities
+        
+        return valid_cities
     
     def _build_aliases(self) -> Dict[str, str]:
         """Construit un dictionnaire d'alias de villes."""
