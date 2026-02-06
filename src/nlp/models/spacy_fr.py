@@ -230,7 +230,9 @@ class SpacyFRModel(NLPModel):
             origin = cities[0]
             destination = cities[1]
         elif not destination and len(cities) >= 1:
-            destination = cities[0]
+            available_cities = [c for c in cities if c != origin]
+            if available_cities:
+                destination = available_cities[0]
         
         return origin, destination
     
