@@ -19,8 +19,10 @@ from src.stt.models.whisper import WhisperModel
 from src.nlp.models.spacy_fr import SpacyFRModel
 from src.pathfinding.models.dijkstra import DijkstraPathfindingModel
 from src.common.logging import setup_logging
+from src.common.validators import ExtractionValidator
 
 logger = setup_logging(module="api")
+_validator = ExtractionValidator()
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3000", "http://localhost:3001", "http://127.0.0.1:3000", "http://127.0.0.1:3001"])
@@ -186,33 +188,56 @@ def search():
         nlp_model = get_nlp_model()
         nlp_result = nlp_model.extract(text)
         
-        origin = nlp_result.origin
-        destination = nlp_result.destination
+        validation = _validator.validate_extraction(
+            transcript=text,
+            origin=nlp_result.origin,
+            destination=nlp_result.destination,
+            nlp_confidence=nlp_result.confidence or 0.5
+        )
+        
+        corrected_origin = validation.get("corrected_origin") or nlp_result.origin
+        corrected_destination = validation.get("corrected_destination") or nlp_result.destination
         
         result = {
             'transcript': text,
-            'origin': origin,
-            'destination': destination,
-            'is_valid': nlp_result.is_valid,
-            'confidence': nlp_result.confidence,
-            'nlp_metadata': nlp_result.metadata
+            'origin': corrected_origin,
+            'destination': corrected_destination,
+            'is_valid': validation["is_valid"],
+            'confidence': validation.get("confidence", nlp_result.confidence),
+            'nlp_metadata': nlp_result.metadata,
+            'error_message': validation.get("error_message"),
+            'error_type': validation.get("error_type"),
+            'suggestions': validation.get("suggestions", []),
+            'issues': validation.get("issues", []),
+            'validation_details': {
+                'transcript_valid': validation.get("confidence", 0) > 0.4,
+                'origin_validation': validation.get("origin_validation"),
+                'destination_validation': validation.get("destination_validation")
+            }
         }
         
-        if origin and destination:
-            pathfinding_model = get_pathfinding_model()
-            route = pathfinding_model.find_route(origin, destination)
-            
-            if route.steps and len(route.steps) > 1:
-                result['route'] = route_to_dict(route)
-            elif route.metadata.get('error'):
-                result['error_message'] = route.metadata['error']
-        else:
-            if not origin and not destination:
-                result['error_message'] = "Origine et destination non détectées. Essayez: 'Je veux aller de Paris à Lyon'"
-            elif not origin:
-                result['error_message'] = "Origine non détectée"
-            else:
-                result['error_message'] = "Destination non détectée"
+        if validation["is_valid"] and corrected_origin and corrected_destination:
+            try:
+                pathfinding_model = get_pathfinding_model()
+                route = pathfinding_model.find_route(corrected_origin, corrected_destination)
+                
+                if route.steps and len(route.steps) > 1:
+                    result['route'] = route_to_dict(route)
+                elif route.metadata.get('error'):
+                    result['error_message'] = route.metadata['error']
+                    result['error_type'] = 'pathfinding_error'
+                else:
+                    result['error_message'] = f"Aucun itinéraire trouvé entre {corrected_origin} et {corrected_destination}"
+                    result['error_type'] = 'no_route_found'
+                    result['suggestions'] = [
+                        "Vérifiez que ces villes sont bien desservies par le train",
+                        "Essayez avec des villes plus importantes (gares principales)"
+                    ]
+            except Exception as e:
+                logger.error(f"Pathfinding error: {e}")
+                result['error_message'] = "Erreur lors de la recherche d'itinéraire"
+                result['error_type'] = 'pathfinding_error'
+                result['suggestions'] = ["Réessayez avec d'autres villes"]
         
         return jsonify(result)
         

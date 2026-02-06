@@ -16,6 +16,7 @@ import { PipelineResult } from '@/types';
 import SearchInput from '@/components/SearchInput';
 import RouteDetails from '@/components/RouteDetails';
 import RouteMap from '@/components/RouteMap';
+import ErrorDisplay from '@/components/ErrorDisplay';
 import { ArrowRight, Github, Loader2, Book } from 'lucide-react';
 import Link from 'next/link';
 
@@ -144,9 +145,12 @@ export default function Home() {
           )}
 
           {error && (
-            <div className="text-center py-8 animate-fade-in">
-              <p className="text-red-400 mb-2">{error}</p>
-              <p className="text-sm text-neutral-500">Vérifiez votre saisie et réessayez</p>
+            <div className="animate-fade-in">
+              <ErrorDisplay
+                errorMessage={error}
+                errorType="generic"
+                onClose={() => setError(null)}
+              />
             </div>
           )}
 
@@ -164,14 +168,17 @@ export default function Home() {
                 )}
               </div>
 
-              {result.route && result.route.steps && result.route.steps.length > 0 ? (
+              {result.error_message ? (
+                <ErrorDisplay
+                  errorMessage={result.error_message}
+                  errorType={result.error_type}
+                  issues={result.issues}
+                  suggestions={result.suggestions}
+                />
+              ) : result.route && result.route.steps && result.route.steps.length > 0 ? (
                 <div className="space-y-8 stagger-children">
                   <RouteDetails route={result.route} />
                   <RouteMap segments={result.route.metadata?.segments || []} />
-                </div>
-              ) : result.error_message ? (
-                <div className="text-center py-8">
-                  <p className="text-neutral-400">{result.error_message}</p>
                 </div>
               ) : null}
             </div>

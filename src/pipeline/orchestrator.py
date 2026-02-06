@@ -13,6 +13,7 @@ from src.nlp.interfaces import NLPModel
 from src.pathfinding.interfaces import PathfindingModel
 from src.common.types import STTResult, NLPExtraction, Route
 from src.common.logging import setup_logging
+from src.common.validators import ExtractionValidator
 
 logger = setup_logging(module="pipeline")
 
@@ -62,6 +63,7 @@ class Pipeline:
         self.nlp_model = nlp_model
         self.pathfinding_model = pathfinding_model
         self._initialized = False
+        self.validator = ExtractionValidator()
     
     def initialize(self):
         """
@@ -137,32 +139,67 @@ class Pipeline:
         
         logger.info(f"Extraction: {nlp_result.origin} → {nlp_result.destination}")
         
+        validation = self.validator.validate_extraction(
+            transcript=transcript,
+            origin=nlp_result.origin,
+            destination=nlp_result.destination,
+            nlp_confidence=nlp_result.confidence or 0.5
+        )
+        
         error_message = None
+        error_type = None
+        suggestions = []
+        issues = []
         route = None
         
-        if nlp_result.is_valid:
-            if not nlp_result.origin and not nlp_result.destination:
-                error_message = "❌ Erreur : Aucune ville détectée. Veuillez préciser une ville de départ et/ou d'arrivée."
-            elif not nlp_result.origin:
-                error_message = "⚠️ Attention : La ville de départ est manquante. Veuillez préciser d'où vous partez."
-            elif not nlp_result.destination:
-                error_message = "⚠️ Attention : La ville d'arrivée est manquante. Veuillez préciser votre destination."
-            elif self.pathfinding_model and nlp_result.origin and nlp_result.destination:
-                logger.info("Step 3: Finding route...")
-                route = self.pathfinding_model.find_route(nlp_result.origin, nlp_result.destination)
+        corrected_origin = validation.get("corrected_origin") or nlp_result.origin
+        corrected_destination = validation.get("corrected_destination") or nlp_result.destination
+        
+        if not validation["is_valid"]:
+            error_type = validation.get("error_type")
+            error_message = validation.get("error_message")
+            suggestions = validation.get("suggestions", [])
+            issues = validation.get("issues", [])
+            
+            logger.warning(f"Validation failed: {error_message}")
+            logger.warning(f"Issues: {issues}")
+            logger.info(f"Suggestions: {suggestions}")
+        elif self.pathfinding_model and corrected_origin and corrected_destination:
+            logger.info("Step 3: Finding route...")
+            try:
+                route = self.pathfinding_model.find_route(corrected_origin, corrected_destination)
                 if route.steps:
                     logger.info(f"Route found: {len(route.steps)} stations, {route.total_distance:.2f} km")
                 else:
                     logger.warning("No route found")
+                    error_type = "no_route_found"
+                    error_message = f"Aucun itinéraire trouvé entre {corrected_origin} et {corrected_destination}"
+                    suggestions = [
+                        "Vérifiez que ces villes sont bien desservies par le train",
+                        "Essayez avec des villes plus importantes (gares principales)"
+                    ]
+            except Exception as e:
+                logger.error(f"Pathfinding error: {e}")
+                error_type = "pathfinding_error"
+                error_message = "Erreur lors de la recherche d'itinéraire"
+                suggestions = ["Réessayez avec d'autres villes"]
         
         return {
             "audio_path": str(audio_path),
             "transcript": transcript,
-            "origin": nlp_result.origin,
-            "destination": nlp_result.destination,
-            "is_valid": nlp_result.is_valid,
-            "confidence": nlp_result.confidence,
+            "origin": corrected_origin,
+            "destination": corrected_destination,
+            "is_valid": validation["is_valid"],
+            "confidence": validation.get("confidence", nlp_result.confidence),
             "error_message": error_message,
+            "error_type": error_type,
+            "suggestions": suggestions,
+            "issues": issues,
+            "validation_details": {
+                "transcript_valid": validation.get("confidence", 0) > 0.4,
+                "origin_validation": validation.get("origin_validation"),
+                "destination_validation": validation.get("destination_validation")
+            },
             "route": {
                 "steps": route.steps if route else [],
                 "total_distance": route.total_distance if route else None,
