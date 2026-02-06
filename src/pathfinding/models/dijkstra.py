@@ -280,13 +280,15 @@ class DijkstraPathfindingModel(PathfindingModel):
                 continue
             
             if gare_nom.startswith(city_name_lower + ' ') or gare_nom.startswith(city_name_lower + '-'):
+                if '-en-' in gare_nom or 'aéroport' in gare_nom or 'banlieue' in gare_nom:
+                    continue
                 score = 100
                 if any(term in gare_nom for term in ['part-dieu', 'part dieu', 'saint-jean', 
                                                        'saint-charles', 'perrache', 'montparnasse']):
                     score += 50
                 if any(term in gare_nom for term in ['tgv', 'central', 'centre']):
                     score += 30
-                if any(term in gare_nom for term in ['aéroport', 'banlieue', 'rer', 'gorge', 'vaise', 'saint-paul']):
+                if any(term in gare_nom for term in ['rer', 'gorge', 'vaise', 'saint-paul']):
                     score -= 20
                 candidates.append((uic, station, score))
                 continue
@@ -333,6 +335,12 @@ class DijkstraPathfindingModel(PathfindingModel):
             gare_nom = station.get('nom_gare', '').lower()
             ville_nom = station.get('ville', {}).get('nom_commune', '').lower()
             
+            if '-en-' in gare_nom and ' ' not in name_lower:
+                continue
+            
+            if any(term in gare_nom for term in ['aéroport', 'banlieue', 'rer']) and gare_nom != name_lower:
+                continue
+            
             score = 0
             in_graph = uic in self._graph
             
@@ -359,9 +367,6 @@ class DijkstraPathfindingModel(PathfindingModel):
             if 'tgv' in gare_nom or 'centrale' in gare_nom:
                 score += 100
             
-            if any(term in gare_nom for term in ['aéroport', 'banlieue', 'rer', '-en-']):
-                score -= 300
-            
             num_connections = len(self._graph.get(uic, []))
             score += min(num_connections * 2, 100)
             
@@ -385,7 +390,7 @@ class DijkstraPathfindingModel(PathfindingModel):
         city_name_lower = city_name.lower().strip()
         candidates = []
         
-        exclude_terms = ['rer', 'banlieue', 'aéroport', 'exupéry', 'cdg', 'charles de gaulle']
+        exclude_terms = ['rer', 'banlieue', 'aéroport', 'exupéry', 'cdg', 'charles de gaulle', '-en-']
         
         for uic, station in self._stations_by_uic.items():
             if uic not in self._graph:
