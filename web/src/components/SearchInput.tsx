@@ -1,14 +1,48 @@
+/**
+ * Composant de saisie de recherche avec support vocal.
+ * 
+ * Ce composant permet à l'utilisateur de :
+ * - Saisir manuellement une requête de trajet
+ * - Utiliser la reconnaissance vocale via le microphone
+ * - Soumettre la recherche
+ * 
+ * L'enregistrement audio est converti en WAV avant l'envoi au backend.
+ * 
+ * @module components/SearchInput
+ */
+
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
 import { Mic, ArrowRight, Loader2 } from 'lucide-react';
 
+/**
+ * Props du composant SearchInput.
+ * 
+ * @interface SearchInputProps
+ * @property {Function} onSearch - Callback appelé lors de la soumission d'une recherche textuelle
+ * @property {Function} onVoiceResult - Callback appelé avec le résultat complet du traitement vocal
+ * @property {boolean} isLoading - Indique si une recherche est en cours
+ */
 interface SearchInputProps {
   onSearch: (text: string) => void;
   onVoiceResult: (result: any) => void;
   isLoading: boolean;
 }
 
+/**
+ * Composant de recherche avec saisie textuelle et vocale.
+ * 
+ * @param {SearchInputProps} props - Props du composant
+ * @returns {JSX.Element} Formulaire de recherche
+ * 
+ * @example
+ * <SearchInput 
+ *   onSearch={(text) => console.log('Search:', text)}
+ *   onVoiceResult={(result) => console.log('Voice result:', result)}
+ *   isLoading={false}
+ * />
+ */
 export default function SearchInput({ onSearch, onVoiceResult, isLoading }: SearchInputProps) {
   const [text, setText] = useState('');
   const [isRecording, setIsRecording] = useState(false);
@@ -17,7 +51,7 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
   const audioChunksRef = useRef<Blob[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Vérifier si MediaRecorder est supporté
+  /** Indique si l'enregistrement audio est supporté par le navigateur */
   const [recordingSupported, setRecordingSupported] = useState(false);
   
   useEffect(() => {
@@ -26,11 +60,19 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
     }
   }, []);
 
+  /**
+   * Démarre l'enregistrement audio via le microphone.
+   * 
+   * Demande l'accès au microphone, configure le MediaRecorder avec le format
+   * webm/opus si supporté, et commence l'enregistrement.
+   * 
+   * @async
+   * @throws {Error} Si l'accès au microphone est refusé
+   */
   const startRecording = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       
-      // Essayer d'abord webm, sinon fallback sur le format par défaut
       let mimeType = 'audio/webm;codecs=opus';
       if (!MediaRecorder.isTypeSupported(mimeType)) {
         mimeType = 'audio/webm';
@@ -52,10 +94,8 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
       };
       
       mediaRecorder.onstop = async () => {
-        // Arrêter tous les tracks
         stream.getTracks().forEach(track => track.stop());
         
-        // Convertir en blob puis en base64
         const audioBlob = new Blob(audioChunksRef.current, { type: 'audio/webm' });
         await sendAudioToPipeline(audioBlob);
       };
@@ -69,6 +109,11 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
     }
   };
 
+  /**
+   * Arrête l'enregistrement audio en cours.
+   * 
+   * Déclenche l'événement onstop du MediaRecorder qui envoie l'audio au backend.
+   */
   const stopRecording = () => {
     if (mediaRecorderRef.current && isRecording) {
       mediaRecorderRef.current.stop();
@@ -76,22 +121,26 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
     }
   };
 
-  // Convertir un blob audio en WAV
+  /**
+   * Convertit un Blob audio (webm, etc) en format WAV.
+   * 
+   * Utilise l'API Web Audio pour décoder l'audio et le réencoder en WAV PCM 16-bit.
+   * 
+   * @param {Blob} audioBlob - Blob audio source à convertir
+   * @returns {Promise<Blob>} Blob audio au format WAV
+   */
   const convertToWav = async (audioBlob: Blob): Promise<Blob> => {
     const arrayBuffer = await audioBlob.arrayBuffer();
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
     
-    // Paramètres WAV
     const sampleRate = audioBuffer.sampleRate;
     const numberOfChannels = audioBuffer.numberOfChannels;
     const length = audioBuffer.length;
     
-    // Créer le buffer WAV
     const wavBuffer = new ArrayBuffer(44 + length * numberOfChannels * 2);
     const view = new DataView(wavBuffer);
     
-    // En-tête WAV
     const writeString = (offset: number, string: string) => {
       for (let i = 0; i < string.length; i++) {
         view.setUint8(offset + i, string.charCodeAt(i));
@@ -112,7 +161,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
     writeString(36, 'data');
     view.setUint32(40, length * numberOfChannels * 2, true);
     
-    // Convertir les données audio en 16-bit PCM
     let offset = 44;
     for (let i = 0; i < length; i++) {
       for (let channel = 0; channel < numberOfChannels; channel++) {
@@ -125,19 +173,25 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
     return new Blob([wavBuffer], { type: 'audio/wav' });
   };
 
+  /**
+   * Envoie l'audio enregistré au pipeline backend pour traitement.
+   * 
+   * L'audio est converti en WAV, encodé en base64, puis envoyé via l'API /api/pipeline.
+   * Le résultat complet (transcription + itinéraire) est retourné via onVoiceResult.
+   * 
+   * @param {Blob} audioBlob - Blob audio à traiter
+   * @async
+   */
   const sendAudioToPipeline = async (audioBlob: Blob) => {
     setIsProcessing(true);
     
     try {
-      // Convertir en WAV
       const wavBlob = await convertToWav(audioBlob);
       
-      // Convertir le blob WAV en base64
       const base64Audio = await new Promise<string>((resolve, reject) => {
         const reader = new FileReader();
         reader.onloadend = () => {
           const result = reader.result as string;
-          // Enlever le préfixe data:audio/wav;base64,
           const base64 = result.includes(',') ? result.split(',')[1] : result;
           resolve(base64);
         };
@@ -154,7 +208,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
         }),
       });
 
-      // Vérifier le Content-Type avant de parser
       const contentType = response.headers.get('content-type');
       let data;
       
@@ -171,12 +224,10 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
         throw new Error(data.error || data.message || `Erreur ${response.status} lors du traitement audio`);
       }
 
-      // Afficher la transcription dans le champ
       if (data.transcript) {
         setText(data.transcript);
       }
 
-      // Passer le résultat complet au parent
       onVoiceResult(data);
     } catch (error) {
       console.error('Error processing audio:', error);
@@ -187,6 +238,9 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
     }
   };
 
+  /**
+   * Bascule l'état d'enregistrement (démarrer/arrêter).
+   */
   const toggleRecording = () => {
     if (isRecording) {
       stopRecording();
@@ -195,6 +249,11 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
     }
   };
 
+  /**
+   * Gère la soumission du formulaire de recherche textuelle.
+   * 
+   * @param {React.FormEvent} e - Événement de soumission du formulaire
+   */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (text.trim() && !isLoading) {
@@ -216,7 +275,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
         />
         
         <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-          {/* Mic button - enregistrement audio */}
           <button
             type="button"
             onClick={toggleRecording}
@@ -242,7 +300,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
             )}
           </button>
           
-          {/* Submit button */}
           <button
             type="submit"
             disabled={!text.trim() || isLoading || isRecording || isProcessing}
@@ -257,7 +314,6 @@ export default function SearchInput({ onSearch, onVoiceResult, isLoading }: Sear
         </div>
       </div>
 
-      {/* Recording indicator */}
       {isRecording && (
         <div className="flex items-center justify-center gap-1.5 mt-4">
           <span className="w-2 h-2 bg-red-400 rounded-full animate-pulse" />

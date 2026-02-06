@@ -23,7 +23,6 @@ def calculate_precision_recall_f1(
     Returns:
         Dictionnaire avec precision, recall, f1
     """
-    # Normalise (case-insensitive)
     def normalize(s):
         return s.lower().strip() if s else None
     
@@ -32,12 +31,10 @@ def calculate_precision_recall_f1(
     true_destination = normalize(true_destination)
     pred_destination = normalize(pred_destination)
     
-    # Compte les vrais positifs, faux positifs, faux négatifs
-    tp = 0  # True positives
-    fp = 0  # False positives
-    fn = 0  # False negatives
+    tp = 0
+    fp = 0
+    fn = 0
     
-    # Origine
     if true_origin and pred_origin:
         if true_origin == pred_origin:
             tp += 1
@@ -49,7 +46,6 @@ def calculate_precision_recall_f1(
     elif not true_origin and pred_origin:
         fp += 1
     
-    # Destination
     if true_destination and pred_destination:
         if true_destination == pred_destination:
             tp += 1
@@ -61,7 +57,6 @@ def calculate_precision_recall_f1(
     elif not true_destination and pred_destination:
         fp += 1
     
-    # Calcule métriques
     precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
     recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
     f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0.0
@@ -132,7 +127,6 @@ def evaluate_nlp_result(
     """
     metrics = {}
     
-    # Métriques d'extraction
     prf = calculate_precision_recall_f1(
         reference_origin,
         result.origin,
@@ -141,7 +135,6 @@ def evaluate_nlp_result(
     )
     metrics.update(prf)
     
-    # Précision par entité
     entity_acc = calculate_entity_accuracy(
         reference_origin,
         result.origin,
@@ -150,7 +143,6 @@ def evaluate_nlp_result(
     )
     metrics.update(entity_acc)
     
-    # Validation (is_valid)
     metrics["validation_accuracy"] = 1.0 if (result.is_valid == reference_is_valid) else 0.0
     
     return metrics

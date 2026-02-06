@@ -10,7 +10,6 @@ from src.common.logging import setup_logging
 
 logger = setup_logging(module="scripts.generate_stt_dataset")
 
-# Phrases de demande de trajet (complètes)
 TRAVEL_REQUESTS_COMPLETE = [
     "Je veux aller à Paris depuis Lyon",
     "Comment me rendre à Marseille ?",
@@ -34,7 +33,6 @@ TRAVEL_REQUESTS_COMPLETE = [
     "Je voudrais aller de Lille à Paris",
 ]
 
-# Demandes de trajet sans destination
 TRAVEL_REQUESTS_NO_DEST = [
     "Je veux partir de Lyon",
     "Comment partir de Paris ?",
@@ -45,7 +43,6 @@ TRAVEL_REQUESTS_NO_DEST = [
     "Je dois quitter Nantes",
 ]
 
-# Demandes de trajet sans origine
 TRAVEL_REQUESTS_NO_ORIGIN = [
     "Je veux aller à Paris",
     "Comment me rendre à Marseille ?",
@@ -59,7 +56,6 @@ TRAVEL_REQUESTS_NO_ORIGIN = [
     "Je souhaite aller à Nancy",
 ]
 
-# Phrases avec noms de villes mais PAS des demandes de trajet
 CITIES_NOT_TRAVEL = [
     "Paris est la capitale de la France",
     "J'ai visité Lyon l'année dernière",
@@ -83,7 +79,6 @@ CITIES_NOT_TRAVEL = [
     "J'ai passé mes vacances à Marseille",
 ]
 
-# Phrases de la vie de tous les jours
 DAILY_LIFE = [
     "Quel temps fait-il aujourd'hui ?",
     "J'ai faim, on va manger ?",
@@ -112,7 +107,6 @@ DAILY_LIFE = [
     "J'ai perdu mes clés",
 ]
 
-# Phrases avec différentes tournures
 DIFFERENT_PHRASINGS = [
     "Serait-il possible d'aller à Paris depuis Lyon ?",
     "Auriez-vous l'amabilité de me dire comment me rendre à Marseille ?",
@@ -131,7 +125,6 @@ DIFFERENT_PHRASINGS = [
     "Serait-ce possible d'aller à Nice ?",
 ]
 
-# Phrases avec différentes ponctuations et intonations (à noter dans le transcript)
 PUNCTUATION_VARIATIONS = [
     "Je veux aller à Paris depuis Lyon.",
     "Je veux aller à Paris depuis Lyon !",
@@ -145,7 +138,6 @@ PUNCTUATION_VARIATIONS = [
     "Je veux aller à Paris... depuis Lyon...",
 ]
 
-# Phrases en anglais (pas en français)
 ENGLISH_PHRASES = [
     "I want to go to Paris from Lyon",
     "How can I get to Marseille?",
@@ -159,7 +151,6 @@ ENGLISH_PHRASES = [
     "Can you help me find a route to Paris?",
 ]
 
-# Phrases en espagnol
 SPANISH_PHRASES = [
     "Quiero ir a París desde Lyon",
     "¿Cómo puedo llegar a Marsella?",
@@ -168,14 +159,12 @@ SPANISH_PHRASES = [
     "Necesito ir a París",
 ]
 
-# Phrases avec erreurs de prononciation/orthographe (simulées)
 PRONUNCIATION_VARIATIONS = [
     "Je veux aller à Paris depuis Lyon",  # Normal
     "Je veux aller à Paris depuis Lyon",  # Répété pour variété
     "Je veux aller à Paris depuis Lyon",  # Répété
 ]
 
-# Phrases avec hésitations
 HESITATIONS = [
     "Euh... je veux aller à Paris... depuis Lyon",
     "Je veux... aller à Paris... depuis Lyon",
@@ -184,7 +173,6 @@ HESITATIONS = [
     "Je... veux aller à Paris depuis Lyon",
 ]
 
-# Phrases avec différents niveaux de formalité
 FORMALITY_LEVELS = [
     "Je souhaiterais me rendre à Paris en partant de Lyon",  # Très formel
     "Je voudrais aller à Paris depuis Lyon",  # Formel
@@ -213,10 +201,8 @@ def generate_dataset(
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     
-    # Combine toutes les catégories avec leurs poids
     all_phrases = []
     
-    # Catégories avec leurs poids (pour diversité)
     categories = [
         (TRAVEL_REQUESTS_COMPLETE, 0.30),  # 30% - demandes complètes
         (TRAVEL_REQUESTS_NO_DEST, 0.05),   # 5% - sans destination
@@ -231,20 +217,16 @@ def generate_dataset(
         (FORMALITY_LEVELS, 0.01),          # 1% - niveaux de formalité
     ]
     
-    # Construit la liste pondérée
     for phrases, weight in categories:
         count = int(num_samples * weight)
         all_phrases.extend(random.choices(phrases, k=count))
     
-    # Complète jusqu'à num_samples si nécessaire
     while len(all_phrases) < num_samples:
         category = random.choice(categories)
         all_phrases.append(random.choice(category[0]))
     
-    # Mélange
     random.shuffle(all_phrases)
     
-    # Génère le dataset
     dataset = []
     for i, phrase in enumerate(all_phrases[:num_samples], 1):
         sample_id = f"sample_{i:06d}"
@@ -298,30 +280,25 @@ def main():
     
     args = parser.parse_args()
     
-    # Fixe la seed pour reproductibilité
     random.seed(args.seed)
     
     logger.info(f"Generating {args.num_samples} samples...")
     
-    # Génère le dataset
     dataset = generate_dataset(
         args.output_dir,
         num_samples=args.num_samples,
         audio_dir=args.audio_dir
     )
     
-    # Divise en train/valid/test
     train, valid, test = split_dataset(dataset)
     
     logger.info(f"Split: train={len(train)}, valid={len(valid)}, test={len(test)}")
     
-    # Sauvegarde
     output_dir = Path(args.output_dir)
     write_jsonl(output_dir / "train" / "train.jsonl", train)
     write_jsonl(output_dir / "valid" / "valid.jsonl", valid)
     write_jsonl(output_dir / "test" / "test.jsonl", test)
     
-    # Sauvegarde aussi un fichier complet pour référence
     write_jsonl(output_dir / "full_dataset.jsonl", dataset)
     
     logger.info(f"Dataset saved to {output_dir}")
@@ -329,12 +306,10 @@ def main():
     logger.info(f"Valid: {len(valid)} samples")
     logger.info(f"Test: {len(test)} samples")
     
-    # Affiche quelques statistiques
     logger.info("\n=== Statistics ===")
     logger.info(f"Total samples: {len(dataset)}")
     logger.info(f"Unique transcripts: {len(set(d['transcript'] for d in dataset))}")
     
-    # Compte par catégorie (approximatif)
     travel_complete = sum(1 for d in dataset if any(city in d['transcript'] for city in ['Paris', 'Lyon', 'Marseille']) and 'aller' in d['transcript'].lower())
     logger.info(f"Travel requests (approx): {travel_complete}")
 

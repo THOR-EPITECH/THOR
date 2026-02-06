@@ -34,7 +34,6 @@ function FlowStep({ icon: Icon, title, description, color, isLast = false }: {
 export default function DocsPipeline() {
   return (
     <div>
-      {/* Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
           <span>Docs</span>
@@ -50,7 +49,6 @@ export default function DocsPipeline() {
         </p>
       </div>
 
-      {/* Flow diagram */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Flux de données</h2>
         <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5">
@@ -94,7 +92,6 @@ export default function DocsPipeline() {
         </div>
       </div>
 
-      {/* Modules overview */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Les modules</h2>
         <div className="grid gap-4">
@@ -156,7 +153,6 @@ export default function DocsPipeline() {
         </div>
       </div>
 
-      {/* Data sources */}
       <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5">
         <h2 className="text-xl font-bold mb-4">Sources de données</h2>
         <div className="grid gap-3 text-sm">

@@ -20,7 +20,6 @@ import re
 from collections import defaultdict
 from datetime import datetime
 
-# Chemins
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(SCRIPT_DIR)
 
@@ -45,7 +44,6 @@ def extract_uic(stop_id: str) -> str | None:
     return match.group(1) if match else None
 
 
-# Mapping des codes GTFS vers les types de trains
 TRAIN_TYPE_MAPPING = {
     'OCETGV INOUI': 'TGV',
     'OCETGV': 'TGV',
@@ -65,10 +63,8 @@ TRAIN_TYPE_MAPPING = {
 
 def extract_train_type_from_stop(stop_id: str) -> str:
     """Extrait le type de train depuis le stop_id GTFS."""
-    # Le stop_id contient le type de train: StopPoint:OCETGV INOUI-87212027
     stop_upper = stop_id.upper()
     
-    # Vérifier les types de trains dans l'ordre de priorité
     if 'OCETGV' in stop_upper or 'TGV INOUI' in stop_upper:
         return 'TGV'
     elif 'OCEOUIGO' in stop_upper or 'OUIGO' in stop_upper:
@@ -140,7 +136,6 @@ def load_stations() -> dict:
             'primary_uic': str(g['uic'][0])  # Premier UIC comme référence
         }
         
-        # Indexer par TOUS les codes UIC de la gare
         for uic in g['uic']:
             stations[str(uic)] = station_info
     
@@ -160,12 +155,9 @@ def process_stop_times(stations: dict) -> tuple[dict, dict]:
     print(f"\nAnalyse de {INPUT_STOP_TIMES}...")
     print("  (cela peut prendre 1-2 minutes pour 367k+ lignes)")
     
-    # Structure: {(uic_from, uic_to): [temps_trajet_1, temps_trajet_2, ...]}
     connections = defaultdict(list)
-    # Structure: {(uic_from, uic_to): {train_type: count, ...}}
     train_types = defaultdict(lambda: defaultdict(int))
     
-    # Variables pour suivre le voyage en cours
     current_trip_id = None
     current_train_type = None
     current_trip_stops = []  # [(uic, departure_time_minutes, arrival_time_minutes, stop_sequence, train_type), ...]
@@ -191,20 +183,15 @@ def process_stop_times(stations: dict) -> tuple[dict, dict]:
             if not uic or uic not in stations:
                 continue
             
-            # Extraire le type de train depuis le stop_id
             train_type = extract_train_type_from_stop(stop_id)
             
             arrival_minutes = parse_time_to_minutes(arrival_time)
             departure_minutes = parse_time_to_minutes(departure_time)
             
-            # Nouveau voyage ?
             if trip_id != current_trip_id:
-                # Traiter le voyage précédent
                 if current_trip_stops:
-                    # Trier par stop_sequence (normalement déjà trié)
                     current_trip_stops.sort(key=lambda x: x[3])
                     
-                    # Créer les connexions consécutives
                     for i in range(len(current_trip_stops) - 1):
                         uic_from = current_trip_stops[i][0]
                         departure_from = current_trip_stops[i][2]  # departure_time
@@ -213,24 +200,19 @@ def process_stop_times(stations: dict) -> tuple[dict, dict]:
                         uic_to = current_trip_stops[i + 1][0]
                         arrival_to = current_trip_stops[i + 1][1]  # arrival_time
                         
-                        # Temps de trajet = arrivée à la prochaine gare - départ de la gare actuelle
                         travel_time = arrival_to - departure_from
                         
-                        # Filtrer les valeurs aberrantes (négatif ou > 12h)
                         if 0 < travel_time <= 720:
                             connections[(uic_from, uic_to)].append(travel_time)
                             train_types[(uic_from, uic_to)][segment_train_type] += 1
                             valid_connections += 1
                 
-                # Réinitialiser pour le nouveau voyage
                 current_trip_id = trip_id
                 current_train_type = extract_train_type(trip_id)
                 current_trip_stops = []
             
-            # Ajouter l'arrêt au voyage courant (avec le type de train)
             current_trip_stops.append((uic, arrival_minutes, departure_minutes, stop_sequence, train_type))
     
-    # Traiter le dernier voyage
     if current_trip_stops:
         current_trip_stops.sort(key=lambda x: x[3])
         for i in range(len(current_trip_stops) - 1):
@@ -264,13 +246,11 @@ def build_enhanced_graph(connections: dict, train_types: dict, stations: dict) -
         if uic_from not in stations or uic_to not in stations:
             continue
         
-        # Calculer les statistiques
         temps_moyen = round(sum(times) / len(times), 1)
         temps_min = min(times)
         temps_max = max(times)
         nb_trains = len(times)
         
-        # Calculer la distance géographique
         station_from = stations[uic_from]
         station_to = stations[uic_to]
         distance = round(haversine(
@@ -278,9 +258,7 @@ def build_enhanced_graph(connections: dict, train_types: dict, stations: dict) -
             station_to['lat'], station_to['lon']
         ), 2)
         
-        # Récupérer les types de trains pour cette liaison
         types_dict = train_types.get((uic_from, uic_to), {})
-        # Trier par fréquence et trouver le type principal
         sorted_types = sorted(types_dict.items(), key=lambda x: -x[1])
         type_principal = sorted_types[0][0] if sorted_types else 'Autre'
         
@@ -298,16 +276,13 @@ def build_enhanced_graph(connections: dict, train_types: dict, stations: dict) -
             "types_details": dict(types_dict)
         })
     
-    # Trier par nombre de trains (liaisons les plus fréquentes en premier)
     liaisons.sort(key=lambda x: -x['nb_trains'])
     
-    # Collecter les gares uniques
     gares_uniques = set()
     for l in liaisons:
         gares_uniques.add(l['depart'])
         gares_uniques.add(l['arrivee'])
     
-    # Statistiques globales
     temps_moyens = [l['temps_moyen_min'] for l in liaisons]
     
     result = {
@@ -337,7 +312,6 @@ def main():
     print("GÉNÉRATION DU GRAPHE ENRICHI POUR PATHFINDING")
     print("=" * 60)
     
-    # Vérifier les fichiers d'entrée
     if not os.path.exists(INPUT_STOP_TIMES):
         print(f"ERREUR: Fichier stop_times.txt non trouvé: {INPUT_STOP_TIMES}")
         return
@@ -346,16 +320,12 @@ def main():
         print(f"ERREUR: Fichier dataset_gares.json non trouvé: {INPUT_GARES}")
         return
     
-    # Charger les gares
     stations = load_stations()
     
-    # Traiter les horaires
     connections, train_types = process_stop_times(stations)
     
-    # Construire le graphe enrichi
     graph = build_enhanced_graph(connections, train_types, stations)
     
-    # Sauvegarder
     print(f"\nSauvegarde vers {OUTPUT_FILE}...")
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
     with open(OUTPUT_FILE, 'w', encoding='utf-8') as f:

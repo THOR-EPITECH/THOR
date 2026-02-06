@@ -18,7 +18,6 @@ function CodeBlock({ children, title }: { children: string; title?: string }) {
 export default function DocsNLP() {
   return (
     <div>
-      {/* Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
           <span>Docs</span>
@@ -34,7 +33,6 @@ export default function DocsNLP() {
         </p>
       </div>
 
-      {/* How it works */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Comment ça fonctionne ?</h2>
         <div className="prose prose-invert max-w-none mb-6">
@@ -87,7 +85,6 @@ export default function DocsNLP() {
         </div>
       </div>
 
-      {/* Extraction patterns */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Patterns d'extraction</h2>
         
@@ -137,7 +134,6 @@ export default function DocsNLP() {
         </div>
       </div>
 
-      {/* Configuration */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
           <Settings className="w-6 h-6 text-neutral-400" />
@@ -172,7 +168,6 @@ confidence_threshold: 0.5`}</CodeBlock>
         </div>
       </div>
 
-      {/* Usage */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Utilisation</h2>
         
@@ -196,7 +191,6 @@ print(result.confidence)  # 0.85
 print(result.is_valid)    # True`}</CodeBlock>
       </div>
 
-      {/* Output example */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Exemple de sortie</h2>
         <CodeBlock title="Résultat JSON">{`{
@@ -212,7 +206,6 @@ print(result.is_valid)    # True`}</CodeBlock>
 }`}</CodeBlock>
       </div>
 
-      {/* Models comparison */}
       <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5">
         <h2 className="text-xl font-bold mb-4">Modèles disponibles</h2>
         <div className="space-y-3">

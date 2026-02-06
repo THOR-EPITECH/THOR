@@ -1,14 +1,40 @@
+/**
+ * API Route pour la recherche d'itinéraire ferroviaire.
+ * 
+ * Cette route sert de proxy entre le frontend Next.js et le backend Python Flask.
+ * Elle gère deux types de requêtes :
+ * 1. Recherche par texte libre (analyse NLP + pathfinding)
+ * 2. Recherche directe par origine/destination (pathfinding uniquement)
+ * 
+ * @module api/search
+ */
+
 import { NextRequest, NextResponse } from 'next/server';
 
-// URL du backend Python Flask
+/** URL du backend Python Flask */
 const PYTHON_BACKEND_URL = process.env.PYTHON_BACKEND_URL || 'http://localhost:8000';
 
+/**
+ * Gère les requêtes POST pour la recherche d'itinéraire.
+ * 
+ * @param {NextRequest} request - Requête Next.js contenant { text } ou { origin, destination }
+ * @returns {Promise<NextResponse>} Réponse JSON avec l'itinéraire ou un message d'erreur
+ * 
+ * @example
+ * // Recherche par texte
+ * POST /api/search
+ * { "text": "Je veux aller de Paris à Lyon" }
+ * 
+ * @example
+ * // Recherche directe
+ * POST /api/search
+ * { "origin": "Paris", "destination": "Lyon" }
+ */
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { text, origin, destination } = body;
 
-    // Si on a un texte, on appelle le backend Python pour l'analyse NLP + Pathfinding
     if (text) {
       const response = await fetch(`${PYTHON_BACKEND_URL}/api/search`, {
         method: 'POST',
@@ -28,7 +54,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(data);
     }
 
-    // Si on a origine et destination directement
     if (origin && destination) {
       const response = await fetch(`${PYTHON_BACKEND_URL}/api/route`, {
         method: 'POST',
@@ -45,7 +70,7 @@ export async function POST(request: NextRequest) {
       }
 
       const data = await response.json();
-      // Formater la réponse pour correspondre au format PipelineResult
+      
       return NextResponse.json({
         transcript: `Trajet de ${origin} à ${destination}`,
         origin,
@@ -64,7 +89,6 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('Erreur API:', error);
     
-    // Vérifier si c'est une erreur de connexion au backend
     if (error instanceof TypeError && error.message.includes('fetch')) {
       return NextResponse.json(
         { 
@@ -82,7 +106,15 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Endpoint pour vérifier la santé du backend
+/**
+ * Endpoint GET pour vérifier la disponibilité du backend Python.
+ * 
+ * @returns {Promise<NextResponse>} Statut de santé du backend
+ * 
+ * @example
+ * GET /api/search
+ * Response: { "status": "ok", "backend": { "version": "1.0" } }
+ */
 export async function GET() {
   try {
     const response = await fetch(`${PYTHON_BACKEND_URL}/api/health`);

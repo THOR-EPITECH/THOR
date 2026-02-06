@@ -62,15 +62,11 @@ class TransformersNERModel(NLPModel):
             
             logger.info(f"Loading Transformers model: {self.model_name}")
             
-            # Si c'est un modèle NER pré-entraîné problématique, utilise un modèle de base
-            # et crée un pipeline token-classification
             if "camembert-ner" in self.model_name.lower() or "ner" in self.model_name.lower():
                 logger.info("Model name suggests NER model, but using camembert-base for reliability")
-                # Utilise camembert-base et crée un pipeline token-classification
                 from transformers import AutoTokenizer, AutoModelForTokenClassification
                 try:
                     tokenizer = AutoTokenizer.from_pretrained("camembert-base", use_fast=False)
-                    # Charge un modèle avec des labels (même si pas entraîné, ça fonctionne pour l'extraction)
                     model = AutoModelForTokenClassification.from_pretrained(
                         "camembert-base",
                         num_labels=5  # O, B-ORIGIN, I-ORIGIN, B-DESTINATION, I-DESTINATION
@@ -87,7 +83,6 @@ class TransformersNERModel(NLPModel):
                     logger.error(f"Failed to load camembert-base: {e}")
                     raise
             else:
-                # Essaie de charger le modèle directement
                 try:
                     self._ner_pipeline = pipeline(
                         "ner",
@@ -116,10 +111,8 @@ class TransformersNERModel(NLPModel):
         if not self._initialized:
             self.initialize()
         
-        # Extraction NER
         entities = self._ner_pipeline(text)
         
-        # Filtre les entités de type LOC (location)
         locations = []
         for entity in entities:
             if entity.get("entity_group") in ["LOC", "MISC"] or "LOC" in str(entity.get("label", "")):
@@ -127,13 +120,10 @@ class TransformersNERModel(NLPModel):
                 if city:
                     locations.append(city)
         
-        # Utilise des patterns pour déterminer origine/destination
         origin, destination = self._extract_with_patterns(text, locations)
         
-        # Détermine si c'est une demande valide
         is_valid = self._is_valid_request(text, origin, destination)
         
-        # Calcule la confiance
         confidence = self._calculate_confidence(origin, destination, entities, is_valid)
         
         return NLPExtraction(
@@ -155,19 +145,16 @@ class TransformersNERModel(NLPModel):
         origin = None
         destination = None
         
-        # Patterns pour origine
         origin_patterns = [
             r'(?:de|depuis|partir de|partant de)\s+([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)',
             r'([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)\s+(?:vers|à|pour)',
         ]
         
-        # Patterns pour destination
         dest_patterns = [
             r'(?:à|vers|pour|aller à|rendre à)\s+([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)',
             r'(?:aller|rendre|voyager)\s+(?:à|vers|en)\s+([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)',
         ]
         
-        # Cherche origine
         for pattern in origin_patterns:
             match = re.search(pattern, text, re.IGNORECASE)
             if match:
@@ -176,7 +163,6 @@ class TransformersNERModel(NLPModel):
                     origin = candidate
                     break
         
-        # Cherche destination
         for pattern in dest_patterns:
             match = re.search(pattern, text, re.IGNORECASE)
             if match:
@@ -185,17 +171,13 @@ class TransformersNERModel(NLPModel):
                     destination = candidate
                     break
         
-        # Si pas trouvé par patterns, utilise les locations trouvées
         if not origin and not destination and locations:
-            # Prend la première comme destination par défaut
             destination = locations[0]
         elif not origin and locations and destination:
-            # Si on a une destination mais pas d'origine, prend la première location restante
             remaining = [loc for loc in locations if loc.lower() != destination.lower()]
             if remaining:
                 origin = remaining[0]
         elif not destination and locations and origin:
-            # Si on a une origine mais pas de destination, prend la première location restante
             remaining = [loc for loc in locations if loc.lower() != origin.lower()]
             if remaining:
                 destination = remaining[0]
@@ -207,10 +189,8 @@ class TransformersNERModel(NLPModel):
         travel_keywords = ["aller", "rendre", "voyager", "trajet", "route", "chemin", "partir", "se rendre"]
         text_lower = text.lower()
         
-        # Doit contenir un mot-clé de trajet
         has_travel_keyword = any(kw in text_lower for kw in travel_keywords)
         
-        # Doit avoir au moins une ville
         has_location = origin is not None or destination is not None
         
         return has_travel_keyword and has_location
@@ -221,17 +201,14 @@ class TransformersNERModel(NLPModel):
         if not is_valid:
             return 0.0
         
-        confidence = 0.5  # Base
+        confidence = 0.5
         
-        # Bonus si on a les deux
         if origin and destination:
             confidence += 0.3
         
-        # Bonus si on a trouvé des entités
         if entities:
             confidence += 0.1
         
-        # Bonus si les entités sont bien formées
         if origin and len(origin) > 2:
             confidence += 0.05
         if destination and len(destination) > 2:
@@ -253,12 +230,9 @@ class TransformersNERModel(NLPModel):
         output_dir = Path(output_dir) if output_dir else Path("models/nlp/transformers_finetuned")
         output_dir.mkdir(parents=True, exist_ok=True)
         
-        # Convertit le dataset au format spaCy (réutilisable)
-        # convert_to_spacy_format attend un chemin de fichier, pas un générateur
         train_data = convert_to_spacy_format(train_dataset)
         valid_data = convert_to_spacy_format(valid_dataset) if valid_dataset else None
         
-        # Entraîne le modèle
         model_path = train_transformers_model(
             base_model_name=self.model_name,
             train_data=train_data,

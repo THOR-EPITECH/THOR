@@ -39,7 +39,6 @@ class SpacyFRModel(NLPModel):
         if not SPACY_AVAILABLE:
             raise ImportError("spacy is required. Install with: pip install spacy")
         
-        # Charge un modèle custom si spécifié, sinon le modèle de base
         if self.custom_model_path:
             model_path = Path(self.custom_model_path)
             if model_path.exists():
@@ -73,7 +72,6 @@ class SpacyFRModel(NLPModel):
         
         doc = self._nlp(text)
         
-        # Trouve les entités de type LOC (location) et les labels custom (ORIGIN, DESTINATION)
         locations = []
         origin_entities = []
         destination_entities = []
@@ -86,42 +84,31 @@ class SpacyFRModel(NLPModel):
             elif ent.label_ == "DESTINATION":
                 destination_entities.append(ent.text)
         
-        # Trouve aussi les noms propres qui pourraient être des villes
-        # Filtre les noms propres qui sont des villes connues ou qui apparaissent dans un contexte de trajet
         proper_nouns = []
         for token in doc:
             if token.pos_ == "PROPN" and len(token.text) > 2:
-                # Vérifie si le token est proche d'un mot-clé de trajet
                 context = doc[max(0, token.i-3):min(len(doc), token.i+4)]
                 context_text = " ".join([t.text.lower() for t in context])
                 travel_keywords = ["aller", "rendre", "depuis", "vers", "à", "de", "partir", "voyager"]
                 if any(kw in context_text for kw in travel_keywords):
                     proper_nouns.append(token.text)
         
-        # Si le modèle fine-tuné a détecté ORIGIN/DESTINATION directement, les utilise
         if origin_entities or destination_entities:
             origin = clean_station_name(origin_entities[0]) if origin_entities else None
             destination = clean_station_name(destination_entities[0]) if destination_entities else None
-            # Combine toutes les villes pour les métadonnées
             all_cities = list(set(locations + proper_nouns + origin_entities + destination_entities))
             all_cities = [clean_station_name(city) for city in all_cities]
         else:
-            # Sinon, utilise la logique par défaut avec patterns
-            # Combine et nettoie
             all_cities = list(set(locations + proper_nouns))
             all_cities = [clean_station_name(city) for city in all_cities]
             
-            # Filtre les villes trop courtes ou qui sont des mots communs
             common_words = {"le", "la", "les", "de", "du", "des", "un", "une", "et", "ou"}
             all_cities = [city for city in all_cities if len(city) > 2 and city.lower() not in common_words]
             
-            # Détermine origine et destination avec des patterns
             origin, destination = self._determine_origin_destination(text, all_cities, doc)
         
-        # Vérifie si c'est une demande de trajet valide
         is_valid = self._is_travel_request(text, origin, destination)
         
-        # Calcule la confiance basée sur plusieurs facteurs
         confidence = self._calculate_confidence(
             origin, destination, origin_entities, destination_entities,
             all_cities, is_valid
@@ -165,34 +152,27 @@ class SpacyFRModel(NLPModel):
         """
         confidence = 0.0
         
-        # Base: Si on a trouvé au moins une ville
         if all_cities:
             confidence += 0.2
         
-        # Bonus si le modèle fine-tuné a détecté directement ORIGIN/DESTINATION
         if origin_entities or destination_entities:
             confidence += 0.4  # Modèle fine-tuné = plus confiant
             if origin_entities and destination_entities:
                 confidence += 0.2  # Les deux détectées directement
         else:
-            # Extraction par patterns = moins confiant
             confidence += 0.2
         
-        # Bonus si on a les deux (origine et destination)
         if origin and destination:
             confidence += 0.2
         elif origin or destination:
             confidence += 0.1
         
-        # Bonus si la demande est valide (cohérent)
         if is_valid and (origin or destination):
             confidence += 0.1
         
-        # Pénalité si on a des villes mais pas d'extraction
         if all_cities and not origin and not destination:
             confidence *= 0.5
         
-        # Normalise entre 0.0 et 1.0
         confidence = min(1.0, max(0.0, confidence))
         
         return round(confidence, 2)
@@ -204,37 +184,30 @@ class SpacyFRModel(NLPModel):
         
         text_lower = text.lower()
         
-        # Pattern 1: "depuis X" (cherche d'abord l'origine avec "depuis")
-        # Ex: "aller à Paris depuis Lyon" -> origine: Lyon
         pattern_depuis = re.search(r'depuis\s+([a-zéèêàôùç-]+(?:\s+[a-zéèêàôùç-]+)?)', text, re.IGNORECASE)
         if pattern_depuis:
             origin_candidate = clean_station_name(pattern_depuis.group(1))
-            # Cherche la destination AVANT "depuis"
             text_avant_depuis = text[:pattern_depuis.start()]
             pattern_dest = re.search(r'(?:aller|rendre|voyager|se\s+rendre)\s+(?:à|vers|a)\s+([a-zéèêàôùç-]+(?:\s+[a-zéèêàôùç-]+)?)', text_avant_depuis, re.IGNORECASE)
             if pattern_dest:
                 dest_candidate = clean_station_name(pattern_dest.group(1))
-                # Match avec les villes trouvées
                 for city in cities:
                     if city.lower() == origin_candidate.lower():
                         origin = city
                     if city.lower() == dest_candidate.lower():
                         destination = city
         
-        # Pattern 2: "de X à Y" ou "de X a Y" (si pas déjà trouvé)
         if not origin or not destination:
             pattern_de_a = re.search(r'\bde\s+([a-zéèêàôùç-]+(?:\s+[a-zéèêàôùç-]+)?)\s+(?:à|vers|pour|a)\s+([a-zéèêàôùç-]+(?:\s+[a-zéèêàôùç-]+)?)', text, re.IGNORECASE)
             if pattern_de_a:
                 origin_candidate = clean_station_name(pattern_de_a.group(1))
                 dest_candidate = clean_station_name(pattern_de_a.group(2))
-                # Match avec les villes trouvées
                 for city in cities:
                     if city.lower() == origin_candidate.lower() and not origin:
                         origin = city
                     if city.lower() == dest_candidate.lower() and not destination:
                         destination = city
         
-        # Pattern 3: "aller à X" ou "aller a X" (destination seulement) - seulement si pas déjà trouvé
         if not destination:
             pattern_aller_a = re.search(r'(?:aller|rendre|voyager|se\s+rendre)\s+(?:à|vers|a)\s+([a-zéèêàôùç-]+(?:\s+[a-zéèêàôùç-]+)?)', text, re.IGNORECASE)
             if pattern_aller_a:
@@ -244,7 +217,6 @@ class SpacyFRModel(NLPModel):
                         destination = city
                         break
         
-        # Pattern 4: "partir de X" (origine seulement) - seulement si pas déjà trouvé
         if not origin:
             pattern_partir_de = re.search(r'(?:partir|quitter)\s+(?:de|depuis)\s+([a-zéèêàôùç-]+(?:\s+[a-zéèêàôùç-]+)?)', text, re.IGNORECASE)
             if pattern_partir_de:
@@ -254,8 +226,6 @@ class SpacyFRModel(NLPModel):
                         origin = city
                         break
         
-        # Si on a trouvé des villes mais pas de pattern clair, prend les premières
-        # (seulement si on a exactement 2 villes)
         if not origin and not destination and len(cities) == 2:
             origin = cities[0]
             destination = cities[1]
@@ -266,7 +236,6 @@ class SpacyFRModel(NLPModel):
     
     def _is_travel_request(self, text: str, origin: Optional[str], destination: Optional[str]) -> bool:
         """Détermine si le texte est une demande de trajet valide."""
-        # Mots-clés indiquant une demande de trajet
         travel_keywords = [
             "aller", "rendre", "voyager", "trajet", "billet", "train",
             "partir", "quitter", "arriver", "destination", "origine"
@@ -275,7 +244,6 @@ class SpacyFRModel(NLPModel):
         text_lower = text.lower()
         has_travel_keyword = any(keyword in text_lower for keyword in travel_keywords)
         
-        # C'est valide si on a au moins une ville ET un mot-clé de trajet
         return (origin is not None or destination is not None) and has_travel_keyword
     
     def train(self, train_dataset: str | Path, valid_dataset: str | Path = None, output_dir: str | Path = None):
@@ -298,7 +266,6 @@ class SpacyFRModel(NLPModel):
         logger.info(f"Starting fine-tuning with base model: {self.model_name}")
         logger.info(f"Training dataset: {train_dataset}")
         
-        # Convertit les datasets en format spaCy
         train_data = convert_to_spacy_format(train_dataset)
         
         valid_data = None
@@ -306,7 +273,6 @@ class SpacyFRModel(NLPModel):
             valid_data = convert_to_spacy_format(valid_dataset)
             logger.info(f"Validation dataset: {valid_dataset} ({len(valid_data)} samples)")
         
-        # Entraîne le modèle
         model_path = train_spacy_model(
             base_model_name=self.model_name,
             train_data=train_data,

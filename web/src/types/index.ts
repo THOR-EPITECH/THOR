@@ -1,5 +1,3 @@
-// Types pour l'application THOR
-
 export interface Segment {
   from: string;
   to: string;

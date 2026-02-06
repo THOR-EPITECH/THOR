@@ -4,7 +4,6 @@ import Link from 'next/link';
 export default function DocsIntroduction() {
   return (
     <div>
-      {/* Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
           <span>Docs</span>
@@ -20,7 +19,6 @@ export default function DocsIntroduction() {
         </p>
       </div>
 
-      {/* Quick intro */}
       <div className="prose prose-invert max-w-none mb-12">
         <p className="text-neutral-300 leading-relaxed">
           THOR est un projet qui combine reconnaissance vocale, traitement du langage naturel 
@@ -29,7 +27,6 @@ export default function DocsIntroduction() {
         </p>
       </div>
 
-      {/* Features grid */}
       <div className="grid gap-4 mb-12">
         <div className="p-6 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
           <div className="flex items-start gap-4">
@@ -77,7 +74,6 @@ export default function DocsIntroduction() {
         </div>
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-3 gap-4 mb-12">
         <div className="text-center p-6 rounded-xl bg-white/[0.02] border border-white/5">
           <div className="text-3xl font-bold text-white mb-1">3000+</div>
@@ -93,7 +89,6 @@ export default function DocsIntroduction() {
         </div>
       </div>
 
-      {/* Quick start CTA */}
       <div className="p-6 rounded-xl bg-gradient-to-r from-white/5 to-white/[0.02] border border-white/10">
         <div className="flex items-center justify-between">
           <div>
@@ -112,7 +107,6 @@ export default function DocsIntroduction() {
         </div>
       </div>
 
-      {/* Architecture overview */}
       <div className="mt-12">
         <h2 className="text-2xl font-bold mb-6">Architecture</h2>
         <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5">

@@ -81,7 +81,6 @@ def train_command(args):
     if args.valid_dataset:
         logger.info(f"Using validation dataset: {args.valid_dataset}")
     
-    # Passe les paramètres d'entraînement dans la config
     if args.n_iter:
         model.config["n_iter"] = args.n_iter
     if args.dropout:
@@ -103,14 +102,11 @@ def benchmark_command(args):
     """Commande pour benchmarker plusieurs modèles."""
     from src.nlp.models.spacy_fr import SpacyFRModel
     
-    # Parse les modèles à comparer
     models_to_benchmark = []
     
-    # Modèles par défaut si aucun spécifié
     if not args.models:
         args.models = ["dummy", "regex_advanced", "spacy"]
     
-    # Charge chaque modèle avec sa config
     for model_spec in args.models:
         parts = model_spec.split(":")
         model_name = parts[0]
@@ -150,7 +146,6 @@ def benchmark_command(args):
             logger.error(f"Failed to load model {model_name}: {e}")
             continue
         
-        # Nom complet pour le benchmark
         display_name = f"{model_name}"
         if config_path:
             display_name += f" ({Path(config_path).stem})"
@@ -168,7 +163,6 @@ def benchmark_command(args):
     
     logger.info(f"Benchmarking {len(models_to_benchmark)} models on {args.dataset}")
     
-    # Lance le benchmark
     results = benchmark_models(
         models=models_to_benchmark,
         dataset_path=args.dataset,
@@ -180,7 +174,6 @@ def benchmark_command(args):
     print(f"Report: {results['report_path']}")
     print(f"Comparison: {results['comparison_path']}")
     
-    # Affiche un résumé
     print("\n=== Résumé ===")
     for model_name, result in results["results"].items():
         if result.get("status") == "success":
@@ -196,20 +189,17 @@ def main():
     parser = argparse.ArgumentParser(description="THOR NLP CLI")
     subparsers = parser.add_subparsers(dest="command", help="Command to run")
     
-    # Commande extract
     extract_parser = subparsers.add_parser("extract", help="Extract origin/destination from text")
     extract_parser.add_argument("--text", required=True, help="Text to analyze")
     extract_parser.add_argument("--model", default="dummy", help="NLP model to use")
     extract_parser.add_argument("--config", help="Path to config file")
     
-    # Commande evaluate
     eval_parser = subparsers.add_parser("evaluate", help="Evaluate a model")
     eval_parser.add_argument("--dataset", required=True, help="Path to dataset JSONL")
     eval_parser.add_argument("--model", default="dummy", help="NLP model to use")
     eval_parser.add_argument("--config", help="Path to config file")
     eval_parser.add_argument("--output-dir", default="results/nlp", help="Output directory")
     
-    # Commande train
     train_parser = subparsers.add_parser("train", help="Train (fine-tune) a model")
     train_parser.add_argument("--train-dataset", required=True, help="Path to training dataset JSONL")
     train_parser.add_argument("--valid-dataset", help="Path to validation dataset JSONL")
@@ -219,7 +209,6 @@ def main():
     train_parser.add_argument("--n-iter", type=int, default=20, help="Number of training iterations")
     train_parser.add_argument("--dropout", type=float, default=0.1, help="Dropout rate")
     
-    # Commande benchmark
     benchmark_parser = subparsers.add_parser("benchmark", help="Benchmark multiple NLP models")
     benchmark_parser.add_argument("--dataset", required=True, help="Path to dataset JSONL")
     benchmark_parser.add_argument("--models", nargs="+", help="Models to benchmark (format: model_name[:config_path]). Default: dummy spacy")

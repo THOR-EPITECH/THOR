@@ -31,14 +31,11 @@ class DummySTTModel(STTModel):
         audio_path = Path(audio_path)
         start_time = time.time()
         
-        # Simule un temps de traitement
         time.sleep(0.1)
         
-        # Génère un résultat selon le mode
         if self.mode == "empty":
             text = ""
         elif self.mode == "repeat":
-            # Répète le nom du fichier (sans extension)
             text = audio_path.stem
         else:
             text = ""

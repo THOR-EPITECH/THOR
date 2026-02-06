@@ -117,7 +117,6 @@ export default function DocsImprovements() {
         Pistes d'amélioration pour optimiser chaque composant de la pipeline THOR.
       </p>
 
-      {/* Current state summary */}
       <section className="mb-12">
         <h2 className="text-xl font-semibold mb-4">État actuel</h2>
         <div className="grid md:grid-cols-4 gap-4">
@@ -144,7 +143,6 @@ export default function DocsImprovements() {
         </div>
       </section>
 
-      {/* STT Improvements */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-blue-500/10">
@@ -229,7 +227,6 @@ export default function DocsImprovements() {
         </div>
       </section>
 
-      {/* NLP Improvements */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-purple-500/10">
@@ -313,7 +310,6 @@ export default function DocsImprovements() {
         </div>
       </section>
 
-      {/* Pathfinding Improvements */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-green-500/10">
@@ -414,7 +410,6 @@ export default function DocsImprovements() {
         </div>
       </section>
 
-      {/* Infrastructure Improvements */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-orange-500/10">
@@ -490,7 +485,6 @@ export default function DocsImprovements() {
         </div>
       </section>
 
-      {/* Priority matrix */}
       <section>
         <h2 className="text-xl font-semibold mb-4">Matrice de priorité</h2>
         <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5">

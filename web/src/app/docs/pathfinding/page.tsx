@@ -18,7 +18,6 @@ function CodeBlock({ children, title }: { children: string; title?: string }) {
 export default function DocsPathfinding() {
   return (
     <div>
-      {/* Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
           <span>Docs</span>
@@ -34,7 +33,6 @@ export default function DocsPathfinding() {
         </p>
       </div>
 
-      {/* Basic concepts */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Concepts de base</h2>
         
@@ -120,7 +118,6 @@ export default function DocsPathfinding() {
         </div>
       </div>
 
-      {/* Algorithm */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">L'algorithme de Dijkstra</h2>
         <div className="prose prose-invert max-w-none mb-6">
@@ -200,7 +197,6 @@ export default function DocsPathfinding() {
           </div>
         </div>
 
-        {/* Detailed example */}
         <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 mb-6">
           <h3 className="font-semibold mb-4">Exemple détaillé : Paris → Marseille</h3>
           <p className="text-sm text-neutral-400 mb-4">
@@ -208,7 +204,6 @@ export default function DocsPathfinding() {
           </p>
           
           <div className="space-y-4">
-            {/* Step 0 */}
             <div className="p-4 rounded-lg bg-white/5">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-xs font-mono text-blue-400">0</div>
@@ -241,7 +236,6 @@ export default function DocsPathfinding() {
               </div>
             </div>
 
-            {/* Step 1 */}
             <div className="p-4 rounded-lg bg-white/5">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-xs font-mono text-blue-400">1</div>
@@ -275,7 +269,6 @@ export default function DocsPathfinding() {
               </div>
             </div>
 
-            {/* Step 2 */}
             <div className="p-4 rounded-lg bg-white/5">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-xs font-mono text-blue-400">2</div>
@@ -309,7 +302,6 @@ export default function DocsPathfinding() {
               </div>
             </div>
 
-            {/* Step 3 */}
             <div className="p-4 rounded-lg bg-white/5">
               <div className="flex items-center gap-2 mb-3">
                 <div className="w-6 h-6 rounded-full bg-blue-500/20 flex items-center justify-center text-xs font-mono text-blue-400">3</div>
@@ -343,7 +335,6 @@ export default function DocsPathfinding() {
               </div>
             </div>
 
-            {/* Result */}
             <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/20">
               <div className="flex items-center gap-2 mb-3">
                 <CheckCircle2 className="w-5 h-5 text-green-400" />
@@ -367,7 +358,6 @@ export default function DocsPathfinding() {
           </div>
         </div>
 
-        {/* Data structures */}
         <div className="p-6 rounded-xl bg-cyan-500/5 border border-cyan-500/20">
           <h3 className="font-semibold text-cyan-400 mb-4">Structures de données utilisées</h3>
           <div className="grid md:grid-cols-2 gap-4">
@@ -401,7 +391,6 @@ predecesseurs = {
         </div>
       </div>
 
-      {/* Weighting */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Système de pondération</h2>
         
@@ -548,7 +537,6 @@ poids = 180 × 2.0 = 360  ✗ Défavorisé par l'algo
 # L'algorithme choisit le chemin avec le PLUS PETIT poids total`}</CodeBlock>
       </div>
 
-      {/* Multi-source */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
           <Zap className="w-6 h-6 text-yellow-400" />
@@ -646,7 +634,6 @@ poids = 180 × 2.0 = 360  ✗ Défavorisé par l'algo
     return best_route  # Meilleure des 21 routes`}</CodeBlock>
       </div>
 
-      {/* Airport exclusion */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
           <Plane className="w-6 h-6 text-red-400" />
@@ -706,7 +693,6 @@ def get_stations_for_city(city: str, exclude_airports: bool = True):
     return stations`}</CodeBlock>
       </div>
 
-      {/* Configuration */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
           <Settings className="w-6 h-6 text-neutral-400" />
@@ -725,7 +711,6 @@ def get_stations_for_city(city: str, exclude_airports: bool = True):
 }`}</CodeBlock>
       </div>
 
-      {/* Usage */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Utilisation</h2>
         
@@ -750,7 +735,6 @@ print(route.total_distance)# 390.79
 print(route.metadata)      # Détails des segments, géométries, etc.`}</CodeBlock>
       </div>
 
-      {/* Output example */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Exemple de résultat</h2>
         <CodeBlock title="Route Paris → Lyon">{`{
@@ -781,7 +765,6 @@ print(route.metadata)      # Détails des segments, géométries, etc.`}</CodeBl
 }`}</CodeBlock>
       </div>
 
-      {/* Geometry */}
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
           <Map className="w-6 h-6 text-blue-400" />
@@ -802,7 +785,6 @@ print(route.metadata)      # Détails des segments, géométries, etc.`}</CodeBl
     [2.373, 48.844],   // Paris Gare de Lyon
     [2.401, 48.831],   // Point intermédiaire
     [2.456, 48.792],   // Point intermédiaire
-    // ... ~300 points au total ...
     [4.859, 45.760]    // Lyon Part Dieu
   ]
 }`}</CodeBlock>
@@ -827,7 +809,6 @@ print(route.metadata)      # Détails des segments, géométries, etc.`}</CodeBl
           </div>
         </div>
 
-        {/* Haversine distance */}
         <div className="p-6 rounded-xl bg-orange-500/5 border border-orange-500/20 mb-6">
           <h3 className="font-semibold text-orange-400 mb-4">La distance Haversine</h3>
           <p className="text-neutral-400 text-sm mb-4">
@@ -936,7 +917,6 @@ print(f"Distance : {distance:.1f} km")  # → 391.2 km`}</CodeBlock>
         </div>
       </div>
 
-      {/* Summary card */}
       <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5">
         <h2 className="text-xl font-bold mb-4">Résumé du Pathfinding THOR</h2>
         <div className="grid md:grid-cols-2 gap-6 text-sm">

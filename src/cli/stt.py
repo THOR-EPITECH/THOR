@@ -65,7 +65,6 @@ def evaluate_command(args):
     for key, value in metrics.items():
         print(f"{key}: {value:.4f}" if isinstance(value, float) else f"{key}: {value}")
     
-    # Analyse des erreurs
     if args.analyze_errors:
         logger.info("Analyzing errors...")
         analyze_errors(
@@ -80,13 +79,11 @@ def main():
     parser = argparse.ArgumentParser(description="THOR Speech-to-Text CLI")
     subparsers = parser.add_subparsers(dest="command", help="Command to run")
     
-    # Commande transcribe
     transcribe_parser = subparsers.add_parser("transcribe", help="Transcribe an audio file")
     transcribe_parser.add_argument("--audio", required=True, help="Path to audio file")
     transcribe_parser.add_argument("--model", default="whisper", help="STT model to use")
     transcribe_parser.add_argument("--config", help="Path to config file")
     
-    # Commande evaluate
     eval_parser = subparsers.add_parser("evaluate", help="Evaluate a model")
     eval_parser.add_argument("--dataset", required=True, help="Path to dataset JSONL")
     eval_parser.add_argument("--model", default="whisper", help="STT model to use")

@@ -13,18 +13,15 @@ logger = setup_logging(module="scripts.test_pipeline")
 
 def test_audio_files(audio_files: list, config_path: str = None):
     """Teste le pipeline sur plusieurs fichiers audio."""
-    # Charge la config
     if config_path:
         config = Config(config_path)
         nlp_config = config.get("nlp", {})
     else:
         nlp_config = {"custom_model_path": "models/nlp/spacy_finetuned/model"}
     
-    # Initialise les modèles
     stt_model = WhisperModel({"model_size": "small", "language": "fr"})
     nlp_model = SpacyFRModel(nlp_config)
     
-    # Crée le pipeline
     pipeline = Pipeline(stt_model, nlp_model)
     
     results = []
@@ -48,7 +45,6 @@ def test_audio_files(audio_files: list, config_path: str = None):
             print(f"✅ Valide: {result['is_valid']}")
             print(f"📊 Confiance: {result.get('confidence', 'N/A')}")
             
-            # Affiche le message d'erreur si présent
             if result.get('error_message'):
                 print(f"{result['error_message']}")
             
@@ -73,14 +69,12 @@ def test_audio_files(audio_files: list, config_path: str = None):
 
 def test_text_examples(texts: list, config_path: str = None):
     """Teste le modèle NLP directement sur des textes."""
-    # Charge la config
     if config_path:
         config = Config(config_path)
         nlp_config = config.get("nlp", {})
     else:
         nlp_config = {"custom_model_path": "models/nlp/spacy_finetuned/model"}
     
-    # Initialise le modèle NLP
     nlp_model = SpacyFRModel(nlp_config)
     nlp_model.initialize()
     
@@ -101,7 +95,6 @@ def test_text_examples(texts: list, config_path: str = None):
             print(f"📊 Confiance: {result.confidence}")
             print(f"🏷️  Entités: {result.metadata.get('locations_found', [])}")
             
-            # Génère un message d'erreur si nécessaire (pour les tests texte)
             if result.is_valid:
                 if not result.origin and not result.destination:
                     print("❌ Erreur : Aucune ville détectée. Veuillez préciser une ville de départ et/ou d'arrivée.")
@@ -146,7 +139,6 @@ def main():
     
     results = []
     
-    # Test avec fichiers audio
     if args.audio_dir:
         audio_dir = Path(args.audio_dir)
         audio_files = list(audio_dir.glob("*.wav")) + list(audio_dir.glob("*.mp3"))
@@ -159,12 +151,10 @@ def main():
         audio_results = test_audio_files(args.audio_files, args.config)
         results.extend(audio_results)
     
-    # Test avec textes
     if args.texts:
         text_results = test_text_examples(args.texts, args.config)
         results.extend(text_results)
     
-    # Test avec dataset
     if args.dataset:
         from src.common.io import read_jsonl
         import random
@@ -178,7 +168,6 @@ def main():
         text_results = test_text_examples(sample_texts, args.config)
         results.extend(text_results)
     
-    # Sauvegarde des résultats
     if args.output:
         output_path = Path(args.output)
         output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -186,7 +175,6 @@ def main():
             json.dump(results, f, indent=2, ensure_ascii=False)
         logger.info(f"\n✅ Results saved to {output_path}")
     
-    # Résumé
     print(f"\n{'='*60}")
     print(f"📊 Résumé: {len(results)} exemples testés")
     print(f"{'='*60}")
