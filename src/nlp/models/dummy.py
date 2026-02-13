@@ -4,6 +4,7 @@ Modèle NLP dummy pour tests et baseline.
 import re
 from src.nlp.interfaces import NLPModel
 from src.common.types import NLPExtraction
+from src.nlp.utils import ensure_origin_destination_distinct
 
 
 class DummyNLPModel(NLPModel):
@@ -69,6 +70,9 @@ class DummyNLPModel(NLPModel):
         if destination:
             destination = self._normalize_city(destination)
         
+        # Evite d'assigner la même ville en origin et destination
+        origin, destination = ensure_origin_destination_distinct(origin, destination)
+
         return NLPExtraction(
             origin=origin,
             destination=destination,
