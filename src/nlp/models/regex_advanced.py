@@ -8,6 +8,7 @@ from src.nlp.interfaces import NLPModel
 from src.common.types import NLPExtraction
 from src.common.logging import setup_logging
 from src.common.text_norm import clean_station_name
+from src.nlp.utils import ensure_origin_destination_distinct
 
 logger = setup_logging(module="nlp.regex")
 
@@ -119,6 +120,9 @@ class RegexAdvancedModel(NLPModel):
         # Calcule la confiance
         confidence = self._calculate_confidence(origin, destination, is_valid)
         
+        # S'assure que origin et destination ne sont pas identiques
+        origin, destination = ensure_origin_destination_distinct(origin, destination)
+
         return NLPExtraction(
             origin=origin,
             destination=destination,
@@ -129,7 +133,8 @@ class RegexAdvancedModel(NLPModel):
                 "extraction_method": "advanced_patterns"
             }
         )
-    
+
+
     def _is_likely_city(self, text: str) -> bool:
         """Vérifie si le texte ressemble à une ville."""
         if not text or len(text) < 2:
@@ -201,4 +206,3 @@ class RegexAdvancedModel(NLPModel):
             confidence += 0.05
         
         return min(confidence, 1.0)
-

@@ -16,6 +16,7 @@ from src.nlp.interfaces import NLPModel
 from src.common.types import NLPExtraction
 from src.common.logging import setup_logging
 from src.common.text_norm import clean_station_name
+from src.nlp.utils import ensure_origin_destination_distinct
 
 logger = setup_logging(module="nlp.spacy")
 
@@ -120,26 +121,29 @@ class SpacyFRModel(NLPModel):
         
         # Vérifie si c'est une demande de trajet valide
         is_valid = self._is_travel_request(text, origin, destination)
-        
+
         # Calcule la confiance basée sur plusieurs facteurs
         confidence = self._calculate_confidence(
             origin, destination, origin_entities, destination_entities,
             all_cities, is_valid
         )
-        
-        return NLPExtraction(
-            origin=origin,
-            destination=destination,
-            is_valid=is_valid,
-            confidence=confidence,
-            entities=[{"text": city, "label": "LOC"} for city in all_cities],
-            metadata={
-                "model": f"spacy-{self.model_name}",
-                "locations_found": all_cities,
-                "extraction_method": "ner_patterns" if not (origin_entities or destination_entities) else "fine_tuned_ner"
-            }
-        )
-    
++
++        # Assure que origin et destination ne sont pas identiques
++        origin, destination = ensure_origin_destination_distinct(origin, destination)
++
++        return NLPExtraction(
++            origin=origin,
++            destination=destination,
++            is_valid=is_valid,
++            confidence=confidence,
++            entities=[{"text": city, "label": "LOC"} for city in all_cities],
++            metadata={
++                "model": f"spacy-{self.model_name}",
++                "locations_found": all_cities,
++                "extraction_method": "ner_patterns" if not (origin_entities or destination_entities) else "fine_tuned_ner"
++            }
++        )
+
     def _calculate_confidence(
         self,
         origin: Optional[str],
@@ -321,4 +325,3 @@ class SpacyFRModel(NLPModel):
         logger.info(f"To use this model, set 'custom_model_path' in config to: {model_path}")
         
         return model_path
-
