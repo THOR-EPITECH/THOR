@@ -18,11 +18,9 @@ def generate_markdown_report(
     """Génère un rapport markdown complet des résultats d'évaluation NLP."""
     output_dir = Path(output_dir)
     
-    # Charge les prédictions
     predictions_path = output_dir / "predictions.jsonl"
     predictions = list(read_jsonl(predictions_path)) if predictions_path.exists() else []
     
-    # Charge les métriques détaillées
     metrics_path = output_dir / "metrics.json"
     if metrics_path.exists():
         with open(metrics_path, 'r', encoding='utf-8') as f:
@@ -30,18 +28,15 @@ def generate_markdown_report(
     else:
         detailed_metrics = metrics
     
-    # Analyse
     total_samples = len(predictions)
     perfect_extractions = sum(1 for p in predictions if p.get("both_correct", 0) == 1.0)
     origin_correct = sum(1 for p in predictions if p.get("origin_accuracy", 0) == 1.0)
     dest_correct = sum(1 for p in predictions if p.get("destination_accuracy", 0) == 1.0)
     
-    # Meilleures et pires prédictions
     sorted_predictions = sorted(predictions, key=lambda x: x.get("f1", 0.0), reverse=True)
     best_predictions = sorted_predictions[:5]
     worst_predictions = sorted_predictions[-5:]
     
-    # Génère le rapport
     report = f"""# Rapport d'évaluation NLP - {model_name}
 
 **Date**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}  
@@ -51,24 +46,19 @@ def generate_markdown_report(
 
 ---
 
-## 📊 Métriques globales
 
-### Precision, Recall, F1
 - **Precision**: {detailed_metrics.get('precision_mean', 0):.4f} ± {detailed_metrics.get('precision_std', 0):.4f}
 - **Recall**: {detailed_metrics.get('recall_mean', 0):.4f} ± {detailed_metrics.get('recall_std', 0):.4f}
 - **F1-Score**: {detailed_metrics.get('f1_mean', 0):.4f} ± {detailed_metrics.get('f1_std', 0):.4f}
 
-### Précision par entité
 - **Origine correcte**: {origin_correct}/{total_samples} ({origin_correct/total_samples*100:.1f}%)
 - **Destination correcte**: {dest_correct}/{total_samples} ({dest_correct/total_samples*100:.1f}%)
 - **Les deux correctes**: {perfect_extractions}/{total_samples} ({perfect_extractions/total_samples*100:.1f}%)
 
-### Validation
 - **Précision de validation**: {detailed_metrics.get('validation_accuracy_mean', 0):.4f} ± {detailed_metrics.get('validation_accuracy_std', 0):.4f}
 
 ---
 
-## 📈 Statistiques
 
 - **Total d'échantillons**: {total_samples}
 - **Extractions parfaites (origine + destination)**: {perfect_extractions} ({perfect_extractions/total_samples*100:.1f}%)
@@ -77,7 +67,6 @@ def generate_markdown_report(
 
 ---
 
-## ✅ Meilleures extractions (F1 le plus élevé)
 
 """
     
@@ -93,7 +82,6 @@ def generate_markdown_report(
     
     report += """---
 
-## ❌ Pires extractions (F1 le plus bas)
 
 """
     
@@ -109,7 +97,6 @@ def generate_markdown_report(
     
     report += """---
 
-## 📁 Fichiers générés
 
 - `metrics.json`: Métriques agrégées au format JSON
 - `predictions.jsonl`: Toutes les prédictions avec métriques détaillées
@@ -118,7 +105,6 @@ def generate_markdown_report(
 
 ---
 
-## 📝 Notes
 
 Ce rapport a été généré automatiquement par le système d'évaluation THOR.
 

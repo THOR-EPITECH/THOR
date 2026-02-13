@@ -1,5 +1,3 @@
-// Types pour l'application THOR
-
 export interface Segment {
   from: string;
   to: string;
@@ -49,6 +47,26 @@ export interface PipelineResult {
   confidence: number;
   route?: Route;
   error_message?: string;
+  error_type?: string;
+  suggestions?: string[];
+  issues?: string[];
+  validation_details?: {
+    transcript_valid: boolean;
+    origin_validation?: {
+      is_valid: boolean;
+      corrected_city?: string;
+      suggestions: string[];
+      confidence: number;
+      issue?: string;
+    };
+    destination_validation?: {
+      is_valid: boolean;
+      corrected_city?: string;
+      suggestions: string[];
+      confidence: number;
+      issue?: string;
+    };
+  };
   stt_metadata?: {
     model: string;
     language: string;

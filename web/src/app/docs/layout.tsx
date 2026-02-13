@@ -57,7 +57,6 @@ const navigation = [
   }
 ];
 
-// Flatten navigation for pagination
 const allPages = navigation.flatMap(section => section.items);
 
 export default function DocsLayout({
@@ -67,19 +66,16 @@ export default function DocsLayout({
 }) {
   const pathname = usePathname();
   
-  // Scroll to top on page change with smooth animation
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [pathname]);
   
-  // Find current page index for pagination
   const currentIndex = allPages.findIndex(page => page.href === pathname);
   const prevPage = currentIndex > 0 ? allPages[currentIndex - 1] : null;
   const nextPage = currentIndex < allPages.length - 1 ? allPages[currentIndex + 1] : null;
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
-      {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-white/5">
         <div className="max-w-[1400px] mx-auto px-6 h-14 flex items-center justify-between">
           <div className="flex items-center gap-6">
@@ -109,7 +105,6 @@ export default function DocsLayout({
       </header>
 
       <div className="flex pt-14">
-        {/* Sidebar */}
         <aside className="hidden lg:block w-64 fixed left-0 top-14 bottom-0 overflow-y-auto border-r border-white/5 bg-[#0a0a0a]">
           <nav className="p-6 space-y-8">
             {navigation.map((section) => (
@@ -143,7 +138,6 @@ export default function DocsLayout({
           </nav>
         </aside>
 
-        {/* Mobile nav */}
         <div className="lg:hidden fixed top-14 left-0 right-0 z-40 bg-[#0a0a0a] border-b border-white/5 overflow-x-auto">
           <nav className="flex gap-1 p-2 min-w-max">
             {allPages.map((item) => {
@@ -165,7 +159,6 @@ export default function DocsLayout({
           </nav>
         </div>
 
-        {/* Main content */}
         <main className="flex-1 lg:ml-64 min-h-screen">
           <div 
             key={pathname}
@@ -173,7 +166,6 @@ export default function DocsLayout({
           >
             {children}
 
-            {/* Pagination */}
             <div className="mt-16 pt-8 border-t border-white/5 flex items-center justify-between">
               {prevPage ? (
                 <Link

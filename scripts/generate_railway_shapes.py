@@ -11,7 +11,6 @@ from pathlib import Path
 from collections import defaultdict
 from typing import Optional
 
-# Chemins des fichiers
 BASE_DIR = Path(__file__).parent.parent
 INPUT_SHAPES = BASE_DIR / "data/raw/shapes.json"
 INPUT_LIAISONS = BASE_DIR / "data/train_station/dataset_liaisons_enhanced.json"
@@ -71,7 +70,6 @@ def load_railway_lines(shapes_file: Path) -> dict:
             'coordinates': coords
         })
     
-    # Trier les tronçons par PK pour chaque ligne
     for code in lines:
         lines[code]['troncons'].sort(key=lambda x: x['pk_debut'])
     
@@ -93,17 +91,13 @@ def flatten_coordinates(coords: list) -> list:
     if not coords:
         return []
     
-    # Vérifier si c'est déjà [lon, lat] ou [[lon, lat], ...]
     first = coords[0]
     if isinstance(first, (int, float)):
-        # C'est un seul point [lon, lat]
         return [coords]
     elif isinstance(first, list):
         if len(first) > 0 and isinstance(first[0], (int, float)):
-            # C'est déjà [[lon, lat], ...]
             return coords
         else:
-            # C'est imbriqué [[[lon, lat], ...], ...]
             flat = []
             for sublist in coords:
                 if isinstance(sublist, list):
@@ -118,7 +112,6 @@ def find_closest_point_index(coords: list, lon: float, lat: float) -> tuple[int,
     min_idx = 0
     
     for i, coord in enumerate(coords):
-        # S'assurer que coord est [lon, lat]
         if not isinstance(coord, list) or len(coord) < 2:
             continue
         if isinstance(coord[0], list):
@@ -153,11 +146,9 @@ def extract_segment_from_line(
     if start_dist > max_dist or end_dist > max_dist:
         return None
     
-    # S'assurer que start < end
     if start_idx > end_idx:
         start_idx, end_idx = end_idx, start_idx
     
-    # Extraire le segment
     segment = coords[start_idx:end_idx + 1]
     
     return segment if len(segment) > 1 else None
@@ -184,23 +175,18 @@ def find_best_line_for_liaison(
         if len(coords) < 2:
             continue
         
-        # Trouver les points les plus proches
         start_idx, start_dist = find_closest_point_index(coords, start_lon, start_lat)
         end_idx, end_dist = find_closest_point_index(coords, end_lon, end_lat)
         
-        # Vérifier si les deux points sont proches de la ligne
         if start_dist > max_search_dist or end_dist > max_search_dist:
             continue
         
-        # Score = somme des distances + pénalité si segment court
         score = start_dist + end_dist
         
-        # S'assurer que le segment couvre une distance significative
         if abs(start_idx - end_idx) < 2:
             continue
         
         if score < best_score:
-            # Extraire le segment
             if start_idx > end_idx:
                 start_idx, end_idx = end_idx, start_idx
             segment = coords[start_idx:end_idx + 1]
@@ -229,7 +215,6 @@ def main():
     print("Utilisation du fichier shapes.json complet")
     print("=" * 70)
     
-    # Charger les lignes ferroviaires
     print(f"\n1. Chargement des lignes ferroviaires...")
     lines = load_railway_lines(INPUT_SHAPES)
     
@@ -239,14 +224,12 @@ def main():
     )
     print(f"    → {total_points:,} points géométriques")
     
-    # Charger les liaisons
     print(f"\n2. Chargement des liaisons...")
     with open(INPUT_LIAISONS, 'r', encoding='utf-8') as f:
         liaisons_data = json.load(f)
     liaisons = liaisons_data.get('liaisons', liaisons_data)
     print(f"    → {len(liaisons)} liaisons")
     
-    # Charger les gares
     print(f"\n3. Chargement des gares...")
     with open(INPUT_GARES, 'r', encoding='utf-8') as f:
         gares = json.load(f)
@@ -261,7 +244,6 @@ def main():
             }
     print(f"    → {len(gares_by_uic)} codes UIC")
     
-    # Traiter les liaisons
     print(f"\n4. Recherche des tracés pour chaque liaison...")
     
     enriched_liaisons = []
@@ -284,7 +266,6 @@ def main():
             enriched_liaisons.append(liaison)
             continue
         
-        # Chercher la meilleure ligne
         result = find_best_line_for_liaison(
             lines,
             gare_dep['lon'], gare_dep['lat'],
@@ -295,10 +276,8 @@ def main():
         if result:
             code_ligne, segment = result
             
-            # Ajouter les points de départ et d'arrivée
             segment = [[gare_dep['lon'], gare_dep['lat']]] + segment + [[gare_arr['lon'], gare_arr['lat']]]
             
-            # Simplifier si nécessaire
             segment = simplify_path(segment, max_points=300)
             
             liaison_copy = liaison.copy()
@@ -311,7 +290,6 @@ def main():
             enriched_liaisons.append(liaison_copy)
             stats['with_path'] += 1
         else:
-            # Fallback: ligne droite
             liaison_copy = liaison.copy()
             liaison_copy['geometry'] = {
                 'type': 'LineString',
@@ -330,7 +308,6 @@ def main():
     print(f"    → {stats['direct_line']} liaisons avec ligne droite")
     print(f"    ✗ {stats['no_gare']} liaisons sans gare trouvée")
     
-    # Sauvegarder
     print(f"\n5. Sauvegarde...")
     output_data = {
         'metadata': {
@@ -346,7 +323,6 @@ def main():
     
     print(f"\n✅ Terminé ! Fichier: {OUTPUT_FILE}")
     
-    # Afficher quelques exemples
     print(f"\n📊 Exemples de tracés détaillés:")
     examples = sorted(
         [l for l in enriched_liaisons if l.get('geometry', {}).get('coordinates', []) and len(l['geometry']['coordinates']) > 20],

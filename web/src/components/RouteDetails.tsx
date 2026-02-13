@@ -34,9 +34,7 @@ export default function RouteDetails({ route }: RouteDetailsProps) {
 
   return (
     <div className="space-y-6">
-      {/* Summary */}
       <div className="p-6 bg-white/[0.02] border border-white/5 rounded-xl">
-        {/* Route */}
         <div className="flex items-center justify-between mb-6">
           <div>
             <p className="text-xs text-neutral-500 mb-1">Départ</p>
@@ -49,7 +47,6 @@ export default function RouteDetails({ route }: RouteDetailsProps) {
           </div>
         </div>
 
-        {/* Stats */}
         <div className="flex items-center justify-center gap-8 py-4 border-t border-white/5">
           <div className="text-center">
             <p className="text-2xl font-semibold">{formatTime(route.total_time)}</p>
@@ -68,7 +65,6 @@ export default function RouteDetails({ route }: RouteDetailsProps) {
         </div>
       </div>
 
-      {/* Segments */}
       {segments.length > 0 && (
         <div className="space-y-3">
           <p className="text-sm text-neutral-500 px-1">Détail du trajet</p>
@@ -87,19 +83,16 @@ export default function RouteDetails({ route }: RouteDetailsProps) {
 function SegmentRow({ segment }: { segment: Segment }) {
   return (
     <div className="flex items-center gap-4 p-4 bg-white/[0.02] border border-white/5 rounded-xl">
-      {/* Train type */}
       <span className={`px-2.5 py-1 text-xs font-medium rounded-md border ${getTrainTypeStyle(segment.type_train)}`}>
         {segment.type_train}
       </span>
 
-      {/* Route */}
       <div className="flex-1 min-w-0 flex items-center gap-2 text-sm">
         <span className="truncate">{segment.from}</span>
         <ArrowRight className="w-3.5 h-3.5 text-neutral-600 flex-shrink-0" />
         <span className="truncate">{segment.to}</span>
       </div>
 
-      {/* Duration */}
       <div className="flex items-center gap-1.5 text-sm text-neutral-500">
         <Clock className="w-3.5 h-3.5" />
         <span>{formatTime(segment.temps_min)}</span>

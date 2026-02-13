@@ -9,7 +9,6 @@ interface RouteMapClientProps {
   segments: Segment[];
 }
 
-// Station marker
 const createStationIcon = (isTerminal: boolean) => {
   const size = isTerminal ? 12 : 8;
   return L.divIcon({
@@ -27,7 +26,6 @@ const createStationIcon = (isTerminal: boolean) => {
   });
 };
 
-// Train type colors (muted)
 function getTrainColor(type: string): string {
   switch (type) {
     case 'TGV': return '#f43f5e';
@@ -66,7 +64,6 @@ export default function RouteMapClient({ segments }: RouteMapClientProps) {
 
     L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-    // Dark tile layer
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
       maxZoom: 19,
     }).addTo(map);
@@ -83,7 +80,6 @@ export default function RouteMapClient({ segments }: RouteMapClientProps) {
       
       routeCoords.forEach(coord => bounds.extend(coord));
 
-      // Main line
       L.polyline(routeCoords, {
         color: color,
         weight: 3,
@@ -92,7 +88,6 @@ export default function RouteMapClient({ segments }: RouteMapClientProps) {
         lineCap: 'round',
       }).addTo(map);
 
-      // Markers
       const firstCoord = routeCoords[0];
       const lastCoord = routeCoords[routeCoords.length - 1];
       

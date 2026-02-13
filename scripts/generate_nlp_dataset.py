@@ -11,7 +11,6 @@ from src.common.logging import setup_logging
 
 logger = setup_logging(module="scripts.generate_nlp_dataset")
 
-# Liste de villes françaises
 CITIES = [
     "Paris", "Lyon", "Marseille", "Toulouse", "Nice", "Nantes", "Strasbourg",
     "Montpellier", "Bordeaux", "Lille", "Rennes", "Reims", "Le Havre",
@@ -22,18 +21,15 @@ CITIES = [
     "Cannes", "Avignon", "Annecy", "Chambéry", "Valence", "Dunkerque", "Calais"
 ]
 
-# Verbes de mouvement
 VERBS_TRAVEL = [
     "aller", "se rendre", "voyager", "partir", "quitter", "arriver",
     "me rendre", "se déplacer", "me déplacer", "me transporter",
     "me diriger", "me rendre", "rejoindre", "atteindre"
 ]
 
-# Prépositions et connecteurs
 PREPOSITIONS_ORIGIN = ["depuis", "de", "à partir de", "en partant de", "quittant"]
 PREPOSITIONS_DEST = ["à", "vers", "pour", "en direction de", "jusqu'à"]
 
-# Formulations de demande
 REQUEST_STARTERS = [
     "Je veux", "Je souhaite", "Je voudrais", "Je désire", "J'aimerais",
     "Je dois", "Il faut que je", "Je dois absolument", "Je cherche à",
@@ -44,12 +40,10 @@ REQUEST_STARTERS = [
     "Quel est le moyen de", "Quelle est la façon de"
 ]
 
-# Phrases complètes avec origine et destination - Patterns variés
 def generate_complete_requests() -> List[Tuple[str, str, str, bool]]:
     """Génère des demandes complètes avec origine et destination."""
     samples = []
     
-    # Pattern 1: "Je veux aller à X depuis Y"
     for starter in REQUEST_STARTERS[:10]:
         for city1 in CITIES[:20]:
             for city2 in CITIES[:20]:
@@ -66,7 +60,6 @@ def generate_complete_requests() -> List[Tuple[str, str, str, bool]]:
                                 for pattern in patterns[:1]:  # Limite pour éviter explosion
                                     samples.append((pattern, city2, city1, True))
     
-    # Pattern 2: "de X à Y"
     for starter in REQUEST_STARTERS[:5]:
         for city1 in CITIES[:15]:
             for city2 in CITIES[:15]:
@@ -83,7 +76,6 @@ def generate_complete_requests() -> List[Tuple[str, str, str, bool]]:
                     for pattern in patterns:
                         samples.append((pattern, city1, city2, True))
     
-    # Pattern 3: "entre X et Y"
     for city1 in CITIES[:15]:
         for city2 in CITIES[:15]:
             if city1 != city2:
@@ -96,7 +88,6 @@ def generate_complete_requests() -> List[Tuple[str, str, str, bool]]:
                 for pattern in patterns:
                     samples.append((pattern, city1, city2, True))
     
-    # Pattern 4: Questions
     for city1 in CITIES[:15]:
         for city2 in CITIES[:15]:
             if city1 != city2:
@@ -112,7 +103,6 @@ def generate_complete_requests() -> List[Tuple[str, str, str, bool]]:
     
     return samples[:2000]  # Limite pour éviter trop de données
 
-# Demandes sans destination
 def generate_no_dest_requests() -> List[Tuple[str, str, str, bool]]:
     """Génère des demandes avec origine seulement."""
     samples = []
@@ -132,7 +122,6 @@ def generate_no_dest_requests() -> List[Tuple[str, str, str, bool]]:
     
     return samples[:500]
 
-# Demandes sans origine
 def generate_no_origin_requests() -> List[Tuple[str, str, str, bool]]:
     """Génère des demandes avec destination seulement."""
     samples = []
@@ -153,12 +142,10 @@ def generate_no_origin_requests() -> List[Tuple[str, str, str, bool]]:
     
     return samples[:1000]
 
-# Phrases avec villes mais PAS des demandes de trajet
 def generate_cities_not_travel() -> List[Tuple[str, str, str, bool]]:
     """Génère des phrases mentionnant des villes mais pas des demandes de trajet."""
     samples = []
     
-    # Descriptions de villes
     descriptions = [
         "est la capitale", "est une belle ville", "est célèbre pour",
         "a un beau", "produit", "est connue pour", "est située",
@@ -188,7 +175,6 @@ def generate_cities_not_travel() -> List[Tuple[str, str, str, bool]]:
             for pattern in patterns[:3]:
                 samples.append((pattern, None, None, False))
     
-    # Phrases avec plusieurs villes mais pas de trajet
     for city1 in CITIES[:15]:
         for city2 in CITIES[:15]:
             if city1 != city2:
@@ -204,7 +190,6 @@ def generate_cities_not_travel() -> List[Tuple[str, str, str, bool]]:
     
     return samples[:2000]
 
-# Phrases de la vie quotidienne (pas de trajet)
 DAILY_LIFE = [
     ("Quel temps fait-il aujourd'hui ?", None, None, False),
     ("J'ai faim, on va manger ?", None, None, False),
@@ -520,7 +505,6 @@ DAILY_LIFE = [
     ("Je veux faire convaincre", None, None, False),
 ]
 
-# Variations (minuscules, majuscules, accents)
 def generate_variations() -> List[Tuple[str, str, str, bool]]:
     """Génère des variations de casse et d'accents."""
     samples = []
@@ -531,18 +515,13 @@ def generate_variations() -> List[Tuple[str, str, str, bool]]:
     ]
     
     for phrase, orig, dest, valid in base_phrases:
-        # Minuscules
         samples.append((phrase.lower(), orig, dest, valid))
-        # Majuscules
         samples.append((phrase.upper(), orig, dest, valid))
-        # Sans accents (approximation)
         samples.append((phrase.replace("à", "a").replace("é", "e").replace("è", "e"), orig, dest, valid))
-        # Mélange
         samples.append((phrase.capitalize(), orig, dest, valid))
     
     return samples
 
-# Phrases avec hésitations
 HESITATIONS = [
     ("Euh... je veux aller à Paris... depuis Lyon", "Lyon", "Paris", True),
     ("Je veux... aller à Paris... depuis Lyon", "Lyon", "Paris", True),
@@ -551,7 +530,6 @@ HESITATIONS = [
     ("Je... veux aller à Paris depuis Lyon", "Lyon", "Paris", True),
 ]
 
-# Phrases avec différents niveaux de formalité
 FORMALITY = [
     ("Je souhaiterais me rendre à Paris en partant de Lyon", "Lyon", "Paris", True),
     ("Je voudrais aller à Paris depuis Lyon", "Lyon", "Paris", True),
@@ -560,7 +538,6 @@ FORMALITY = [
     ("J'aimerais bien aller à Paris depuis Lyon", "Lyon", "Paris", True),
 ]
 
-# Phrases avec ponctuation variée
 PUNCTUATION = [
     ("Je veux aller à Paris depuis Lyon.", "Lyon", "Paris", True),
     ("Je veux aller à Paris depuis Lyon !", "Lyon", "Paris", True),
@@ -602,7 +579,6 @@ def generate_dataset(
     logger.info("Generating variations...")
     variations = generate_variations()
     
-    # Combine toutes les catégories
     all_samples = (
         complete +
         no_dest +
@@ -617,13 +593,10 @@ def generate_dataset(
     
     logger.info(f"Total samples generated: {len(all_samples)}")
     
-    # Mélange
     random.shuffle(all_samples)
     
-    # Limite à num_samples
     all_samples = all_samples[:num_samples]
     
-    # Génère le dataset
     dataset = []
     for i, (sentence, origin, destination, is_valid) in enumerate(all_samples, 1):
         sample_id = f"nlp_{i:06d}"
@@ -669,15 +642,12 @@ def main():
     
     logger.info(f"Generating {args.num_samples} NLP samples...")
     
-    # Génère le dataset
     dataset = generate_dataset(args.output_dir, num_samples=args.num_samples)
     
-    # Divise en train/valid/test
     train, valid, test = split_dataset(dataset)
     
     logger.info(f"Split: train={len(train)}, valid={len(valid)}, test={len(test)}")
     
-    # Sauvegarde
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
     (output_dir / "train").mkdir(exist_ok=True)
@@ -688,7 +658,6 @@ def main():
     write_jsonl(output_dir / "valid" / "valid_nlp.jsonl", valid)
     write_jsonl(output_dir / "test" / "test_nlp.jsonl", test)
     
-    # Sauvegarde aussi un fichier complet
     write_jsonl(output_dir / "full_nlp_dataset.jsonl", dataset)
     
     logger.info(f"Dataset saved to {output_dir}")

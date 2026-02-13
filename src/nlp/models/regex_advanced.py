@@ -21,7 +21,6 @@ class RegexAdvancedModel(NLPModel):
     la précision par rapport au modèle dummy.
     """
     
-    # Liste de villes françaises communes
     FRENCH_CITIES = {
         "paris", "lyon", "marseille", "toulouse", "nice", "nantes", "strasbourg",
         "montpellier", "bordeaux", "lille", "rennes", "reims", "saint-étienne",
@@ -49,7 +48,7 @@ class RegexAdvancedModel(NLPModel):
     
     def __init__(self, config: dict = None):
         super().__init__(config)
-        self._initialized = True  # Pas besoin de charger un modèle
+        self._initialized = True
     
     def _load_model(self):
         """Pas de modèle à charger pour regex."""
@@ -65,17 +64,14 @@ class RegexAdvancedModel(NLPModel):
         Returns:
             NLPExtraction avec origine et destination
         """
-        # Normalise le texte
         text_normalized = text.lower()
         
-        # Patterns pour origine
         origin_patterns = [
             r'(?:de|depuis|partir de|partant de|venant de)\s+([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)',
             r'([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)\s+(?:vers|à|pour|jusqu\'?à)',
             r'(?:je suis|nous sommes|on est)\s+(?:à|en|dans)\s+([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)',
         ]
         
-        # Patterns pour destination
         dest_patterns = [
             r'(?:à|vers|pour|aller à|rendre à|se rendre à|aller en|aller dans)\s+([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)',
             r'(?:aller|rendre|voyager|me rendre|se rendre)\s+(?:à|vers|en|dans)\s+([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)',
@@ -86,17 +82,14 @@ class RegexAdvancedModel(NLPModel):
         origin = None
         destination = None
         
-        # Cherche origine
         for pattern in origin_patterns:
             match = re.search(pattern, text, re.IGNORECASE)
             if match:
                 candidate = clean_station_name(match.group(1))
-                # Vérifie si c'est une ville connue ou ressemble à une ville
                 if self._is_likely_city(candidate):
                     origin = candidate
                     break
         
-        # Cherche destination
         for pattern in dest_patterns:
             match = re.search(pattern, text, re.IGNORECASE)
             if match:
@@ -105,7 +98,6 @@ class RegexAdvancedModel(NLPModel):
                     destination = candidate
                     break
         
-        # Si pas trouvé par patterns, cherche des villes dans le texte
         if not origin and not destination:
             cities_found = self._extract_cities_from_text(text)
             if len(cities_found) >= 2:
@@ -114,10 +106,8 @@ class RegexAdvancedModel(NLPModel):
             elif len(cities_found) == 1:
                 destination = cities_found[0]
         
-        # Détermine si c'est une demande valide
         is_valid = self._is_valid_request(text, origin, destination)
         
-        # Calcule la confiance
         confidence = self._calculate_confidence(origin, destination, is_valid)
         
         # S'assure que origin et destination ne sont pas identiques
@@ -142,11 +132,9 @@ class RegexAdvancedModel(NLPModel):
         
         text_lower = text.lower().strip()
         
-        # Vérifie dans la liste de villes connues
         if text_lower in self.FRENCH_CITIES:
             return True
         
-        # Vérifie si ça ressemble à un nom de ville (commence par majuscule, pas de chiffres)
         if re.match(r'^[A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?$', text):
             return True
         
@@ -156,7 +144,6 @@ class RegexAdvancedModel(NLPModel):
         """Extrait les villes potentielles du texte."""
         cities = []
         
-        # Cherche des mots qui commencent par majuscule et ressemblent à des villes
         words = re.findall(r'\b([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)\b', text)
         
         for word in words:
@@ -174,10 +161,8 @@ class RegexAdvancedModel(NLPModel):
         ]
         text_lower = text.lower()
         
-        # Doit contenir un mot-clé de trajet
         has_travel_keyword = any(kw in text_lower for kw in travel_keywords)
         
-        # Doit avoir au moins une ville
         has_location = origin is not None or destination is not None
         
         return has_travel_keyword and has_location
@@ -189,17 +174,14 @@ class RegexAdvancedModel(NLPModel):
         
         confidence = 0.4  # Base pour regex
         
-        # Bonus si on a les deux
         if origin and destination:
             confidence += 0.3
         
-        # Bonus si les villes sont dans la liste connue
         if origin and origin.lower() in self.FRENCH_CITIES:
             confidence += 0.1
         if destination and destination.lower() in self.FRENCH_CITIES:
             confidence += 0.1
         
-        # Bonus si les noms sont bien formés
         if origin and len(origin) > 2:
             confidence += 0.05
         if destination and len(destination) > 2:

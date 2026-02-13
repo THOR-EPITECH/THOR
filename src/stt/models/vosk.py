@@ -89,15 +89,11 @@ class VoskModel(STTModel):
         start_time = time.time()
         
         try:
-            # Charge et convertit l'audio en WAV 16kHz mono si nécessaire
             if AUDIO_AVAILABLE:
-                # Charge l'audio avec librosa (gère tous les formats)
                 audio_data, sr = librosa.load(str(audio_path), sr=self.sample_rate, mono=True)
                 
-                # Convertit en int16 pour Vosk
                 audio_int16 = (audio_data * 32767).astype(np.int16)
                 
-                # Transcription
                 text_parts = []
                 chunk_size = 4000
                 for i in range(0, len(audio_int16), chunk_size):
@@ -109,15 +105,12 @@ class VoskModel(STTModel):
                         if "text" in result:
                             text_parts.append(result["text"])
                 
-                # Dernier résultat
                 final_result = json.loads(self._recognizer.FinalResult())
                 if "text" in final_result:
                     text_parts.append(final_result["text"])
             else:
-                # Méthode originale avec wave (nécessite WAV)
                 wf = wave.open(str(audio_path), "rb")
                 
-                # Vérifie le format
                 if wf.getnchannels() != 1:
                     logger.warning("Audio is not mono, conversion may be needed")
                 if wf.getsampwidth() != 2:
@@ -125,7 +118,6 @@ class VoskModel(STTModel):
                 if wf.getcomptype() != "NONE":
                     logger.warning("Audio is compressed")
                 
-                # Transcription
                 text_parts = []
                 while True:
                     data = wf.readframes(4000)
@@ -137,7 +129,6 @@ class VoskModel(STTModel):
                         if "text" in result:
                             text_parts.append(result["text"])
                 
-                # Dernier résultat
                 final_result = json.loads(self._recognizer.FinalResult())
                 if "text" in final_result:
                     text_parts.append(final_result["text"])

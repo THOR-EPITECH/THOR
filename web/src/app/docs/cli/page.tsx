@@ -48,7 +48,6 @@ function CLICommand({ title, description, icon: Icon, color, children }: {
 export default function DocsCLI() {
   return (
     <div>
-      {/* Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
           <span>Docs</span>
@@ -61,7 +60,6 @@ export default function DocsCLI() {
         </p>
       </div>
 
-      {/* Pipeline */}
       <CLICommand
         title="Pipeline complète"
         description="Exécute la chaîne complète : Audio → STT → NLP → Pathfinding"
@@ -140,7 +138,6 @@ Confidence: 0.70
       ⏱️ 143 min | 📏 209.5 km | 🚂 17 trains/jour`}</CodeBlock>
       </CLICommand>
 
-      {/* STT */}
       <CLICommand
         title="Speech-to-Text"
         description="Transcrit un fichier audio en texte"
@@ -172,7 +169,6 @@ Confidence: 0.70
   --output results/stt/`}</CodeBlock>
       </CLICommand>
 
-      {/* NLP */}
       <CLICommand
         title="Natural Language Processing"
         description="Analyse un texte pour extraire origine et destination"
@@ -199,7 +195,6 @@ Confidence: 0.70
   --model spacy`}</CodeBlock>
       </CLICommand>
 
-      {/* Pathfinding */}
       <CLICommand
         title="Pathfinding"
         description="Trouve l'itinéraire optimal entre deux villes"
@@ -231,7 +226,6 @@ Confidence: 0.70
   --model dijkstra`}</CodeBlock>
       </CLICommand>
 
-      {/* Scripts */}
       <div className="mt-12">
         <h2 className="text-2xl font-bold mb-6">Scripts utilitaires</h2>
         

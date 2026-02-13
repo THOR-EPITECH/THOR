@@ -3,7 +3,6 @@ import json
 import os
 import re
 
-# Chemins selon ton arborescence
 script_dir = os.path.dirname(os.path.abspath(__file__))
 input_file = os.path.abspath(os.path.join(script_dir, '..', 'data', 'raw', 'stop_times.txt'))
 output_folder = os.path.abspath(os.path.join(script_dir, '..', 'data', 'train_station'))
@@ -20,7 +19,6 @@ def generate_liaisons():
 
     print("Analyse du fichier stop_times.txt... (cela peut prendre 1 à 2 minutes)")
     
-    # Lecture optimisée (par morceaux)
     reader = pd.read_csv(input_file, usecols=['trip_id', 'stop_id', 'stop_sequence'], chunksize=500000)
     
     liaisons_set = set()
@@ -35,18 +33,14 @@ def generate_liaisons():
             if not current_uic:
                 continue
 
-            # Si on est dans le même train que la ligne précédente
             if current_trip_id == last_trip_id and last_uic is not None:
                 if last_uic != current_uic:
-                    # On ajoute les deux sens pour le pathfinding
                     liaisons_set.add((last_uic, current_uic))
                     liaisons_set.add((current_uic, last_uic))
             
             last_trip_id = current_trip_id
             last_uic = current_uic
 
-    # Transformation en format JSON propre
-    # On utilise "source" et "target" (noms standards en théorie des graphes)
     result = []
     for uic_a, uic_b in liaisons_set:
         result.append({

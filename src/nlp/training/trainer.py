@@ -59,14 +59,12 @@ def train_spacy_model(
         logger.error(f"Model {base_model_name} not found. Install with: python -m spacy download {base_model_name}")
         raise
     
-    # Ajoute les nouveaux labels au NER si nécessaire
     ner = nlp.get_pipe("ner")
     for label in labels:
         if label not in ner.labels:
             ner.add_label(label)
             logger.info(f"Added label: {label}")
     
-    # Prépare les exemples d'entraînement
     examples = []
     for text, annotations in train_data:
         doc = nlp.make_doc(text)
@@ -75,14 +73,11 @@ def train_spacy_model(
     
     logger.info(f"Prepared {len(examples)} training examples")
     
-    # Désactive les autres composants pendant l'entraînement
     other_pipes = [pipe for pipe in nlp.pipe_names if pipe != "ner"]
     with nlp.disable_pipes(*other_pipes):
-        # Initialise les poids si nécessaire
         if "ner" not in nlp.pipe_names:
             nlp.add_pipe("ner")
         
-        # Entraînement
         logger.info(f"Starting training for {n_iter} iterations...")
         nlp.begin_training()
         
@@ -90,14 +85,11 @@ def train_spacy_model(
             random.shuffle(examples)
             losses = {}
             
-            # Mini-batches
             batches = minibatch(examples, size=compounding(4.0, 32.0, 1.001))
             for batch in batches:
                 nlp.update(batch, drop=dropout, losses=losses)
             
-            # Log des métriques
             if valid_data and (itn + 1) % 5 == 0:
-                # Évaluation sur validation
                 valid_examples = [
                     Example.from_dict(nlp.make_doc(text), ann)
                     for text, ann in valid_data
@@ -110,7 +102,6 @@ def train_spacy_model(
             else:
                 logger.info(f"Iteration {itn + 1}/{n_iter} - Loss: {losses.get('ner', 0):.4f}")
     
-    # Sauvegarde le modèle
     model_path = output_dir / "model"
     nlp.to_disk(model_path)
     logger.info(f"Model saved to {model_path}")

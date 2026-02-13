@@ -29,14 +29,12 @@ def save_report(
     output_dir = Path(output_dir)
     report_path = output_dir / "report.md"
     
-    # Charge les prédictions
     predictions_path = output_dir / "predictions.jsonl"
     predictions = list(read_jsonl(predictions_path)) if predictions_path.exists() else []
     
     total_samples = len(predictions)
     route_found_count = sum(1 for p in predictions if p.get("route_found", False))
     
-    # Génère le rapport
     report = f"""# Rapport d'évaluation Pathfinding - {model_name}
 
 **Date**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}  
@@ -81,7 +79,6 @@ def save_report(
 
 """
     
-    # Affiche quelques exemples réussis
     successful = [p for p in predictions if p.get("route_found", False)][:5]
     for i, pred in enumerate(successful, 1):
         report += f"""### {i}. {pred.get('origin', 'N/A')} → {pred.get('destination', 'N/A')}
@@ -98,7 +95,6 @@ def save_report(
 
 """
     
-    # Affiche quelques exemples échoués
     failed = [p for p in predictions if not p.get("route_found", False)][:5]
     for i, pred in enumerate(failed, 1):
         error = pred.get('error', 'Raison inconnue')
@@ -125,7 +121,6 @@ def save_report(
 Ce rapport a été généré automatiquement par le système d'évaluation THOR.
 """
     
-    # Sauvegarde
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write(report)
     

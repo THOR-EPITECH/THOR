@@ -30,11 +30,9 @@ def generate_markdown_report(
     """
     output_dir = Path(output_dir)
     
-    # Charge les prédictions
     predictions_path = output_dir / "predictions.jsonl"
     predictions = list(read_jsonl(predictions_path)) if predictions_path.exists() else []
     
-    # Charge les métriques détaillées
     metrics_path = output_dir / "metrics.json"
     if metrics_path.exists():
         with open(metrics_path, 'r', encoding='utf-8') as f:
@@ -42,17 +40,14 @@ def generate_markdown_report(
     else:
         detailed_metrics = metrics
     
-    # Analyse des prédictions
     total_samples = len(predictions)
     perfect_predictions = sum(1 for p in predictions if p.get("wer", 1.0) == 0.0)
     high_error = sum(1 for p in predictions if p.get("wer", 1.0) > 0.5)
     
-    # Trouve les meilleures et pires prédictions
     sorted_predictions = sorted(predictions, key=lambda x: x.get("wer", 1.0))
     best_predictions = sorted_predictions[:5]
     worst_predictions = sorted_predictions[-5:]
     
-    # Génère le rapport
     report = f"""# Rapport d'évaluation STT - {model_name}
 
 **Date**: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}  
@@ -124,7 +119,6 @@ def generate_markdown_report(
 
 """
     
-    # Analyse par catégorie si possible
     report += """---
 
 ## 🔍 Analyse détaillée
@@ -133,7 +127,6 @@ def generate_markdown_report(
 
 """
     
-    # Calcule la distribution des WER
     wer_ranges = {
         "Parfait (0.0)": sum(1 for p in predictions if p.get("wer", 1.0) == 0.0),
         "Excellent (0.0-0.1)": sum(1 for p in predictions if 0.0 < p.get("wer", 1.0) <= 0.1),
@@ -146,7 +139,6 @@ def generate_markdown_report(
         percentage = (count / total_samples * 100) if total_samples > 0 else 0
         report += f"- **{range_name}**: {count} échantillons ({percentage:.1f}%)\n"
     
-    # Configuration si disponible
     if config:
         report += """\n---
 
@@ -157,7 +149,6 @@ def generate_markdown_report(
         report += json.dumps(config, indent=2, ensure_ascii=False)
         report += "\n```\n"
     
-    # Fichiers générés
     report += """---
 
 ## 📁 Fichiers générés

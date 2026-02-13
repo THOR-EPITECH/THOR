@@ -97,7 +97,6 @@ function CodeBlock({ children, title }: { children: string; title?: string }) {
 export default function DocsDatasets() {
   return (
     <div>
-      {/* Header */}
       <div className="mb-12">
         <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
           <span>Docs</span>
@@ -113,7 +112,6 @@ export default function DocsDatasets() {
         </p>
       </div>
 
-      {/* Overview */}
       <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 mb-12">
         <div className="flex items-center gap-3 mb-4">
           <Database className="w-5 h-5 text-neutral-400" />
@@ -139,7 +137,6 @@ export default function DocsDatasets() {
         </div>
       </div>
 
-      {/* Data structure */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-6">Structure des données</h2>
         <CodeBlock title="Arborescence">{`data/
@@ -163,7 +160,6 @@ export default function DocsDatasets() {
     └── dataset_liaisons_with_shapes.json  # + géométries`}</CodeBlock>
       </section>
 
-      {/* Audio data */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-blue-500/10">
@@ -197,7 +193,6 @@ export default function DocsDatasets() {
         </div>
       </section>
 
-      {/* NLP data */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-purple-500/10">
@@ -262,7 +257,6 @@ export default function DocsDatasets() {
   "is_valid": true
 }
 
-// Demande partielle (destination seule)
 {
   "id": "nlp_002",
   "sentence": "Je veux voyager jusqu'à Lille",
@@ -271,7 +265,6 @@ export default function DocsDatasets() {
   "is_valid": true
 }
 
-// Phrase non pertinente
 {
   "id": "nlp_003",
   "sentence": "Mon ami habite à Strasbourg",
@@ -282,7 +275,6 @@ export default function DocsDatasets() {
         </div>
       </section>
 
-      {/* GTFS data */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-orange-500/10">
@@ -308,7 +300,6 @@ export default function DocsDatasets() {
           </div>
         </div>
 
-        {/* What we extract */}
         <div className="p-4 rounded-lg bg-white/5 border border-white/10 mb-6">
           <h4 className="text-sm font-medium mb-4">Données exploitées par THOR</h4>
           <div className="grid md:grid-cols-3 gap-4 text-xs">
@@ -388,7 +379,6 @@ export default function DocsDatasets() {
         </div>
 
         <div className="mt-4 space-y-4">
-          {/* stop_times.txt */}
           <div className="p-4 rounded-lg bg-white/5">
             <h4 className="text-sm font-medium mb-3">stop_times.txt — Horaires de passage</h4>
             <CodeBlock title="stop_times.txt">{`trip_id,arrival_time,departure_time,stop_id,stop_sequence,...
@@ -437,7 +427,6 @@ OCETGV...,10:12:00,10:12:00,StopPoint:OCE87723197,1,...`}</CodeBlock>
             </div>
           </div>
 
-          {/* stops.txt */}
           <div className="p-4 rounded-lg bg-white/5">
             <h4 className="text-sm font-medium mb-3">stops.txt — Liste des arrêts</h4>
             <CodeBlock title="stops.txt">{`stop_id,stop_name,stop_lat,stop_lon,location_type,parent_station
@@ -491,7 +480,6 @@ StopPoint:OCETGV-87686006,PARIS GARE DE LYON,48.8447,2.3739,0,StopArea:OCE876860
             </div>
           </div>
 
-          {/* trips.txt */}
           <div className="p-4 rounded-lg bg-white/5">
             <h4 className="text-sm font-medium mb-3">trips.txt — Définition des trajets</h4>
             <CodeBlock title="trips.txt">{`route_id,service_id,trip_id,trip_headsign,direction_id
@@ -555,7 +543,6 @@ FR:Line::def456,000002,OCEOUIGO-1234-Paris-Lyon,1234,0`}</CodeBlock>
         </div>
       </section>
 
-      {/* Processed data */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-green-500/10">
@@ -564,7 +551,6 @@ FR:Line::def456,000002,OCEOUIGO-1234-Paris-Lyon,1234,0`}</CodeBlock>
           <h2 className="text-2xl font-bold">Données Traitées</h2>
         </div>
 
-        {/* dataset_gares.json */}
         <div className="mb-8">
           <DatasetCard
             icon={Train}
@@ -652,7 +638,6 @@ FR:Line::def456,000002,OCEOUIGO-1234-Paris-Lyon,1234,0`}</CodeBlock>
           </div>
         </div>
 
-        {/* dataset_liaisons_enhanced.json */}
         <div className="mb-8">
           <DatasetCard
             icon={Route}
@@ -770,7 +755,6 @@ FR:Line::def456,000002,OCEOUIGO-1234-Paris-Lyon,1234,0`}</CodeBlock>
           </div>
         </div>
 
-        {/* dataset_liaisons_with_shapes.json */}
         <div className="mb-8">
           <DatasetCard
             icon={Map}
@@ -864,7 +848,6 @@ FR:Line::def456,000002,OCEOUIGO-1234-Paris-Lyon,1234,0`}</CodeBlock>
         </div>
       </section>
 
-      {/* Shapes data */}
       <section className="mb-12">
         <div className="flex items-center gap-3 mb-6">
           <div className="p-2 rounded-lg bg-yellow-500/10">
@@ -1004,7 +987,6 @@ FR:Line::def456,000002,OCEOUIGO-1234-Paris-Lyon,1234,0`}</CodeBlock>
         </div>
       </section>
 
-      {/* Data flow */}
       <section>
         <h2 className="text-2xl font-bold mb-6">Flux de données</h2>
         <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5">

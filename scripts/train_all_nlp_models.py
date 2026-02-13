@@ -4,7 +4,6 @@ Script pour entraîner tous les modèles NLP disponibles.
 import sys
 from pathlib import Path
 
-# Ajoute le répertoire parent au PYTHONPATH pour trouver les modules src
 script_dir = Path(__file__).parent
 project_root = script_dir.parent
 sys.path.insert(0, str(project_root))
@@ -34,7 +33,6 @@ def train_all_models(
     output_base = Path(output_base_dir)
     output_base.mkdir(parents=True, exist_ok=True)
     
-    # Liste des modèles à entraîner
     models_to_train = [
         ("spacy", None, "spacy_finetuned"),
         ("transformers", None, "transformers_finetuned"),
@@ -75,7 +73,6 @@ def train_all_models(
                 "error": str(e)
             })
     
-    # Résumé
     logger.info(f"\n{'='*60}")
     logger.info("Training Summary")
     logger.info(f"{'='*60}")

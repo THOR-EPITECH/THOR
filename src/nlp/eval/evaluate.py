@@ -37,10 +37,8 @@ def evaluate_model(
     
     logger.info(f"Evaluating model {model.name} on {dataset_path}")
     
-    # Initialise le modèle
     model.initialize()
     
-    # Charge le dataset
     metrics_list = []
     predictions = []
     
@@ -54,11 +52,9 @@ def evaluate_model(
         if not text:
             continue
         
-        # Extraction
         try:
             result = model.extract(text)
             
-            # Évaluation
             metrics = evaluate_nlp_result(
                 result,
                 reference_origin,
@@ -67,7 +63,6 @@ def evaluate_model(
             )
             metrics_list.append(metrics)
             
-            # Sauvegarde prédiction
             predictions.append({
                 "id": sample_id,
                 "text": text,
@@ -98,21 +93,17 @@ def evaluate_model(
                 "error": str(e)
             })
     
-    # Agrège les métriques
     aggregated = aggregate_metrics(metrics_list)
     
-    # Sauvegarde
     if save_predictions:
         write_jsonl(output_dir / "predictions.jsonl", predictions)
         write_csv(output_dir / "predictions.csv", predictions)
     
-    # Sauvegarde métriques
     with open(output_dir / "metrics.json", "w", encoding="utf-8") as f:
         json.dump(aggregated, f, indent=2, ensure_ascii=False)
     
     logger.info(f"Evaluation complete. F1: {aggregated.get('f1_mean', 'N/A'):.4f}")
     
-    # Génère le rapport markdown
     try:
         from src.nlp.eval.report import save_report
         report_path = save_report(

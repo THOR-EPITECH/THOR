@@ -13,20 +13,20 @@ from pathlib import Path
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-# Ajouter le répertoire parent au path pour les imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from src.stt.models.whisper import WhisperModel
 from src.nlp.models.spacy_fr import SpacyFRModel
 from src.pathfinding.models.dijkstra import DijkstraPathfindingModel
 from src.common.logging import setup_logging
+from src.common.validators import ExtractionValidator
 
 logger = setup_logging(module="api")
+_validator = ExtractionValidator()
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3000", "http://localhost:3001", "http://127.0.0.1:3000", "http://127.0.0.1:3001"])
 
-# Configuration des modèles (chargement lazy)
 _models = {
     'stt': None,
     'nlp': None,
@@ -71,7 +71,6 @@ def get_pathfinding_model():
     return _models['pathfinding']
 
 
-# Cache pour les géométries des liaisons
 _shapes_cache = None
 
 def get_shapes_data():
@@ -83,7 +82,6 @@ def get_shapes_data():
             logger.info("Chargement des géométries de voies...")
             with open(shapes_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-            # Indexer par (depart, arrivee)
             _shapes_cache = {}
             for l in data.get('liaisons', []):
                 key = (str(l.get('depart')), str(l.get('arrivee')))
@@ -106,7 +104,6 @@ def route_to_dict(route):
         'metadata': route.metadata
     }
     
-    # Ajouter les géométries des voies pour chaque segment
     shapes = get_shapes_data()
     if shapes and route.metadata.get('segments'):
         path_uic = route.metadata.get('path_uic', [])
@@ -115,13 +112,11 @@ def route_to_dict(route):
                 uic_from = path_uic[i]
                 uic_to = path_uic[i + 1]
                 
-                # Chercher la géométrie dans le bon sens d'abord
                 geometry = shapes.get((uic_from, uic_to))
                 
                 if geometry:
                     segment['geometry'] = geometry
                 else:
-                    # Chercher dans le sens inverse et inverser les coordonnées
                     reverse_geometry = shapes.get((uic_to, uic_from))
                     if reverse_geometry:
                         segment['geometry'] = {
@@ -190,38 +185,59 @@ def search():
         if not text:
             return jsonify({'error': 'Le champ "text" est requis'}), 400
         
-        # Analyse NLP
         nlp_model = get_nlp_model()
         nlp_result = nlp_model.extract(text)
         
-        origin = nlp_result.origin
-        destination = nlp_result.destination
+        validation = _validator.validate_extraction(
+            transcript=text,
+            origin=nlp_result.origin,
+            destination=nlp_result.destination,
+            nlp_confidence=nlp_result.confidence or 0.5
+        )
+        
+        corrected_origin = validation.get("corrected_origin") or nlp_result.origin
+        corrected_destination = validation.get("corrected_destination") or nlp_result.destination
         
         result = {
             'transcript': text,
-            'origin': origin,
-            'destination': destination,
-            'is_valid': nlp_result.is_valid,
-            'confidence': nlp_result.confidence,
-            'nlp_metadata': nlp_result.metadata
+            'origin': corrected_origin,
+            'destination': corrected_destination,
+            'is_valid': validation["is_valid"],
+            'confidence': validation.get("confidence", nlp_result.confidence),
+            'nlp_metadata': nlp_result.metadata,
+            'error_message': validation.get("error_message"),
+            'error_type': validation.get("error_type"),
+            'suggestions': validation.get("suggestions", []),
+            'issues': validation.get("issues", []),
+            'validation_details': {
+                'transcript_valid': validation.get("confidence", 0) > 0.4,
+                'origin_validation': validation.get("origin_validation"),
+                'destination_validation': validation.get("destination_validation")
+            }
         }
         
-        # Si origine et destination détectées, trouver l'itinéraire
-        if origin and destination:
-            pathfinding_model = get_pathfinding_model()
-            route = pathfinding_model.find_route(origin, destination)
-            
-            if route.steps and len(route.steps) > 1:
-                result['route'] = route_to_dict(route)
-            elif route.metadata.get('error'):
-                result['error_message'] = route.metadata['error']
-        else:
-            if not origin and not destination:
-                result['error_message'] = "Origine et destination non détectées. Essayez: 'Je veux aller de Paris à Lyon'"
-            elif not origin:
-                result['error_message'] = "Origine non détectée"
-            else:
-                result['error_message'] = "Destination non détectée"
+        if validation["is_valid"] and corrected_origin and corrected_destination:
+            try:
+                pathfinding_model = get_pathfinding_model()
+                route = pathfinding_model.find_route(corrected_origin, corrected_destination)
+                
+                if route.steps and len(route.steps) > 1:
+                    result['route'] = route_to_dict(route)
+                elif route.metadata.get('error'):
+                    result['error_message'] = route.metadata['error']
+                    result['error_type'] = 'pathfinding_error'
+                else:
+                    result['error_message'] = f"Aucun itinéraire trouvé entre {corrected_origin} et {corrected_destination}"
+                    result['error_type'] = 'no_route_found'
+                    result['suggestions'] = [
+                        "Vérifiez que ces villes sont bien desservies par le train",
+                        "Essayez avec des villes plus importantes (gares principales)"
+                    ]
+            except Exception as e:
+                logger.error(f"Pathfinding error: {e}")
+                result['error_message'] = "Erreur lors de la recherche d'itinéraire"
+                result['error_type'] = 'pathfinding_error'
+                result['suggestions'] = ["Réessayez avec d'autres villes"]
         
         return jsonify(result)
         
@@ -295,7 +311,6 @@ def transcribe():
         if not audio_base64:
             return jsonify({'error': 'Le champ "audio" (base64) est requis'}), 400
         
-        # Décoder l'audio base64 et sauvegarder temporairement
         audio_bytes = base64.b64decode(audio_base64)
         
         with tempfile.NamedTemporaryFile(suffix=f'.{audio_format}', delete=False) as tmp_file:
@@ -303,7 +318,6 @@ def transcribe():
             tmp_path = tmp_file.name
         
         try:
-            # Transcrire avec Whisper
             stt_model = get_stt_model()
             stt_result = stt_model.transcribe(tmp_path)
             
@@ -312,7 +326,6 @@ def transcribe():
                 'metadata': stt_result.metadata
             })
         finally:
-            # Nettoyer le fichier temporaire
             os.unlink(tmp_path)
             
     except Exception as e:
@@ -344,7 +357,6 @@ def pipeline():
         if not audio_base64:
             return jsonify({'error': 'Le champ "audio" (base64) est requis'}), 400
         
-        # Décoder l'audio
         audio_bytes = base64.b64decode(audio_base64)
         
         with tempfile.NamedTemporaryFile(suffix=f'.{audio_format}', delete=False) as tmp_file:
@@ -352,7 +364,6 @@ def pipeline():
             tmp_path = tmp_file.name
         
         try:
-            # Étape 1: STT
             logger.info(f"Transcription audio: format={audio_format}, taille={len(audio_bytes)} bytes")
             try:
                 stt_model = get_stt_model()
@@ -366,7 +377,6 @@ def pipeline():
                     'details': 'Vérifiez que le format audio est supporté (wav, mp3, webm)'
                 }), 500
             
-            # Étape 2: NLP
             nlp_model = get_nlp_model()
             nlp_result = nlp_model.extract(transcript)
             
@@ -384,7 +394,6 @@ def pipeline():
                 'nlp_metadata': nlp_result.metadata
             }
             
-            # Étape 3: Pathfinding
             if origin and destination:
                 pathfinding_model = get_pathfinding_model()
                 route = pathfinding_model.find_route(origin, destination)
@@ -434,7 +443,6 @@ def list_stations():
         for uic, station in pathfinding_model._stations_by_uic.items():
             name = station.get('nom_gare', '')
             if not query or query in name.lower():
-                # Vérifier si la gare est dans le graphe (a des connexions)
                 if uic in pathfinding_model._graph:
                     stations.append({
                         'name': name,
@@ -444,7 +452,6 @@ def list_stations():
                         'lon': station.get('position_geographique', {}).get('lon')
                     })
         
-        # Trier par nombre de connexions (gares principales en premier)
         stations.sort(key=lambda s: -len(pathfinding_model._graph.get(s['uic'], [])))
         
         return jsonify({

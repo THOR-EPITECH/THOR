@@ -37,16 +37,13 @@ def benchmark_models(
     
     results = {}
     
-    # Évalue chaque modèle
     for model_name, model, config in models:
         logger.info(f"Evaluating model: {model_name}")
         
-        # Dossier de sortie pour ce modèle
         model_output_dir = output_dir / model_name if save_individual_results else output_dir / "temp"
         model_output_dir.mkdir(parents=True, exist_ok=True)
         
         try:
-            # Évalue le modèle
             metrics = evaluate_model(
                 model=model,
                 dataset_path=dataset_path,
@@ -71,14 +68,12 @@ def benchmark_models(
                 "error": str(e)
             }
     
-    # Génère le rapport comparatif
     report_path = generate_comparative_report(
         results,
         dataset_path,
         output_dir
     )
     
-    # Sauvegarde les résultats comparatifs en JSON
     comparison_path = output_dir / "comparison.json"
     with open(comparison_path, 'w', encoding='utf-8') as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
@@ -124,7 +119,6 @@ def generate_comparative_report(
 |--------|----------|-----------|--------|-------------|------------|-------------|--------|
 """
     
-    # Trie les modèles par F1 décroissant
     sorted_models = sorted(
         results.items(),
         key=lambda x: x[1].get("metrics", {}).get("f1_mean", 0.0),
@@ -144,7 +138,6 @@ def generate_comparative_report(
         dest_acc = metrics.get("destination_accuracy_mean", 0.0)
         valid_acc = metrics.get("validation_accuracy_mean", 0.0)
         
-        # Emoji pour le meilleur score
         best_f1 = max(r.get("metrics", {}).get("f1_mean", 0.0) for r in results.values() if r.get("status") == "success")
         f1_emoji = "🏆" if f1 == best_f1 and best_f1 > 0 else ""
         
@@ -152,7 +145,6 @@ def generate_comparative_report(
     
     report += "\n---\n\n## 📈 Détails par modèle\n\n"
     
-    # Détails pour chaque modèle
     for model_name, result in sorted_models:
         if result.get("status") == "error":
             report += f"""### ❌ {model_name}
@@ -194,14 +186,12 @@ def generate_comparative_report(
 
 """
         
-        # Lien vers le rapport détaillé si disponible
         model_dir = output_dir / model_name
         if (model_dir / "report.md").exists():
             report += f"📄 [Rapport détaillé](./{model_name}/report.md)\n\n"
         
         report += "---\n\n"
     
-    # Analyse comparative
     report += """## 🔍 Analyse comparative
 
 """
@@ -223,7 +213,6 @@ def generate_comparative_report(
 
 """
         
-        # Compare avec le meilleur
         for model_name, result in sorted_models:
             if result.get("status") == "error" or model_name == best_name:
                 continue
@@ -253,7 +242,6 @@ Ce benchmark compare les modèles NLP sur le même dataset pour une évaluation 
 Pour plus de détails sur un modèle spécifique, consultez son rapport individuel dans son dossier.
 """
     
-    # Sauvegarde le rapport
     report_path = output_dir / "benchmark_report.md"
     with open(report_path, 'w', encoding='utf-8') as f:
         f.write(report)
