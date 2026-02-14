@@ -87,7 +87,7 @@ class SpacyFRModel(NLPModel):
         
         proper_nouns = []
         for token in doc:
-            if token.pos_ == "PROPN" and len(token.text) > 2:
+            if (token.pos_ in ["PROPN", "NOUN", "ADJ"]) and len(token.text) > 2:
                 context = doc[max(0, token.i-3):min(len(doc), token.i+4)]
                 context_text = " ".join([t.text.lower() for t in context])
                 travel_keywords = ["aller", "rendre", "depuis", "vers", "à", "de", "partir", "voyager"]
@@ -109,32 +109,25 @@ class SpacyFRModel(NLPModel):
             origin, destination = self._determine_origin_destination(text, all_cities, doc)
         
         is_valid = self._is_travel_request(text, origin, destination)
-<<<<<<< fix/nlp-no-same-origin-destination
-
-        # Calcule la confiance basée sur plusieurs facteurs
-=======
-        
->>>>>>> main
         confidence = self._calculate_confidence(
             origin, destination, origin_entities, destination_entities,
             all_cities, is_valid
         )
-+
-+        # Assure que origin et destination ne sont pas identiques
-+        origin, destination = ensure_origin_destination_distinct(origin, destination)
-+
-+        return NLPExtraction(
-+            origin=origin,
-+            destination=destination,
-+            is_valid=is_valid,
-+            confidence=confidence,
-+            entities=[{"text": city, "label": "LOC"} for city in all_cities],
-+            metadata={
-+                "model": f"spacy-{self.model_name}",
-+                "locations_found": all_cities,
-+                "extraction_method": "ner_patterns" if not (origin_entities or destination_entities) else "fine_tuned_ner"
-+            }
-+        )
+
+        origin, destination = ensure_origin_destination_distinct(origin, destination)
+
+        return NLPExtraction(
+            origin=origin,
+            destination=destination,
+            is_valid=is_valid,
+            confidence=confidence,
+            entities=[{"text": city, "label": "LOC"} for city in all_cities],
+            metadata={
+                "model": f"spacy-{self.model_name}",
+                "locations_found": all_cities,
+                "extraction_method": "ner_patterns" if not (origin_entities or destination_entities) else "fine_tuned_ner"
+            }
+        )
 
     def _calculate_confidence(
         self,

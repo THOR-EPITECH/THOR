@@ -102,6 +102,7 @@ def load_data_enhanced(path_gares: str, path_liaisons_enhanced: str) -> tuple[di
         'OUIGO': 1.0,         # Même priorité que TGV
         'Lyria': 1.0,         # TGV international
         'Eurostar': 1.0,      # TGV international
+        'Correspondance': 1.0,# Pas de pénalité pour les correspondances inter-gares
         'Intercités': 1.3,    # Légère pénalité
         'Train de nuit': 1.5, # Pénalité modérée
         'TER': 2.0,           # Pénalité importante
@@ -440,7 +441,7 @@ class DijkstraPathfindingModel(PathfindingModel):
             segment_details.append({
                 "from": self._stations_by_uic[uic_from]['nom_gare'],
                 "to": self._stations_by_uic[uic_to]['nom_gare'],
-                "temps_min": edge.get('temps_moyen', 0),
+                "temps_min": round(edge.get('temps_moyen', 0), 1),
                 "distance_km": round(distance, 2),
                 "nb_trains_jour": edge.get('nb_trains', 0),
                 "type_train": edge.get('type_train', 'Autre'),

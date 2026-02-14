@@ -66,8 +66,8 @@ export default function DocsIntroduction() {
             <div>
               <h3 className="font-semibold mb-2">Pathfinding Intelligent</h3>
               <p className="text-sm text-neutral-400 leading-relaxed">
-                L'algorithme de Dijkstra optimisé trouve le meilleur itinéraire en privilégiant 
-                les TGV et en utilisant les temps de trajet réels.
+                L'algorithme de Dijkstra optimisé trouve le meilleur itinéraire en favorisant 
+                les trains rapides (TGV) via un système de pénalités, tout en utilisant les temps de trajet réels.
               </p>
             </div>
           </div>

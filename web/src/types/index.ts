@@ -1,10 +1,14 @@
 export interface Segment {
   from: string;
   to: string;
+  from_lon?: number;
+  from_lat?: number;
+  to_lon?: number;
+  to_lat?: number;
   temps_min: number;
   distance_km: number;
   nb_trains_jour: number;
-  type_train: 'TGV' | 'OUIGO' | 'Intercités' | 'TER' | 'Autre';
+  type_train: 'TGV' | 'OUIGO' | 'Intercités' | 'TER' | 'Correspondance' | 'Autre';
   types_details?: Record<string, number>;
   geometry?: {
     type: 'LineString';

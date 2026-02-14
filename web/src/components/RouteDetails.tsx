@@ -24,6 +24,8 @@ function getTrainTypeStyle(type: string) {
       return 'bg-violet-500/10 text-violet-400 border-violet-500/20';
     case 'TER':
       return 'bg-amber-500/10 text-amber-400 border-amber-500/20';
+    case 'Correspondance':
+      return 'bg-yellow-500/10 text-yellow-400 border-yellow-500/20';
     default:
       return 'bg-neutral-500/10 text-neutral-400 border-neutral-500/20';
   }
@@ -31,6 +33,8 @@ function getTrainTypeStyle(type: string) {
 
 export default function RouteDetails({ route }: RouteDetailsProps) {
   const segments = route.metadata?.segments || [];
+  const trainCount = segments.filter(s => s.type_train !== 'Correspondance').length;
+  const correspondanceCount = segments.filter(s => s.type_train === 'Correspondance').length;
 
   return (
     <div className="space-y-6">
@@ -59,8 +63,11 @@ export default function RouteDetails({ route }: RouteDetailsProps) {
           </div>
           <div className="w-px h-10 bg-white/10" />
           <div className="text-center">
-            <p className="text-2xl font-semibold">{segments.length}</p>
-            <p className="text-xs text-neutral-500 mt-1">{segments.length > 1 ? 'Trains' : 'Train'}</p>
+            <p className="text-2xl font-semibold">{trainCount}</p>
+            <p className="text-xs text-neutral-500 mt-1">{trainCount > 1 ? 'Trains' : 'Train'}</p>
+            {correspondanceCount > 0 && (
+              <p className="text-xs text-yellow-400/60 mt-0.5">{correspondanceCount} corresp.</p>
+            )}
           </div>
         </div>
       </div>

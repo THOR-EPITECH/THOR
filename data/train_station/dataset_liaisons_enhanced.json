@@ -1,30 +1,4 @@
 {
-  "metadata": {
-    "generated_at": "2026-01-30T00:22:21.243320",
-    "source_file": "stop_times.txt",
-    "total_liaisons": 7852,
-    "unique_gares": 2393,
-    "stats": {
-      "temps_trajet_moyen_global_min": 18.1,
-      "liaison_la_plus_frequente": {
-        "depart": "87271494",
-        "arrivee": "87111849",
-        "depart_nom": "Aéroport Charles de Gaulle 2 TGV",
-        "arrivee_nom": "Marne-la-Vallée Chessy",
-        "temps_moyen_min": 11.1,
-        "temps_min_min": 9,
-        "temps_max_min": 18,
-        "nb_trains": 638,
-        "distance_km": 21.46,
-        "type_train": "TGV",
-        "types_details": {
-          "TGV": 563,
-          "OUIGO": 75
-        }
-      },
-      "total_trains_observes": 292315
-    }
-  },
   "liaisons": [
     {
       "depart": "87271494",
@@ -118439,6 +118413,216 @@
       "type_train": "TGV",
       "types_details": {
         "TGV": 1
+      }
+    },
+    {
+      "depart": "87391102",
+      "arrivee": "87686006",
+      "depart_nom": "Paris Montparnasse",
+      "arrivee_nom": "Paris Gare de Lyon",
+      "temps_moyen_min": 5.0,
+      "temps_min_min": 5.0,
+      "temps_max_min": 5.0,
+      "nb_trains": 999,
+      "distance_km": 5.0,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87686006",
+      "arrivee": "87391102",
+      "depart_nom": "Paris Gare de Lyon",
+      "arrivee_nom": "Paris Montparnasse",
+      "temps_moyen_min": 5.0,
+      "temps_min_min": 5.0,
+      "temps_max_min": 5.0,
+      "nb_trains": 999,
+      "distance_km": 5.0,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87391003",
+      "arrivee": "87686006",
+      "depart_nom": "Paris Montparnasse",
+      "arrivee_nom": "Paris Gare de Lyon",
+      "temps_moyen_min": 5.0,
+      "temps_min_min": 5.0,
+      "temps_max_min": 5.0,
+      "nb_trains": 999,
+      "distance_km": 5.0,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87686006",
+      "arrivee": "87391003",
+      "depart_nom": "Paris Gare de Lyon",
+      "arrivee_nom": "Paris Montparnasse",
+      "temps_moyen_min": 5.0,
+      "temps_min_min": 5.0,
+      "temps_max_min": 5.0,
+      "nb_trains": 999,
+      "distance_km": 5.0,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87391011",
+      "arrivee": "87686006",
+      "depart_nom": "Paris Montparnasse",
+      "arrivee_nom": "Paris Gare de Lyon",
+      "temps_moyen_min": 5.0,
+      "temps_min_min": 5.0,
+      "temps_max_min": 5.0,
+      "nb_trains": 999,
+      "distance_km": 5.0,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87686006",
+      "arrivee": "87391011",
+      "depart_nom": "Paris Gare de Lyon",
+      "arrivee_nom": "Paris Montparnasse",
+      "temps_moyen_min": 5.0,
+      "temps_min_min": 5.0,
+      "temps_max_min": 5.0,
+      "nb_trains": 999,
+      "distance_km": 5.0,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87391102",
+      "arrivee": "87271031",
+      "depart_nom": "Paris Montparnasse",
+      "arrivee_nom": "Paris Nord",
+      "temps_moyen_min": 10.0,
+      "temps_min_min": 10.0,
+      "temps_max_min": 10.0,
+      "nb_trains": 999,
+      "distance_km": 6.0,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87271031",
+      "arrivee": "87391102",
+      "depart_nom": "Paris Nord",
+      "arrivee_nom": "Paris Montparnasse",
+      "temps_moyen_min": 10.0,
+      "temps_min_min": 10.0,
+      "temps_max_min": 10.0,
+      "nb_trains": 999,
+      "distance_km": 6.0,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87391003",
+      "arrivee": "87271031",
+      "depart_nom": "Paris Montparnasse",
+      "arrivee_nom": "Paris Nord",
+      "temps_moyen_min": 10.0,
+      "temps_min_min": 10.0,
+      "temps_max_min": 10.0,
+      "nb_trains": 999,
+      "distance_km": 6.0,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87271031",
+      "arrivee": "87391003",
+      "depart_nom": "Paris Nord",
+      "arrivee_nom": "Paris Montparnasse",
+      "temps_moyen_min": 10.0,
+      "temps_min_min": 10.0,
+      "temps_max_min": 10.0,
+      "nb_trains": 999,
+      "distance_km": 6.0,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87391011",
+      "arrivee": "87271031",
+      "depart_nom": "Paris Montparnasse",
+      "arrivee_nom": "Paris Nord",
+      "temps_moyen_min": 10.0,
+      "temps_min_min": 10.0,
+      "temps_max_min": 10.0,
+      "nb_trains": 999,
+      "distance_km": 6.0,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87271031",
+      "arrivee": "87391011",
+      "depart_nom": "Paris Nord",
+      "arrivee_nom": "Paris Montparnasse",
+      "temps_moyen_min": 10.0,
+      "temps_min_min": 10.0,
+      "temps_max_min": 10.0,
+      "nb_trains": 999,
+      "distance_km": 6.0,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87686006",
+      "arrivee": "87271031",
+      "depart_nom": "Paris Gare de Lyon",
+      "arrivee_nom": "Paris Nord",
+      "temps_moyen_min": 5.0,
+      "temps_min_min": 5.0,
+      "temps_max_min": 5.0,
+      "nb_trains": 999,
+      "distance_km": 5.5,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
+      }
+    },
+    {
+      "depart": "87271031",
+      "arrivee": "87686006",
+      "depart_nom": "Paris Nord",
+      "arrivee_nom": "Paris Gare de Lyon",
+      "temps_moyen_min": 5.0,
+      "temps_min_min": 5.0,
+      "temps_max_min": 5.0,
+      "nb_trains": 999,
+      "distance_km": 5.5,
+      "type_train": "Correspondance",
+      "types_details": {
+        "Correspondance": 1
       }
     }
   ]

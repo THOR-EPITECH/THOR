@@ -105,24 +105,96 @@ def route_to_dict(route):
     }
     
     shapes = get_shapes_data()
-    if shapes and route.metadata.get('segments'):
+    if route.metadata.get('segments'):
         path_uic = route.metadata.get('path_uic', [])
-        for i, segment in enumerate(route.metadata['segments']):
+        pathfinding_model = get_pathfinding_model()
+        segments = route.metadata['segments']
+        
+        for i, segment in enumerate(segments):
             if i < len(path_uic) - 1:
                 uic_from = path_uic[i]
                 uic_to = path_uic[i + 1]
                 
-                geometry = shapes.get((uic_from, uic_to))
+                station_from = pathfinding_model._stations_by_uic.get(uic_from)
+                station_to = pathfinding_model._stations_by_uic.get(uic_to)
                 
-                if geometry:
-                    segment['geometry'] = geometry
-                else:
-                    reverse_geometry = shapes.get((uic_to, uic_from))
-                    if reverse_geometry:
+                if station_from and 'position_geographique' in station_from:
+                    segment['from_lon'] = station_from['position_geographique']['lon']
+                    segment['from_lat'] = station_from['position_geographique']['lat']
+                
+                if station_to and 'position_geographique' in station_to:
+                    segment['to_lon'] = station_to['position_geographique']['lon']
+                    segment['to_lat'] = station_to['position_geographique']['lat']
+                
+                if segment.get('type_train') == 'Correspondance':
+                    continue
+                
+                if shapes:
+                    geometry = shapes.get((uic_from, uic_to))
+                    
+                    if not geometry:
+                        reverse_geometry = shapes.get((uic_to, uic_from))
+                        if reverse_geometry:
+                            geometry = {
+                                'type': 'LineString',
+                                'coordinates': list(reversed(reverse_geometry['coordinates']))
+                            }
+                    
+                    if geometry and geometry.get('coordinates'):
+                        coords = list(geometry['coordinates'])
+                        
+                        if station_from and 'position_geographique' in station_from:
+                            exact_start = [
+                                station_from['position_geographique']['lon'],
+                                station_from['position_geographique']['lat']
+                            ]
+                            coords[0] = exact_start
+                        
+                        if station_to and 'position_geographique' in station_to:
+                            exact_end = [
+                                station_to['position_geographique']['lon'],
+                                station_to['position_geographique']['lat']
+                            ]
+                            coords[-1] = exact_end
+                        
                         segment['geometry'] = {
                             'type': 'LineString',
-                            'coordinates': list(reversed(reverse_geometry['coordinates']))
+                            'coordinates': coords
                         }
+                    elif station_from and station_to and 'position_geographique' in station_from and 'position_geographique' in station_to:
+                        segment['geometry'] = {
+                            'type': 'LineString',
+                            'coordinates': [
+                                [station_from['position_geographique']['lon'], station_from['position_geographique']['lat']],
+                                [station_to['position_geographique']['lon'], station_to['position_geographique']['lat']]
+                            ]
+                        }
+        
+        for i, segment in enumerate(segments):
+            if segment.get('type_train') == 'Correspondance':
+                prev_segment = segments[i - 1] if i > 0 else None
+                next_segment = segments[i + 1] if i < len(segments) - 1 else None
+                
+                start_point = None
+                end_point = None
+                
+                if prev_segment and 'geometry' in prev_segment and prev_segment['geometry'].get('coordinates'):
+                    last_coords = prev_segment['geometry']['coordinates']
+                    start_point = last_coords[-1]
+                
+                if next_segment and 'geometry' in next_segment and next_segment['geometry'].get('coordinates'):
+                    first_coords = next_segment['geometry']['coordinates']
+                    end_point = first_coords[0]
+                
+                if start_point and end_point:
+                    segment['geometry'] = {
+                        'type': 'LineString',
+                        'coordinates': [start_point, end_point]
+                    }
+                    segment['from_lon'] = start_point[0]
+                    segment['from_lat'] = start_point[1]
+                    segment['to_lon'] = end_point[0]
+                    segment['to_lat'] = end_point[1]
     
     return result
 

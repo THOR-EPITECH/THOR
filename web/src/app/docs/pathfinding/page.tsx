@@ -29,7 +29,7 @@ export default function DocsPathfinding() {
         <h1 className="text-4xl font-bold mb-4">Pathfinding (Dijkstra)</h1>
         <p className="text-xl text-neutral-400 leading-relaxed">
           Algorithme de recherche du plus court chemin optimisé pour le réseau ferroviaire français, 
-          avec priorisation des TGV et temps de trajet réels.
+          avec système de pénalités intelligentes favorisant les trains rapides (TGV) et temps de trajet réels.
         </p>
       </div>
 
@@ -432,7 +432,8 @@ predecesseurs = {
           <h3 className="font-semibold text-purple-400 mb-4">Pourquoi utiliser des pénalités ?</h3>
           <p className="text-neutral-400 text-sm mb-4">
             Sans pénalité, l'algorithme choisirait parfois des TER lents mais directs au lieu de TGV avec correspondance.
-            Les pénalités permettent de <strong className="text-white">favoriser les trains rapides</strong>.
+            Les pénalités permettent de <strong className="text-white">favoriser les trains rapides</strong>, tout en restant flexible 
+            si un train "lent" direct est vraiment plus rapide que plusieurs TGV avec correspondances.
           </p>
           <div className="p-4 rounded-lg bg-white/5">
             <div className="text-xs text-neutral-500 mb-3">Exemple : Bordeaux → Marseille</div>
@@ -465,7 +466,7 @@ predecesseurs = {
               </div>
             </div>
             <div className="mt-3 text-xs text-neutral-500">
-              → L'algorithme choisit le TGV via Paris (poids <strong className="text-green-400">330</strong> &lt; <strong className="text-red-400">720</strong>)
+              → Dans cet exemple, l'algorithme choisit le TGV via Paris (poids <strong className="text-green-400">330</strong> &lt; <strong className="text-red-400">720</strong>)
             </div>
           </div>
         </div>
@@ -487,7 +488,7 @@ predecesseurs = {
                   <span className="text-green-400 font-medium">TGV / OUIGO</span>
                 </td>
                 <td className="p-4"><code className="text-green-400">×1.0</code></td>
-                <td className="p-4 text-neutral-400">Aucune pénalité — priorité maximale</td>
+                <td className="p-4 text-neutral-400">Aucune pénalité — temps réel utilisé</td>
               </tr>
               <tr className="bg-green-500/5">
                 <td className="p-4 flex items-center gap-2">
@@ -495,7 +496,15 @@ predecesseurs = {
                   <span className="text-green-400">Lyria / Eurostar</span>
                 </td>
                 <td className="p-4"><code className="text-green-400">×1.0</code></td>
-                <td className="p-4 text-neutral-400">TGV internationaux — même priorité</td>
+                <td className="p-4 text-neutral-400">TGV internationaux — aucune pénalité</td>
+              </tr>
+              <tr className="bg-yellow-500/5">
+                <td className="p-4 flex items-center gap-2">
+                  <Train className="w-4 h-4 text-yellow-400" />
+                  <span className="text-yellow-400">🚇 Correspondance</span>
+                </td>
+                <td className="p-4"><code className="text-yellow-400">×1.0</code></td>
+                <td className="p-4 text-neutral-400">Transfert inter-gare (métro/RER)</td>
               </tr>
               <tr>
                 <td className="p-4 flex items-center gap-2">
@@ -519,7 +528,7 @@ predecesseurs = {
                   <span className="text-red-400">TER / Navette</span>
                 </td>
                 <td className="p-4"><code className="text-red-400">×2.0</code></td>
-                <td className="p-4 text-neutral-400">×2 sur le temps réel — défavorisé</td>
+                <td className="p-4 text-neutral-400">×2 sur le temps réel — forte pénalité</td>
               </tr>
             </tbody>
           </table>
@@ -532,9 +541,9 @@ poids_pondere = temps_reel_minutes × coefficient_penalite
 poids = 117 × 1.0 = 117  ✓ Chemin probable
 
 # Exemple 2 : Liaison TER (180 min)
-poids = 180 × 2.0 = 360  ✗ Défavorisé par l'algo
+poids = 180 × 2.0 = 360  ✗ Pénalisé (×2)
 
-# L'algorithme choisit le chemin avec le PLUS PETIT poids total`}</CodeBlock>
+# L'algorithme choisit TOUJOURS le chemin avec le PLUS PETIT poids total`}</CodeBlock>
       </div>
 
       <div className="mb-12">
@@ -636,6 +645,85 @@ poids = 180 × 2.0 = 360  ✗ Défavorisé par l'algo
 
       <div className="mb-12">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+          <Train className="w-6 h-6 text-yellow-400" />
+          Correspondances inter-gare
+        </h2>
+        
+        <div className="p-6 rounded-xl bg-yellow-500/5 border border-yellow-500/20 mb-6">
+          <h3 className="font-semibold text-yellow-400 mb-4">Qu'est-ce qu'une correspondance inter-gare ?</h3>
+          <p className="text-neutral-400 text-sm mb-4">
+            Certaines villes comme <strong className="text-white">Paris</strong> ont plusieurs gares non-connectées directement par voie ferrée. 
+            Pour optimiser les trajets, THOR peut proposer des <strong className="text-yellow-300">correspondances métro/RER</strong> entre ces gares.
+          </p>
+          <div className="p-4 rounded-lg bg-white/5 mb-4">
+            <div className="text-xs text-neutral-500 mb-3">Exemple : Biarritz → Marseille</div>
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-1 rounded bg-rose-500/20 text-rose-400 text-xs">TGV</span>
+                <span className="text-neutral-400">Biarritz → Paris Montparnasse</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-1 rounded bg-yellow-500/20 text-yellow-400 text-xs">🚇 Correspondance</span>
+                <span className="text-neutral-400">Paris Montparnasse → Paris Gare de Lyon (métro, 40-60 min)</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-1 rounded bg-rose-500/20 text-rose-400 text-xs">TGV</span>
+                <span className="text-neutral-400">Paris Gare de Lyon → Marseille</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 mb-6">
+          <h3 className="font-semibold mb-4">Gares concernées</h3>
+          <p className="text-sm text-neutral-400 mb-4">
+            Les correspondances inter-gare sont définies manuellement pour les principales gares parisiennes :
+          </p>
+          <div className="grid md:grid-cols-3 gap-3">
+            {['Paris Montparnasse', 'Paris Gare de Lyon', 'Paris Nord'].map((g) => (
+              <span key={g} className="px-3 py-2 rounded-lg bg-yellow-500/10 text-yellow-400 text-sm text-center">{g}</span>
+            ))}
+          </div>
+          <div className="mt-4 text-xs text-neutral-500">
+            Les temps de transfert incluent le trajet en métro/RER + marges de sécurité.
+          </div>
+        </div>
+
+        <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 mb-6">
+          <h3 className="font-semibold mb-4">Pénalité des correspondances</h3>
+          <p className="text-sm text-neutral-400 mb-4">
+            Les correspondances inter-gare ont un <strong className="text-white">multiplicateur de 1.0</strong>, 
+            identique aux TGV. Cela permet à l'algorithme de les considérer comme une option viable sans les pénaliser.
+          </p>
+          <CodeBlock>{`TRAIN_TYPE_PENALTY = {
+    'TGV': 1.0,
+    'OUIGO': 1.0,
+    'Correspondance': 1.0,  # ← Traité comme TGV
+    'Intercités': 1.3,
+    'TER': 2.0
+}`}</CodeBlock>
+        </div>
+
+        <div className="p-6 rounded-xl bg-yellow-500/5 border border-yellow-500/20">
+          <h3 className="font-semibold text-yellow-400 mb-4">Affichage sur la carte</h3>
+          <p className="text-sm text-neutral-400 mb-3">
+            Les correspondances sont affichées différemment des trains :
+          </p>
+          <ul className="space-y-2 text-sm text-neutral-400">
+            <li className="flex items-center gap-2">
+              <div className="w-4 h-1 bg-yellow-400" style={{backgroundImage: 'repeating-linear-gradient(90deg, transparent, transparent 5px, currentColor 5px, currentColor 10px)'}} />
+              <span>Ligne jaune <strong className="text-yellow-400">pointillée</strong></span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="text-yellow-400">🚇</span>
+              <span>Badge <strong className="text-yellow-400">"Correspondance"</strong> dans les détails</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="mb-12">
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
           <Plane className="w-6 h-6 text-red-400" />
           Exclusion des aéroports
         </h2>
@@ -705,7 +793,7 @@ def get_stations_for_city(city: str, exclude_airports: bool = True):
     "path_liaisons": "data/train_station/dataset_liaisons_enhanced.json",
     "path_shapes": "data/train_station/dataset_liaisons_with_shapes.json",
     "mode": "time",
-    "prioritize_tgv": true,
+    "penalty_system": "enabled",
     "exclude_airports": true
   }
 }`}</CodeBlock>
@@ -924,7 +1012,7 @@ print(f"Distance : {distance:.1f} km")  # → 391.2 km`}</CodeBlock>
             <h4 className="font-medium text-green-400 mb-2">Points forts</h4>
             <ul className="space-y-1 text-neutral-400">
               <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3 text-green-400" /> Temps de trajet réels (GTFS)</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3 text-green-400" /> Priorisation intelligente TGV</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3 text-green-400" /> Système de pénalités intelligent (favorise TGV)</li>
               <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3 text-green-400" /> Multi-source pour villes à plusieurs gares</li>
               <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3 text-green-400" /> Géométries pour affichage carte</li>
               <li className="flex items-center gap-2"><CheckCircle2 className="w-3 h-3 text-green-400" /> Latence ~5ms</li>

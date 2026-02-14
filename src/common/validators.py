@@ -108,13 +108,50 @@ class CityValidator:
         Initialise le validateur.
         
         Args:
-            cities_file: Chemin vers le fichier de villes valides
+            cities_file: Chemin vers le fichier de villes valides (optionnel, charge depuis les datasets par défaut)
         """
         self.valid_cities = self._load_valid_cities(cities_file)
+        self.normalized_to_original = self._build_normalized_mapping()
         self.city_aliases = self._build_aliases()
     
+    @staticmethod
+    def normalize_city_name(name: str) -> str:
+        """
+        Normalise un nom de ville pour la comparaison.
+        Enlève les tirets, espaces multiples, apostrophes et met en minuscules.
+        
+        Args:
+            name: Nom de ville à normaliser
+            
+        Returns:
+            Nom normalisé
+        """
+        if not name:
+            return ""
+        
+        normalized = name.lower().strip()
+        normalized = normalized.replace('-', ' ').replace("'", ' ')
+        normalized = re.sub(r'\s+', ' ', normalized)
+        normalized = normalized.strip()
+        
+        return normalized
+    
+    def _build_normalized_mapping(self) -> Dict[str, str]:
+        """
+        Construit un mapping des noms normalisés vers les noms originaux.
+        
+        Returns:
+            Dict[nom_normalisé] -> nom_original
+        """
+        mapping = {}
+        for city in self.valid_cities:
+            normalized = self.normalize_city_name(city)
+            if normalized and normalized not in mapping:
+                mapping[normalized] = city
+        return mapping
+    
     def _load_valid_cities(self, cities_file: Optional[str]) -> set:
-        """Charge la liste des villes valides depuis les données."""
+        """Charge la liste des villes valides depuis les datasets."""
         valid_cities = set()
         
         if cities_file and Path(cities_file).exists():
@@ -123,30 +160,100 @@ class CityValidator:
                     data = json.load(f)
                     if isinstance(data, list):
                         valid_cities = {city.lower() for city in data}
-            except:
-                pass
+                        return valid_cities
+            except Exception as e:
+                print(f"Erreur lors du chargement de {cities_file}: {e}")
         
-        default_cities = {
-            "paris", "lyon", "marseille", "toulouse", "nice", "nantes",
-            "montpellier", "strasbourg", "bordeaux", "lille", "rennes",
-            "reims", "saint-étienne", "toulon", "grenoble", "dijon",
-            "angers", "nîmes", "villeurbanne", "le mans", "aix-en-provence",
-            "clermont-ferrand", "brest", "tours", "amiens", "limoges",
-            "annecy", "perpignan", "boulogne-billancourt", "metz", "besançon",
-            "orléans", "rouen", "argenteuil", "mulhouse", "caen"
-        }
+        base_path = Path(__file__).parent.parent.parent / "data" / "train_station"
         
-        return valid_cities if valid_cities else default_cities
+        gares_file = base_path / "dataset_gares.json"
+        if gares_file.exists():
+            try:
+                with open(gares_file, 'r', encoding='utf-8') as f:
+                    gares = json.load(f)
+                    for gare in gares:
+                        nom_gare = gare.get('nom_gare', '').strip()
+                        if nom_gare:
+                            valid_cities.add(nom_gare.lower())
+                            valid_cities.add(nom_gare.lower().replace('-', ' '))
+                            
+                            ville_principale = nom_gare.split()[0].lower()
+                            if len(ville_principale) >= 3:
+                                valid_cities.add(ville_principale)
+                        
+                        ville = gare.get('ville', {})
+                        if isinstance(ville, dict):
+                            nom_commune = ville.get('nom_commune', '').strip()
+                            if nom_commune:
+                                valid_cities.add(nom_commune.lower())
+                                valid_cities.add(nom_commune.lower().replace('-', ' '))
+                                
+                                nom_base = nom_commune.lower().split('-')[0]
+                                if len(nom_base) >= 3:
+                                    valid_cities.add(nom_base)
+            except Exception as e:
+                print(f"Avertissement: Impossible de charger {gares_file}: {e}")
+        
+        villes_file = base_path / "dataset_villes.json"
+        if villes_file.exists():
+            try:
+                with open(villes_file, 'r', encoding='utf-8') as f:
+                    villes = json.load(f)
+                    for ville in villes:
+                        nom_commune = ville.get('nom_commune', '').strip()
+                        if nom_commune:
+                            valid_cities.add(nom_commune.lower())
+                            valid_cities.add(nom_commune.lower().replace('-', ' '))
+                            valid_cities.add(nom_commune.lower().replace("'", ' '))
+                            
+                            nom_base = nom_commune.lower().split('-')[0]
+                            if len(nom_base) >= 3 and not nom_base.endswith('e'):
+                                valid_cities.add(nom_base)
+            except Exception as e:
+                print(f"Avertissement: Impossible de charger {villes_file}: {e}")
+        
+        if not valid_cities:
+            print("Avertissement: Aucun dataset chargé, utilisation de la liste par défaut")
+            valid_cities = {
+                "paris", "lyon", "marseille", "toulouse", "nice", "nantes",
+                "montpellier", "strasbourg", "bordeaux", "lille", "rennes",
+                "reims", "saint-étienne", "saint etienne", "toulon", "grenoble", 
+                "dijon", "angers", "nîmes", "nimes", "villeurbanne", "le mans",
+                "aix-en-provence", "aix en provence", "clermont-ferrand", 
+                "clermont ferrand", "brest", "tours", "amiens", "limoges",
+                "annecy", "perpignan", "boulogne-billancourt", "metz", "besançon",
+                "orléans", "orleans", "rouen", "argenteuil", "mulhouse", "caen",
+                "biarritz", "bayonne", "pau", "lourdes", "tarbes"
+            }
+        else:
+            print(f"✓ {len(valid_cities)} villes/gares chargées dans le validateur")
+        
+        return valid_cities
     
     def _build_aliases(self) -> Dict[str, str]:
         """Construit un dictionnaire d'alias de villes."""
-        return {
+        aliases = {
             "st etienne": "saint-étienne",
             "saint etienne": "saint-étienne",
+            "st étienne": "saint-étienne",
             "aix": "aix-en-provence",
             "clermont": "clermont-ferrand",
             "boulogne": "boulogne-billancourt",
         }
+        
+        additional_aliases = {}
+        for city in self.valid_cities:
+            city_no_accent = city.replace('é', 'e').replace('è', 'e').replace('ê', 'e')
+            city_no_accent = city_no_accent.replace('à', 'a').replace('â', 'a')
+            city_no_accent = city_no_accent.replace('ô', 'o').replace('ù', 'u')
+            city_no_accent = city_no_accent.replace('î', 'i').replace('ï', 'i')
+            city_no_accent = city_no_accent.replace('û', 'u').replace('ü', 'u')
+            
+            if city_no_accent != city and city_no_accent not in self.valid_cities:
+                additional_aliases[city_no_accent] = city
+        
+        aliases.update(additional_aliases)
+        return aliases
     
     def validate_city(self, city: Optional[str]) -> Dict[str, any]:
         """
@@ -178,17 +285,58 @@ class CityValidator:
                 "issue": None
             }
         
-        if city_lower in self.city_aliases:
-            corrected = self.city_aliases[city_lower]
+        city_normalized = self.normalize_city_name(city)
+        
+        if city_normalized in self.normalized_to_original:
+            original_name = self.normalized_to_original[city_normalized]
             return {
                 "is_valid": True,
-                "corrected_city": corrected.title(),
-                "suggestions": [f"Ville corrigée: {corrected}"],
-                "confidence": 0.9,
+                "corrected_city": original_name.title(),
+                "suggestions": [] if city_lower == original_name else [f"Reconnu comme: {original_name.title()}"],
+                "confidence": 1.0,
                 "issue": None
             }
         
-        suggestions = self._find_similar_cities(city_lower)
+        if city_normalized in self.city_aliases:
+            corrected = self.city_aliases[city_normalized]
+            return {
+                "is_valid": True,
+                "corrected_city": corrected.title(),
+                "suggestions": [f"Ville corrigée: {corrected.title()}"],
+                "confidence": 0.95,
+                "issue": None
+            }
+        
+        best_match = None
+        best_match_score = 0
+        best_match_original = None
+        
+        for normalized_name, original_name in self.normalized_to_original.items():
+            if len(city_normalized) >= 4:
+                if city_normalized in normalized_name:
+                    score = len(city_normalized) / len(normalized_name)
+                    if score > best_match_score and score >= 0.5:
+                        best_match_score = score
+                        best_match = normalized_name
+                        best_match_original = original_name
+                
+                elif normalized_name in city_normalized and len(normalized_name) >= 4:
+                    score = len(normalized_name) / len(city_normalized)
+                    if score > best_match_score and score >= 0.5:
+                        best_match_score = score
+                        best_match = normalized_name
+                        best_match_original = original_name
+        
+        if best_match and best_match_original and best_match_score >= 0.7:
+            return {
+                "is_valid": True,
+                "corrected_city": best_match_original.title(),
+                "suggestions": [f"Correspondance trouvée: {best_match_original.title()}"],
+                "confidence": 0.85 if best_match_score >= 0.9 else 0.75,
+                "issue": None
+            }
+        
+        suggestions = self._find_similar_cities(city_normalized)
         
         return {
             "is_valid": False,
@@ -200,23 +348,25 @@ class CityValidator:
     
     def _find_similar_cities(self, city: str, max_suggestions: int = 3) -> List[str]:
         """
-        Trouve des villes similaires (distance de Levenshtein simplifiée).
+        Trouve des villes similaires en utilisant la normalisation.
         
         Args:
-            city: Nom de la ville
+            city: Nom de la ville normalisé
             max_suggestions: Nombre max de suggestions
             
         Returns:
             Liste de suggestions
         """
         suggestions = []
-        city_lower = city.lower()
+        city_normalized = self.normalize_city_name(city)
         
-        for valid_city in self.valid_cities:
-            if city_lower in valid_city or valid_city in city_lower:
-                suggestions.append(valid_city.title())
-            elif self._simple_similarity(city_lower, valid_city) > 0.6:
-                suggestions.append(valid_city.title())
+        for normalized_name, original_name in self.normalized_to_original.items():
+            if city_normalized in normalized_name or normalized_name in city_normalized:
+                if len(suggestions) < max_suggestions:
+                    suggestions.append(original_name.title())
+            elif self._simple_similarity(city_normalized, normalized_name) > 0.6:
+                if len(suggestions) < max_suggestions:
+                    suggestions.append(original_name.title())
         
         return suggestions[:max_suggestions]
     
