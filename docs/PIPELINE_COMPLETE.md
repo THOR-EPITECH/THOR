@@ -351,13 +351,66 @@ TRAIN_TYPE_PENALTY = {
     'Intercités': 1.3,    # Légère pénalité
     'Train de nuit': 1.5, # Pénalité modérée
     'TER': 2.0,           # Pénalité importante
-    'Autre': 2.0          # Pénalité par défaut
+    'Navette': 2.0,       # Pénalité importante
+    'Auto-train': 2.5,    # Forte pénalité
+    'Autre': 2.0,         # Pénalité par défaut
+    'Correspondance': 1.0 # Pas de pénalité (transfert inter-gare nécessaire)
 }
 
 temps_pondere = temps_moyen * TRAIN_TYPE_PENALTY[type_train]
+
+# Exemple de calcul:
+# Liaison TGV Paris → Lyon : 117 min
+# Poids = 117 × 1.0 = 117 minutes
+
+# Liaison TER : 180 min
+# Poids = 180 × 2.0 = 360 minutes
+
+# L'algorithme choisit TOUJOURS le chemin avec le PLUS PETIT poids total
 ```
 
-##### 3. Recherche du chemin
+**Note importante** : Ce système de **pénalités intelligentes** permet à Dijkstra de :
+- Favoriser les TGV sans les prioriser absolument
+- Accepter un TER court + TGV long si c'est mieux qu'un TER direct
+- Ne pas pénaliser les correspondances inter-gare (métro entre gares parisiennes)
+
+##### 3. Correspondances inter-gare
+
+Le système supporte les **transferts métro** entre grandes gares parisiennes :
+
+```python
+# Correspondances automatiques ajoutées au graphe
+correspondances_paris = [
+    {
+        "depart": "87391102",  # Paris Montparnasse
+        "arrivee": "87686006",  # Paris Gare de Lyon
+        "temps_min": 5,
+        "type_train": "Correspondance"
+    },
+    {
+        "depart": "87391102",  # Paris Montparnasse
+        "arrivee": "87271031",  # Paris Nord
+        "temps_min": 5,
+        "type_train": "Correspondance"
+    },
+    {
+        "depart": "87686006",  # Paris Gare de Lyon
+        "arrivee": "87271031",  # Paris Nord
+        "temps_min": 5,
+        "type_train": "Correspondance"
+    }
+]
+```
+
+**Affichage sur la carte web** : Les correspondances sont affichées en **lignes jaunes pointillées** reliant visuellement les deux gares.
+
+**Exemple de trajet avec correspondance** : Biarritz → Marseille
+- Biarritz → Paris Montparnasse (TGV, 274 min)
+- Paris Montparnasse → Paris Gare de Lyon (**Correspondance métro**, 5 min)
+- Paris Gare de Lyon → Marseille (TGV, 189 min)
+- **Total : 468 min** (au lieu d'un détour par Massy/Marne-la-Vallée)
+
+##### 4. Recherche du chemin
 
 ```python
 def find_shortest_path(graph, start_uic, end_uic):
@@ -770,15 +823,30 @@ L'interface démarre sur `http://localhost:3000`
 3. **Affichage des résultats**
    - Transcription de la demande
    - Détails de l'itinéraire (temps, distance, étapes)
-   - Carte interactive avec tracé des voies ferrées
-   - Types de trains utilisés
+   - Types de trains avec badges colorés (TGV, OUIGO, Intercités, TER)
+   - **Correspondances inter-gare** affichées en jaune
+   - **Carte interactive Leaflet** avec fonctionnalités avancées :
+     - Tracés ferroviaires réels (géométries SNCF précises)
+     - Filtrage intelligent des points aberrants (>50km)
+     - Correspondances en lignes jaunes pointillées
+     - Tracés incomplets en lignes pointillées (<80% valide)
+     - Popups détaillées au clic
+     - Restriction géographique à la France
+     - Markers précis aux extrémités des segments
 
 ### Architecture frontend
 
-- **Framework**: Next.js 14 (React)
-- **Styling**: Tailwind CSS
-- **Cartes**: Leaflet.js
+- **Framework**: Next.js 14 (React) avec App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS (dark mode)
+- **Cartes**: Leaflet.js + React Leaflet
+- **Icônes**: Lucide React
 - **API**: Proxy Next.js → Flask backend
+- **Composants clés**:
+  - `SearchInput`: Recherche vocale/textuelle
+  - `RouteMapClient`: Carte interactive avec géométries
+  - `RouteDetails`: Affichage détaillé des segments
+  - `CodeBlock`: Documentation avec coloration syntaxique
 
 ---
 
@@ -788,20 +856,38 @@ La pipeline THOR est un système complet et performant pour la recherche d'itin�
 
 ### Points forts
 
-- ✅ Précision élevée (Whisper + spaCy)
-- ✅ Temps de trajet réels (données GTFS)
-- ✅ Optimisation TGV prioritaire
-- ✅ Support multi-gares pour grandes villes
-- ✅ Interface web moderne
-- ✅ API REST complète
+- ✅ **Précision élevée** : Whisper (STT) + spaCy (NLP) avec validation robuste
+- ✅ **Temps de trajet réels** : Données SNCF enrichies (11382+ liaisons)
+- ✅ **Pénalités intelligentes** : Favorise TGV sans exclure alternatives
+- ✅ **Correspondances inter-gare** : Support transferts métro Paris (×1.0 pas de pénalité)
+- ✅ **Géométries précises** : Tracés ferroviaires réels avec filtrage intelligent
+- ✅ **Interface web moderne** : Next.js 14 + Leaflet avec dark mode
+- ✅ **API REST complète** : Flask avec lazy loading des modèles
+- ✅ **Support multi-gares** : Gestion intelligente grandes villes
+- ✅ **Visualisation avancée** : Correspondances en jaune, tracés incomplets détectés
+- ✅ **Documentation interactive** : Guide complet accessible depuis l'interface
 
 ### Améliorations futures
 
-- Support de plusieurs langues
-- Prédiction des retards
-- Suggestions d'alternatives
-- Historique des recherches
-- Export PDF des itinéraires
+#### Court terme
+- Support correspondances Lyon, Marseille, Lille, Bordeaux
+- Optimisation multi-critère (temps vs prix vs confort)
+- Complétion géométries manquantes via OpenStreetMap
+- Intégration API SNCF temps réel pour horaires dynamiques
+
+#### Moyen terme
+- Support de plusieurs langues (EN, ES, IT, DE)
+- Prédiction des retards via machine learning
+- Suggestions d'alternatives (Top-K chemins)
+- Historique des recherches utilisateur
+- Export PDF des itinéraires avec QR codes
+
+#### Long terme
+- Intégration multimodale (bus, avion, covoiturage)
+- Optimisation CO2 et affichage empreinte carbone
+- Personnalisation avancée (fenêtre, couloir, 1ère classe)
+- Réservation intégrée avec systèmes SNCF
+- Analytics et recommandations basées sur l'historique
 
 ---
 

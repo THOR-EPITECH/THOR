@@ -42,16 +42,26 @@ Le système est modulaire, extensible et supporte le fine-tuning des modèles po
 - **Confiance dynamique** : Score de confiance calculé selon la qualité de l'extraction
 
 ### 🗺️ Pathfinding
-- **Algorithme Dijkstra** : Recherche du chemin le plus court entre gares
-- **Graphe ferroviaire** : Utilise les données de gares et liaisons SNCF
+- **Algorithme Dijkstra optimisé** : Recherche du chemin optimal basé sur le temps de trajet
+- **Pénalités intelligentes** : Privilégie TGV et trains rapides sans exclusion absolue
+- **Correspondances inter-gare** : Support des transferts métro entre gares parisiennes
+- **Graphe ferroviaire enrichi** : Données SNCF avec temps réels, distances, types de trains
 - **Évaluation complète** : Métriques de précision, taux de succès, erreur de distance
-- **Distance géographique** : Calcul avec formule de Haversine
 
 ### 🔄 Pipeline complet
 - **End-to-end** : Audio → Transcription → Extraction → Pathfinding → Itinéraire
 - **Rapports automatiques** : Génération de rapports Markdown détaillés
 - **Gestion d'erreurs** : Messages d'erreur spécifiques pour les informations manquantes
 - **Support pathfinding** : Optionnel, peut être activé avec `--pathfinding-model`
+
+### 🌐 API REST & Interface Web
+- **API Flask** : Endpoints REST pour STT, NLP et Pathfinding
+- **Interface Next.js moderne** : Application web responsive avec dark mode
+- **Carte interactive** : Visualisation des itinéraires avec Leaflet.js
+- **Géométries précises** : Affichage des tracés ferroviaires réels avec filtrage intelligent
+- **Correspondances visuelles** : Lignes jaunes pointillées pour les transferts inter-gare
+- **Recherche vocale** : Enregistrement et traitement en temps réel
+- **Docker Compose** : Déploiement simplifié de l'ensemble du système
 
 ## 📦 Installation
 
@@ -321,11 +331,52 @@ python -m src.cli.pathfinding evaluate \
     --model dijkstra
 ```
 
+### API REST
+
+```bash
+# Démarrer l'API Flask (port 8000)
+cd api
+python app.py
+
+# Tester l'API
+curl -X POST http://localhost:8000/api/extract \
+  -H "Content-Type: application/json" \
+  -d '{"text": "Je veux aller de Paris à Lyon"}'
+
+# Précharger les modèles
+curl -X POST http://localhost:8000/api/preload
+```
+
+### Interface Web
+
+```bash
+# Démarrer l'interface Next.js (port 3000)
+cd web
+npm install
+npm run dev
+
+# Accéder à l'interface
+open http://localhost:3000
+```
+
+### Docker Compose
+
+```bash
+# Démarrer tous les services (API + Web)
+docker-compose up -d
+
+# Voir les logs
+docker-compose logs -f
+
+# Arrêter les services
+docker-compose down
+```
+
 ## 🏗️ Architecture
 
 ```
 THOR/
-├── src/
+├── src/                  # Code source Python
 │   ├── stt/              # Module Speech-to-Text
 │   │   ├── models/       # Modèles STT (Whisper, Vosk, Dummy)
 │   │   └── eval/         # Évaluation et métriques
@@ -335,12 +386,25 @@ THOR/
 │   │   └── training/     # Fine-tuning des modèles
 │   ├── pipeline/         # Pipeline complet Audio → STT → NLP → Pathfinding
 │   ├── pathfinding/      # Module Pathfinding
-│   │   ├── models/       # Modèles Pathfinding (Dijkstra)
+│   │   ├── models/       # Modèles Pathfinding (Dijkstra optimisé)
 │   │   └── eval/         # Évaluation et métriques
 │   ├── cli/              # Interfaces en ligne de commande
-│   └── common/           # Modules communs (types, config, logging)
+│   └── common/           # Modules communs (types, config, logging, validators)
+├── api/                  # API REST Flask
+│   ├── app.py            # Application Flask principale
+│   └── requirements.txt  # Dépendances API
+├── web/                  # Interface Web Next.js
+│   ├── src/              # Code source Next.js
+│   │   ├── app/          # Routes et pages Next.js
+│   │   │   ├── page.tsx  # Page d'accueil avec recherche
+│   │   │   └── docs/     # Documentation interactive
+│   │   ├── components/   # Composants React (Map, RouteDetails, etc.)
+│   │   └── types/        # Types TypeScript
+│   └── package.json      # Dépendances Node.js
 ├── configs/              # Fichiers de configuration YAML
-├── data/                 # Données (raw, processed, splits)
+├── data/                 # Données ferroviaires
+│   ├── raw/              # Données brutes (shapes.json, audio)
+│   └── train_station/    # Gares, liaisons, géométries enrichies
 ├── models/               # Modèles entraînés
 ├── results/              # Résultats des expériences
 ├── docs/                 # Documentation complète
@@ -349,7 +413,9 @@ THOR/
 │   ├── pathfinding/     # Documentation des modèles Pathfinding
 │   ├── COMMANDES.md     # Guide complet des commandes
 │   └── ARCHITECTURE.md  # Architecture détaillée
-└── scripts/             # Scripts utilitaires
+├── scripts/              # Scripts utilitaires
+├── docker-compose.yml    # Configuration Docker Compose
+└── Dockerfile            # Image Docker pour l'API
 ```
 
 ## 🤖 Modèles disponibles
