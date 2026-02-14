@@ -1,8 +1,12 @@
-# 🚂 THOR - Travel Order Resolver
-
-> Système intelligent de traitement du langage naturel pour extraire des commandes de voyage depuis la parole ou le texte, et identifier les itinéraires de train optimaux.
-
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+<div align="center">
+  <img src="assets/logo.png" alt="THOR Logo" width="200"/>
+  
+  # 🚂 THOR - Travel Order Resolver
+  
+  > Système intelligent de traitement du langage naturel pour extraire des commandes de voyage depuis la parole ou le texte, et identifier les itinéraires de train optimaux.
+  
+  [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+</div>
 
 
 ## 📋 Table des matières
