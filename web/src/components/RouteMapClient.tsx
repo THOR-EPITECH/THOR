@@ -178,7 +178,7 @@ export default function RouteMapClient({ segments }: RouteMapClientProps) {
         }).addTo(map);
         
         const popupContent = `<div style="text-align: center;">
-          <strong>🚇 ${segment.from} → ${segment.to}</strong><br/>
+          <strong>${segment.from} → ${segment.to}</strong><br/>
           <span style="color: ${color}; font-size: 12px;">Correspondance métro/RER</span><br/>
           <span style="color: #999; font-size: 11px;">${segment.distance_km} km • ${segment.temps_min} min</span>
         </div>`;

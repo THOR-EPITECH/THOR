@@ -501,7 +501,7 @@ predecesseurs = {
               <tr className="bg-yellow-500/5">
                 <td className="p-4 flex items-center gap-2">
                   <Train className="w-4 h-4 text-yellow-400" />
-                  <span className="text-yellow-400">🚇 Correspondance</span>
+                  <span className="text-yellow-400">Correspondance</span>
                 </td>
                 <td className="p-4"><code className="text-yellow-400">×1.0</code></td>
                 <td className="p-4 text-neutral-400">Transfert inter-gare (métro/RER)</td>
@@ -663,7 +663,7 @@ poids = 180 × 2.0 = 360  ✗ Pénalisé (×2)
                 <span className="text-neutral-400">Biarritz → Paris Montparnasse</span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="px-2 py-1 rounded bg-yellow-500/20 text-yellow-400 text-xs">🚇 Correspondance</span>
+                <span className="px-2 py-1 rounded bg-yellow-500/20 text-yellow-400 text-xs"> Correspondance</span>
                 <span className="text-neutral-400">Paris Montparnasse → Paris Gare de Lyon (métro, 40-60 min)</span>
               </div>
               <div className="flex items-center gap-2">
