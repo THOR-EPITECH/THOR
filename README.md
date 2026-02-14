@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/logo.png" alt="THOR Logo" width="200"/>
+  <img src="assets/logo.webp" alt="THOR Logo" width="200"/>
   
   # 🚂 THOR - Travel Order Resolver
   
