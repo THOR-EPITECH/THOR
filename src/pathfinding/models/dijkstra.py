@@ -98,17 +98,17 @@ def load_data_enhanced(path_gares: str, path_liaisons_enhanced: str) -> tuple[di
         liaisons = data_enhanced
     
     TRAIN_TYPE_PENALTY = {
-        'TGV': 1.0,           # Priorité maximale
-        'OUIGO': 1.0,         # Même priorité que TGV
-        'Lyria': 1.0,         # TGV international
-        'Eurostar': 1.0,      # TGV international
-        'Correspondance': 1.0,# Pas de pénalité pour les correspondances inter-gares
-        'Intercités': 1.3,    # Légère pénalité
-        'Train de nuit': 1.5, # Pénalité modérée
-        'TER': 2.0,           # Pénalité importante
-        'Navette': 2.0,       # Pénalité importante
-        'Auto-train': 2.5,    # Forte pénalité
-        'Autre': 2.0,         # Pénalité par défaut
+        'TGV': 1.0,
+        'OUIGO': 1.0,
+        'Lyria': 1.0,
+        'Eurostar': 1.0,
+        'Correspondance': 1.0,
+        'Intercités': 1.3,
+        'Train de nuit': 1.5,
+        'TER': 2.0,
+        'Navette': 2.0,
+        'Auto-train': 2.5,
+        'Autre': 2.0,
     }
     
     for l in liaisons:
@@ -280,7 +280,7 @@ class DijkstraPathfindingModel(PathfindingModel):
                 candidates.append((uic, station, 200))
                 continue
             
-            if gare_nom.startswith(city_name_lower + ' ') or gare_nom.startswith(city_name_lower + '-'):
+            if gare_nom.startswith(city_name_lower + ' '):
                 score = 100
                 if any(term in gare_nom for term in ['part-dieu', 'part dieu', 'saint-jean', 
                                                        'saint-charles', 'perrache', 'montparnasse']):
@@ -289,6 +289,11 @@ class DijkstraPathfindingModel(PathfindingModel):
                     score += 30
                 if any(term in gare_nom for term in ['aéroport', 'banlieue', 'rer', 'gorge', 'vaise', 'saint-paul']):
                     score -= 20
+                candidates.append((uic, station, score))
+                continue
+            
+            if '-' in city_name_lower and gare_nom.startswith(city_name_lower + '-'):
+                score = 100
                 candidates.append((uic, station, score))
                 continue
             

@@ -15,7 +15,8 @@ import {
   Map,
   Database,
   Globe,
-  Sparkles
+  Sparkles,
+  ArrowRight
 } from 'lucide-react';
 
 function ImprovementCard({ 
@@ -107,15 +108,17 @@ function MetricComparison({ current, potential, unit, label }: {
 export default function DocsImprovements() {
   return (
     <div>
-      <div className="flex items-center gap-3 mb-2">
-        <div className="p-2 rounded-lg bg-yellow-500/10">
-          <Lightbulb className="w-6 h-6 text-yellow-400" />
+      <div className="mb-12">
+        <div className="flex items-center gap-2 text-sm text-neutral-500 mb-4">
+          <span>Docs</span>
+          <ArrowRight className="w-3 h-3" />
+          <span className="text-white">Améliorations</span>
         </div>
-        <h1 className="text-3xl font-bold">Améliorations</h1>
+        <h1 className="text-4xl font-bold mb-4">Améliorations</h1>
+        <p className="text-xl text-neutral-400 leading-relaxed">
+          Pistes d'amélioration pour optimiser chaque composant de la pipeline THOR.
+        </p>
       </div>
-      <p className="text-neutral-400 mb-8">
-        Pistes d'amélioration pour optimiser chaque composant de la pipeline THOR.
-      </p>
 
       <section className="mb-12">
         <h2 className="text-xl font-semibold mb-4">État actuel</h2>

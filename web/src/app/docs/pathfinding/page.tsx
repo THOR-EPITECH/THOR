@@ -715,7 +715,6 @@ poids = 180 × 2.0 = 360  ✗ Pénalisé (×2)
               <span>Ligne jaune <strong className="text-yellow-400">pointillée</strong></span>
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-yellow-400">🚇</span>
               <span>Badge <strong className="text-yellow-400">"Correspondance"</strong> dans les détails</span>
             </li>
           </ul>
