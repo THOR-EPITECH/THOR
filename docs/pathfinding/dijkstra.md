@@ -98,7 +98,42 @@ Pour chaque ville demandée (origine/destination), le modèle :
 3. Trouve le code UIC de la gare correspondante
 4. Si plusieurs gares, prend en compte toutes les combinaisons possibles
 
-**Note** : Les grandes villes avec plusieurs gares (Paris, Lyon, etc.) sont gérées intelligemment.
+**Gestion intelligente des grandes villes :**
+- Les grandes villes avec plusieurs gares (Paris, Lyon, Marseille, etc.) sont gérées intelligemment
+- Un **système de scoring** privilégie les gares principales :
+  - Gares TGV : +30 points
+  - Gares principales (Saint-Charles, Part-Dieu, etc.) : +50 points
+  - Grandes villes majeures : +100 points
+  - Aéroports / Banlieue : -20 points
+
+**Exclusion automatique des homonymes :**
+
+Pour éviter les erreurs de destination, le système exclut automatiquement les homonymes indésirables pour les recherches simples :
+
+| Recherche | ✅ Trouve | ❌ Exclut |
+|-----------|-----------|-----------|
+| `"marseille"` | Marseille Saint-Charles (13) | Marseille-en-Beauvaisis (60) |
+| `"lyon"` | Lyon Part-Dieu / Perrache | Lyon-Dagneux (01) |
+| `"paris"` | Paris Gare de Lyon, Nord, etc. | Paris-Plage |
+
+**Important :** Si l'utilisateur cherche explicitement l'homonyme avec tirets (ex: `"marseille-en-beauvaisis"`), le système trouvera bien cette ville.
+
+**Exemple de calcul de score :**
+```
+# Recherche: "marseille"
+Marseille Saint-Charles:
+  - ville_nom == "marseille" : +80
+  - "marseille" in MAJOR_CITIES : +100
+  - "saint-charles" in gare_nom : +50
+  - nb_connections × 2 : +120
+  → Score total : 350
+
+Marseille-en-Beauvaisis:
+  - EXCLU automatiquement (homonyme indésirable)
+  → Non considéré
+
+# L'algorithme choisit Marseille Saint-Charles ✅
+```
 
 ### 6. Algorithme de Dijkstra optimisé
 

@@ -374,7 +374,64 @@ temps_pondere = temps_moyen * TRAIN_TYPE_PENALTY[type_train]
 - Accepter un TER court + TGV long si c'est mieux qu'un TER direct
 - Ne pas pénaliser les correspondances inter-gare (métro entre gares parisiennes)
 
-##### 3. Correspondances inter-gare
+##### 3. Sélection intelligente des villes
+
+Le système utilise un **scoring avancé** pour éviter de choisir les mauvaises gares, notamment en cas d'homonymes.
+
+**Problématique :** 
+- Recherche: `"marseille"` 
+- ❌ Sans système intelligent → `Marseille-en-Beauvaisis` (60, village de 800 habitants, plus proche de Paris)
+- ✅ Avec système intelligent → `Marseille Saint-Charles` (13, 2ème ville de France, 870 000 habitants)
+
+**Système de scoring :**
+
+| Critère | Score | Exemple |
+|---------|-------|---------|
+| Nom exact de gare | +200 | "Paris Gare de Lyon" → 87686006 |
+| Grande ville majeure | +100 | Marseille, Lyon, Toulouse, Nice, Bordeaux, Lille... (29 villes) |
+| Gare principale reconnue | +50 | Saint-Charles, Part-Dieu, Saint-Jean, Montparnasse... |
+| Gare TGV/centrale | +30 | Contient "TGV", "Central", "Centre" dans le nom |
+| Nombre de connexions | +2×N | N = nombre de liaisons depuis cette gare |
+| Gare secondaire | -20 | Aéroport, Banlieue, RER, etc. |
+
+**Exclusion automatique des homonymes :**
+
+Pour les recherches simples (sans tiret), le système exclut automatiquement les homonymes indésirables :
+
+```python
+EXCLUDED_WHEN_SIMPLE = {
+    'marseille': ['marseille-en-beauvaisis'],
+    'lyon': ['lyon-dagneux'],
+    'paris': ['paris-plage']
+}
+
+# Si recherche = "marseille" (sans tiret)
+# → Exclut Marseille-en-Beauvaisis AVANT le scoring
+
+# Si recherche = "marseille-en-beauvaisis" (avec tiret)
+# → Ne fait AUCUNE exclusion, trouve bien le village
+```
+
+**Exemple de calcul complet :**
+
+```python
+# Recherche: "marseille"
+
+# Candidate 1: Marseille Saint-Charles (87756353)
+score = 0
+score += 80   # ville_nom == "marseille"
+score += 100  # "marseille" in MAJOR_CITIES
+score += 50   # "saint-charles" in gare_nom
+score += 2 * 60  # 60 connexions dans le graphe
+→ Score total = 350
+
+# Candidate 2: Marseille-en-Beauvaisis (87474411)
+# → EXCLU automatiquement (homonyme indésirable)
+
+# Résultat: Marseille Saint-Charles ✅
+```
+
+##### 4. Correspondances inter-gare
 
 Le système supporte les **transferts métro** entre grandes gares parisiennes :
 
@@ -410,7 +467,7 @@ correspondances_paris = [
 - Paris Gare de Lyon → Marseille (TGV, 189 min)
 - **Total : 468 min** (au lieu d'un détour par Massy/Marne-la-Vallée)
 
-##### 4. Recherche du chemin
+##### 5. Recherche du chemin
 
 ```python
 def find_shortest_path(graph, start_uic, end_uic):

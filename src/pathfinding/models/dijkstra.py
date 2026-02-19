@@ -268,13 +268,35 @@ class DijkstraPathfindingModel(PathfindingModel):
         Pour les grandes villes avec plusieurs gares, on privilégie:
         1. La gare principale (souvent la plus connectée dans le graphe)
         2. Une gare TGV ou grande ligne
+        
+        Exclut automatiquement les homonymes indésirables pour les recherches simples
+        (ex: "marseille" doit trouver Marseille dans le sud, pas Marseille-en-Beauvaisis)
         """
         city_name_lower = city_name.lower().strip()
+        city_input_has_hyphen = '-' in city_name_lower
         candidates = []
+        
+        MAJOR_CITIES = [
+            'marseille', 'lyon', 'toulouse', 'nice', 'nantes', 'montpellier', 'strasbourg',
+            'bordeaux', 'lille', 'rennes', 'reims', 'toulon', 'grenoble', 'dijon', 'angers',
+            'nîmes', 'villeurbanne', 'saint-étienne', 'le mans', 'aix-en-provence', 'brest',
+            'tours', 'amiens', 'limoges', 'annecy', 'perpignan', 'besançon', 'metz', 'orléans'
+        ]
+        
+        EXCLUDED_WHEN_SIMPLE = {
+            'marseille': ['marseille-en-beauvaisis'],
+            'lyon': ['lyon-dagneux'],
+            'paris': ['paris-plage']
+        }
         
         for uic, station in self._stations_by_uic.items():
             gare_nom = station.get('nom_gare', '').lower()
             ville_nom = station.get('ville', {}).get('nom_commune', '').lower()
+            
+            if not city_input_has_hyphen and city_name_lower in EXCLUDED_WHEN_SIMPLE:
+                excluded_list = EXCLUDED_WHEN_SIMPLE[city_name_lower]
+                if ville_nom in excluded_list or gare_nom in excluded_list:
+                    continue
             
             if gare_nom == city_name_lower:
                 candidates.append((uic, station, 200))
@@ -289,6 +311,10 @@ class DijkstraPathfindingModel(PathfindingModel):
                     score += 30
                 if any(term in gare_nom for term in ['aéroport', 'banlieue', 'rer', 'gorge', 'vaise', 'saint-paul']):
                     score -= 20
+                
+                if city_name_lower in MAJOR_CITIES:
+                    score += 100
+                
                 candidates.append((uic, station, score))
                 continue
             
@@ -299,9 +325,14 @@ class DijkstraPathfindingModel(PathfindingModel):
             
             if ville_nom == city_name_lower:
                 score = 80
+                if city_name_lower in MAJOR_CITIES:
+                    score += 100
                 candidates.append((uic, station, score))
             elif city_name_lower in ville_nom and not ville_nom.startswith('paris'):
-                candidates.append((uic, station, 40))
+                score = 40
+                if city_name_lower in MAJOR_CITIES and ville_nom in MAJOR_CITIES:
+                    score += 100
+                candidates.append((uic, station, score))
         
         if not candidates:
             for uic, station in self._stations_by_uic.items():
@@ -348,17 +379,30 @@ class DijkstraPathfindingModel(PathfindingModel):
         """
         Trouve TOUS les UICs des gares principales pour une grande ville.
         Utile pour Paris, Lyon, Marseille etc. qui ont plusieurs gares.
-        Exclut automatiquement les gares d'aéroport et secondaires.
+        Exclut automatiquement les gares d'aéroport et secondaires, ainsi que les homonymes indésirables.
         """
         city_name_lower = city_name.lower().strip()
+        city_input_has_hyphen = '-' in city_name_lower
         candidates = []
         
         exclude_terms = ['rer', 'banlieue', 'aéroport', 'exupéry', 'cdg', 'charles de gaulle']
+        
+        EXCLUDED_WHEN_SIMPLE = {
+            'marseille': ['marseille-en-beauvaisis'],
+            'lyon': ['lyon-dagneux'],
+            'paris': ['paris-plage']
+        }
         
         for uic, station in self._stations_by_uic.items():
             if uic not in self._graph:
                 continue
             gare_nom = station.get('nom_gare', '').lower()
+            ville_nom = station.get('ville', {}).get('nom_commune', '').lower()
+            
+            if not city_input_has_hyphen and city_name_lower in EXCLUDED_WHEN_SIMPLE:
+                excluded_list = EXCLUDED_WHEN_SIMPLE[city_name_lower]
+                if ville_nom in excluded_list or gare_nom in excluded_list:
+                    continue
             
             if gare_nom.startswith(city_name_lower + ' ') or gare_nom.startswith(city_name_lower + '-'):
                 if not any(term in gare_nom for term in exclude_terms):

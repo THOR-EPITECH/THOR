@@ -1,4 +1,4 @@
-import { ArrowRight, Route, Zap, Timer, Map, Train, Plane, Settings, CheckCircle2, AlertCircle } from 'lucide-react';
+import { ArrowRight, Route, Zap, Timer, Map, Train, Plane, Settings, CheckCircle2, AlertCircle, Target } from 'lucide-react';
 
 function CodeBlock({ children, title }: { children: string; title?: string }) {
   return (
@@ -778,6 +778,121 @@ def get_stations_for_city(city: str, exclude_airports: bool = True):
     if exclude_airports:
         stations = [s for s in stations if not is_airport_station(s.name)]
     return stations`}</CodeBlock>
+      </div>
+
+      <div className="mb-12">
+        <h2 className="text-2xl font-bold mb-6 flex items-center gap-3">
+          <Target className="w-6 h-6 text-blue-400" />
+          Sélection intelligente des villes
+        </h2>
+        
+        <div className="p-6 rounded-xl bg-blue-500/5 border border-blue-500/20 mb-6">
+          <h3 className="font-semibold text-blue-400 mb-4">Problématique des homonymes</h3>
+          <p className="text-neutral-400 text-sm mb-4">
+            La France compte plusieurs villes avec des noms similaires. Par exemple, "Marseille" peut faire référence à :
+          </p>
+          <ul className="list-disc list-inside space-y-2 text-sm text-neutral-400 mb-4">
+            <li><strong className="text-white">Marseille</strong> (13) - 2ème ville de France, 870 000 habitants</li>
+            <li><strong className="text-neutral-500">Marseille-en-Beauvaisis</strong> (60) - Petit village, 800 habitants</li>
+          </ul>
+          <p className="text-neutral-400 text-sm">
+            Sans système intelligent, l'algorithme pourrait choisir le village par erreur (car plus proche de Paris). 
+            THOR utilise un <strong className="text-blue-300">système de scoring</strong> pour privilégier automatiquement les grandes villes.
+          </p>
+        </div>
+
+        <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 mb-6">
+          <h3 className="font-semibold mb-4">Système de scoring des gares</h3>
+          <div className="space-y-3 text-sm">
+            <div className="flex items-start gap-3">
+              <span className="px-2 py-1 rounded bg-green-500/20 text-green-400 text-xs font-mono shrink-0">+200</span>
+              <span className="text-neutral-400">Nom exact de la gare (ex: cherche "Paris Gare de Lyon" → trouve exactement)</span>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="px-2 py-1 rounded bg-green-500/20 text-green-400 text-xs font-mono shrink-0">+100</span>
+              <span className="text-neutral-400">Grande ville majeure (Marseille, Lyon, Toulouse, Nice, Bordeaux, Lille...)</span>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="px-2 py-1 rounded bg-green-500/20 text-green-400 text-xs font-mono shrink-0">+50</span>
+              <span className="text-neutral-400">Gare principale reconnue (Saint-Charles, Part-Dieu, Saint-Jean, Montparnasse...)</span>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="px-2 py-1 rounded bg-green-500/20 text-green-400 text-xs font-mono shrink-0">+30</span>
+              <span className="text-neutral-400">Gare TGV ou centrale</span>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="px-2 py-1 rounded bg-blue-500/20 text-blue-400 text-xs font-mono shrink-0">+2×N</span>
+              <span className="text-neutral-400">Nombre de connexions (N) dans le réseau ferroviaire</span>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="px-2 py-1 rounded bg-red-500/20 text-red-400 text-xs font-mono shrink-0">-20</span>
+              <span className="text-neutral-400">Gare secondaire (banlieue, aéroport, RER...)</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="p-6 rounded-xl bg-white/[0.02] border border-white/5 mb-6">
+          <h3 className="font-semibold mb-4">Exclusion automatique des homonymes</h3>
+          <p className="text-sm text-neutral-400 mb-4">
+            Pour les recherches <strong className="text-white">simples</strong> (sans tiret), THOR exclut automatiquement les homonymes indésirables :
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-white/10">
+                  <th className="text-left py-2 px-3 text-neutral-400 font-medium">Recherche</th>
+                  <th className="text-left py-2 px-3 text-green-400 font-medium">✅ Trouve</th>
+                  <th className="text-left py-2 px-3 text-red-400 font-medium">❌ Exclut</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                <tr>
+                  <td className="py-3 px-3">
+                    <code className="text-blue-400">"marseille"</code>
+                  </td>
+                  <td className="py-3 px-3 text-green-400">Marseille Saint-Charles (13)</td>
+                  <td className="py-3 px-3 text-red-400/70">Marseille-en-Beauvaisis (60)</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-3">
+                    <code className="text-blue-400">"lyon"</code>
+                  </td>
+                  <td className="py-3 px-3 text-green-400">Lyon Part-Dieu / Perrache</td>
+                  <td className="py-3 px-3 text-red-400/70">Lyon-Dagneux (01)</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-3">
+                    <code className="text-blue-400">"paris"</code>
+                  </td>
+                  <td className="py-3 px-3 text-green-400">Paris Gare de Lyon, Nord...</td>
+                  <td className="py-3 px-3 text-red-400/70">Paris-Plage</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-4 p-3 rounded-lg bg-blue-500/10 text-xs text-blue-400">
+            <strong>Note :</strong> Si l'utilisateur cherche explicitement l'homonyme avec tirets 
+            (ex: <code className="bg-white/10 px-1 rounded">"marseille-en-beauvaisis"</code>), le système trouvera bien cette ville.
+          </div>
+        </div>
+
+        <div className="p-6 rounded-xl bg-green-500/5 border border-green-500/20">
+          <h3 className="font-semibold text-green-400 mb-4">Exemple de calcul de score</h3>
+          <CodeBlock>{`# Recherche: "marseille"
+
+Marseille Saint-Charles:
+  - ville_nom == "marseille" : +80
+  - "marseille" in MAJOR_CITIES : +100
+  - "saint-charles" in gare_nom : +50
+  - nb_connections × 2 : +120
+  → Score total : 350
+
+Marseille-en-Beauvaisis:
+  - EXCLU automatiquement (homonyme indésirable)
+  → Non considéré
+
+✅ L'algorithme choisit Marseille Saint-Charles`}</CodeBlock>
+        </div>
       </div>
 
       <div className="mb-12">
