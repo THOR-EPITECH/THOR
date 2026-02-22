@@ -15,47 +15,6 @@ from pathlib import Path
 from typing import Optional
 
 
-def resample_audio(
-    input_path: str | Path,
-    output_path: str | Path,
-    target_sr: int = 16000,
-    mono: bool = True
-) -> dict:
-    """
-    Rééchantillonne un fichier audio.
-    
-    Args:
-        input_path: Chemin vers le fichier audio d'entrée
-        output_path: Chemin vers le fichier de sortie
-        target_sr: Fréquence d'échantillonnage cible (Hz)
-        mono: Convertir en mono si True
-    
-    Returns:
-        Dictionnaire avec les métadonnées audio
-    """
-    if not AUDIO_AVAILABLE:
-        raise ImportError("soundfile and librosa are required for audio processing")
-    
-    audio, sr = librosa.load(str(input_path), sr=None, mono=mono)
-    
-    if sr != target_sr:
-        audio = librosa.resample(audio, orig_sr=sr, target_sr=target_sr)
-    
-    if len(audio.shape) > 1:
-        audio = np.mean(audio, axis=0)
-    
-    output_path = Path(output_path)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    sf.write(str(output_path), audio, target_sr)
-    
-    return {
-        "sample_rate": target_sr,
-        "channels": 1 if mono else audio.shape[0],
-        "duration": len(audio) / target_sr,
-        "dtype": audio.dtype
-    }
-
-
 def normalize_audio(audio: np.ndarray) -> np.ndarray:
     """
     Normalise l'audio (amplitude entre -1 et 1).
