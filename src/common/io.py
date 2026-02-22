@@ -41,19 +41,6 @@ def write_jsonl(file_path: str | Path, data: List[Dict[str, Any]]):
             f.write(json.dumps(item, ensure_ascii=False) + '\n')
 
 
-def read_csv(file_path: str | Path) -> pd.DataFrame:
-    """
-    Lit un fichier CSV avec pandas.
-    
-    Args:
-        file_path: Chemin vers le fichier CSV
-    
-    Returns:
-        DataFrame pandas
-    """
-    return pd.read_csv(file_path, encoding='utf-8')
-
-
 def write_csv(file_path: str | Path, data: List[Dict[str, Any]]):
     """
     Écrit un fichier CSV.
