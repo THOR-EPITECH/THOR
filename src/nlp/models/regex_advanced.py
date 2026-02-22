@@ -64,7 +64,6 @@ class RegexAdvancedModel(NLPModel):
         Returns:
             NLPExtraction avec origine et destination
         """
-        text_normalized = text.lower()
         
         origin_patterns = [
             r'(?:de|depuis|partir de|partant de|venant de)\s+([A-Z][a-zéèêàôùç-]+(?:\s+[A-Z][a-zéèêàôùç-]+)?)',

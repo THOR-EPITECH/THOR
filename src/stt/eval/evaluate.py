@@ -44,7 +44,6 @@ def evaluate_model(
     
     model.initialize()
     
-    samples = []
     metrics_list = []
     predictions = []
     
