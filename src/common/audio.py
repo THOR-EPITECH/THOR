@@ -14,23 +14,6 @@ import numpy as np
 from pathlib import Path
 from typing import Optional
 
-
-def normalize_audio(audio: np.ndarray) -> np.ndarray:
-    """
-    Normalise l'audio (amplitude entre -1 et 1).
-    
-    Args:
-        audio: Signal audio
-    
-    Returns:
-        Audio normalisé
-    """
-    max_val = np.max(np.abs(audio))
-    if max_val > 0:
-        return audio / max_val
-    return audio
-
-
 def trim_silence(
     audio: np.ndarray,
     sr: int,
