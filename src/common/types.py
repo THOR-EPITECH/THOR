@@ -102,23 +102,3 @@ class Route:
     total_distance: Optional[float] = None
     total_time: Optional[float] = None
     metadata: Dict[str, Any] = field(default_factory=dict)
-
-
-@dataclass
-class Metrics:
-    """
-    Métriques d'évaluation génériques pour les modèles.
-    
-    Attributes:
-        module (ModuleType): Type de module évalué (STT, NLP, ou Pathfinding).
-        model_name (str): Nom du modèle évalué.
-        timestamp (datetime): Horodatage de la mesure.
-        metrics (Dict[str, float]): Dictionnaire des métriques (ex: {"accuracy": 0.95}).
-        config (Dict[str, Any]): Configuration utilisée pour l'évaluation.
-    """
-    module: ModuleType
-    model_name: str
-    timestamp: datetime = field(default_factory=datetime.now)
-    metrics: Dict[str, float] = field(default_factory=dict)
-    config: Dict[str, Any] = field(default_factory=dict)
-
