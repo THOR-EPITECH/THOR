@@ -17,9 +17,6 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "THOR",
   description: "Trouvez le meilleur itinéraire ferroviaire en France avec l'IA",
-  icons: {
-    icon: "/favicon.ico",
-  },
 };
 
 export default function RootLayout({

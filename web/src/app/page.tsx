@@ -12,6 +12,7 @@
 'use client';
 
 import { useState } from 'react';
+import ThorLogo from "@/components/ThorLogo";
 import { PipelineResult } from '@/types';
 import SearchInput from '@/components/SearchInput';
 import RouteDetails from '@/components/RouteDetails';
@@ -94,7 +95,8 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <Link href="/" className="text-lg font-semibold tracking-tight hover:text-white transition-colors">
+            <Link href="/" className="flex items-center gap-2.5 text-lg font-semibold tracking-tight hover:text-white transition-colors">
+              <ThorLogo className="w-6 h-6" />
               THOR
             </Link>
           </div>

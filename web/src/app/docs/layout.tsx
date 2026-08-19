@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import ThorLogo from "@/components/ThorLogo";
 import { useEffect } from "react";
 import Link from "next/link";
 import {
@@ -95,6 +96,7 @@ export default function DocsLayout({
             </Link>
             <div className="h-4 w-px bg-white/10" />
             <Link href="/docs" className="flex items-center gap-2">
+              <ThorLogo className="w-5 h-5" />
               <span className="font-semibold">THOR</span>
               <span className="text-neutral-500 text-sm">Docs</span>
             </Link>
