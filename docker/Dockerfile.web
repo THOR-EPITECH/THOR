@@ -1,6 +1,6 @@
 # Dockerfile pour le Frontend Next.js THOR
 # Compatible: Linux, macOS (Intel + Apple Silicon), Windows
-FROM --platform=$BUILDPLATFORM node:20-alpine AS base
+FROM node:20-alpine AS base
 
 # Arguments pour le multi-architecture
 ARG TARGETPLATFORM

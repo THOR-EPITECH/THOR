@@ -1,6 +1,6 @@
 # Dockerfile pour l'API Flask THOR
 # Compatible: Linux, macOS (Intel + Apple Silicon), Windows
-FROM --platform=$BUILDPLATFORM python:3.11-slim
+FROM python:3.11-slim
 
 # Arguments pour le multi-architecture
 ARG TARGETPLATFORM
