@@ -23,6 +23,8 @@ COPY web/ .
 # Variables d'environnement pour le build
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
+# Limite la heap Node pour éviter l'OOM killer sur les petits VPS
+ENV NODE_OPTIONS=--max-old-space-size=1536
 
 RUN npm run build
 
