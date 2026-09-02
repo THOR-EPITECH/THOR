@@ -26,7 +26,15 @@ export const metadata: Metadata = {
       "Dites votre trajet à la voix : NLP (spaCy) + données SNCF pour le meilleur itinéraire ferroviaire. Next.js, Flask, Python.",
     url: "https://thor.antoinegourgue.dev/",
     locale: "fr_FR",
-    images: [{ url: "/og.png", width: 1200, height: 630, alt: "THOR" }],
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        type: "image/png",
+        alt: "THOR",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
