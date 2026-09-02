@@ -15,8 +15,26 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "THOR",
+  metadataBase: new URL("https://thor.antoinegourgue.dev"),
+  title: "THOR — Itinéraire ferroviaire piloté à la voix",
   description: "Trouvez le meilleur itinéraire ferroviaire en France avec l'IA",
+  openGraph: {
+    type: "website",
+    siteName: "THOR",
+    title: "THOR — Itinéraire ferroviaire piloté à la voix",
+    description:
+      "Dites votre trajet à la voix : NLP (spaCy) + données SNCF pour le meilleur itinéraire ferroviaire. Next.js, Flask, Python.",
+    url: "https://thor.antoinegourgue.dev/",
+    locale: "fr_FR",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "THOR" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "THOR — Itinéraire ferroviaire piloté à la voix",
+    description:
+      "Dites votre trajet à la voix : NLP (spaCy) + données SNCF pour le meilleur itinéraire ferroviaire.",
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
