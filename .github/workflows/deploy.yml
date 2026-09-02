@@ -27,5 +27,5 @@ jobs:
             cd "${{ secrets.VPS_PATH }}"
             git fetch --all
             git reset --hard origin/main
-            docker compose -f docker-compose.prod.yml up -d --build
+            docker-compose -f docker-compose.prod.yml up -d --build
             docker image prune -f
